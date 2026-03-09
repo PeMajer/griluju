@@ -122,6 +122,7 @@ Shared components for structured data:
 - Commit messages: Czech, concise
 - Always open PR, never push directly to main
 - content-index.json auto-updated by GitHub Action on merge to main
+- **Auto-commit**: Pri komplexnich ukolech (vice souboru, vice kroku) commituj a pushni automaticky bez ptani. Vytvor feature branch, commitni, pushni, vytvor PR.
 
 ## What Never To Do
 
