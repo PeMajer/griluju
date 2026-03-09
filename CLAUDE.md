@@ -118,10 +118,24 @@ Shared components for structured data:
 
 ## Git Workflow
 
-- Branch naming: `feature/popis`, `fix/popis`, `content/slug-clanku`
+- **NIKDY nepushuj přímo do `main`** — vždy vytvoř novou branch a otevři PR
+- Branch naming: `feature/popis`, `fix/popis`, `content/slug-clanku`, `issue-<číslo>`
 - Commit messages: Czech, concise
-- Always open PR, never push directly to main
+- Po dokončení práce vždy otevři PR pomocí `gh pr create`
+- Neprovádej `git push --force` na žádnou branch
 - content-index.json auto-updated by GitHub Action on merge to main
+
+## Agent Task Workflow
+
+When picking up a GitHub issue:
+
+1. Run `git checkout main && git pull` before starting
+2. Create a new branch: `issue-<number>` or `feature/<description>`
+3. Read the full issue with `gh issue view <number>`
+4. Implement the solution, run tests (`npm test`, `npm run lint`, `npm run build`)
+5. Commit changes and push the branch
+6. Open a PR with `gh pr create` — reference the issue in the PR body (e.g. "Closes #42")
+7. Do NOT merge the PR — wait for human review
 
 ## What Never To Do
 
