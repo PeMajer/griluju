@@ -5,7 +5,8 @@ export type Locale = (typeof locales)[number];
 export const siteConfig = {
   name: "Griluju.cz",
   url: "https://griluju.cz",
-  author: "Tomáš Majer",
+  // PLACEHOLDER: author — verify correct name in docs/todo/README.md
+  author: "Petr Majer",
   description:
     "Grilovací recepty, návody a recenze. Pomalé grilování, BBQ, steaky a vše kolem grilu.",
   // Set NEXT_PUBLIC_GA4_ID=G-XXXXXXXXXX in .env.local
@@ -18,6 +19,8 @@ export const translations: Record<Locale, Record<string, string>> = {
     "nav.home": "Domů",
     "nav.about": "O mně",
     "nav.contact": "Kontakt",
+    "nav.tools": "Nástroje",
+    "nav.newsletter": "Newsletter",
 
     // Categories
     "category.recepty": "Recepty",
@@ -35,8 +38,9 @@ export const translations: Record<Locale, Record<string, string>> = {
       "Tento článek obsahuje affiliate odkazy. Pokud přes ně nakoupíte, získám malou provizi, která pomáhá udržet tento web. Na cenu pro vás to nemá žádný vliv.",
 
     // Author
+    // PLACEHOLDER: author.bio — vyplň po doplnění osobního příběhu (docs/todo/README.md)
     "author.bio":
-      "Tomáš Majer — frontend vývojář a aktivní grilař. Specializuji se na pomalé grilování, BBQ a steaky.",
+      "Griluju přes 10 let na Weber Kettle. Specializuji se na pomalé grilování, pulled pork, brisket a steaky metodou reverse sear.",
 
     // Footer
     "footer.privacy": "Ochrana soukromí",

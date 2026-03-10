@@ -1,3 +1,4 @@
+import { Info } from "lucide-react";
 import { type Locale, t } from "@/lib/i18n";
 
 interface AffiliateDisclosureProps {
@@ -6,8 +7,9 @@ interface AffiliateDisclosureProps {
 
 export function AffiliateDisclosure({ locale }: AffiliateDisclosureProps) {
   return (
-    <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
-      {t(locale, "article.affiliate")}
+    <div className="mb-6 flex gap-3 rounded-lg border border-smoke bg-bg-warm px-4 py-3 text-sm text-stone">
+      <Info size={16} className="mt-0.5 shrink-0 text-heat" />
+      <span>{t(locale, "article.affiliate")}</span>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Clock, ArrowRight } from "lucide-react";
 import type { Post } from "@/lib/content";
 import { type Locale, t } from "@/lib/i18n";
 
@@ -10,38 +11,52 @@ interface ArticleCardProps {
 
 export function ArticleCard({ post, locale }: ArticleCardProps) {
   return (
-    <article className="group overflow-hidden rounded-lg border border-gray-200 bg-white transition-shadow hover:shadow-md">
-      {post.image && (
-        <Link href={`/${post.slug}`}>
+    <article className="article-card group flex flex-col overflow-hidden rounded-xl border border-smoke bg-bg-card hover:border-heat">
+      {/* Image */}
+      <Link href={`/${post.slug}`} className="block overflow-hidden">
+        {post.image ? (
           <Image
             src={post.image}
             alt={post.title}
             width={640}
             height={360}
-            className="aspect-video w-full object-cover"
+            className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
-        </Link>
-      )}
-      <div className="p-4">
-        <div className="mb-2 flex items-center gap-2 text-xs text-gray-500">
-          <span>{t(locale, `category.${post.category}`)}</span>
-          <span>&middot;</span>
-          <time dateTime={post.date}>
-            {new Date(post.date).toLocaleDateString("cs-CZ")}
-          </time>
-        </div>
-        <h2 className="mb-2 text-lg font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
+        ) : (
+          <div className="aspect-video w-full bg-bg-warm flex items-center justify-center">
+            <span className="text-3xl opacity-50">🔥</span>
+          </div>
+        )}
+      </Link>
+
+      {/* Content */}
+      <div className="flex flex-col flex-1 p-6">
+        {/* Category badge */}
+        <span className="mb-3 inline-block font-mono text-xs uppercase tracking-wider text-heat bg-heat-lt px-2 py-1 rounded w-fit">
+          {t(locale, `category.${post.category}`)}
+        </span>
+
+        {/* Title */}
+        <h2 className="mb-2 font-display text-xl font-bold leading-snug text-coal group-hover:text-heat transition-colors duration-150">
           <Link href={`/${post.slug}`}>{post.title}</Link>
         </h2>
-        <p className="text-sm text-gray-600 line-clamp-2">
-          {post.description}
-        </p>
-        <Link
-          href={`/${post.slug}`}
-          className="mt-3 inline-block text-sm font-medium text-orange-600 hover:text-orange-700"
-        >
-          {t(locale, "article.readMore")} &rarr;
-        </Link>
+
+        {/* Excerpt */}
+        <p className="text-sm text-stone line-clamp-2 flex-1 mb-4">{post.description}</p>
+
+        {/* Footer */}
+        <div className="flex items-center justify-between">
+          <span className="flex items-center gap-1 text-sm text-stone">
+            <Clock size={14} />
+            <time dateTime={post.date}>
+              {new Date(post.date).toLocaleDateString("cs-CZ")}
+            </time>
+          </span>
+          <ArrowRight
+            size={16}
+            className="text-heat transition-transform duration-150 group-hover:translate-x-1"
+          />
+        </div>
       </div>
     </article>
   );

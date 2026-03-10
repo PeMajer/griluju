@@ -9,27 +9,25 @@ interface NavigationProps {
 }
 
 const navItems = [
-  { key: "nav.home", href: "/" },
-  { key: "category.recepty", href: "/kategorie/recepty" },
-  { key: "category.navod", href: "/kategorie/navody" },
-  { key: "nav.about", href: "/o-mne" },
-  { key: "nav.contact", href: "/kontakt" },
+  { key: "category.recepty", href: "/recepty" },
+  { key: "category.navod", href: "/navody" },
+  { key: "category.recenze", href: "/recenze" },
+  { key: "nav.tools", href: "/nastroje/teploty-masa" },
 ];
 
 export function Navigation({ locale }: NavigationProps) {
   const pathname = usePathname();
 
   return (
-    <nav className="flex gap-6">
+    <nav className="hidden md:flex gap-6">
       {navItems.map((item) => {
-        const href = item.href;
-        const isActive = pathname === href;
+        const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
         return (
           <Link
             key={item.key}
-            href={href}
-            className={`text-sm font-medium transition-colors hover:text-orange-600 ${
-              isActive ? "text-orange-600" : "text-gray-700"
+            href={item.href}
+            className={`text-sm font-medium transition-colors duration-150 hover:text-heat ${
+              isActive ? "text-heat" : "text-stone"
             }`}
           >
             {t(locale, item.key)}
