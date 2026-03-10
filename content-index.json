@@ -1,9 +1,28 @@
 [
   {
+    "slug": "pulled-pork-krok-za-krokem",
+    "title": "Pulled pork krok za krokem: průvodce pro domácí gril",
+    "category": "recepty",
+    "keywords": [
+      "pulled pork",
+      "trhané vepřové",
+      "BBQ",
+      "low and slow",
+      "Weber Kettle",
+      "vepřová plec"
+    ],
+    "date": "2026-03-10"
+  },
+  {
     "slug": "testovaci-clanek",
     "title": "Jak správně roztopit gril — průvodce pro začátečníky",
     "category": "navod",
-    "keywords": ["roztopit gril", "uhlikový gril", "komínový rozpalovač", "grilování pro začátečníky"],
+    "keywords": [
+      "roztopit gril",
+      "uhlikový gril",
+      "komínový rozpalovač",
+      "grilování pro začátečníky"
+    ],
     "date": "2026-03-09"
   }
 ]
