@@ -15,15 +15,26 @@ griluju/
 │   └── posts/
 │       └── [slug]/
 │           └── index.mdx        # Article content
+├── content-collections.ts       # content-collections config (Zod schema)
 ├── content-index.json           # Auto-generated article index
 ├── affiliates.config.ts         # Affiliate link registry
+├── scripts/
+│   ├── generate-content-index.mjs  # Generates content-index.json
+│   └── generate-sitemap.mjs        # Generates sitemap.xml into out/
+├── .github/
+│   └── workflows/
+│       └── content-index.yml    # Auto-update content-index.json on merge
 ├── public/
+│   ├── _redirects               # Cloudflare Pages: / → /cs/ (301)
 │   └── images/
 │       └── [slug]/              # Article images (WebP)
 ├── src/
 │   ├── app/
+│   │   ├── layout.tsx           # Root layout (minimal, imports globals.css)
+│   │   ├── page.tsx             # Root redirect / → /cs/
+│   │   ├── globals.css          # Tailwind base + prose styles
 │   │   ├── [locale]/
-│   │   │   ├── layout.tsx       # Root layout with hreflang, consent mode
+│   │   │   ├── layout.tsx       # Locale layout with hreflang, consent mode
 │   │   │   ├── page.tsx         # Homepage
 │   │   │   ├── o-mne/
 │   │   │   │   └── page.tsx     # About me (EEAT)
@@ -34,10 +45,10 @@ griluju/
 │   │   │   ├── cookies/
 │   │   │   │   └── page.tsx     # Cookie Policy
 │   │   │   └── [slug]/
-│   │   │       └── page.tsx     # Article page
+│   │   │       └── page.tsx     # Article page (MDX rendering)
 │   │   └── go/
 │   │       └── [product]/
-│   │           └── route.ts     # Affiliate redirect handler
+│   │           └── page.tsx     # Affiliate redirect (meta refresh, static)
 │   ├── components/
 │   │   ├── layout/
 │   │   │   ├── Header.tsx
@@ -55,52 +66,61 @@ griluju/
 │   │   │   ├── HowToSchema.tsx
 │   │   │   ├── FAQSchema.tsx
 │   │   │   └── ProductSchema.tsx
-│   │   ├── tools/
-│   │   │   ├── TemperatureTable.tsx   # Interactive meat temperature table
-│   │   │   └── GrillTimer.tsx         # BBQ timer
-│   │   ├── email/
-│   │   │   └── NewsletterForm.tsx     # Brevo integration
+│   │   ├── tools/                  # (Phase 1 nice-to-have, not yet created)
+│   │   │   ├── TemperatureTable.tsx
+│   │   │   └── GrillTimer.tsx
+│   │   ├── email/                  # (not yet created)
+│   │   │   └── NewsletterForm.tsx
 │   │   ├── seo/
 │   │   │   ├── Hreflang.tsx
 │   │   │   └── ConsentMode.tsx        # Google Consent Mode v2
 │   │   └── ui/
-│   │       └── CookieBanner.tsx       # Cookieyes wrapper
+│   │       └── CookieBanner.tsx       # Cookieyes wrapper (needs real ID)
 │   ├── lib/
 │   │   ├── content.ts             # content-collections helpers
 │   │   ├── i18n.ts                # Locale config and translations
 │   │   └── affiliates.ts          # Affiliate redirect logic
-│   └── styles/
-│       └── globals.css            # Tailwind base
-├── next.config.ts
-├── tailwind.config.ts
+│   └── styles/                    # (unused — globals.css is in src/app/)
+├── next.config.ts                 # output: 'export', withContentCollections
 ├── tsconfig.json
 └── package.json
 ```
 
 ---
 
-## Phase 1: Scaffolding (Week 2-3)
+## Phase 1: Scaffolding (Week 2-3) — DONE
+
+PR: https://github.com/PeMajer/griluju/pull/1
 
 ### Must have
 
-1. **Next.js 15 App Router** with TypeScript and Tailwind CSS
-2. **i18n routing**: `/cs/` as default locale, redirect from `/` to `/cs/`
-3. **content-collections** setup for MDX articles in `/content/posts/[slug]/`
-4. **Basic layout**: Header, Footer, Navigation, Homepage, Article page
-5. **Author profile page** (`/cs/o-mne/`) — EEAT requirement
-6. **Affiliate link manager**: `/go/[product]` route + `affiliates.config.ts`
-7. **Schema components**: Recipe, HowTo, FAQ, Product (JSON-LD in head)
-8. **Hreflang component** in layout (currently only cs-CZ)
-9. **Google Consent Mode v2** initialization in layout before GA4
-10. **Cookie banner** placeholder (Cookieyes script tag)
-11. **Privacy Policy + Cookie Policy** pages (generated content)
-12. **Sitemap** generation (`next-sitemap` or custom)
-13. **content-index.json** — auto-generated list of all articles (slug, title, category, keywords) for internal linking
-14. **GitHub Action**: update content-index.json on merge to main
-15. **Cloudflare Pages** compatible output (`next.config.ts` with `output: 'export'` or Cloudflare adapter)
-16. **Lighthouse mobile 90+** before launch
+1. ~~**Next.js 15 App Router** with TypeScript and Tailwind CSS~~ — Done (Next.js 16.1.6, Tailwind v4)
+2. ~~**i18n routing**: Czech content at root path (no `/cs/` prefix), `app/(cs)/` route group~~ — Done (refactored from `[locale]` approach)
+3. ~~**content-collections** setup for MDX articles in `/content/posts/[slug]/`~~ — Done (v0.14, Zod schema, `@content-collections/mdx`)
+4. ~~**Basic layout**: Header, Footer, Navigation, Homepage, Article page~~ — Done
+5. ~~**Author profile page** (`/o-mne`) — EEAT requirement~~ — Done
+6. ~~**Affiliate link manager**: `/go/[product]` route + `affiliates.config.ts`~~ — Done (static pages with meta refresh, compatible with `output: 'export'`)
+7. ~~**Schema components**: Recipe, HowTo, FAQ, Product (JSON-LD in head)~~ — Done; BlogPosting schema auto-injected on all article pages
+8. ~~**Hreflang component** in layout (currently only cs-CZ)~~ — Done
+9. ~~**Google Consent Mode v2** initialization in layout before GA4~~ — Done; GA4Script component added (activate by setting NEXT_PUBLIC_GA4_ID in .env.local)
+10. ~~**Cookie banner** placeholder (Cookieyes script tag)~~ — Done (needs real Cookieyes ID)
+11. ~~**Privacy Policy + Cookie Policy** pages (generated content)~~ — Done
+12. ~~**Sitemap** generation (`next-sitemap` or custom)~~ — Done (custom post-build script `scripts/generate-sitemap.mjs`)
+13. ~~**content-index.json** — auto-generated list of all articles~~ — Done (+ `scripts/generate-content-index.mjs`)
+14. ~~**GitHub Action**: update content-index.json on merge to main~~ — Done (`.github/workflows/content-index.yml`)
+15. ~~**Cloudflare Pages** compatible output~~ — Done (`output: 'export'`, `images: { unoptimized: true }`)
+16. **Lighthouse mobile 90+** before launch — TODO (needs deploy to test)
 
-### Nice to have
+### Implementation notes
+
+- Next.js 16 was installed (latest at time of scaffolding). App Router API is compatible with 15.
+- Affiliate redirects use `page.tsx` with meta refresh instead of `route.ts` because `output: 'export'` doesn't support API routes.
+- `tailwind.config.ts` not needed — Tailwind v4 uses CSS-based config in `globals.css`.
+- `src/styles/` directory not used — `globals.css` lives in `src/app/`.
+- Czech content uses `app/(cs)/` route group — no `/cs/` in URLs. Future DE: add `app/de/` folder.
+- GA4 ID: set `NEXT_PUBLIC_GA4_ID=G-XXXXXXXXXX` in `.env.local` to activate analytics.
+
+### Nice to have (not yet done)
 
 - Temperature table interactive tool
 - BBQ timer tool

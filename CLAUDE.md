@@ -8,20 +8,28 @@ Domeny: `griluju.cz` (hlavni) + `griluju.com` (301 redirect na .cz).
 
 ## Tech Stack
 
-- **Framework**: Next.js 15 (App Router), TypeScript, Tailwind CSS
-- **Content**: content-collections (MDX), soubory v `/content/posts/[slug]/`
-- **Deploy**: Cloudflare Pages (static export)
+- **Framework**: Next.js 16 (App Router), TypeScript, Tailwind CSS v4
+- **Content**: content-collections v0.14 (MDX), soubory v `/content/posts/[slug]/`
+- **Deploy**: Cloudflare Pages (static export, `output: 'export'`)
 - **Repo**: GitHub + GitHub Actions
 - **Email**: Brevo (ex-Sendinblue)
 - **Analytics**: GA4 + Google Search Console
+
+Tailwind v4 — bez `tailwind.config.ts`, konfigurace přes CSS v `src/app/globals.css`.
+Affiliate redirecty používají `page.tsx` s meta refresh (ne `route.ts`) — `output: 'export'` nepodporuje API routes.
 
 ## Dev Commands
 
 ```bash
 npm run dev       # dev server on port 3000
 npm run build     # production build
-npm test          # run tests
 npm run lint      # lint check
+```
+
+Postbuild scripts (spouštěny automaticky po buildu, nebo ručně):
+```bash
+node scripts/generate-content-index.mjs  # regeneruje content-index.json
+node scripts/generate-sitemap.mjs        # generuje sitemap.xml do out/
 ```
 
 ## Language & Tone
@@ -35,10 +43,10 @@ npm run lint      # lint check
 
 ## i18n
 
-- `/cs/` as default locale with redirect from root
-- hreflang component in layout, currently only `cs-CZ`
-- UI translations in a single config file, not scattered across components
-- Prepared for future `/de/` and `/en/` locales
+- Czech content at root path (no `/cs/` prefix) — `app/(cs)/` route group handles this
+- Hreflang component in layout, currently only `cs-CZ`
+- UI translations in a single config file (`src/lib/i18n.ts`), not scattered across components
+- Prepared for future `/de/` and `/en/` locales — add `app/de/` when expanding
 
 ## Article Structure (MDX)
 
@@ -62,6 +70,15 @@ image: "/images/pulled-pork/hero.webp"
 affiliate: true            # shows affiliate disclosure
 ```
 
+### Category URL structure
+
+| Category  | Frontmatter value | URL prefix      | Content type        |
+|-----------|-------------------|-----------------|---------------------|
+| recepty   | `recepty`         | `/recepty/`     | Recipes with steps  |
+| navod     | `navod`           | `/navody/`      | How-to guides       |
+| recenze   | `recenze`         | `/recenze/`     | Product reviews     |
+| srovnani  | `srovnani`        | `/srovnani/`    | Product comparisons |
+
 ### Article body conventions
 
 - H1 = title (from frontmatter, not in body)
@@ -70,6 +87,7 @@ affiliate: true            # shows affiliate disclosure
 - Conclusion: practical summary, actionable
 - Internal links: 3-5 per article, descriptive anchor text (never "click here")
 - Affiliate links: always use `/go/[product-slug]` redirect, never raw URLs
+- For internal links, consult `content-index.json` to find existing published articles
 
 ## Affiliate Link Manager
 
@@ -124,6 +142,102 @@ Shared components for structured data:
 - Po dokončení práce vždy otevři PR pomocí `gh pr create`
 - Neprovádej `git push --force` na žádnou branch
 - content-index.json auto-updated by GitHub Action on merge to main
+- **Auto-commit**: Pri komplexnich ukolech (vice souboru, vice kroku) commituj a pushni automaticky bez ptani. Vytvor feature branch, commitni, pushni, vytvor PR.
+- **Context management**: Pri zpracovani vice komplexnich ukolu za sebou pouzivej `/clear` pro uvolneni kontextu mezi ukoly.
+
+## Autonomous Agent Work
+
+### Before Starting Any Task
+
+1. Read the relevant existing files first — never write blind.
+2. Check if a similar pattern already exists in the codebase (component, config, article structure) and follow it exactly.
+3. If the task involves content, check `/content/posts/` for existing articles to match tone and structure.
+4. For code changes, run `npm run lint` after editing and fix all errors before finishing.
+
+### Decision Making — When to Proceed vs. Ask
+
+Proceed without asking when:
+- The task is clearly scoped and the right approach is obvious from existing code.
+- The change is reversible (content, styling, config values).
+- The instruction matches an established pattern in the codebase.
+
+Stop and ask when:
+- The task requires deleting or fundamentally restructuring existing files.
+- Two or more valid architectural approaches exist with real trade-offs.
+- An instruction contradicts something in this file.
+- A required dependency or API key is missing.
+
+### Task Scoping
+
+- Break large tasks into commits — one logical change per commit.
+- If a task spans more than 5 files, create a feature branch and open a PR.
+- For content tasks (new article): create the MDX file, verify frontmatter completeness, add internal links, then commit on a `content/slug` branch.
+- For code tasks: read → edit → lint → build check → commit.
+
+### Self-Verification Checklist
+
+Run through this before marking any task done:
+
+- [ ] All linter errors resolved (`npm run lint`)
+- [ ] No TypeScript errors (`npm run build` or type-check)
+- [ ] New MDX articles have ≥3 internal links and valid frontmatter
+- [ ] Affiliate links use `/go/` prefix, never raw URLs
+- [ ] Images referenced in MDX exist in `/public/images/[slug]/`
+- [ ] No hardcoded Czech text outside the translations config
+- [ ] Git: feature branch created, changes committed, PR opened
+
+### Exploring the Codebase
+
+When you need to understand a part of the project before editing:
+
+- Start with `src/app/` for routing and layout patterns.
+- `src/components/` for UI building blocks — check what exists before creating new.
+- `content/posts/` for article structure reference.
+- `affiliates.config.ts` before adding any product links.
+- `src/lib/` for shared utilities and data-fetching helpers.
+
+### Content Article Workflow
+
+1. Read `content-index.json` — get overview of existing articles for internal links.
+2. Create `/content/posts/[slug]/index.mdx` with complete frontmatter.
+3. Write intro (2-3 sentences, no filler), H2 sections with flowing text.
+4. Add 3-5 internal links with descriptive anchors (slugy z `content-index.json`).
+5. Add affiliate links via `/go/` only (update `affiliates.config.ts` if new product).
+6. Place image placeholder `[VLASTNI FOTO AUTORA]` for Layer-1, or Unsplash reference for Layer-2.
+7. Verify word count is appropriate for category (recipe: 1000–2000 words, guide: 1500–3000).
+8. Commit on branch `content/[slug]` and open PR.
+
+### Article Prompt Template (Phase 3 AI Pipeline)
+
+When creating an article via GitHub Issue or prompt, use this structure:
+
+```markdown
+## Clanek: [Nazev]
+
+**Klicove slovo:** [hlavni KW]
+**Typ obsahu:** vrstva-1 / vrstva-2
+**Kategorie:** recepty / navod / recenze / srovnani
+**Cilova delka:** ~1500 / ~2500 slov
+**Affiliate produkty:** [produkty nebo kategorie]
+
+## Cilova skupina a intent
+[Kdo clanek cte a co hleda]
+
+## Povinne body clanku
+[Co musi clanek obsahovat]
+
+## Kontext (vrstva-1)
+[Konkretni zkusenosti, cisla, chyby ktere agent zapracuje]
+
+## Fotka
+Typ: vlastni / Unsplash query: [vyraz]
+```
+
+### Error Handling
+
+- If `npm run build` fails after your changes, fix it before committing — never leave the build broken.
+- If a lint rule is unclear, follow the existing code style in the same file rather than guessing.
+- If an import is missing, check `package.json` before adding a new dependency — prefer using what's already installed.
 
 ## Agent Task Workflow
 
@@ -144,3 +258,6 @@ When picking up a GitHub issue:
 - Never use bullet points where flowing text works better
 - Never use raw affiliate URLs in articles — always `/go/` prefix
 - Never publish without internal links (minimum 3)
+- Never edit `main` branch directly — always branch + PR
+- Never commit with a broken build or unresolved lint errors
+- Never create a new component if an existing one can be extended

@@ -1,0 +1,2 @@
+# Redirect old /cs/* URLs to clean paths (pre-launch safety, keeps any early crawls clean)
+/cs/* /:splat 301
