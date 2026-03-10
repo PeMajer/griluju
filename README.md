@@ -25,11 +25,12 @@ node scripts/generate-sitemap.mjs         # generuje sitemap.xml do out/
 
 | Soubor | Obsah |
 |---|---|
+| [`docs/`](docs/README.md) | Rozcestník celé dokumentace |
 | [`docs/architecture.md`](docs/architecture.md) | Tech stack, struktura projektu, klíčová rozhodnutí |
 | [`docs/components.md`](docs/components.md) | Inventář komponent, props, použití |
 | [`docs/design.md`](docs/design.md) | Design systém, barvy, typografie |
-| [`docs/plan.md`](docs/plan.md) | Implementační plán, fáze projektu |
-| [`docs/setup-checklist.md`](docs/setup-checklist.md) | Manuální kroky před spuštěním (Cloudflare, GA4, Cookieyes…) |
+| [`docs/guides/plan.md`](docs/guides/plan.md) | Implementační plán, fáze projektu |
+| [`docs/guides/setup-checklist.md`](docs/guides/setup-checklist.md) | Manuální kroky před spuštěním (Cloudflare, GA4, Cookieyes…) |
 | [`CLAUDE.md`](CLAUDE.md) | Instrukce pro AI agenta |
 
 ## Klíčové konvence
