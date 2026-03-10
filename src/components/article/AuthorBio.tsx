@@ -7,21 +7,30 @@ interface AuthorBioProps {
 
 export function AuthorBio({ locale }: AuthorBioProps) {
   return (
-    <div className="mt-8 rounded-lg border border-gray-200 bg-gray-50 p-6">
+    <div
+      className="mt-8 rounded-xl p-6 bg-bg-warm border border-smoke"
+    >
       <div className="flex items-start gap-4">
-        <div className="h-12 w-12 shrink-0 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-lg">
-          TM
+        {/* Avatar placeholder — replace with real photo */}
+        <div className="h-14 w-14 shrink-0 rounded-full bg-heat-lt flex items-center justify-center text-2xl">
+          👨‍🍳
         </div>
         <div>
           <Link
-            href={`/${locale}/o-mne`}
-            className="font-semibold text-gray-900 hover:text-orange-600 transition-colors"
+            href="/o-mne"
+            className="font-display font-semibold text-coal hover:text-heat transition-colors duration-150"
           >
             {siteConfig.author}
           </Link>
-          <p className="mt-1 text-sm text-gray-600">
+          <p className="mt-1 text-sm text-stone leading-relaxed">
             {t(locale, "author.bio")}
           </p>
+          <Link
+            href="/o-mne"
+            className="mt-2 inline-block text-sm font-medium text-heat hover:text-heat-dk transition-colors duration-150"
+          >
+            Číst více →
+          </Link>
         </div>
       </div>
     </div>
