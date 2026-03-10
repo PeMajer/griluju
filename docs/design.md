@@ -1,5 +1,7 @@
 # Design systém — griluju.cz
 
+> **⚠ Tento dokument je placeholder.** Design systém je teprve ve výstavbě — aktuální hodnoty odpovídají scaffolding fázi projektu. Dokument bude doplněn a upřesněn jakmile bude design finalizován (vizuální identita, typografie, komponentová knihovna).
+
 Tailwind CSS v4 bez `tailwind.config.ts`. Veškerá konfigurace je v `src/app/globals.css`.
 
 ---
