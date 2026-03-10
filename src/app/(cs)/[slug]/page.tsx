@@ -77,10 +77,13 @@ export default async function ArticlePage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
       />
 
-      {/* Article content — narrow column */}
-      <article className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+      {/* Wide header — breadcrumb, title, meta, hero image */}
+      <div className="mx-auto max-w-5xl px-4 pt-10 sm:px-6">
         <ArticleHeader post={post} locale="cs" />
+      </div>
 
+      {/* Narrow article body */}
+      <article className="mx-auto max-w-3xl px-4 pb-10 sm:px-6">
         {post.affiliate && <AffiliateDisclosure locale="cs" />}
 
         <div className="prose max-w-none">
