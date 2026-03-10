@@ -16,17 +16,46 @@ Věci které musí udělat člověk — registrace, API klíče, live testy.
    - **Build command:** `npm run build`
    - **Build output directory:** `out`
 5. Deploy → počkej na první build (~2 min)
-6. Po buildu dostaneš URL ve tvaru `griluju-xyz.pages.dev` — to je zatím testovací adresa
+6. Po buildu dostaneš URL ve tvaru `griluju-xyz.pages.dev` — testovací adresa, web funguje
 
-**Napojení domény `griluju.cz`:**
-1. Cloudflare Pages → Custom domains → Add custom domain → `griluju.cz`
-2. Cloudflare ti řekne co nastavit v DNS — pokud je doména už na Cloudflare DNS, přidá to automaticky
-3. SSL se nastaví sám (~5 min)
+---
 
-**Napojení `griluju.com` jako redirect:**
-1. Přidej `griluju.com` jako další custom domain na stejný Pages projekt
-2. Nebo nastav Cloudflare Bulk Redirect: `griluju.com/*` → `https://griluju.cz/$1` (301)
-   - Workers & Pages → nejde přes Pages, ale přes Cloudflare Redirect Rules (dashboard → Rules → Redirect Rules)
+### DNS — přesměrování domén z WEDOS na Cloudflare
+
+Domény jsou registrované u WEDOS.cz. Doporučené řešení: **přesuň DNS správu na Cloudflare** (zdarma). Získáš tím CDN, automatický SSL a Redirect Rules pro `griluju.com`.
+
+**Krok 1 — přidej doménu do Cloudflare:**
+1. Cloudflare dashboard → Add a Site → zadej `griluju.cz`
+2. Vyber Free plán
+3. Cloudflare naskenuje existující DNS záznamy z WEDOS — zkontroluj jestli přenesl vše
+4. Na konci ti Cloudflare zobrazí **dva nameservery** ve tvaru:
+   ```
+   xxx.ns.cloudflare.com
+   yyy.ns.cloudflare.com
+   ```
+
+**Krok 2 — změň nameservery ve WEDOS:**
+1. Přihlas se na [wedos.cz](https://wedos.cz) → Domény → `griluju.cz` → DNS servery
+2. Nahraď stávající nameservery těmi od Cloudflare
+3. Stejný postup opakuj pro `griluju.com`
+4. Propagace DNS: 1–24 hodin (většinou do hodiny)
+
+**Krok 3 — napoj doménu na Cloudflare Pages:**
+1. Cloudflare Pages → projekt → Custom domains → Add custom domain → `griluju.cz`
+2. Cloudflare to propojí automaticky (DNS je teď u nich)
+3. SSL certifikát se vydá sám do 5 minut
+
+**`griluju.com` → redirect na `griluju.cz`:**
+
+Nejlepší řešení přes Cloudflare Redirect Rules (nevyžaduje Pages):
+1. Cloudflare dashboard → vyber doménu `griluju.com` → Rules → Redirect Rules → Create rule
+2. Nastavení:
+   - **When:** `Hostname equals griluju.com`
+   - **Then:** Dynamic redirect → `concat("https://griluju.cz", http.request.uri.path)`
+   - **Type:** 301
+3. Save → okamžitě aktivní
+
+> Alternativa bez přesunu DNS: v WEDOS nastav u obou domén CNAME `@` na `griluju.pages.dev`. Funguje, ale přijdeš o Cloudflare CDN a Redirect Rules — redirect z `.com` by musel řešit jinak.
 
 ---
 
