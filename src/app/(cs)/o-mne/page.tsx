@@ -1,19 +1,12 @@
 import type { Metadata } from "next";
-import { type Locale, t, siteConfig } from "@/lib/i18n";
+import { t, siteConfig } from "@/lib/i18n";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale } = await params;
-  return {
-    title: t(locale as Locale, "page.about.title"),
-    alternates: {
-      canonical: `${siteConfig.url}/${locale}/o-mne`,
-    },
-  };
-}
+export const metadata: Metadata = {
+  title: t("cs", "page.about.title"),
+  alternates: {
+    canonical: `${siteConfig.url}/o-mne`,
+  },
+};
 
 export default function AboutPage() {
   return (

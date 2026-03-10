@@ -1,24 +1,23 @@
-import { siteConfig, locales } from "@/lib/i18n";
+import { siteConfig } from "@/lib/i18n";
 
 interface HreflangProps {
-  path: string;
+  path?: string;
 }
 
-export function Hreflang({ path }: HreflangProps) {
+// Currently only cs-CZ. When adding DE/EN, extend with locale-aware URL
+// construction (e.g., /de/${path} for German content on griluju.com/de/).
+export function Hreflang({ path = "" }: HreflangProps) {
   return (
     <>
-      {locales.map((locale) => (
-        <link
-          key={locale}
-          rel="alternate"
-          hrefLang={locale === "cs" ? "cs-CZ" : locale}
-          href={`${siteConfig.url}/${locale}${path}`}
-        />
-      ))}
+      <link
+        rel="alternate"
+        hrefLang="cs-CZ"
+        href={`${siteConfig.url}${path}`}
+      />
       <link
         rel="alternate"
         hrefLang="x-default"
-        href={`${siteConfig.url}/cs${path}`}
+        href={`${siteConfig.url}${path}`}
       />
     </>
   );

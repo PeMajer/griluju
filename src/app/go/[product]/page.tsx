@@ -14,7 +14,7 @@ export default async function AffiliateRedirectPage({
   const url = getAffiliateUrl(product);
 
   if (!url) {
-    redirect("/cs");
+    redirect("/");
   }
 
   // Static export: use meta refresh for redirect

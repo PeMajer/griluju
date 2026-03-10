@@ -1,19 +1,12 @@
 import type { Metadata } from "next";
-import { type Locale, t, siteConfig } from "@/lib/i18n";
+import { t, siteConfig } from "@/lib/i18n";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale } = await params;
-  return {
-    title: t(locale as Locale, "page.privacy.title"),
-    alternates: {
-      canonical: `${siteConfig.url}/${locale}/ochrana-soukromi`,
-    },
-  };
-}
+export const metadata: Metadata = {
+  title: t("cs", "page.privacy.title"),
+  alternates: {
+    canonical: `${siteConfig.url}/ochrana-soukromi`,
+  },
+};
 
 export default function PrivacyPolicyPage() {
   return (

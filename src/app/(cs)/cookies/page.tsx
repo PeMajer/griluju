@@ -1,19 +1,12 @@
 import type { Metadata } from "next";
-import { type Locale, t, siteConfig } from "@/lib/i18n";
+import { t, siteConfig } from "@/lib/i18n";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale } = await params;
-  return {
-    title: t(locale as Locale, "page.cookies.title"),
-    alternates: {
-      canonical: `${siteConfig.url}/${locale}/cookies`,
-    },
-  };
-}
+export const metadata: Metadata = {
+  title: t("cs", "page.cookies.title"),
+  alternates: {
+    canonical: `${siteConfig.url}/cookies`,
+  },
+};
 
 export default function CookiePolicyPage() {
   return (

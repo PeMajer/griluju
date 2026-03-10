@@ -95,14 +95,14 @@ PR: https://github.com/PeMajer/griluju/pull/1
 ### Must have
 
 1. ~~**Next.js 15 App Router** with TypeScript and Tailwind CSS~~ — Done (Next.js 16.1.6, Tailwind v4)
-2. ~~**i18n routing**: `/cs/` as default locale, redirect from `/` to `/cs/`~~ — Done (server redirect + Cloudflare `_redirects`)
+2. ~~**i18n routing**: Czech content at root path (no `/cs/` prefix), `app/(cs)/` route group~~ — Done (refactored from `[locale]` approach)
 3. ~~**content-collections** setup for MDX articles in `/content/posts/[slug]/`~~ — Done (v0.14, Zod schema, `@content-collections/mdx`)
 4. ~~**Basic layout**: Header, Footer, Navigation, Homepage, Article page~~ — Done
-5. ~~**Author profile page** (`/cs/o-mne/`) — EEAT requirement~~ — Done
+5. ~~**Author profile page** (`/o-mne`) — EEAT requirement~~ — Done
 6. ~~**Affiliate link manager**: `/go/[product]` route + `affiliates.config.ts`~~ — Done (static pages with meta refresh, compatible with `output: 'export'`)
-7. ~~**Schema components**: Recipe, HowTo, FAQ, Product (JSON-LD in head)~~ — Done
+7. ~~**Schema components**: Recipe, HowTo, FAQ, Product (JSON-LD in head)~~ — Done; BlogPosting schema auto-injected on all article pages
 8. ~~**Hreflang component** in layout (currently only cs-CZ)~~ — Done
-9. ~~**Google Consent Mode v2** initialization in layout before GA4~~ — Done
+9. ~~**Google Consent Mode v2** initialization in layout before GA4~~ — Done; GA4Script component added (activate by setting NEXT_PUBLIC_GA4_ID in .env.local)
 10. ~~**Cookie banner** placeholder (Cookieyes script tag)~~ — Done (needs real Cookieyes ID)
 11. ~~**Privacy Policy + Cookie Policy** pages (generated content)~~ — Done
 12. ~~**Sitemap** generation (`next-sitemap` or custom)~~ — Done (custom post-build script `scripts/generate-sitemap.mjs`)
@@ -117,6 +117,8 @@ PR: https://github.com/PeMajer/griluju/pull/1
 - Affiliate redirects use `page.tsx` with meta refresh instead of `route.ts` because `output: 'export'` doesn't support API routes.
 - `tailwind.config.ts` not needed — Tailwind v4 uses CSS-based config in `globals.css`.
 - `src/styles/` directory not used — `globals.css` lives in `src/app/`.
+- Czech content uses `app/(cs)/` route group — no `/cs/` in URLs. Future DE: add `app/de/` folder.
+- GA4 ID: set `NEXT_PUBLIC_GA4_ID=G-XXXXXXXXXX` in `.env.local` to activate analytics.
 
 ### Nice to have (not yet done)
 

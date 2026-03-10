@@ -23,7 +23,6 @@ Affiliate redirecty používají `page.tsx` s meta refresh (ne `route.ts`) — `
 ```bash
 npm run dev       # dev server on port 3000
 npm run build     # production build
-npm test          # run tests
 npm run lint      # lint check
 ```
 
@@ -44,10 +43,10 @@ node scripts/generate-sitemap.mjs        # generuje sitemap.xml do out/
 
 ## i18n
 
-- `/cs/` as default locale with redirect from root
-- hreflang component in layout, currently only `cs-CZ`
-- UI translations in a single config file, not scattered across components
-- Prepared for future `/de/` and `/en/` locales
+- Czech content at root path (no `/cs/` prefix) — `app/(cs)/` route group handles this
+- Hreflang component in layout, currently only `cs-CZ`
+- UI translations in a single config file (`src/lib/i18n.ts`), not scattered across components
+- Prepared for future `/de/` and `/en/` locales — add `app/de/` when expanding
 
 ## Article Structure (MDX)
 

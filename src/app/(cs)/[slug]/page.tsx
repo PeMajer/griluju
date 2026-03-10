@@ -2,23 +2,22 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXContent } from "@content-collections/mdx/react";
 import { getAllPosts, getPostBySlug, getRelatedPosts } from "@/lib/content";
-import { type Locale, siteConfig } from "@/lib/i18n";
+import { siteConfig } from "@/lib/i18n";
 import { ArticleHeader } from "@/components/article/ArticleHeader";
 import { AuthorBio } from "@/components/article/AuthorBio";
 import { AffiliateDisclosure } from "@/components/article/AffiliateDisclosure";
 import { RelatedArticles } from "@/components/article/RelatedArticles";
 
 export function generateStaticParams() {
-  const posts = getAllPosts();
-  return posts.map((post) => ({ slug: post.slug }));
+  return getAllPosts().map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: string; slug: string }>;
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const { locale, slug } = await params;
+  const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return {};
 
@@ -28,7 +27,7 @@ export async function generateMetadata({
     keywords: post.keywords,
     authors: [{ name: post.author }],
     alternates: {
-      canonical: `${siteConfig.url}/${locale}/${slug}`,
+      canonical: `${siteConfig.url}/${slug}`,
     },
     openGraph: {
       title: post.title,
@@ -45,9 +44,9 @@ export async function generateMetadata({
 export default async function ArticlePage({
   params,
 }: {
-  params: Promise<{ locale: string; slug: string }>;
+  params: Promise<{ slug: string }>;
 }) {
-  const { locale, slug } = await params;
+  const { slug } = await params;
   const post = getPostBySlug(slug);
 
   if (!post) {
@@ -56,18 +55,37 @@ export default async function ArticlePage({
 
   const related = getRelatedPosts(slug);
 
+  const blogPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    author: { "@type": "Person", name: post.author, url: `${siteConfig.url}/o-mne` },
+    datePublished: post.date,
+    ...(post.updated && { dateModified: post.updated }),
+    ...(post.image && { image: `${siteConfig.url}${post.image}` }),
+    url: `${siteConfig.url}/${slug}`,
+    publisher: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
+    inLanguage: "cs-CZ",
+  };
+
   return (
     <article className="mx-auto max-w-3xl px-4 py-8">
-      <ArticleHeader post={post} locale={locale as Locale} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+      />
 
-      {post.affiliate && <AffiliateDisclosure locale={locale as Locale} />}
+      <ArticleHeader post={post} locale="cs" />
+
+      {post.affiliate && <AffiliateDisclosure locale="cs" />}
 
       <div className="prose max-w-none">
         <MDXContent code={post.mdx} />
       </div>
 
-      <AuthorBio locale={locale as Locale} />
-      <RelatedArticles posts={related} locale={locale as Locale} />
+      <AuthorBio locale="cs" />
+      <RelatedArticles posts={related} locale="cs" />
     </article>
   );
 }

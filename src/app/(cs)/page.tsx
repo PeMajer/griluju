@@ -1,29 +1,17 @@
 import type { Metadata } from "next";
 import { getAllPosts } from "@/lib/content";
-import { type Locale, t, siteConfig } from "@/lib/i18n";
+import { t, siteConfig } from "@/lib/i18n";
 import { ArticleCard } from "@/components/article/ArticleCard";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale } = await params;
-  return {
-    title: t(locale as Locale, "page.home.title"),
-    description: t(locale as Locale, "page.home.description"),
-    alternates: {
-      canonical: `${siteConfig.url}/${locale}`,
-    },
-  };
-}
+export const metadata: Metadata = {
+  title: t("cs", "page.home.title"),
+  description: t("cs", "page.home.description"),
+  alternates: {
+    canonical: siteConfig.url,
+  },
+};
 
-export default async function HomePage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
+export default function HomePage() {
   const posts = getAllPosts();
 
   return (
@@ -45,16 +33,14 @@ export default async function HomePage({
           </h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => (
-              <ArticleCard
-                key={post.slug}
-                post={post}
-                locale={locale as Locale}
-              />
+              <ArticleCard key={post.slug} post={post} locale="cs" />
             ))}
           </div>
         </section>
       ) : (
-        <p className="text-gray-500">Zatím tu žádné články nejsou. Brzy přidám první obsah.</p>
+        <p className="text-gray-500">
+          Zatím tu žádné články nejsou. Brzy přidám první obsah.
+        </p>
       )}
     </div>
   );

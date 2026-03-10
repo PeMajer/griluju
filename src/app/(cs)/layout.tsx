@@ -1,43 +1,32 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { locales, type Locale, siteConfig } from "@/lib/i18n";
+import { siteConfig } from "@/lib/i18n";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Hreflang } from "@/components/seo/Hreflang";
 import { ConsentMode } from "@/components/seo/ConsentMode";
-
-export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
-}
+import { GA4Script } from "@/components/seo/GA4Script";
 
 export const metadata: Metadata = {
   title: siteConfig.name,
   description: siteConfig.description,
 };
 
-export default async function LocaleLayout({
+export default function CsLayout({
   children,
-  params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
-
-  if (!locales.includes(locale as Locale)) {
-    notFound();
-  }
-
   return (
-    <html lang={locale}>
+    <html lang="cs">
       <head>
-        <Hreflang path="" />
+        <Hreflang />
         <ConsentMode />
       </head>
       <body className="flex min-h-screen flex-col">
-        <Header locale={locale as Locale} />
+        <GA4Script />
+        <Header locale="cs" />
         <main className="flex-1">{children}</main>
-        <Footer locale={locale as Locale} />
+        <Footer locale="cs" />
       </body>
     </html>
   );

@@ -12,7 +12,7 @@ export function ArticleCard({ post, locale }: ArticleCardProps) {
   return (
     <article className="group overflow-hidden rounded-lg border border-gray-200 bg-white transition-shadow hover:shadow-md">
       {post.image && (
-        <Link href={`/${locale}/${post.slug}`}>
+        <Link href={`/${post.slug}`}>
           <Image
             src={post.image}
             alt={post.title}
@@ -31,13 +31,13 @@ export function ArticleCard({ post, locale }: ArticleCardProps) {
           </time>
         </div>
         <h2 className="mb-2 text-lg font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
-          <Link href={`/${locale}/${post.slug}`}>{post.title}</Link>
+          <Link href={`/${post.slug}`}>{post.title}</Link>
         </h2>
         <p className="text-sm text-gray-600 line-clamp-2">
           {post.description}
         </p>
         <Link
-          href={`/${locale}/${post.slug}`}
+          href={`/${post.slug}`}
           className="mt-3 inline-block text-sm font-medium text-orange-600 hover:text-orange-700"
         >
           {t(locale, "article.readMore")} &rarr;

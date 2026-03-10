@@ -14,19 +14,19 @@ export function Footer({ locale }: FooterProps) {
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
           <div className="flex gap-6 text-sm text-gray-600">
             <Link
-              href={`/${locale}/ochrana-soukromi`}
+              href="/ochrana-soukromi"
               className="hover:text-orange-600 transition-colors"
             >
               {t(locale, "footer.privacy")}
             </Link>
             <Link
-              href={`/${locale}/cookies`}
+              href="/cookies"
               className="hover:text-orange-600 transition-colors"
             >
               {t(locale, "footer.cookies")}
             </Link>
             <Link
-              href={`/${locale}/kontakt`}
+              href="/kontakt"
               className="hover:text-orange-600 transition-colors"
             >
               {t(locale, "nav.contact")}

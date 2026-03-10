@@ -11,7 +11,7 @@ export function Header({ locale }: HeaderProps) {
     <header className="border-b border-gray-200 bg-white">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
         <Link
-          href={`/${locale}`}
+          href="/"
           className="text-xl font-bold text-gray-900 hover:text-orange-600 transition-colors"
         >
           {siteConfig.name}

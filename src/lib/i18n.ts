@@ -8,6 +8,8 @@ export const siteConfig = {
   author: "Tomáš Majer",
   description:
     "Grilovací recepty, návody a recenze. Pomalé grilování, BBQ, steaky a vše kolem grilu.",
+  // Set NEXT_PUBLIC_GA4_ID=G-XXXXXXXXXX in .env.local
+  ga4Id: process.env.NEXT_PUBLIC_GA4_ID || "",
 };
 
 export const translations: Record<Locale, Record<string, string>> = {

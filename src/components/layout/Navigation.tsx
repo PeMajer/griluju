@@ -9,7 +9,7 @@ interface NavigationProps {
 }
 
 const navItems = [
-  { key: "nav.home", href: "" },
+  { key: "nav.home", href: "/" },
   { key: "category.recepty", href: "/kategorie/recepty" },
   { key: "category.navod", href: "/kategorie/navody" },
   { key: "nav.about", href: "/o-mne" },
@@ -22,7 +22,7 @@ export function Navigation({ locale }: NavigationProps) {
   return (
     <nav className="flex gap-6">
       {navItems.map((item) => {
-        const href = `/${locale}${item.href}`;
+        const href = item.href;
         const isActive = pathname === href;
         return (
           <Link
