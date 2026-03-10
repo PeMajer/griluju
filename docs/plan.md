@@ -202,10 +202,10 @@ Typ: vlastni / Unsplash query: [vyraz]
 
 | Category   | URL prefix    | Content type          |
 |------------|---------------|-----------------------|
-| recepty    | /cs/recepty/  | Recipes with steps    |
-| navod      | /cs/navody/   | How-to guides         |
-| recenze    | /cs/recenze/  | Product reviews       |
-| srovnani   | /cs/srovnani/ | Product comparisons   |
+| recepty    | /recepty/     | Recipes with steps    |
+| navod      | /navody/      | How-to guides         |
+| recenze    | /recenze/     | Product reviews       |
+| srovnani   | /srovnani/    | Product comparisons   |
 
 ---
 
