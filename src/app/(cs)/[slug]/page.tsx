@@ -7,6 +7,7 @@ import { ArticleHeader } from "@/components/article/ArticleHeader";
 import { AuthorBio } from "@/components/article/AuthorBio";
 import { AffiliateDisclosure } from "@/components/article/AffiliateDisclosure";
 import { RelatedArticles } from "@/components/article/RelatedArticles";
+import { NewsletterCTA } from "@/components/ui/NewsletterCTA";
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
@@ -70,22 +71,28 @@ export default async function ArticlePage({
   };
 
   return (
-    <article className="mx-auto max-w-3xl px-4 py-8">
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
       />
 
-      <ArticleHeader post={post} locale="cs" />
+      {/* Article content — narrow column */}
+      <article className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+        <ArticleHeader post={post} locale="cs" />
 
-      {post.affiliate && <AffiliateDisclosure locale="cs" />}
+        {post.affiliate && <AffiliateDisclosure locale="cs" />}
 
-      <div className="prose max-w-none">
-        <MDXContent code={post.mdx} />
-      </div>
+        <div className="prose max-w-none">
+          <MDXContent code={post.mdx} />
+        </div>
 
-      <AuthorBio locale="cs" />
+        <AuthorBio locale="cs" />
+      </article>
+
+      {/* Full-width sections below article */}
+      <NewsletterCTA />
       <RelatedArticles posts={related} locale="cs" />
-    </article>
+    </>
   );
 }
