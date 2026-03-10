@@ -102,6 +102,7 @@ html {
 }
 .article-card:hover {
   box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
 }
 
 /* ─── Prose — MDX article content ───────────────────────────────────────────

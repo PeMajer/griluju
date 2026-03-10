@@ -13,7 +13,7 @@ export function Header({ locale }: HeaderProps) {
       className="sticky top-0 z-50 border-b border-smoke backdrop-blur-md"
       style={{ backgroundColor: "var(--bg-nav)" }}
     >
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         {/* Logo */}
         <Link
           href="/"
