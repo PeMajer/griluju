@@ -55,8 +55,6 @@ Nejlepší řešení přes Cloudflare Redirect Rules (nevyžaduje Pages):
    - **Type:** 301
 3. Save → okamžitě aktivní
 
-> Alternativa bez přesunu DNS: v WEDOS nastav u obou domén CNAME `@` na `griluju.pages.dev`. Funguje, ale přijdeš o Cloudflare CDN a Redirect Rules — redirect z `.com` by musel řešit jinak.
-
 ---
 
 ## 2. Google Analytics 4
