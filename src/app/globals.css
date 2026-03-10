@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@theme {
+@theme inline {
   /* Font aliases — next/font sets --font-*-var on <html>, @theme exposes them as Tailwind utilities */
   --font-display: var(--font-display-var), Georgia, serif;
   --font-body:    var(--font-body-var), system-ui, sans-serif;
