@@ -72,12 +72,12 @@ affiliate: true            # shows affiliate disclosure
 
 ### Category URL structure
 
-| Category  | Frontmatter value | URL prefix       | Content type        |
-|-----------|-------------------|------------------|---------------------|
-| recepty   | `recepty`         | `/cs/recepty/`   | Recipes with steps  |
-| navod     | `navod`           | `/cs/navody/`    | How-to guides       |
-| recenze   | `recenze`         | `/cs/recenze/`   | Product reviews     |
-| srovnani  | `srovnani`        | `/cs/srovnani/`  | Product comparisons |
+| Category  | Frontmatter value | URL prefix      | Content type        |
+|-----------|-------------------|-----------------|---------------------|
+| recepty   | `recepty`         | `/recepty/`     | Recipes with steps  |
+| navod     | `navod`           | `/navody/`      | How-to guides       |
+| recenze   | `recenze`         | `/recenze/`     | Product reviews     |
+| srovnani  | `srovnani`        | `/srovnani/`    | Product comparisons |
 
 ### Article body conventions
 
