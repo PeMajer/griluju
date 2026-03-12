@@ -97,8 +97,8 @@ export default function HomePage() {
       </section>
 
       {/* ─── Teploty masa — dark teaser ──────────────────────────────────────── */}
-      <section className="py-24" style={{ backgroundColor: "var(--dark)" }}>
-        <div className="mx-auto max-w-5xl px-6">
+      <section className="py-24 px-6" style={{ backgroundColor: "var(--dark)" }}>
+        <div className="mx-auto max-w-5xl">
           <div className="grid gap-12 md:grid-cols-2">
             {/* Left */}
             <div className="flex flex-col justify-center md:text-left text-center">
@@ -169,8 +169,8 @@ export default function HomePage() {
       </section>
 
       {/* ─── O mně ────────────────────────────────────────────────────────────── */}
-      <section className="py-24">
-        <div className="mx-auto max-w-2xl px-6 text-center">
+      <section className="py-24 px-6">
+        <div className="mx-auto max-w-2xl text-center">
           <Image
             src="/images/author/petr.jpg"
             alt="Petr Majer"

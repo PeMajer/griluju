@@ -12,7 +12,7 @@ export function NewsletterCTA() {
         borderColor: "var(--dark-border)",
       }}
     >
-      <div className="mx-auto max-w-xl px-6 text-center">
+      <div className="mx-auto max-w-lg px-6 text-center">
         {/* Heading */}
         <h2
           className="font-display text-2xl md:text-3xl mb-4"
