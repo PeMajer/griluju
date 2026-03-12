@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Flame, Clock, ThumbsUp } from "lucide-react";
+import { BookOpen, ShieldCheck, Ruler } from "lucide-react";
 import { t, siteConfig } from "@/lib/i18n";
 import { NewsletterCTA } from "@/components/ui/NewsletterCTA";
 
@@ -14,46 +14,21 @@ export const metadata: Metadata = {
   },
 };
 
-const stats = [
-  { value: "10+", label: "let u grilu" },
-  { value: "40+", label: "pulled porků" },
-  { value: "Weber", label: "Kettle 57 cm" },
-  { value: "~93 °C", label: "cílová teplota" },
-];
-
-const specialties = [
+const values = [
   {
-    emoji: "🐷",
-    title: "Low & Slow BBQ",
-    description:
-      "Pulled pork, brisket, žebra. Uzení na nízkých teplotách přes mnoho hodin — to je pro mě vrchol grilování.",
+    icon: <BookOpen size={20} className="text-heat" />,
+    title: "Konkrétní čísla",
+    text: "Žádné \u201egrilujte dokud je hotovo\u201c. Vždy teplota, čas, gramáž.",
   },
   {
-    emoji: "🥩",
-    title: "Steaky & hovězí",
-    description:
-      "Reverse sear je pro mě standard. Suché zrání doma, přesné teploty, klidná ruka na roštu. Ribeye i svíčková.",
+    icon: <ShieldCheck size={20} className="text-heat" />,
+    title: "Vlastní zkušenost",
+    text: "Píšu jen o věcech, které jsem osobně vyzkoušel. Žádný recyklovaný obsah.",
   },
   {
-    emoji: "🔥",
-    title: "Přímý žár",
-    description:
-      "Burgery, kuřecí stehna, zelenina — ne vše musí trvat hodiny. Zvládám celé menu na jednom grilu pro 10 lidí.",
-  },
-];
-
-const gear = [
-  {
-    image: "/images/recepty/brisket.jpg",
-    name: "Weber Master-Touch 57 cm",
-    role: "Hlavní gril",
-    note: "Používám od roku 2017. Snake metoda na low & slow, přímý žár na steaky. Jeden gril na všechno.",
-  },
-  {
-    image: "/images/recepty/steak.jpg",
-    name: "ThermoPro TP-16S",
-    role: "Teploměr se sondou",
-    note: "Bez tohoto vaříte naslepo. Dvě sondy — jedna do masa, druhá na rošt. Neoddiskutovatelná investice.",
+    icon: <Ruler size={20} className="text-heat" />,
+    title: "Bez bullshitu",
+    text: "Žádné sponzorované nadšení, žádné affiliate jako jediný důvod recenze.",
   },
 ];
 
@@ -90,166 +65,91 @@ const timeline = [
   },
 ];
 
-const values = [
-  {
-    icon: <Flame size={20} className="text-heat" />,
-    title: "Konkrétní čísla",
-    text: "Žádné \u201Egrilujte dokud je hotovo\u201C. Vždy teplota, čas, gramáž.",
-  },
-  {
-    icon: <ThumbsUp size={20} className="text-heat" />,
-    title: "Vlastní zkušenost",
-    text: "Píšu jen o věcech, které jsem osobně vyzkoušel. Žádný recyklovaný obsah.",
-  },
-  {
-    icon: <Clock size={20} className="text-heat" />,
-    title: "Bez bullshitu",
-    text: "Žádné sponzorované nadšení, žádné affiliate jako jediný důvod recenze.",
-  },
+const equipment = [
+  { name: "Weber Master-Touch 57 cm", desc: "Hlavní gril na všechno — steaky, pulled pork i celé kuře." },
+  { name: "ThermoWorks Thermapen", desc: "Nejlepší investice. Přesná teplota za 2 sekundy." },
+  { name: "Weber iGrill / MEATER+", desc: "Bluetooth teploměr na dlouhé uzení. Hlídá teplotu za mě." },
+  { name: "Dřevěné štěpky (hickory, třešeň)", desc: "Hickory na hovězí, třešeň na vepřové, jabloň na drůbež." },
+];
+
+const tags = [
+  "Weber Kettle",
+  "Low & Slow",
+  "BBQ",
+  "Hovězí",
+  "Vepřové",
+  "Pulled Pork",
+  "Brisket",
+  "Reverse Sear",
 ];
 
 export default function AboutPage() {
   return (
     <>
       {/* ─── Hero ──────────────────────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-[75rem] px-6 py-16 md:py-24">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-          {/* Left */}
-          <div>
-            <span className="mb-4 inline-block font-mono text-xs uppercase tracking-widest text-heat">
-              Frontend vývojář · grilař · Praha
-            </span>
-            <h1
-              className="mb-6 text-4xl leading-tight text-coal md:text-5xl lg:text-6xl"
-              style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
-            >
-              Jsem Petr Majer
-              <br />
-              <em className="text-heat" style={{ fontStyle: "italic" }}>
-                a griluju rád
-              </em>
-            </h1>
-            <p className="mb-8 max-w-md text-lg text-stone leading-relaxed">
-              Přes deset let, jeden Weber Kettle a hodně spáleného kuřete. Dnes
-              vím přesně, co funguje a co ne — a tady o tom píšu.
-            </p>
-
-            {/* Stats */}
-            <div className="grid grid-cols-4 gap-4 rounded-2xl p-6 bg-bg-warm">
-              {stats.map((s) => (
-                <div key={s.label} className="text-center">
-                  <div
-                    className="text-xl md:text-2xl text-coal"
-                    style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
-                  >
-                    {s.value}
-                  </div>
-                  <div className="mt-1 text-xs text-stone leading-tight">{s.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right: portrait */}
-          <div className="relative">
-            <div
-              className="overflow-hidden rounded-2xl aspect-[4/5]"
-              style={{ boxShadow: "var(--shadow-hover)" }}
-            >
-              <Image
-                src="/images/author/petr.jpg"
-                alt="Petr Majer u grilu"
-                width={800}
-                height={1000}
-                priority
-                className="w-full h-full object-cover"
-              />
-            </div>
-            {/* Floating badge */}
-            <div className="absolute -bottom-4 -right-4 flex items-center gap-3 rounded-xl px-4 py-3 text-white bg-heat shadow-lg md:bottom-6 md:right-6">
-              <span className="text-xl">🔥</span>
-              <div>
-                <div className="font-medium text-sm">10+ let</div>
-                <div className="text-xs opacity-90">u Weberu</div>
-              </div>
+      <section className="px-6 pt-6 pb-16">
+        <div className="mx-auto max-w-4xl">
+          <div className="flex flex-col items-center md:items-start md:flex-row gap-10 md:gap-14">
+            <Image
+              src="/images/author/petr.jpg"
+              alt="Petr Majer"
+              width={160}
+              height={160}
+              className="w-28 h-28 rounded-full md:w-40 md:h-40 md:rounded-2xl object-cover flex-shrink-0 shadow-md"
+            />
+            <div className="text-center md:text-left">
+              <h1
+                className="text-3xl md:text-4xl lg:text-[2.75rem] leading-tight text-coal font-bold mb-3"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Petr Majer
+              </h1>
+              <p className="text-stone italic text-lg leading-relaxed mb-5">
+                „Nejlepší jídlo je to, u kterého stojíte s pivem v ruce."
+              </p>
+              <p className="text-coal leading-relaxed mb-4">
+                Griluji přes 10 let, téměř výhradně na Weber Kettle. Začínal jsem jako úplný amatér —
+                pálil steaky, kupoval hotové marinády a věřil jsem, že „medium" je když je maso růžové uprostřed.
+                Dnes vím, že grilování je řemeslo s přesnými čísly, a právě o tom píšu.
+              </p>
+              <p className="text-coal leading-relaxed mb-6">
+                Tenhle web je místo, kde sdílím konkrétní postupy, teploty a chyby, které jsem udělal —
+                aby je nemuseli dělat ostatní. Žádné sponzorované příspěvky, žádný bullshit.
+                Jen to, co funguje na mém dvorku.
+              </p>
+              <Link
+                href="/recepty"
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white bg-heat hover:bg-heat-dk transition-colors duration-150"
+              >
+                Prohlédnout recepty →
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── My story ──────────────────────────────────────────────────────────── */}
-      <section className="border-t border-smoke py-16" style={{ backgroundColor: "var(--bg-warm)" }}>
-        <div className="mx-auto max-w-3xl px-6">
-          <span className="mb-3 inline-block font-mono text-xs uppercase tracking-widest text-heat">
-            Můj příběh
-          </span>
+      {/* ─── Values ────────────────────────────────────────────────────────────── */}
+      <section className="py-20 px-6" style={{ backgroundColor: "var(--bg-warm)" }}>
+        <div className="mx-auto max-w-4xl">
           <h2
-            className="mb-8 text-3xl text-coal md:text-4xl"
+            className="text-2xl md:text-3xl text-coal mb-12 text-center"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            Od spáleného kuřete k pulled pork
+            Proč griluju.cz
           </h2>
-
-          <div className="prose max-w-none">
-            <p>
-              Začal jsem grilovat v roce 2013 na levném uhláči z hypermarketu.
-              Kuřecí stehna, hodně kouře, málo trpělivosti. Výsledky byly jedlé —
-              ale nic víc. Přesto jsem se u toho cítil lépe než u plotny.
-            </p>
-            <p>
-              Zlom přišel v roce 2015, kdy jsem koupil Weber Kettle. Nepřímé
-              grilování, správné rozmístění uhlí, teploměr — najednou to dávalo
-              smysl. První steak, který byl skutečně medium rare. První kuře, které
-              bylo šťavnaté uvnitř i zvenku.
-            </p>
-            <blockquote>
-              První pulled pork jsem sundal při 82 °C a myslel jsem, že je
-              hotový. Byl tuhý jak podrážka. Od té chyby jsem ho dělal přes 40× —
-              a vím přesně, kde se to zlomí.
-            </blockquote>
-            <p>
-              Dnes griluju minimálně jednou týdně. Pulled pork je pro mě rutina —
-              ale pořád mě baví. Brisket je výzva, která nikdy omrzí. A steak?
-              Steak je meditace.
-            </p>
-            <p>
-              Griluju.cz vznikl proto, že v češtině je pořád málo konkrétních
-              zdrojů o grilování. Teploty, časy, skutečné chyby. Ne jen
-              „grilujte na středním žáru, dokud není hotovo."
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Specialties ───────────────────────────────────────────────────────── */}
-      <section className="border-t border-smoke py-16">
-        <div className="mx-auto max-w-[75rem] px-6">
-          <div className="mb-10 text-center">
-            <span className="mb-3 inline-block font-mono text-xs uppercase tracking-widest text-heat">
-              Specializace
-            </span>
-            <h2
-              className="text-3xl text-coal md:text-4xl"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Co mě baví nejvíc
-            </h2>
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {specialties.map((s) => (
-              <div
-                key={s.title}
-                className="rounded-xl border border-smoke bg-bg-card p-6"
-                style={{ boxShadow: "var(--shadow-card)" }}
-              >
-                <span className="mb-4 block text-3xl">{s.emoji}</span>
-                <h3
-                  className="mb-3 text-xl text-coal"
-                  style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {values.map((v) => (
+              <div key={v.title} className="text-center">
+                <div
+                  className="inline-flex items-center justify-center w-12 h-12 rounded-full mb-4"
+                  style={{ backgroundColor: "rgba(232,83,26,0.1)" }}
                 >
-                  {s.title}
+                  {v.icon}
+                </div>
+                <h3 className="text-lg text-coal mb-2" style={{ fontFamily: "var(--font-display)" }}>
+                  {v.title}
                 </h3>
-                <p className="text-sm text-stone leading-relaxed">{s.description}</p>
+                <p className="text-sm text-stone leading-relaxed">{v.text}</p>
               </div>
             ))}
           </div>
@@ -257,97 +157,39 @@ export default function AboutPage() {
       </section>
 
       {/* ─── Timeline ──────────────────────────────────────────────────────────── */}
-      <section className="border-t border-smoke py-16" style={{ backgroundColor: "var(--bg-warm)" }}>
-        <div className="mx-auto max-w-3xl px-6">
-          <div className="mb-10">
-            <span className="mb-3 inline-block font-mono text-xs uppercase tracking-widest text-heat">
-              Timeline
-            </span>
-            <h2
-              className="text-3xl text-coal md:text-4xl"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Milníky u grilu
-            </h2>
-          </div>
-
-          <div className="relative">
-            {/* Vertical line */}
-            <div className="absolute left-[4.5rem] top-0 bottom-0 w-px bg-smoke hidden sm:block" />
-
-            <div className="space-y-8">
-              {timeline.map((item) => (
-                <div key={item.year} className="flex gap-6 items-start">
-                  {/* Year badge */}
+      <section className="py-20 px-6">
+        <div className="mx-auto max-w-[680px]">
+          <h2
+            className="text-2xl md:text-3xl text-coal mb-12 text-center"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            Moje grilovací cesta
+          </h2>
+          <div className="space-y-0">
+            {timeline.map((item, i) => (
+              <div key={item.year} className="flex gap-5">
+                <div className="flex flex-col items-center">
                   <div
-                    className="shrink-0 w-16 text-right font-mono text-sm font-medium text-heat pt-1"
-                  >
-                    {item.year}
-                  </div>
-
-                  {/* Dot */}
-                  <div className="relative shrink-0 hidden sm:flex items-center justify-center">
-                    <div className="h-3 w-3 rounded-full bg-heat ring-4 ring-bg-warm mt-1" />
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex-1 rounded-xl border border-smoke bg-bg-card p-4">
-                    <p
-                      className="mb-1 font-medium text-coal"
-                      style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
-                    >
-                      {item.title}
-                    </p>
-                    <p className="text-sm text-stone leading-relaxed">{item.text}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Gear ──────────────────────────────────────────────────────────────── */}
-      <section className="border-t border-smoke py-16">
-        <div className="mx-auto max-w-[75rem] px-6">
-          <div className="mb-10">
-            <span className="mb-3 inline-block font-mono text-xs uppercase tracking-widest text-heat">
-              Vybavení
-            </span>
-            <h2
-              className="text-3xl text-coal md:text-4xl"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Co používám
-            </h2>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2">
-            {gear.map((item) => (
-              <div
-                key={item.name}
-                className="article-card overflow-hidden rounded-xl border border-smoke bg-bg-card"
-              >
-                <div className="overflow-hidden aspect-video">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    width={640}
-                    height={400}
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    className={`rounded-full flex-shrink-0 mt-1.5 bg-heat ${
+                      i === timeline.length - 1 ? "w-4 h-4" : "w-3 h-3"
+                    }`}
+                    style={
+                      i === timeline.length - 1
+                        ? { boxShadow: "0 0 0 4px rgba(232,83,26,0.2)" }
+                        : undefined
+                    }
                   />
+                  {i < timeline.length - 1 && (
+                    <div className="w-px flex-1 mt-1" style={{ backgroundColor: "var(--smoke)" }} />
+                  )}
                 </div>
-                <div className="p-6">
-                  <span className="mb-2 inline-block font-mono text-xs uppercase tracking-wider text-heat bg-heat-lt px-2 py-1 rounded">
-                    {item.role}
+                <div className="pb-8">
+                  <span className="text-xs font-semibold tracking-[0.15em] uppercase text-heat block mb-1">
+                    {item.year}{i === timeline.length - 1 ? " — teď" : ""}
                   </span>
-                  <h3
-                    className="mb-2 text-xl text-coal"
-                    style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
-                  >
-                    {item.name}
-                  </h3>
-                  <p className="text-sm text-stone leading-relaxed">{item.note}</p>
+                  <p className="leading-relaxed text-coal">
+                    {item.title} — {item.text}
+                  </p>
                 </div>
               </div>
             ))}
@@ -355,42 +197,66 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ─── Values ────────────────────────────────────────────────────────────── */}
-      <section className="py-16" style={{ backgroundColor: "#1C1917" }}>
-        <div className="mx-auto max-w-[75rem] px-6">
-          <div className="mb-10 text-center">
-            <h2
-              className="text-3xl text-white md:text-4xl"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Jak tady píšu
-            </h2>
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {values.map((v) => (
-              <div key={v.title} className="rounded-xl p-6" style={{ backgroundColor: "#292524", border: "1px solid #44403C" }}>
-                <div className="mb-3">{v.icon}</div>
+      {/* ─── Equipment (dark) ──────────────────────────────────────────────────── */}
+      <section className="py-20 px-6" style={{ backgroundColor: "var(--dark)" }}>
+        <div className="mx-auto max-w-4xl">
+          <h2
+            className="text-2xl md:text-3xl mb-3 text-center"
+            style={{ fontFamily: "var(--font-display)", color: "var(--dark-fg)" }}
+          >
+            Moje vybavení
+          </h2>
+          <p
+            className="text-center mb-12 max-w-md mx-auto"
+            style={{ color: "rgba(245,240,235,0.55)" }}
+          >
+            To, s čím pracuji každý den. Žádné partnerství — všechno koupené za vlastní.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {equipment.map((e) => (
+              <div
+                key={e.name}
+                className="rounded-2xl px-6 py-5"
+                style={{ backgroundColor: "rgba(255,255,255,0.05)", border: "1px solid var(--dark-border)" }}
+              >
                 <h3
-                  className="mb-2 text-lg text-white"
-                  style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
+                  className="text-lg mb-1"
+                  style={{ fontFamily: "var(--font-display)", color: "var(--dark-fg)" }}
                 >
-                  {v.title}
+                  {e.name}
                 </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#A8A29E" }}>
-                  {v.text}
+                <p className="text-sm leading-relaxed" style={{ color: "rgba(245,240,235,0.65)" }}>
+                  {e.desc}
                 </p>
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="mt-12 text-center">
-            <Link
-              href="/recepty"
-              className="inline-flex items-center gap-2 rounded-lg px-6 py-3 font-medium text-white bg-heat hover:bg-heat-dk transition-colors duration-150"
-            >
-              Procházet recepty
-              <ArrowRight size={16} />
-            </Link>
+      {/* ─── Tags ──────────────────────────────────────────────────────────────── */}
+      <section className="py-20 px-6 text-center">
+        <div className="mx-auto max-w-4xl">
+          <h2
+            className="text-2xl md:text-3xl text-coal mb-3"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            Témata, kterým se věnuji
+          </h2>
+          <p className="text-stone mb-8 max-w-md mx-auto">
+            Klikněte na téma a podívejte se na související recepty a návody.
+          </p>
+          <div className="flex flex-wrap justify-center gap-2">
+            {tags.map((tag) => (
+              <Link
+                key={tag}
+                href={`/recepty?tag=${encodeURIComponent(tag)}`}
+                className="px-4 py-1.5 text-sm leading-5 rounded-full text-stone hover:text-heat transition-colors"
+                style={{ backgroundColor: "var(--bg-warm)" }}
+              >
+                {tag}
+              </Link>
+            ))}
           </div>
         </div>
       </section>
