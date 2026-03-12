@@ -83,22 +83,14 @@ export default function HomePage() {
 
       {/* ─── Nejnovější články ────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-6xl px-6 py-16 md:py-24">
-        <div className="mb-10 flex items-end justify-between">
-          <div>
-            <h2
-              className="text-3xl md:text-4xl text-coal"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Nejnovější články
-            </h2>
-            <p className="mt-2 text-stone">Recepty, návody a tipy přímo z grilu</p>
-          </div>
-          <Link
-            href="/recepty"
-            className="hidden sm:flex items-center gap-1 text-sm font-medium text-stone hover:text-heat transition-colors duration-150"
+        <div className="mb-10">
+          <h2
+            className="text-3xl md:text-4xl text-coal"
+            style={{ fontFamily: "var(--font-display)" }}
           >
-            Všechny články <ArrowRight size={14} />
-          </Link>
+            Nejnovější články
+          </h2>
+          <p className="mt-2 text-stone">Recepty, návody a tipy přímo z grilu</p>
         </div>
 
         <ArticleGrid posts={posts} locale="cs" />

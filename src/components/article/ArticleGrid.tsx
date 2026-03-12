@@ -59,12 +59,14 @@ export function ArticleGrid({ posts, locale, moreHeading = "Další články", b
       {/* Row 2: more articles */}
       {posts.slice(3).length > 0 && (
         <>
-          <h3
-            className="text-xl text-coal mb-8"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            {moreHeading}
-          </h3>
+          <div className="mb-8 mt-14">
+            <h3
+              className="text-2xl text-coal"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              {moreHeading}
+            </h3>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
             {posts.slice(3).map((post, i) => (
               <ArticleCard
