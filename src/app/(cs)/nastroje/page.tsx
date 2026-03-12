@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Thermometer, ExternalLink, ChefHat, Star } from "lucide-react";
 import Link from "next/link";
 import { NewsletterCTA } from "@/components/ui/NewsletterCTA";
+import { IconCard } from "@/components/ui/IconCard";
 import { equipmentData, starterKit } from "@/data/equipmentData";
 import type { EquipmentItem } from "@/data/equipmentData";
 
@@ -167,24 +168,8 @@ export default function NastrojePage() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {starterKit.map((item, index) => (
-              <div
-                key={item.name}
-                className="group bg-bg-card border border-smoke rounded-xl p-5 hover:border-heat/30 hover:shadow-md transition-all"
-              >
-                <div className="flex items-start gap-3.5">
-                  <div className="flex items-center justify-center w-9 h-9 rounded-full bg-heat/10 shrink-0 group-hover:bg-heat/15 transition-colors">
-                    <item.icon size={18} className="text-heat group-hover:scale-110 transition-transform" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-xs font-bold text-heat/50">{index + 1}.</span>
-                      <h3 className="text-sm text-coal font-semibold">{item.name}</h3>
-                    </div>
-                    <p className="text-stone text-xs leading-relaxed">{item.reason}</p>
-                  </div>
-                </div>
-              </div>
+            {starterKit.map((item) => (
+              <IconCard key={item.name} icon={item.icon} title={item.name} text={item.reason} />
             ))}
           </div>
 

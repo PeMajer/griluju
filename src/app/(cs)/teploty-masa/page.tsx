@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Thermometer, ThermometerSun, Beef, Egg, Fish, Ham, Crosshair, TrendingUp, Timer } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { NewsletterCTA } from "@/components/ui/NewsletterCTA";
+import { IconCard } from "@/components/ui/IconCard";
 
 type TempRow = {
   level: string;
@@ -281,18 +282,7 @@ export default function TeplotyMasaPage() {
           </p>
           <div className="grid sm:grid-cols-2 gap-4">
             {tips.map((tip) => (
-              <div
-                key={tip.title}
-                className="group bg-bg-card border border-smoke rounded-xl p-5 hover:border-heat/30 hover:shadow-md transition-all"
-              >
-                <div className="flex items-start gap-3.5">
-                  <tip.icon size={20} className="text-heat mt-0.5 shrink-0 group-hover:scale-110 transition-transform" />
-                  <div>
-                    <h3 className="text-base text-coal mb-1">{tip.title}</h3>
-                    <p className="text-stone text-sm leading-relaxed">{tip.text}</p>
-                  </div>
-                </div>
-              </div>
+              <IconCard key={tip.title} icon={tip.icon} title={tip.title} text={tip.text} />
             ))}
           </div>
         </div>
