@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Star } from "lucide-react";
+import { ChefHat, Thermometer, Star } from "lucide-react";
 import { equipmentCategories, starterKit } from "@/data/equipmentData";
 import { NewsletterCTA } from "@/components/ui/NewsletterCTA";
 
@@ -28,16 +28,16 @@ export default function NastrojePage() {
   return (
     <>
       {/* ─── Hero ─────────────────────────────────────────────────────────────── */}
-      <section className="py-14 md:py-20 border-b border-smoke" style={{ backgroundColor: "var(--bg-warm)" }}>
+      <section className="pt-12 pb-8 md:pb-12">
         <div className="mx-auto max-w-[75rem] px-6">
           <span
-            className="mb-4 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-mono uppercase tracking-wider"
-            style={{ backgroundColor: "var(--heat-lt)", color: "var(--heat)" }}
+            className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold mb-4"
+            style={{ backgroundColor: "rgba(232,83,26,0.1)", color: "var(--heat)" }}
           >
-            🛠 Průvodce vybavením
+            <ChefHat size={14} /> Průvodce vybavením
           </span>
           <h1
-            className="mb-4 text-3xl md:text-5xl text-coal leading-tight"
+            className="mb-4 text-4xl md:text-5xl text-coal leading-tight"
             style={{ fontFamily: "var(--font-display)", fontWeight: 700 }}
           >
             Nástroje & vybavení
@@ -53,15 +53,15 @@ export default function NastrojePage() {
       <section className="py-12 md:py-16">
         <div className="mx-auto max-w-[75rem] px-6">
           {/* Category filter */}
-          <div className="flex flex-wrap gap-3 mb-10">
+          <div className="flex flex-wrap gap-3 mb-10 pb-8">
             {equipmentCategories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 ${
+                className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold transition-colors duration-150 ${
                   activeCategory === cat.id
                     ? "text-white bg-heat"
-                    : "text-stone bg-bg-warm border border-smoke hover:border-heat hover:text-heat"
+                    : "text-coal bg-bg-warm"
                 }`}
               >
                 <span>{cat.icon}</span>
@@ -70,15 +70,23 @@ export default function NastrojePage() {
             ))}
           </div>
 
-          {/* Category description */}
-          <p className="mb-8 text-stone">{current.description}</p>
+          {/* Category heading */}
+          <div className="flex items-center gap-3 mb-8">
+            <span className="text-2xl shrink-0">{current.icon}</span>
+            <div>
+              <h2 className="text-xl md:text-2xl text-coal font-bold" style={{ fontFamily: "var(--font-display)" }}>
+                {current.name}
+              </h2>
+              <p className="text-stone text-sm">{current.description}</p>
+            </div>
+          </div>
 
           {/* Items grid */}
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2">
             {current.items.map((item) => (
               <div
                 key={item.name}
-                className="article-card rounded-xl overflow-hidden flex flex-col border border-smoke"
+                className="rounded-2xl overflow-hidden flex flex-col border border-smoke hover:shadow-md transition-all"
                 style={{ backgroundColor: "var(--bg-card)" }}
               >
                 <div className="p-5 flex flex-col flex-1">
@@ -139,7 +147,7 @@ export default function NastrojePage() {
                       href={`/go/${item.affiliateSlug}`}
                       className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-heat hover:text-heat-dk transition-colors"
                     >
-                      Zobrazit produkt <ArrowRight size={14} />
+                      Zobrazit produkt
                     </Link>
                   )}
                 </div>
@@ -161,16 +169,26 @@ export default function NastrojePage() {
           <p className="mb-8 text-stone">6 věcí, které potřebujete před prvním grilováním.</p>
 
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {starterKit.map((item) => (
+            {starterKit.map((item, index) => (
               <div
                 key={item.name}
-                className="flex items-start gap-4 rounded-xl p-5 border border-smoke"
+                className="rounded-xl p-5 border border-smoke hover:shadow-md transition-all"
                 style={{ backgroundColor: "var(--bg-card)" }}
               >
-                <span className="text-2xl shrink-0">{item.icon}</span>
-                <div>
-                  <p className="font-medium text-coal text-sm mb-1">{item.name}</p>
-                  <p className="text-xs text-stone leading-relaxed">{item.reason}</p>
+                <div className="flex items-start gap-3.5">
+                  <div
+                    className="flex items-center justify-center w-9 h-9 rounded-full shrink-0"
+                    style={{ backgroundColor: "rgba(232,83,26,0.1)" }}
+                  >
+                    <span className="text-lg">{item.icon}</span>
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-xs font-bold text-heat/50">{index + 1}.</span>
+                      <p className="text-sm font-semibold text-coal">{item.name}</p>
+                    </div>
+                    <p className="text-xs text-stone leading-relaxed">{item.reason}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -178,10 +196,10 @@ export default function NastrojePage() {
 
           <div className="mt-10 text-center">
             <Link
-              href="/teploty-masa"
-              className="inline-flex items-center gap-2 text-sm font-medium text-heat hover:text-heat-dk transition-colors"
+              href="/nastroje/teploty-masa"
+              className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white bg-heat hover:bg-heat-dk transition-colors duration-150"
             >
-              Tabulka teplot masa <ArrowRight size={14} />
+              <Thermometer size={16} /> Tabulka teplot masa
             </Link>
           </div>
         </div>
