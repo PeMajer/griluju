@@ -95,8 +95,8 @@ export default function NastrojePage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-12 pb-8 md:pb-12 px-6">
-        <div className="mx-auto max-w-[75rem]">
+      <section className="pt-12 pb-8 md:pb-12">
+        <div className="mx-auto max-w-[75rem] px-6">
           <div className="mb-3">
             <div className="inline-flex items-center gap-2 bg-heat/10 rounded-full px-4 py-1.5 text-xs font-semibold text-heat mb-4">
               <ChefHat size={14} /> Průvodce vybavením
@@ -112,8 +112,8 @@ export default function NastrojePage() {
       </section>
 
       {/* Category tabs */}
-      <section className="pb-8 px-6">
-        <div className="mx-auto max-w-[75rem]">
+      <section className="pb-8">
+        <div className="mx-auto max-w-[75rem] px-6">
           <div className="flex flex-wrap gap-2">
             {equipmentData.map((cat) => (
               <button
@@ -134,8 +134,8 @@ export default function NastrojePage() {
       </section>
 
       {/* Active category content */}
-      <section className="pb-16 md:pb-20 px-6">
-        <div className="mx-auto max-w-[75rem]">
+      <section className="pb-16 md:pb-20">
+        <div className="mx-auto max-w-[75rem] px-6">
           <div className="flex items-center gap-3 mb-2">
             <category.icon size={24} className="text-heat" />
             <div>
