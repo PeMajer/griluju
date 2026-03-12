@@ -139,11 +139,22 @@ Shared components for structured data:
 - **NIKDY nepushuj přímo do `main`** — vždy vytvoř novou branch a otevři PR
 - Branch naming: `feature/popis`, `fix/popis`, `content/slug-clanku`, `issue-<číslo>`
 - Commit messages: Czech, concise
-- Po dokončení práce vždy otevři PR pomocí `gh pr create`
 - Neprovádej `git push --force` na žádnou branch
 - content-index.json auto-updated by GitHub Action on merge to main
-- **Auto-commit**: Pri komplexnich ukolech (vice souboru, vice kroku) commituj a pushni automaticky bez ptani. Vytvor feature branch, commitni, pushni, vytvor PR.
 - **Context management**: Pri zpracovani vice komplexnich ukolu za sebou pouzivej `/clear` pro uvolneni kontextu mezi ukoly.
+
+### Workflow pro každý nový úkol
+
+Při každém novém úkolu:
+
+1. Zjisti aktuální branch (`git branch --show-current`) a zkontroluj změny (`git log main..HEAD --oneline`)
+2. **Rozhodnutí — nový úkol vs. pokračování:**
+   - Pokud aktuální branch je `main` → vždy nová branch
+   - Pokud aktuální branch je feature branch → porovnej zadání se stávajícími změnami (`git diff main..HEAD --name-only`). Pokud se zadání týká stejných souborů nebo logicky navazuje → pokračuj na stávající branch. Pokud je zadání nesouvisející → checkout main, pull, nová branch.
+3. Při startu na nové branchi: `git checkout main && git pull origin main`, pak `git checkout -b feature/popis`
+4. Implementuj změny
+5. Commitni a pushni: bez ptání, automaticky
+6. Otevři PR pomocí `gh pr create` — bez ptání, automaticky
 
 ## Autonomous Agent Work
 
@@ -243,7 +254,7 @@ Typ: vlastni / Unsplash query: [vyraz]
 
 When picking up a GitHub issue:
 
-1. Run `git checkout main && git pull` before starting
+1. Run `git checkout main && git pull origin main` before starting
 2. Create a new branch: `issue-<number>` or `feature/<description>`
 3. Read the full issue with `gh issue view <number>`
 4. Implement the solution, run tests (`npm test`, `npm run lint`, `npm run build`)
