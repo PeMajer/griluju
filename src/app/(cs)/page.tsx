@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { getAllPosts } from "@/lib/content";
 import { t, siteConfig } from "@/lib/i18n";
@@ -14,103 +15,76 @@ export const metadata: Metadata = {
   },
 };
 
-// PLACEHOLDER: stats — vyplň reálná čísla v docs/todo/README.md
-const stats = [
-  { value: "10+", label: "let" },
-  { value: "Weber", label: "Kettle" },
-  { value: "100%", label: "vlastní fotky" },
-  { value: "Low", label: "& slow" },
-];
-
 export default function HomePage() {
   const posts = getAllPosts();
-  const latestPosts = posts.slice(0, 3);
+  const featuredPost = posts[0];
+  const restPosts = posts.slice(1, 7);
 
   return (
     <>
       {/* ─── Hero ─────────────────────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-6xl px-6 py-16 md:py-24">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-          {/* Left: text */}
-          <div className="flex flex-col justify-center">
-            {/* PLACEHOLDER: hero-headline-choice — vyber jednu ze tří variant */}
-            {/* Varianta 1 (zvolená): */}
-            <span className="mb-4 text-sm font-mono uppercase tracking-widest text-heat">
-              Griluji přes 10 let.
+      <section className="relative min-h-screen overflow-hidden flex items-center">
+        {/* Background image */}
+        <Image
+          src="/images/pulled-pork/hero.jpg"
+          alt="Pulled pork na grilu"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        {/* Gradient overlays */}
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to right, rgba(14,9,5,0.92) 0%, rgba(14,9,5,0.55) 50%, transparent 100%)" }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to top, rgba(14,9,5,0.65) 0%, transparent 50%)" }}
+        />
+
+        {/* Content */}
+        <div className="relative mx-auto max-w-6xl w-full px-6 py-24">
+          <div className="max-w-xl animate-fade-up">
+            <span className="mb-4 inline-block font-mono text-xs uppercase tracking-widest text-heat">
+              Griluji přes 10 let
             </span>
             <h1
-              className="mb-6 text-balance text-4xl leading-tight md:text-5xl lg:text-6xl text-coal"
-              style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
+              className="mb-6 text-5xl md:text-6xl lg:text-7xl leading-tight"
+              style={{ fontFamily: "var(--font-display)", fontWeight: 700, color: "var(--dark-fg)" }}
             >
-              Grilování,
-              <br />
-              <em className="text-heat not-italic" style={{ fontStyle: "italic" }}>které funguje</em>
+              Grilování,{" "}
+              <em className="text-heat">které funguje</em>
             </h1>
-            {/* Varianta 2: Steak, <em>který stojí za to</em> */}
-            {/* Varianta 3: BBQ bez <em>kompromisů</em> */}
-            <p className="mb-8 max-w-md text-lg text-stone leading-relaxed">
+            <p className="mb-8 text-lg leading-relaxed max-w-md" style={{ color: "var(--dark-fg-muted)" }}>
               Recepty, návody a tipy z vlastní zkušenosti. Bez bullshitu.
             </p>
 
-            <div className="mb-12 flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center gap-4">
               <Link
                 href="/recepty"
-                className="inline-flex items-center gap-2 rounded-lg px-6 py-3 font-medium text-white bg-heat hover:bg-heat-dk transition-colors duration-150"
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-medium text-white bg-heat hover:bg-heat-dk transition-colors duration-150"
               >
                 Procházet recepty
                 <ArrowRight size={16} />
               </Link>
               <Link
                 href="/o-mne"
-                className="inline-flex items-center gap-1 font-medium text-coal hover:text-heat transition-colors duration-150"
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-medium transition-colors duration-150"
+                style={{
+                  border: "1px solid rgba(245,240,235,0.35)",
+                  color: "var(--dark-fg)",
+                }}
               >
-                <span className="underline underline-offset-4">Kdo jsem</span>
-                <span>→</span>
+                Kdo jsem →
               </Link>
-            </div>
-
-            {/* Stats card */}
-            <div className="grid grid-cols-4 gap-4 rounded-2xl p-6 bg-bg-warm">
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <div
-                    className="text-2xl md:text-3xl text-coal"
-                    style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
-                  >
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-stone">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right: hero image placeholder */}
-          <div className="relative">
-            <div
-              className="aspect-[4/3] overflow-hidden rounded-xl bg-bg-warm border border-smoke flex items-center justify-center"
-              style={{ boxShadow: "var(--shadow-hover)" }}
-            >
-              {/* [VLASTNI FOTO AUTORA] */}
-              <div className="text-center text-stone">
-                <span className="text-5xl block mb-2">🥩</span>
-                <span className="text-sm">Foto autora</span>
-              </div>
-            </div>
-            {/* Floating badge */}
-            <div className="absolute -bottom-4 -left-4 flex items-center gap-3 rounded-lg px-4 py-3 text-white bg-heat shadow-lg md:bottom-6 md:left-6">
-              <span className="text-xl">🔥</span>
-              <div>
-                <div className="font-medium text-sm">Pulled Pork</div>
-                <div className="text-xs opacity-90">6 hodin na grilu</div>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── Latest articles ──────────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-6xl px-6 py-16 border-t border-smoke">
+      {/* ─── Nejnovější články ────────────────────────────────────────────────── */}
+      <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         <div className="mb-10 flex items-end justify-between">
           <h2
             className="text-3xl md:text-4xl text-coal"
@@ -126,10 +100,13 @@ export default function HomePage() {
           </Link>
         </div>
 
-        {latestPosts.length > 0 ? (
+        {posts.length > 0 ? (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {latestPosts.map((post) => (
-              <ArticleCard key={post.slug} post={post} locale="cs" />
+            {featuredPost && (
+              <ArticleCard post={featuredPost} locale="cs" featured animationDelay={0} />
+            )}
+            {restPosts.map((post, i) => (
+              <ArticleCard key={post.slug} post={post} locale="cs" animationDelay={(i + 1) * 80} />
             ))}
           </div>
         ) : (
@@ -140,60 +117,63 @@ export default function HomePage() {
         )}
       </section>
 
-      {/* ─── Tool teaser ──────────────────────────────────────────────────────── */}
-      <section style={{ backgroundColor: "#1C1917" }} className="py-16">
+      {/* ─── Teploty masa — dark teaser ──────────────────────────────────────── */}
+      <section className="py-16" style={{ backgroundColor: "var(--dark)" }}>
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
             {/* Left */}
             <div className="flex flex-col justify-center">
               <span
                 className="mb-4 inline-flex w-fit items-center gap-2 rounded-full px-3 py-1 text-sm font-medium"
-                style={{ backgroundColor: "rgba(249,115,22,0.15)", color: "#F97316" }}
+                style={{ backgroundColor: "rgba(232,83,26,0.15)", color: "var(--heat)" }}
               >
-                🛠 Nástroj zdarma
+                🌡 Interaktivní nástroj
               </span>
               <h2
-                className="mb-4 text-3xl text-white md:text-4xl"
-                style={{ fontFamily: "var(--font-display)" }}
+                className="mb-4 text-3xl md:text-4xl"
+                style={{ fontFamily: "var(--font-display)", color: "var(--dark-fg)", fontWeight: 700 }}
               >
                 Teploty masa na grilu
               </h2>
-              <p className="mb-6 max-w-md" style={{ color: "#A8A29E" }}>
-                Interaktivní tabulka s doporučenými teplotami pro různé druhy masa.
-                Už nikdy nepřepálíte steak.
+              <p className="mb-6 max-w-md" style={{ color: "var(--dark-fg-muted)" }}>
+                Interaktivní tabulka s doporučenými teplotami pro různé druhy masa
+                s přepínáním °C/°F. Už nikdy nepřepálíte steak.
               </p>
               <Link
-                href="/nastroje/teploty-masa"
-                className="inline-flex w-fit items-center gap-2 rounded-lg px-6 py-3 font-medium text-white bg-heat hover:bg-heat-dk transition-colors duration-150"
+                href="/teploty-masa"
+                className="inline-flex w-fit items-center gap-2 rounded-full px-6 py-3 font-medium text-white bg-heat hover:bg-heat-dk transition-colors duration-150"
               >
                 Otevřít tabulku <ArrowRight size={16} />
               </Link>
             </div>
 
-            {/* Right: temperature table preview */}
+            {/* Right: temperature preview */}
             <div
               className="overflow-hidden rounded-xl"
-              style={{ backgroundColor: "#292524", border: "1px solid #44403C" }}
+              style={{ backgroundColor: "rgba(255,255,255,0.05)", border: "1px solid var(--dark-border)" }}
             >
               <div className="p-6">
-                <div className="mb-4 text-sm font-mono uppercase tracking-wide" style={{ color: "#A8A29E" }}>
+                <div className="mb-4 text-sm font-mono uppercase tracking-wide" style={{ color: "var(--dark-fg-muted)" }}>
                   Hovězí steak
                 </div>
                 <div className="space-y-2">
                   {[
                     { level: "Rare", temp: "52 °C", color: "#EF4444" },
-                    { level: "Medium Rare", temp: "55 °C", color: "#F97316" },
-                    { level: "Medium", temp: "60 °C", color: "#F97316" },
+                    { level: "Medium Rare", temp: "55 °C", color: "var(--heat)" },
+                    { level: "Medium", temp: "60 °C", color: "var(--heat)" },
                     { level: "Medium Well", temp: "65 °C", color: "#A8A29E" },
-                    { level: "Well Done", temp: "70 °C", color: "#78716C" },
+                    { level: "Well Done", temp: "71 °C", color: "#78716C" },
                   ].map((item) => (
                     <div
                       key={item.level}
                       className="flex items-center justify-between rounded-lg px-4 py-3"
-                      style={{ backgroundColor: "#1C1917" }}
+                      style={{ backgroundColor: "rgba(0,0,0,0.25)" }}
                     >
-                      <span style={{ color: item.color }}>{item.level}</span>
-                      <span className="font-mono font-medium" style={{ color: "#FAFAFA" }}>
+                      <div className="flex items-center gap-2">
+                        <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: item.color }} />
+                        <span style={{ color: "var(--dark-fg)" }}>{item.level}</span>
+                      </div>
+                      <span className="font-mono font-medium" style={{ color: "var(--dark-fg)" }}>
                         {item.temp}
                       </span>
                     </div>
@@ -205,39 +185,63 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── Author bio ───────────────────────────────────────────────────────── */}
-      <section id="author" style={{ backgroundColor: "var(--bg-warm)" }} className="py-16 border-t border-smoke">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <div
-            className="mx-auto mb-6 h-24 w-24 overflow-hidden rounded-full flex items-center justify-center text-4xl"
-            style={{ backgroundColor: "var(--bg-warm)" }}
-          >
-            👨‍🍳
-          </div>
-          <h3
-            className="mb-2 text-2xl md:text-3xl text-coal"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            {siteConfig.author}
-          </h3>
-          {/* PLACEHOLDER: personal-story — vyplň v docs/todo/README.md */}
-          <p className="mx-auto mb-6 max-w-lg text-stone leading-relaxed">
-            Griluji přes 10 let na Weber Kettle. Píšu o tom, co funguje a co ne.
-            Žádné sponzorované příspěvky, žádný bullshit — jen poctivé zkušenosti z vlastního dvorku.
-          </p>
-          <div className="flex flex-wrap justify-center gap-2 mb-6">
-            {["Weber Kettle", "Low & Slow", "BBQ", "Hovězí", "Vepřové"].map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full px-3 py-1 text-sm text-stone border border-smoke"
-              >
-                {tag}
+      {/* ─── O mně ────────────────────────────────────────────────────────────── */}
+      <section className="py-16 border-t border-smoke" style={{ backgroundColor: "var(--bg-warm)" }}>
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+            {/* Left: text */}
+            <div>
+              <span className="mb-3 inline-block font-mono text-xs uppercase tracking-widest text-heat">
+                O autorovi
               </span>
-            ))}
+              <h2
+                className="mb-4 text-3xl md:text-4xl text-coal"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Petr Majer
+              </h2>
+              <blockquote
+                className="mb-5 text-lg text-stone italic border-l-2 border-heat pl-4"
+              >
+                „Nejlepší jídlo je to, u kterého stojíte s pivem v ruce."
+              </blockquote>
+              <p className="mb-5 text-stone leading-relaxed">
+                Griluji přes 10 let na Weber Kettle. Specializuji se na pomalé grilování,
+                pulled pork, brisket a steaky metodou reverse sear. Píšu o tom,
+                co funguje — a co ne.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {["Weber Kettle", "Low & Slow", "BBQ", "Hovězí", "Vepřové", "Pulled Pork"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full px-3 py-1 text-sm text-stone border border-smoke"
+                    style={{ backgroundColor: "var(--bg-card)" }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <Link
+                href="/o-mne"
+                className="inline-flex items-center gap-2 text-sm font-medium text-heat hover:text-heat-dk transition-colors"
+              >
+                Číst více o mně <ArrowRight size={14} />
+              </Link>
+            </div>
+
+            {/* Right: author photo */}
+            <div className="relative">
+              <div className="overflow-hidden rounded-2xl aspect-[4/5]" style={{ boxShadow: "var(--shadow-hover)" }}>
+                <Image
+                  src="/images/author/petr.jpg"
+                  alt="Petr Majer u grilu"
+                  width={640}
+                  height={800}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </div>
-          <Link href="/o-mne" className="text-sm font-medium text-heat hover:text-heat-dk transition-colors">
-            Číst více →
-          </Link>
         </div>
       </section>
 

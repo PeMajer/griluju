@@ -12,7 +12,8 @@ const navItems = [
   { key: "category.recepty", href: "/recepty" },
   { key: "category.navod", href: "/navody" },
   { key: "category.recenze", href: "/recenze" },
-  { key: "nav.tools", href: "/nastroje/teploty-masa" },
+  { key: "nav.nastroje", href: "/nastroje" },
+  { key: "nav.about", href: "/o-mne" },
 ];
 
 export function Navigation({ locale }: NavigationProps) {

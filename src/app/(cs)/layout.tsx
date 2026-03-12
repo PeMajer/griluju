@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Serif_Display, DM_Sans, DM_Mono } from "next/font/google";
+import { Playfair_Display, DM_Sans, DM_Mono } from "next/font/google";
 import { siteConfig } from "@/lib/i18n";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -7,10 +7,11 @@ import { Hreflang } from "@/components/seo/Hreflang";
 import { ConsentMode } from "@/components/seo/ConsentMode";
 import { GA4Script } from "@/components/seo/GA4Script";
 
-const dmSerifDisplay = DM_Serif_Display({
+const playfairDisplay = Playfair_Display({
   subsets: ["latin", "latin-ext"],
   variable: "--font-display-var",
-  weight: "400",
+  weight: ["700", "900"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -41,7 +42,7 @@ export default function CsLayout({
     <html
       lang="cs"
       suppressHydrationWarning
-      className={`${dmSerifDisplay.variable} ${dmSans.variable} ${dmMono.variable}`}
+      className={`${playfairDisplay.variable} ${dmSans.variable} ${dmMono.variable}`}
     >
       <head>
         <Hreflang />

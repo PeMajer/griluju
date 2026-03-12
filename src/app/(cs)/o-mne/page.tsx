@@ -44,15 +44,13 @@ const specialties = [
 
 const gear = [
   {
-    image:
-      "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=640&h=400&fit=crop&q=80",
+    image: "/images/recepty/brisket.jpg",
     name: "Weber Master-Touch 57 cm",
     role: "Hlavní gril",
     note: "Používám od roku 2017. Snake metoda na low & slow, přímý žár na steaky. Jeden gril na všechno.",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=640&h=400&fit=crop&q=80",
+    image: "/images/recepty/steak.jpg",
     name: "ThermoPro TP-16S",
     role: "Teploměr se sondou",
     note: "Bez tohoto vaříte naslepo. Dvě sondy — jedna do masa, druhá na rošt. Neoddiskutovatelná investice.",
@@ -159,7 +157,7 @@ export default function AboutPage() {
               style={{ boxShadow: "var(--shadow-hover)" }}
             >
               <Image
-                src="https://images.unsplash.com/photo-1547592180-85f173990554?w=800&h=1000&fit=crop&q=80"
+                src="/images/author/petr.jpg"
                 alt="Petr Majer u grilu"
                 width={800}
                 height={1000}

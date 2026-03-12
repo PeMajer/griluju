@@ -45,7 +45,7 @@ export function ArticleHeader({ post, locale }: ArticleHeaderProps) {
       </nav>
 
       {/* Category badge */}
-      <span className="mb-4 inline-block font-mono text-xs uppercase tracking-wider text-heat bg-heat-lt px-2.5 py-1 rounded">
+      <span className="mb-4 inline-block font-mono text-xs uppercase tracking-wider text-heat bg-heat-lt px-2.5 py-1 rounded-full">
         {catLabel}
       </span>
 
