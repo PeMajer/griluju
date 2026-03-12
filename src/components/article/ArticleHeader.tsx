@@ -44,15 +44,10 @@ export function ArticleHeader({ post, locale }: ArticleHeaderProps) {
         <span className="text-coal line-clamp-1">{post.title}</span>
       </nav>
 
-      {/* Category badge */}
-      <span className="mb-4 inline-block font-mono text-xs uppercase tracking-wider text-heat bg-heat-lt px-2.5 py-1 rounded-full">
-        {catLabel}
-      </span>
-
       {/* Title */}
       <h1
-        className="mb-5 text-3xl leading-tight text-coal sm:text-4xl lg:text-5xl"
-        style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
+        className="mb-5 text-3xl md:text-4xl lg:text-[2.75rem] leading-tight text-coal"
+        style={{ fontFamily: "var(--font-display)", fontWeight: 700 }}
       >
         {post.title}
       </h1>
@@ -62,9 +57,13 @@ export function ArticleHeader({ post, locale }: ArticleHeaderProps) {
 
       {/* Author meta row */}
       <div className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-stone border-b border-smoke pb-6">
-        <div className="h-8 w-8 shrink-0 rounded-full bg-heat-lt flex items-center justify-center text-sm">
-          👨‍🍳
-        </div>
+        <Image
+          src="/images/author/petr.jpg"
+          alt={post.author}
+          width={32}
+          height={32}
+          className="h-8 w-8 rounded-full object-cover shrink-0"
+        />
         <span className="font-medium text-coal">{post.author}</span>
         <span className="opacity-40">·</span>
         <time dateTime={post.date}>
@@ -90,19 +89,6 @@ export function ArticleHeader({ post, locale }: ArticleHeaderProps) {
         </span>
       </div>
 
-      {/* Hero image */}
-      {post.image && (
-        <div className="overflow-hidden rounded-xl mb-8">
-          <Image
-            src={post.image}
-            alt={post.title}
-            width={1200}
-            height={675}
-            priority
-            className="w-full object-cover aspect-video"
-          />
-        </div>
-      )}
     </header>
   );
 }

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { type Locale, t, siteConfig } from "@/lib/i18n";
 
@@ -8,13 +9,17 @@ interface AuthorBioProps {
 export function AuthorBio({ locale }: AuthorBioProps) {
   return (
     <div
-      className="mt-8 rounded-xl p-6 bg-bg-warm border border-smoke"
+      className="mt-12 rounded-2xl p-8"
+      style={{ backgroundColor: "var(--bg-warm)" }}
     >
       <div className="flex items-start gap-4">
-        {/* Avatar placeholder — replace with real photo */}
-        <div className="h-14 w-14 shrink-0 rounded-full bg-heat-lt flex items-center justify-center text-2xl">
-          👨‍🍳
-        </div>
+        <Image
+          src="/images/author/petr.jpg"
+          alt={siteConfig.author}
+          width={56}
+          height={56}
+          className="h-14 w-14 rounded-full object-cover flex-shrink-0"
+        />
         <div>
           <Link
             href="/o-mne"

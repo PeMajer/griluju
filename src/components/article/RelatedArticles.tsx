@@ -40,7 +40,7 @@ interface RelatedArticlesProps {
 
 export function RelatedArticles({ posts, locale }: RelatedArticlesProps) {
   return (
-    <section className="py-16" style={{ backgroundColor: "var(--bg-warm)" }}>
+    <section className="py-24">
       <div className="mx-auto max-w-[75rem] px-6">
         <h2
           className="mb-10 text-3xl md:text-4xl text-coal text-center"
@@ -50,13 +50,13 @@ export function RelatedArticles({ posts, locale }: RelatedArticlesProps) {
         </h2>
 
         {posts.length > 0 ? (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-10">
             {posts.map((post) => (
               <ArticleCard key={post.slug} post={post} locale={locale} />
             ))}
           </div>
         ) : (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-10">
             {placeholderCards.map((card) => (
               <article
                 key={card.id}
