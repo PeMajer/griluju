@@ -7,20 +7,21 @@
   --font-mono:    var(--font-mono-var), monospace;
 
   /*
-   * Tailwind v4 color aliases for CSS design tokens.
-   * Allows: bg-heat, text-coal, border-smoke, bg-dark, text-dark-fg, etc.
+   * Tailwind v4 color aliases — direct HSL values (not var() refs) so that
+   * opacity modifiers like bg-heat/10, hover:border-heat/30 work correctly.
+   * Keep `:root` CSS variables for inline styles.
    */
-  --color-bg:          var(--bg);
-  --color-bg-warm:     var(--bg-warm);
-  --color-bg-card:     var(--bg-card);
-  --color-coal:        var(--coal);
-  --color-stone:       var(--stone);
-  --color-smoke:       var(--smoke);
-  --color-heat:        var(--heat);
-  --color-heat-lt:     var(--heat-lt);
-  --color-heat-dk:     var(--heat-dk);
-  --color-dark:        var(--dark);
-  --color-dark-fg:     var(--dark-fg);
+  --color-bg:          hsl(30, 27%, 96%);
+  --color-bg-warm:     hsl(30, 20%, 93%);
+  --color-bg-card:     hsl(0, 0%, 100%);
+  --color-coal:        hsl(18, 30%, 12%);
+  --color-stone:       hsl(18, 15%, 45%);
+  --color-smoke:       hsl(30, 15%, 88%);
+  --color-heat:        hsl(16, 82%, 50%);
+  --color-heat-lt:     hsl(16, 82%, 96%);
+  --color-heat-dk:     hsl(16, 82%, 38%);
+  --color-dark:        hsl(18, 30%, 10%);
+  --color-dark-fg:     hsl(30, 27%, 96%);
 
 }
 

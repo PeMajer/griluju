@@ -1,205 +1,202 @@
 "use client";
 
 import { useState } from "react";
+import { Thermometer, ExternalLink, ChefHat, Star } from "lucide-react";
 import Link from "next/link";
-import { ChefHat, Thermometer, Star } from "lucide-react";
-import { equipmentCategories, starterKit } from "@/data/equipmentData";
 import { NewsletterCTA } from "@/components/ui/NewsletterCTA";
+import { equipmentData, starterKit } from "@/data/equipmentData";
+import type { EquipmentItem } from "@/data/equipmentData";
 
-function StarRating({ rating }: { rating: number }) {
+function EquipmentCard({ item }: { item: EquipmentItem }) {
   return (
-    <div className="flex items-center gap-0.5">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <Star
-          key={i}
-          size={13}
-          className={i < rating ? "text-heat fill-heat" : "text-smoke"}
-        />
-      ))}
+    <div className="group bg-bg-card border border-smoke rounded-2xl p-5 md:p-6 hover:border-heat/30 hover:shadow-md transition-all">
+      {/* Status badge */}
+      {item.status && (
+        <div className="mb-3">
+          <span
+            className={`inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-0.5 rounded-full ${
+              item.status === "current"
+                ? "bg-heat/10 text-heat"
+                : "bg-bg-warm text-stone"
+            }`}
+          >
+            <span
+              className={`w-1.5 h-1.5 rounded-full ${
+                item.status === "current" ? "bg-heat" : "bg-stone/50"
+              }`}
+            />
+            {item.status === "current" ? "Aktuálně používám" : "Používal jsem"}
+          </span>
+        </div>
+      )}
+
+      {/* Header */}
+      <div className="flex items-start justify-between gap-3 mb-3">
+        <h3 className="text-base md:text-lg text-coal font-semibold leading-snug">
+          {item.name}
+        </h3>
+        <div className="flex items-center gap-0.5 shrink-0">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Star
+              key={i}
+              size={14}
+              className={i < item.rating ? "text-heat fill-heat" : "text-smoke"}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Description */}
+      <p className="text-stone text-sm leading-relaxed mb-3">
+        {item.description}
+      </p>
+
+      {/* Tip */}
+      <div className="tip-box mb-4">
+        <p className="text-sm leading-relaxed">
+          <span className="font-semibold text-heat">Tip: </span>
+          <span className="text-coal/80">{item.tip}</span>
+        </p>
+      </div>
+
+      {/* Footer: price + tags */}
+      <div className="flex items-center justify-between gap-3 flex-wrap">
+        <span className="font-bold text-coal text-sm">{item.priceRange}</span>
+        <div className="flex flex-wrap gap-1.5">
+          {item.tags.map((tag) => (
+            <span
+              key={tag}
+              className="inline-block bg-bg-warm text-stone text-xs font-medium px-2.5 py-0.5 rounded-full"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Affiliate CTA */}
+      {item.affiliateSlug && (
+        <Link
+          href={`/go/${item.affiliateSlug}`}
+          className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-heat hover:text-heat-dk transition-colors"
+        >
+          Zobrazit produkt <ExternalLink size={13} />
+        </Link>
+      )}
     </div>
   );
 }
 
 export default function NastrojePage() {
-  const [activeCategory, setActiveCategory] = useState(equipmentCategories[0].id);
+  const [activeCategory, setActiveCategory] = useState("grills");
 
-  const current = equipmentCategories.find((c) => c.id === activeCategory) ?? equipmentCategories[0];
+  const category = equipmentData.find((c) => c.id === activeCategory)!;
 
   return (
     <>
-      {/* ─── Hero ─────────────────────────────────────────────────────────────── */}
-      <section className="pt-12 pb-8 md:pb-12">
-        <div className="mx-auto max-w-[75rem] px-6">
-          <span
-            className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold mb-4"
-            style={{ backgroundColor: "rgba(232,83,26,0.1)", color: "var(--heat)" }}
-          >
-            <ChefHat size={14} /> Průvodce vybavením
-          </span>
-          <h1
-            className="mb-4 text-4xl md:text-5xl text-coal leading-tight"
-            style={{ fontFamily: "var(--font-display)", fontWeight: 700 }}
-          >
-            Nástroje & vybavení
-          </h1>
-          <p className="max-w-xl text-lg text-stone leading-relaxed">
-            Co používám, co jsem vyzkoušel a co bych koupil znovu.
-            Konkrétní produkty s konkrétním hodnocením — bez sponzorovaného nadšení.
+      {/* Hero */}
+      <section className="pt-12 pb-8 md:pb-12 px-6">
+        <div className="mx-auto max-w-[75rem]">
+          <div className="mb-3">
+            <div className="inline-flex items-center gap-2 bg-heat/10 rounded-full px-4 py-1.5 text-xs font-semibold text-heat mb-4">
+              <ChefHat size={14} /> Průvodce vybavením
+            </div>
+            <h1 className="text-4xl md:text-5xl text-coal leading-tight font-bold">
+              Nástroje & vybavení
+            </h1>
+          </div>
+          <p className="text-lg text-stone max-w-2xl leading-relaxed">
+            Přehled ověřeného vybavení, které používám. Každý kus jsem osobně otestoval na desítkách grilování.
           </p>
         </div>
       </section>
 
-      {/* ─── Equipment cards ──────────────────────────────────────────────────── */}
-      <section className="py-12 md:py-16">
-        <div className="mx-auto max-w-[75rem] px-6">
-          {/* Category filter */}
-          <div className="flex flex-wrap gap-3 mb-10">
-            {equipmentCategories.map((cat) => (
+      {/* Category tabs */}
+      <section className="pb-8 px-6">
+        <div className="mx-auto max-w-[75rem]">
+          <div className="flex flex-wrap gap-2">
+            {equipmentData.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold transition-colors duration-150 ${
+                className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold transition-colors ${
                   activeCategory === cat.id
-                    ? "text-white bg-heat"
-                    : "text-coal bg-bg-warm"
+                    ? "bg-heat text-white"
+                    : "bg-bg-warm text-coal hover:bg-heat/10"
                 }`}
               >
-                <cat.icon size={15} />
+                <cat.icon size={16} />
                 {cat.name}
               </button>
-            ))}
-          </div>
-
-          {/* Category heading */}
-          <div className="flex items-center gap-3 mb-8">
-            <current.icon size={24} className="text-heat shrink-0" />
-            <div>
-              <h2 className="text-xl md:text-2xl text-coal font-bold" style={{ fontFamily: "var(--font-display)" }}>
-                {current.name}
-              </h2>
-              <p className="text-stone text-sm">{current.description}</p>
-            </div>
-          </div>
-
-          {/* Items grid */}
-          <div className="grid gap-6 md:grid-cols-2">
-            {current.items.map((item) => (
-              <div
-                key={item.name}
-                className="rounded-2xl overflow-hidden flex flex-col border border-smoke hover:shadow-md transition-all"
-                style={{ backgroundColor: "var(--bg-card)" }}
-              >
-                <div className="p-5 flex flex-col flex-1">
-                  {/* Status + rating row */}
-                  <div className="flex items-center justify-between mb-3">
-                    {item.status ? (
-                      <span
-                        className="text-xs font-medium px-2.5 py-1 rounded-full"
-                        style={
-                          item.status === "current"
-                            ? { backgroundColor: "var(--heat-lt)", color: "var(--heat)" }
-                            : { backgroundColor: "var(--bg-warm)", color: "var(--stone)" }
-                        }
-                      >
-                        {item.status === "current" ? "✓ Aktuálně používám" : "Používal jsem"}
-                      </span>
-                    ) : (
-                      <span />
-                    )}
-                    <StarRating rating={item.rating} />
-                  </div>
-
-                  {/* Name */}
-                  <h3
-                    className="mb-2 text-lg text-coal"
-                    style={{ fontFamily: "var(--font-display)", fontWeight: 700 }}
-                  >
-                    {item.name}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-sm text-stone leading-relaxed mb-4 flex-1">{item.description}</p>
-
-                  {/* Tip box */}
-                  <div className="tip-box text-sm text-stone mb-4">
-                    <strong className="text-coal text-xs font-mono uppercase tracking-wide">Tip: </strong>
-                    {item.tip}
-                  </div>
-
-                  {/* Footer: price + tags */}
-                  <div className="flex items-center justify-between flex-wrap gap-2">
-                    <span className="text-sm font-medium text-coal">{item.priceRange}</span>
-                    <div className="flex flex-wrap gap-1">
-                      {item.tags.slice(0, 2).map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-xs px-2 py-0.5 rounded-full text-stone border border-smoke"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Affiliate CTA */}
-                  {item.affiliateSlug && (
-                    <Link
-                      href={`/go/${item.affiliateSlug}`}
-                      className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-heat hover:text-heat-dk transition-colors"
-                    >
-                      Zobrazit produkt
-                    </Link>
-                  )}
-                </div>
-              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ─── Starter kit ──────────────────────────────────────────────────────── */}
-      <section className="py-12 border-t border-smoke" style={{ backgroundColor: "var(--bg-warm)" }}>
-        <div className="mx-auto max-w-[75rem] px-6">
-          <h2
-            className="mb-3 text-2xl md:text-3xl text-coal"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Startovací sada grillmastera
-          </h2>
-          <p className="mb-8 text-stone">6 věcí, které potřebujete před prvním grilováním.</p>
+      {/* Active category content */}
+      <section className="pb-16 md:pb-20 px-6">
+        <div className="mx-auto max-w-[75rem]">
+          <div className="flex items-center gap-3 mb-2">
+            <category.icon size={24} className="text-heat" />
+            <div>
+              <h2 className="text-xl md:text-2xl text-coal font-bold">
+                {category.name}
+              </h2>
+              <p className="text-stone text-sm">{category.description}</p>
+            </div>
+          </div>
 
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid gap-4 md:gap-6 md:grid-cols-2">
+            {category.items.map((item) => (
+              <EquipmentCard key={item.name} item={item} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Starter Kit */}
+      <section className="pb-20 md:pb-24 px-6">
+        <div className="mx-auto max-w-4xl">
+          <div className="mb-12">
+            <h2 className="text-2xl md:text-3xl text-coal mb-3 font-bold">
+              Startovací sada grillmastera
+            </h2>
+            <p className="text-stone text-lg max-w-lg leading-relaxed">
+              6 věcí, se kterými pokryjete 95 % grilování. Začněte tady.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {starterKit.map((item, index) => (
               <div
                 key={item.name}
-                className="rounded-xl p-5 border border-smoke hover:shadow-md transition-all"
-                style={{ backgroundColor: "var(--bg-card)" }}
+                className="group bg-bg-card border border-smoke rounded-xl p-5 hover:border-heat/30 hover:shadow-md transition-all"
               >
                 <div className="flex items-start gap-3.5">
-                  <div
-                    className="flex items-center justify-center w-9 h-9 rounded-full shrink-0"
-                    style={{ backgroundColor: "rgba(232,83,26,0.1)" }}
-                  >
-                    <span className="text-lg">{item.icon}</span>
+                  <div className="flex items-center justify-center w-9 h-9 rounded-full bg-heat/10 shrink-0 group-hover:bg-heat/15 transition-colors">
+                    <item.icon size={18} className="text-heat group-hover:scale-110 transition-transform" />
                   </div>
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-xs font-bold text-heat/50">{index + 1}.</span>
-                      <p className="text-sm font-semibold text-coal">{item.name}</p>
+                      <h3 className="text-sm text-coal font-semibold">{item.name}</h3>
                     </div>
-                    <p className="text-xs text-stone leading-relaxed">{item.reason}</p>
+                    <p className="text-stone text-xs leading-relaxed">{item.reason}</p>
                   </div>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="mt-10 text-center">
+          {/* CTA to temperature guide */}
+          <div className="mt-12 text-center">
             <Link
               href="/nastroje/teploty-masa"
-              className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white bg-heat hover:bg-heat-dk transition-colors duration-150"
+              className="inline-flex items-center gap-2 bg-heat text-white font-semibold px-6 py-3 rounded-full hover:bg-heat-dk transition-colors text-sm"
             >
-              <Thermometer size={16} /> Tabulka teplot masa
+              <Thermometer size={16} />
+              Tabulka teplot masa
+              <ExternalLink size={14} />
             </Link>
           </div>
         </div>
