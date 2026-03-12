@@ -60,7 +60,7 @@ export function ArticleGrid({ posts, locale, moreHeading = "Další články", b
       {/* Row 2: more articles */}
       {posts.slice(3).length > 0 && (
         <>
-          <div className="mb-8 mt-14">
+          <div className="mb-14">
             <h3
               className="text-2xl text-coal"
               style={{ fontFamily: "var(--font-display)" }}

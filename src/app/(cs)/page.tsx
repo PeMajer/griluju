@@ -82,15 +82,15 @@ export default function HomePage() {
       </section>
 
       {/* ─── Nejnovější články ────────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-[75rem] px-6 py-16 md:py-24">
-        <div className="mb-10">
+      <section className="mx-auto max-w-[75rem] px-6 py-28">
+        <div className="mb-16">
           <h2
-            className="text-3xl md:text-4xl text-coal"
+            className="text-4xl md:text-5xl text-coal"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Nejnovější články
           </h2>
-          <p className="mt-2 text-stone">Recepty, návody a tipy přímo z grilu</p>
+          <p className="mt-3 text-stone">Recepty, návody a tipy přímo z grilu</p>
         </div>
 
         <ArticleGrid posts={posts} locale="cs" />
@@ -150,11 +150,11 @@ export default function HomePage() {
               {/* Temp rows */}
               <div className="divide-y" style={{ borderColor: "var(--dark-border)" }}>
                 {[
-                  { level: "Rare", temp: "52 °C", color: "#EF4444" },
-                  { level: "Medium Rare", temp: "55 °C", color: "var(--heat)" },
-                  { level: "Medium", temp: "60 °C", color: "var(--heat)" },
-                  { level: "Medium Well", temp: "65 °C", color: "#A8A29E" },
-                  { level: "Well Done", temp: "71 °C", color: "#78716C" },
+                  { level: "Rare", temp: "52 °C", color: "hsl(0,72%,50%)" },
+                  { level: "Medium Rare", temp: "55 °C", color: "hsl(12,80%,52%)" },
+                  { level: "Medium", temp: "60 °C", color: "hsl(25,85%,50%)" },
+                  { level: "Medium Well", temp: "65 °C", color: "hsl(35,75%,48%)" },
+                  { level: "Well Done", temp: "70 °C", color: "hsl(30,15%,55%)" },
                 ].map((item) => (
                   <div key={item.level} className="flex items-center gap-3 px-6 py-3.5">
                     <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: item.color }} />
