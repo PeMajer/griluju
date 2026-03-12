@@ -9,14 +9,38 @@ interface ArticleCardProps {
   locale: Locale;
   featured?: boolean;
   animationDelay?: number;
+  /** Override the badge label (e.g. meat type on category page). Falls back to translated category. */
+  badgeLabel?: string;
 }
 
 function estimateReadTime(content: string): number {
   return Math.max(1, Math.round(content.trim().split(/\s+/).length / 200));
 }
 
-export function ArticleCard({ post, locale, featured = false, animationDelay }: ArticleCardProps) {
+function getCategoryColor(label: string): string {
+  switch (label.toLowerCase()) {
+    // Content types
+    case "recepty":     return "hsl(16,82%,50%)";   // --heat orange
+    case "navod":
+    case "návod":       return "hsl(165,50%,32%)";  // forest green
+    case "recenze":     return "hsl(215,55%,42%)";  // steel blue
+    case "srovnani":
+    case "srovnání":    return "hsl(280,40%,38%)";  // purple
+    // Meat types
+    case "hovězí":      return "hsl(0,65%,38%)";    // dark red
+    case "vepřové":     return "hsl(28,70%,40%)";   // brown-orange
+    case "drůbež":      return "hsl(42,75%,42%)";   // amber
+    case "ryby":        return "hsl(200,60%,40%)";  // teal blue
+    case "zelenina":    return "hsl(130,45%,35%)";  // green
+    case "jehněčí":     return "hsl(280,40%,38%)";  // purple
+    default:            return "hsl(16,82%,50%)";   // --heat fallback
+  }
+}
+
+export function ArticleCard({ post, locale, featured = false, animationDelay, badgeLabel }: ArticleCardProps) {
   const readTime = estimateReadTime(post.content);
+  const badge = badgeLabel ?? t(locale, `category.${post.category}`);
+  const badgeColor = getCategoryColor(badgeLabel ?? post.category);
 
   return (
     <article
@@ -50,12 +74,12 @@ export function ArticleCard({ post, locale, featured = false, animationDelay }: 
             </div>
           )}
 
-          {/* Category badge — bottom left */}
+          {/* Badge — bottom left, color by content/meat type */}
           <span
             className="absolute bottom-3 left-3 text-[11px] font-semibold uppercase tracking-wider text-white px-2.5 py-1 rounded-full z-10"
-            style={{ backgroundColor: "var(--heat)" }}
+            style={{ backgroundColor: badgeColor }}
           >
-            {t(locale, `category.${post.category}`)}
+            {badge}
           </span>
         </div>
 

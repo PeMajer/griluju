@@ -16,6 +16,7 @@ const posts = defineCollection({
     author: z.string(),
     category: z.enum(["recepty", "navod", "recenze", "srovnani"]),
     keywords: z.array(z.string()),
+    tag: z.string().optional(),
     image: z.string().optional(),
     affiliate: z.boolean().default(false),
   }),

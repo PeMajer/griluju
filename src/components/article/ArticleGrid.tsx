@@ -9,9 +9,17 @@ interface ArticleGridProps {
   locale: Locale;
   /** Label for the "more articles" subheading (default: "Další články") */
   moreHeading?: string;
+  /**
+   * "category" (default) — badge shows content type (Recepty / Návod / Recenze)
+   * "tag"      — badge shows post.tag (meat type: Hovězí / Vepřové…), falls back to category
+   */
+  badgeSource?: "category" | "tag";
 }
 
-export function ArticleGrid({ posts, locale, moreHeading = "Další články" }: ArticleGridProps) {
+export function ArticleGrid({ posts, locale, moreHeading = "Další články", badgeSource = "category" }: ArticleGridProps) {
+  const getBadge = (post: Post) =>
+    badgeSource === "tag" ? (post.tag ?? undefined) : undefined;
+
   if (posts.length === 0) {
     return (
       <div className="py-24 text-center">
@@ -39,12 +47,12 @@ export function ArticleGrid({ posts, locale, moreHeading = "Další články" }:
       <div className="grid grid-cols-1 lg:grid-cols-3 lg:items-stretch gap-x-8 gap-y-10 mb-14">
         {posts[0] && (
           <div className="lg:col-span-2">
-            <ArticleCard post={posts[0]} locale={locale} featured animationDelay={0} />
+            <ArticleCard post={posts[0]} locale={locale} featured animationDelay={0} badgeLabel={getBadge(posts[0])} />
           </div>
         )}
         <div className="flex flex-col gap-10">
-          {posts[1] && <ArticleCard post={posts[1]} locale={locale} animationDelay={80} />}
-          {posts[2] && <ArticleCard post={posts[2]} locale={locale} animationDelay={160} />}
+          {posts[1] && <ArticleCard post={posts[1]} locale={locale} animationDelay={80} badgeLabel={getBadge(posts[1])} />}
+          {posts[2] && <ArticleCard post={posts[2]} locale={locale} animationDelay={160} badgeLabel={getBadge(posts[2])} />}
         </div>
       </div>
 
@@ -64,6 +72,7 @@ export function ArticleGrid({ posts, locale, moreHeading = "Další články" }:
                 post={post}
                 locale={locale}
                 animationDelay={(i + 3) * 80}
+                badgeLabel={getBadge(post)}
               />
             ))}
           </div>

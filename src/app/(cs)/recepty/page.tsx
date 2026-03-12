@@ -17,6 +17,7 @@ export default function ReceptyPage() {
       description="Grilovací recepty z vlastní zkušenosti. Konkrétní teploty, časy a postupy — žádné obecné rady."
       posts={posts}
       locale="cs"
+      badgeSource="tag"
     />
   );
 }

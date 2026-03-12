@@ -10,9 +10,11 @@ interface CategoryPageProps {
   locale: Locale;
   /** Label for the "more" subheading — defaults to "Další {title.toLowerCase()}" */
   moreHeading?: string;
+  /** Badge source: "category" (default) or "tag" (meat type on recepty page) */
+  badgeSource?: "category" | "tag";
 }
 
-export function CategoryPage({ title, description, posts, locale, moreHeading }: CategoryPageProps) {
+export function CategoryPage({ title, description, posts, locale, moreHeading, badgeSource }: CategoryPageProps) {
   const resolvedMoreHeading = moreHeading ?? `Další ${title.toLowerCase()}`;
 
   return (
@@ -55,7 +57,7 @@ export function CategoryPage({ title, description, posts, locale, moreHeading }:
 
       {/* Article grid */}
       <section className="mx-auto max-w-6xl px-6 py-14">
-        <ArticleGrid posts={posts} locale={locale} moreHeading={resolvedMoreHeading} />
+        <ArticleGrid posts={posts} locale={locale} moreHeading={resolvedMoreHeading} badgeSource={badgeSource} />
       </section>
     </>
   );
