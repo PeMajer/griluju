@@ -48,7 +48,7 @@ export default function HomePage() {
               Griluji přes 10 let
             </span>
             <h1
-              className="mb-6 text-5xl md:text-6xl lg:text-8xl leading-[1.1]"
+              className="mb-6 text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.1]"
               style={{ fontFamily: "var(--font-display)", fontWeight: 900, color: "var(--dark-fg)" }}
             >
               Grilování,{" "}
@@ -61,14 +61,14 @@ export default function HomePage() {
             <div className="flex flex-wrap items-center gap-4">
               <Link
                 href="/recepty"
-                className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-medium text-white bg-heat hover:bg-heat-dk transition-colors duration-150"
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white bg-heat hover:bg-heat-dk transition-colors duration-150"
               >
                 Procházet recepty
                 <ArrowRight size={16} />
               </Link>
               <Link
                 href="/o-mne"
-                className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-medium transition-colors duration-150"
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-colors duration-150"
                 style={{
                   border: "1px solid rgba(245,240,235,0.35)",
                   color: "var(--dark-fg)",
