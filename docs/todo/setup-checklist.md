@@ -205,7 +205,7 @@ Podmínka spuštění webu. Testuj **po každé větší změně šablony**.
 
 | Krok | Status |
 |---|---|
-| Cloudflare Pages deploy | ⬜ TODO |
+| Cloudflare Pages deploy | done |
 | GA4 property + Measurement ID | ⬜ TODO |
 | GA4 ID v .env.local + Cloudflare env vars | ⬜ TODO |
 | Search Console + sitemap | ⬜ TODO |
