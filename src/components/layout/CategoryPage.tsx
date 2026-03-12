@@ -55,6 +55,7 @@ export function CategoryPage({
           locale={locale}
           moreHeading={resolvedMoreHeading}
           badgeSource={badgeSource}
+          hideBadge
         />
       )}
     </section>

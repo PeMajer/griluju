@@ -11,6 +11,8 @@ interface ArticleCardProps {
   animationDelay?: number;
   /** Override the badge label (e.g. meat type on category page). Falls back to translated category. */
   badgeLabel?: string;
+  /** Hide the category badge entirely (e.g. single-category pages where all badges are identical) */
+  hideBadge?: boolean;
 }
 
 function estimateReadTime(content: string): number {
@@ -37,7 +39,7 @@ function getCategoryColor(label: string): string {
   }
 }
 
-export function ArticleCard({ post, locale, featured = false, animationDelay, badgeLabel }: ArticleCardProps) {
+export function ArticleCard({ post, locale, featured = false, animationDelay, badgeLabel, hideBadge = false }: ArticleCardProps) {
   const readTime = estimateReadTime(post.content);
   const badge = badgeLabel ?? t(locale, `category.${post.category}`);
   const badgeColor = getCategoryColor(badgeLabel ?? post.category);
@@ -75,12 +77,14 @@ export function ArticleCard({ post, locale, featured = false, animationDelay, ba
           )}
 
           {/* Badge — bottom left, color by content/meat type */}
-          <span
-            className="absolute bottom-3 left-3 text-[11px] font-semibold uppercase tracking-wider text-white px-2.5 py-1 rounded-full z-10"
-            style={{ backgroundColor: badgeColor }}
-          >
-            {badge}
-          </span>
+          {!hideBadge && (
+            <span
+              className="absolute bottom-3 left-3 text-[11px] font-semibold uppercase tracking-wider text-white px-2.5 py-1 rounded-full z-10"
+              style={{ backgroundColor: badgeColor }}
+            >
+              {badge}
+            </span>
+          )}
         </div>
 
         {/* Text — outside image */}

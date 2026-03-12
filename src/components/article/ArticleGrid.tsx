@@ -14,9 +14,10 @@ interface ArticleGridProps {
    * "tag"      — badge shows post.tag (meat type: Hovězí / Vepřové…), falls back to category
    */
   badgeSource?: "category" | "tag";
+  hideBadge?: boolean;
 }
 
-export function ArticleGrid({ posts, locale, moreHeading = "Další články", badgeSource = "category" }: ArticleGridProps) {
+export function ArticleGrid({ posts, locale, moreHeading = "Další články", badgeSource = "category", hideBadge = false }: ArticleGridProps) {
   const getBadge = (post: Post) =>
     badgeSource === "tag" ? (post.tag ?? undefined) : undefined;
 
@@ -47,12 +48,12 @@ export function ArticleGrid({ posts, locale, moreHeading = "Další články", b
       <div className="grid grid-cols-1 lg:grid-cols-3 lg:items-stretch gap-x-8 gap-y-10 mb-14">
         {posts[0] && (
           <div className="lg:col-span-2">
-            <ArticleCard post={posts[0]} locale={locale} featured animationDelay={0} badgeLabel={getBadge(posts[0])} />
+            <ArticleCard post={posts[0]} locale={locale} featured animationDelay={0} badgeLabel={getBadge(posts[0])} hideBadge={hideBadge} />
           </div>
         )}
         <div className="flex flex-col gap-10">
-          {posts[1] && <ArticleCard post={posts[1]} locale={locale} animationDelay={80} badgeLabel={getBadge(posts[1])} />}
-          {posts[2] && <ArticleCard post={posts[2]} locale={locale} animationDelay={160} badgeLabel={getBadge(posts[2])} />}
+          {posts[1] && <ArticleCard post={posts[1]} locale={locale} animationDelay={80} badgeLabel={getBadge(posts[1])} hideBadge={hideBadge} />}
+          {posts[2] && <ArticleCard post={posts[2]} locale={locale} animationDelay={160} badgeLabel={getBadge(posts[2])} hideBadge={hideBadge} />}
         </div>
       </div>
 
@@ -75,6 +76,7 @@ export function ArticleGrid({ posts, locale, moreHeading = "Další články", b
                 locale={locale}
                 animationDelay={(i + 3) * 80}
                 badgeLabel={getBadge(post)}
+                hideBadge={hideBadge}
               />
             ))}
           </div>

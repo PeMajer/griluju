@@ -11,6 +11,7 @@ interface CategoryFilterGridProps {
   locale: Locale;
   moreHeading?: string;
   badgeSource?: "category" | "tag";
+  hideBadge?: boolean;
 }
 
 export function CategoryFilterGrid({
@@ -19,6 +20,7 @@ export function CategoryFilterGrid({
   locale,
   moreHeading,
   badgeSource,
+  hideBadge,
 }: CategoryFilterGridProps) {
   const [active, setActive] = useState("Všechny");
 
@@ -28,7 +30,7 @@ export function CategoryFilterGrid({
   return (
     <>
       {/* Filter pills */}
-      <div className="flex flex-wrap gap-2 mb-10">
+      <div className="flex flex-wrap gap-2 mb-14">
         {["Všechny", ...filterTags].map((tag) => (
           <button
             key={tag}
@@ -51,6 +53,7 @@ export function CategoryFilterGrid({
         locale={locale}
         moreHeading={moreHeading}
         badgeSource={badgeSource}
+        hideBadge={hideBadge}
       />
     </>
   );
