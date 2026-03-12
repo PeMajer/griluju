@@ -18,6 +18,7 @@ const playfairDisplay = Playfair_Display({
 const dmSans = DM_Sans({
   subsets: ["latin", "latin-ext"],
   variable: "--font-body-var",
+  axes: ["opsz"],
   display: "swap",
 });
 
@@ -48,7 +49,7 @@ export default function CsLayout({
         <Hreflang />
         <ConsentMode />
       </head>
-      <body className="font-body bg-bg text-coal flex min-h-screen flex-col">
+      <body className="font-body bg-bg text-coal flex min-h-screen flex-col antialiased">
         <GA4Script />
         <Header locale="cs" />
         <main className="flex-1">{children}</main>

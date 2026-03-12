@@ -30,14 +30,14 @@ export function CategoryPage({
   return (
     <section className="mx-auto max-w-[75rem] px-6 pt-12 pb-24">
       {/* Page header */}
-      <div className="mb-10">
+      <div className="mb-12">
         <h1
           className="mb-3 text-4xl text-coal md:text-5xl"
           style={{ fontFamily: "var(--font-display)", fontWeight: 700 }}
         >
           {title}
         </h1>
-        <p className="text-lg text-stone leading-relaxed">{description}</p>
+        <p className="text-lg text-stone">{description}</p>
       </div>
 
       {/* Article grid — with or without filter pills */}

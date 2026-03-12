@@ -37,11 +37,7 @@ export function CategoryFilterGrid({
             style={
               active === tag
                 ? { backgroundColor: "var(--heat)", color: "white" }
-                : {
-                    backgroundColor: "var(--bg-card)",
-                    color: "var(--coal)",
-                    border: "1px solid var(--smoke)",
-                  }
+                : { backgroundColor: "var(--bg-warm)", color: "var(--coal)" }
             }
           >
             {tag}
