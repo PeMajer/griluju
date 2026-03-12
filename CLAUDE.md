@@ -145,13 +145,16 @@ Shared components for structured data:
 
 ### Workflow pro každý nový úkol
 
-Při každém novém úkolu (ne pokračování rozpracovaného):
+Při každém novém úkolu:
 
-1. `git checkout main && git pull origin main` — vždy začni z aktuálního mainu
-2. Vytvoř novou branch: `git checkout -b feature/popis` (nebo `fix/`, `content/`, `issue-<číslo>`)
-3. Implementuj změny
-4. Commitni a pushni: bez ptání, automaticky
-5. Otevři PR pomocí `gh pr create` — bez ptání, automaticky
+1. Zjisti aktuální branch (`git branch --show-current`) a zkontroluj změny (`git log main..HEAD --oneline`)
+2. **Rozhodnutí — nový úkol vs. pokračování:**
+   - Pokud aktuální branch je `main` → vždy nová branch
+   - Pokud aktuální branch je feature branch → porovnej zadání se stávajícími změnami (`git diff main..HEAD --name-only`). Pokud se zadání týká stejných souborů nebo logicky navazuje → pokračuj na stávající branch. Pokud je zadání nesouvisející → checkout main, pull, nová branch.
+3. Při startu na nové branchi: `git checkout main && git pull origin main`, pak `git checkout -b feature/popis`
+4. Implementuj změny
+5. Commitni a pushni: bez ptání, automaticky
+6. Otevři PR pomocí `gh pr create` — bez ptání, automaticky
 
 ## Autonomous Agent Work
 
