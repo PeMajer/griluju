@@ -28,7 +28,7 @@ export function CategoryPage({
   const resolvedMoreHeading = moreHeading ?? `Další ${title.toLowerCase()}`;
 
   return (
-    <section className="mx-auto max-w-6xl px-6 pt-12 pb-24">
+    <section className="mx-auto max-w-container px-6 pt-12 pb-24">
       {/* Page header */}
       <div className="mb-10">
         <h1

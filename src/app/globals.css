@@ -21,6 +21,14 @@
   --color-heat-dk:     var(--heat-dk);
   --color-dark:        var(--dark);
   --color-dark-fg:     var(--dark-fg);
+
+  /* Container width — matches orange-flame 1200px container */
+  --width-container: 75rem;
+}
+
+/* ─── Global heading font — all h1–h6 use Playfair Display (same as orange-flame) ── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
 }
 
 /* ─── Single light mode ──────────────────────────────────────────────────── */
@@ -28,7 +36,7 @@
   --bg:          hsl(30, 27%, 96%);
   --bg-warm:     hsl(30, 20%, 93%);
   --bg-card:     hsl(0, 0%, 100%);
-  --bg-nav:      rgba(245,240,235,0.90);
+  --bg-nav:      rgba(255,255,255,0.90);
   --coal:        hsl(18, 30%, 12%);
   --stone:       hsl(18, 15%, 45%);
   --smoke:       hsl(30, 15%, 88%);

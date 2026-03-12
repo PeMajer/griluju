@@ -112,7 +112,7 @@ export default function AboutPage() {
   return (
     <>
       {/* ─── Hero ──────────────────────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-6xl px-6 py-16 md:py-24">
+      <section className="mx-auto max-w-container px-6 py-16 md:py-24">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
           {/* Left */}
           <div>
@@ -223,7 +223,7 @@ export default function AboutPage() {
 
       {/* ─── Specialties ───────────────────────────────────────────────────────── */}
       <section className="border-t border-smoke py-16">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-container px-6">
           <div className="mb-10 text-center">
             <span className="mb-3 inline-block font-mono text-xs uppercase tracking-widest text-heat">
               Specializace
@@ -309,7 +309,7 @@ export default function AboutPage() {
 
       {/* ─── Gear ──────────────────────────────────────────────────────────────── */}
       <section className="border-t border-smoke py-16">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-container px-6">
           <div className="mb-10">
             <span className="mb-3 inline-block font-mono text-xs uppercase tracking-widest text-heat">
               Vybavení
@@ -357,7 +357,7 @@ export default function AboutPage() {
 
       {/* ─── Values ────────────────────────────────────────────────────────────── */}
       <section className="py-16" style={{ backgroundColor: "#1C1917" }}>
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-container px-6">
           <div className="mb-10 text-center">
             <h2
               className="text-3xl text-white md:text-4xl"

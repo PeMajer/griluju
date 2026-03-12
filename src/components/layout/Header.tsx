@@ -35,7 +35,7 @@ export function Header({ locale }: HeaderProps) {
         borderColor: scrolled ? "var(--smoke)" : "transparent",
       }}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between h-16 px-6">
+      <div className="mx-auto flex max-w-container items-center justify-between h-16 px-6">
         {/* Logo */}
         <Link
           href="/"

@@ -17,7 +17,7 @@ export function Footer({ locale: _locale }: FooterProps) {
         borderColor: "var(--dark-border)",
       }}
     >
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-container px-6">
         {/* Top row: brand + nav */}
         <div className="flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
           <div>

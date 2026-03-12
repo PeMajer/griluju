@@ -29,7 +29,7 @@ export default function NastrojePage() {
     <>
       {/* ─── Hero ─────────────────────────────────────────────────────────────── */}
       <section className="py-14 md:py-20 border-b border-smoke" style={{ backgroundColor: "var(--bg-warm)" }}>
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-container px-6">
           <span
             className="mb-4 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-mono uppercase tracking-wider"
             style={{ backgroundColor: "var(--heat-lt)", color: "var(--heat)" }}
@@ -51,7 +51,7 @@ export default function NastrojePage() {
 
       {/* ─── Equipment cards ──────────────────────────────────────────────────── */}
       <section className="py-12 md:py-16">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-container px-6">
           {/* Category filter */}
           <div className="flex flex-wrap gap-3 mb-10">
             {equipmentCategories.map((cat) => (
@@ -151,7 +151,7 @@ export default function NastrojePage() {
 
       {/* ─── Starter kit ──────────────────────────────────────────────────────── */}
       <section className="py-12 border-t border-smoke" style={{ backgroundColor: "var(--bg-warm)" }}>
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-container px-6">
           <h2
             className="mb-3 text-2xl md:text-3xl text-coal"
             style={{ fontFamily: "var(--font-display)" }}

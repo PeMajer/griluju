@@ -42,7 +42,7 @@ export default function HomePage() {
         />
 
         {/* Content */}
-        <div className="relative mx-auto max-w-6xl w-full px-6 py-24">
+        <div className="relative mx-auto max-w-container w-full px-6 py-24">
           <div className="max-w-xl animate-fade-up">
             <span className="mb-4 inline-block font-mono text-xs uppercase tracking-widest text-heat">
               Griluji přes 10 let
@@ -82,7 +82,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── Nejnovější články ────────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-6xl px-6 py-16 md:py-24">
+      <section className="mx-auto max-w-container px-6 py-16 md:py-24">
         <div className="mb-10">
           <h2
             className="text-3xl md:text-4xl text-coal"
