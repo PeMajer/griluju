@@ -6,13 +6,12 @@ import type { LucideIcon } from "lucide-react";
 import { NewsletterCTA } from "@/components/ui/NewsletterCTA";
 
 // Note: Metadata cannot be exported from "use client" components.
-// SEO handled via parent layout. If you need metadata, create a wrapper.
+// SEO handled via parent layout.
 
 type TempRow = {
   level: string;
   tempC: number[];
   color: string;
-  barColor: string;
   description: string;
 };
 
@@ -25,11 +24,11 @@ type MeatCategory = {
 };
 
 const COLORS = {
-  rare: "hsl(0,72%,50%)",
+  rare:       "hsl(0,72%,50%)",
   mediumRare: "hsl(12,80%,52%)",
-  medium: "hsl(25,85%,50%)",
+  medium:     "hsl(25,85%,50%)",
   mediumWell: "hsl(35,75%,48%)",
-  wellDone: "hsl(30,15%,55%)",
+  wellDone:   "hsl(30,15%,55%)",
 };
 
 const meatData: MeatCategory[] = [
@@ -39,15 +38,15 @@ const meatData: MeatCategory[] = [
     icon: Beef,
     description: "Od steaku přes roštěnou až po low & slow brisket.",
     rows: [
-      { level: "Rare (steak)", tempC: [49, 52], color: COLORS.rare, barColor: COLORS.rare, description: "Chladný červený střed, měkký" },
-      { level: "Medium Rare (steak)", tempC: [54, 57], color: COLORS.mediumRare, barColor: COLORS.mediumRare, description: "Teplý červený střed, ideální šťavnatost" },
-      { level: "Medium (steak)", tempC: [60, 63], color: COLORS.medium, barColor: COLORS.medium, description: "Růžový střed, mírně pevnější" },
-      { level: "Medium Well (steak)", tempC: [65, 68], color: COLORS.mediumWell, barColor: COLORS.mediumWell, description: "Lehce růžový, převažuje šedá" },
-      { level: "Well Done (steak)", tempC: [71, 76], color: COLORS.wellDone, barColor: COLORS.wellDone, description: "Celý prošedlý, sušší textura" },
-      { level: "Brisket", tempC: [93, 96], color: COLORS.rare, barColor: COLORS.rare, description: "Rozpadavé, low & slow 8–14 hodin" },
-      { level: "Hovězí žebra (short ribs)", tempC: [93, 96], color: COLORS.mediumRare, barColor: COLORS.mediumRare, description: "Kolagen rozpuštěný, šťavnaté" },
-      { level: "Burger patty", tempC: [71, 74], color: COLORS.mediumWell, barColor: COLORS.mediumWell, description: "Bezpečná teplota pro mleté maso" },
-      { level: "Roastbeef", tempC: [54, 57], color: COLORS.mediumRare, barColor: COLORS.mediumRare, description: "Rovnoměrně růžový od kraje ke kraji" },
+      { level: "Rare (steak)",            tempC: [49, 52], color: COLORS.rare,       description: "Chladný červený střed, měkký" },
+      { level: "Medium Rare (steak)",     tempC: [54, 57], color: COLORS.mediumRare, description: "Teplý červený střed, ideální šťavnatost" },
+      { level: "Medium (steak)",          tempC: [60, 63], color: COLORS.medium,     description: "Růžový střed, mírně pevnější" },
+      { level: "Medium Well (steak)",     tempC: [65, 68], color: COLORS.mediumWell, description: "Lehce růžový, převažuje šedá" },
+      { level: "Well Done (steak)",       tempC: [71, 76], color: COLORS.wellDone,   description: "Celý prošedlý, sušší textura" },
+      { level: "Brisket",                 tempC: [93, 96], color: COLORS.rare,       description: "Rozpadavé, low & slow 8–14 hodin" },
+      { level: "Hovězí žebra (short ribs)", tempC: [93, 96], color: COLORS.mediumRare, description: "Kolagen rozpuštěný, šťavnaté" },
+      { level: "Burger patty",            tempC: [71, 74], color: COLORS.mediumWell, description: "Bezpečná teplota pro mleté maso" },
+      { level: "Roastbeef",               tempC: [54, 57], color: COLORS.mediumRare, description: "Rovnoměrně růžový od kraje ke kraji" },
     ],
   },
   {
@@ -56,12 +55,12 @@ const meatData: MeatCategory[] = [
     icon: Ham,
     description: "Od šťavnaté kotlety po low & slow pulled pork.",
     rows: [
-      { level: "Kotleta / panenka", tempC: [63, 65], color: COLORS.medium, barColor: COLORS.medium, description: "Lehce růžový střed, šťavnaté" },
-      { level: "Well Done", tempC: [71, 74], color: COLORS.wellDone, barColor: COLORS.wellDone, description: "Celé progrilované, tradičnější přístup" },
-      { level: "Žebra (ribs)", tempC: [88, 93], color: COLORS.mediumRare, barColor: COLORS.mediumRare, description: "Měkká, odpadávají od kosti" },
-      { level: "Pulled Pork (plec)", tempC: [93, 96], color: COLORS.rare, barColor: COLORS.rare, description: "Rozpadavé maso, low & slow 10–16 h" },
-      { level: "Koleno", tempC: [88, 93], color: COLORS.medium, barColor: COLORS.medium, description: "Křupavá kůrka, měkké uvnitř" },
-      { level: "Klobása / párek", tempC: [71, 76], color: COLORS.mediumWell, barColor: COLORS.mediumWell, description: "Propečené do středu, bez růžové" },
+      { level: "Kotleta / panenka",  tempC: [63, 65], color: COLORS.medium,     description: "Lehce růžový střed, šťavnaté" },
+      { level: "Well Done",          tempC: [71, 74], color: COLORS.wellDone,   description: "Celé progrilované, tradičnější přístup" },
+      { level: "Žebra (ribs)",       tempC: [88, 93], color: COLORS.mediumRare, description: "Měkká, odpadávají od kosti" },
+      { level: "Pulled Pork (plec)", tempC: [93, 96], color: COLORS.rare,       description: "Rozpadavé maso, low & slow 10–16 h" },
+      { level: "Koleno",             tempC: [88, 93], color: COLORS.medium,     description: "Křupavá kůrka, měkké uvnitř" },
+      { level: "Klobása / párek",    tempC: [71, 76], color: COLORS.mediumWell, description: "Propečené do středu, bez růžové" },
     ],
   },
   {
@@ -70,12 +69,12 @@ const meatData: MeatCategory[] = [
     icon: Egg,
     description: "Bezpečnost na prvním místě — drůbež musí být vždy propečená.",
     rows: [
-      { level: "Kuřecí prsa", tempC: [74, 76], color: COLORS.mediumWell, barColor: COLORS.mediumWell, description: "Bezpečná teplota, šťavnaté uvnitř" },
-      { level: "Stehna / paličky", tempC: [82, 85], color: COLORS.medium, barColor: COLORS.medium, description: "Kolagen se rozloží, měkké maso" },
-      { level: "Celé kuře", tempC: [82, 85], color: COLORS.mediumRare, barColor: COLORS.mediumRare, description: "Měřte v nejtlustší části stehna" },
-      { level: "Křídla (wings)", tempC: [82, 88], color: COLORS.medium, barColor: COLORS.medium, description: "Křupavá kůže, propečené do kosti" },
-      { level: "Kachna", tempC: [74, 79], color: COLORS.mediumWell, barColor: COLORS.mediumWell, description: "Kůže křupavá, maso propečené" },
-      { level: "Krůta", tempC: [74, 79], color: COLORS.mediumWell, barColor: COLORS.mediumWell, description: "Prsa 74 °C, stehna klidně 82 °C" },
+      { level: "Kuřecí prsa",      tempC: [74, 76], color: COLORS.mediumWell, description: "Bezpečná teplota, šťavnaté uvnitř" },
+      { level: "Stehna / paličky", tempC: [82, 85], color: COLORS.medium,     description: "Kolagen se rozloží, měkké maso" },
+      { level: "Celé kuře",        tempC: [82, 85], color: COLORS.mediumRare, description: "Měřte v nejtlustší části stehna" },
+      { level: "Křídla (wings)",   tempC: [82, 88], color: COLORS.medium,     description: "Křupavá kůže, propečené do kosti" },
+      { level: "Kachna",           tempC: [74, 79], color: COLORS.mediumWell, description: "Kůže křupavá, maso propečené" },
+      { level: "Krůta",            tempC: [74, 79], color: COLORS.mediumWell, description: "Prsa 74 °C, stehna klidně 82 °C" },
     ],
   },
   {
@@ -84,11 +83,12 @@ const meatData: MeatCategory[] = [
     icon: Fish,
     description: "Jemné maso vyžaduje přesnost — každý stupeň se počítá.",
     rows: [
-      { level: "Tuňák (rare)", tempC: [43, 46], color: COLORS.rare, barColor: COLORS.rare, description: "Surový střed, opečená krusta" },
-      { level: "Losos (medium)", tempC: [52, 54], color: COLORS.mediumRare, barColor: COLORS.mediumRare, description: "Sklovitý střed, máslovitá textura" },
-      { level: "Losos (propečený)", tempC: [60, 63], color: COLORS.medium, barColor: COLORS.medium, description: "Neprůhledný, ale stále vlhký" },
-      { level: "Bílá ryba (candát, treska)", tempC: [60, 63], color: COLORS.medium, barColor: COLORS.medium, description: "Lístkovitá textura, šťavnaté" },
-      { level: "Krevety", tempC: [57, 60], color: COLORS.mediumWell, barColor: COLORS.mediumWell, description: "Růžové, pružné, nepřevařené" },
+      { level: "Tuňák (rare)",             tempC: [43, 46], color: COLORS.rare,       description: "Surový střed, opečená krusta" },
+      { level: "Losos (medium)",           tempC: [52, 54], color: COLORS.mediumRare, description: "Sklovitý střed, máslovitá textura" },
+      { level: "Losos (propečený)",        tempC: [60, 63], color: COLORS.medium,     description: "Neprůhledný, ale stále vlhký" },
+      { level: "Bílá ryba (candát, treska)", tempC: [60, 63], color: COLORS.medium,   description: "Lístkovitá textura, šťavnaté" },
+      { level: "Krevety",                  tempC: [57, 60], color: COLORS.mediumWell, description: "Růžové, pružné, nepřevařené" },
+      { level: "Chobotnice",               tempC: [82, 85], color: COLORS.mediumRare, description: "Dlouhé vaření nebo rychlý gril" },
     ],
   },
   {
@@ -97,12 +97,12 @@ const meatData: MeatCategory[] = [
     icon: Beef,
     description: "Výrazná chuť, kterou nejlépe podtrhne nižší propečení.",
     rows: [
-      { level: "Rare (kotleta / rack)", tempC: [49, 52], color: COLORS.rare, barColor: COLORS.rare, description: "Červený střed, velmi měkké" },
-      { level: "Medium Rare", tempC: [54, 57], color: COLORS.mediumRare, barColor: COLORS.mediumRare, description: "Ideální pro kotlety a rack" },
-      { level: "Medium", tempC: [60, 63], color: COLORS.medium, barColor: COLORS.medium, description: "Růžový střed, plná chuť" },
-      { level: "Well Done", tempC: [71, 76], color: COLORS.wellDone, barColor: COLORS.wellDone, description: "Prošedlé, vhodné pro dušení" },
-      { level: "Jehněčí kýta", tempC: [60, 63], color: COLORS.medium, barColor: COLORS.medium, description: "Medium pro šťavnatý výsledek" },
-      { level: "Jehněčí plec (pulled)", tempC: [88, 93], color: COLORS.rare, barColor: COLORS.rare, description: "Rozpadavé, low & slow 6–8 hodin" },
+      { level: "Rare (kotleta / rack)",  tempC: [49, 52], color: COLORS.rare,       description: "Červený střed, velmi měkké" },
+      { level: "Medium Rare",            tempC: [54, 57], color: COLORS.mediumRare, description: "Ideální pro kotlety a rack" },
+      { level: "Medium",                 tempC: [60, 63], color: COLORS.medium,     description: "Růžový střed, plná chuť" },
+      { level: "Well Done",              tempC: [71, 76], color: COLORS.wellDone,   description: "Prošedlé, vhodné pro dušení" },
+      { level: "Jehněčí kýta",           tempC: [60, 63], color: COLORS.medium,     description: "Medium pro šťavnatý výsledek" },
+      { level: "Jehněčí plec (pulled)",  tempC: [88, 93], color: COLORS.rare,       description: "Rozpadavé, low & slow 6–8 hodin" },
     ],
   },
 ];
@@ -153,23 +153,29 @@ export default function TeplotyMasaPage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-12 pb-8 md:pb-10 px-6">
-        <div className="mx-auto max-w-5xl">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-4">
+      <section className="pt-12 pb-8 md:pb-12 px-6">
+        <div className="mx-auto max-w-[75rem]">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-3">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold mb-4"
-                   style={{ backgroundColor: "rgba(232,83,26,0.1)", color: "var(--heat)" }}>
+              <div
+                className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold mb-4"
+                style={{ backgroundColor: "rgba(232,83,26,0.1)", color: "var(--heat)" }}
+              >
                 <Thermometer size={14} /> Interaktivní průvodce
               </div>
-              <h1 className="text-4xl md:text-5xl text-coal leading-tight font-bold"
-                  style={{ fontFamily: "var(--font-display)" }}>
+              <h1
+                className="text-4xl md:text-5xl text-coal leading-tight font-bold"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
                 Teploty masa na grilu
               </h1>
             </div>
 
             {/* °C / °F Toggle */}
-            <div className="self-start md:self-auto inline-flex items-center rounded-full p-1"
-                 style={{ backgroundColor: "var(--bg-warm)" }}>
+            <div
+              className="self-start md:self-auto inline-flex items-center rounded-full p-1"
+              style={{ backgroundColor: "var(--bg-warm)" }}
+            >
               <button
                 onClick={() => setUnit("C")}
                 className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-semibold transition-all ${
@@ -190,7 +196,7 @@ export default function TeplotyMasaPage() {
               </button>
             </div>
           </div>
-          <p className="text-lg text-stone leading-relaxed max-w-xl">
+          <p className="text-lg text-stone leading-relaxed max-w-2xl">
             Vyberte si druh masa a zjistěte přesné interní teploty pro dokonalý výsledek.
           </p>
         </div>
@@ -198,14 +204,16 @@ export default function TeplotyMasaPage() {
 
       {/* Category tabs */}
       <section className="pb-8 px-6">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-[75rem]">
           <div className="flex flex-wrap gap-2">
             {meatData.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
                 className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold transition-colors ${
-                  activeCategory === cat.id ? "text-white" : "text-coal"
+                  activeCategory === cat.id
+                    ? "text-white"
+                    : "text-coal hover:text-heat"
                 }`}
                 style={
                   activeCategory === cat.id
@@ -223,14 +231,18 @@ export default function TeplotyMasaPage() {
 
       {/* Temperature panel */}
       <section className="pb-16 md:pb-20 px-6">
-        <div className="mx-auto max-w-5xl">
-          <div className="rounded-2xl p-5 md:p-8 shadow-xl"
-               style={{ backgroundColor: "var(--dark)" }}>
+        <div className="mx-auto max-w-4xl">
+          <div
+            className="rounded-2xl p-5 md:p-8 shadow-xl"
+            style={{ backgroundColor: "var(--dark)" }}
+          >
             <div className="flex items-center gap-3 mb-2">
               <category.icon size={28} style={{ color: "rgba(245,240,235,0.7)" }} />
               <div>
-                <h2 className="text-xl md:text-2xl"
-                    style={{ fontFamily: "var(--font-display)", color: "var(--dark-fg)" }}>
+                <h2
+                  className="text-xl md:text-2xl"
+                  style={{ fontFamily: "var(--font-display)", color: "var(--dark-fg)" }}
+                >
                   {category.name}
                 </h2>
                 <p className="text-sm" style={{ color: "rgba(245,240,235,0.5)" }}>
@@ -241,8 +253,10 @@ export default function TeplotyMasaPage() {
 
             <div className="mt-6 space-y-1">
               {/* Header row */}
-              <div className="grid grid-cols-[1fr_auto] md:grid-cols-[200px_1fr_auto] items-center px-3 md:px-4 py-2 text-xs font-semibold uppercase tracking-wider"
-                   style={{ color: "rgba(245,240,235,0.4)" }}>
+              <div
+                className="grid grid-cols-[1fr_auto] md:grid-cols-[200px_1fr_auto] items-center px-3 md:px-4 py-2 text-xs font-semibold uppercase tracking-wider"
+                style={{ color: "rgba(245,240,235,0.4)" }}
+              >
                 <span>Stupeň</span>
                 <span className="hidden md:block">Vizuální škála</span>
                 <span className="text-right">Teplota</span>
@@ -251,18 +265,22 @@ export default function TeplotyMasaPage() {
               {category.rows.map((row) => (
                 <div
                   key={row.level}
-                  className="grid grid-cols-[1fr_auto] md:grid-cols-[200px_1fr_auto] items-center gap-3 md:gap-6 px-3 md:px-4 py-3.5 md:py-4 rounded-xl transition-colors"
-                  style={{ cursor: "default" }}
+                  className="grid grid-cols-[1fr_auto] md:grid-cols-[200px_1fr_auto] items-center gap-3 md:gap-6 px-3 md:px-4 py-3.5 md:py-4 rounded-xl transition-colors cursor-default"
+                  style={{ "--row-hover": "rgba(245,240,235,0.05)" } as React.CSSProperties}
                   onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(245,240,235,0.05)")}
                   onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
                 >
                   {/* Label + description */}
                   <div>
                     <div className="flex items-center gap-2.5">
-                      <span className="w-2.5 h-2.5 rounded-full shrink-0"
-                            style={{ backgroundColor: row.color }} />
-                      <span className="font-semibold text-sm md:text-base"
-                            style={{ color: row.color }}>
+                      <span
+                        className="w-2.5 h-2.5 rounded-full shrink-0"
+                        style={{ backgroundColor: row.color }}
+                      />
+                      <span
+                        className="font-semibold text-sm md:text-base"
+                        style={{ color: row.color }}
+                      >
                         {row.level}
                       </span>
                     </div>
@@ -271,13 +289,15 @@ export default function TeplotyMasaPage() {
                     </p>
                     {/* Bar — mobile */}
                     <div className="md:hidden mt-2 pl-5">
-                      <div className="h-2 rounded-full overflow-hidden"
-                           style={{ backgroundColor: "rgba(245,240,235,0.05)" }}>
+                      <div
+                        className="h-2 rounded-full overflow-hidden"
+                        style={{ backgroundColor: "rgba(245,240,235,0.05)" }}
+                      >
                         <div
                           className="h-full rounded-full transition-all duration-500"
                           style={{
                             width: `${getBarWidth(row.tempC)}%`,
-                            background: `linear-gradient(to right, ${row.barColor}, ${row.barColor}99)`,
+                            background: `linear-gradient(to right, ${row.color}, ${row.color}99)`,
                           }}
                         />
                       </div>
@@ -286,21 +306,25 @@ export default function TeplotyMasaPage() {
 
                   {/* Bar — desktop */}
                   <div className="hidden md:block">
-                    <div className="h-3 rounded-full overflow-hidden"
-                         style={{ backgroundColor: "rgba(245,240,235,0.05)" }}>
+                    <div
+                      className="h-3 rounded-full overflow-hidden"
+                      style={{ backgroundColor: "rgba(245,240,235,0.05)" }}
+                    >
                       <div
                         className="h-full rounded-full transition-all duration-500"
                         style={{
                           width: `${getBarWidth(row.tempC)}%`,
-                          background: `linear-gradient(to right, ${row.barColor}, ${row.barColor}99)`,
+                          background: `linear-gradient(to right, ${row.color}, ${row.color}99)`,
                         }}
                       />
                     </div>
                   </div>
 
                   {/* Temperature value */}
-                  <span className="font-bold tabular-nums text-right whitespace-nowrap text-sm md:text-base"
-                        style={{ color: "var(--dark-fg)" }}>
+                  <span
+                    className="font-bold tabular-nums text-right whitespace-nowrap text-sm md:text-base"
+                    style={{ color: "var(--dark-fg)" }}
+                  >
                     {formatTemp(row.tempC, unit)}
                   </span>
                 </div>
@@ -312,10 +336,12 @@ export default function TeplotyMasaPage() {
 
       {/* Tips */}
       <section className="pb-20 md:pb-24 px-6">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-4xl">
           <div className="mb-12">
-            <h2 className="text-2xl md:text-3xl text-coal mb-3 font-bold"
-                style={{ fontFamily: "var(--font-display)" }}>
+            <h2
+              className="text-2xl md:text-3xl text-coal mb-3 font-bold"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
               Tipy pro správné měření
             </h2>
             <p className="text-stone text-lg leading-relaxed max-w-lg">
@@ -326,14 +352,19 @@ export default function TeplotyMasaPage() {
             {tips.map((tip) => (
               <div
                 key={tip.title}
-                className="rounded-xl p-5 border transition-all hover:shadow-md"
+                className="group rounded-xl p-5 border transition-all hover:shadow-md"
                 style={{ backgroundColor: "var(--bg-card)", borderColor: "var(--smoke)" }}
               >
                 <div className="flex items-start gap-3.5">
-                  <tip.icon size={20} className="text-heat mt-0.5 shrink-0" />
+                  <tip.icon
+                    size={20}
+                    className="text-heat mt-0.5 shrink-0 group-hover:scale-110 transition-transform"
+                  />
                   <div>
-                    <h3 className="text-base text-coal mb-1"
-                        style={{ fontFamily: "var(--font-display)" }}>
+                    <h3
+                      className="text-base text-coal mb-1"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
                       {tip.title}
                     </h3>
                     <p className="text-stone text-sm leading-relaxed">{tip.text}</p>
