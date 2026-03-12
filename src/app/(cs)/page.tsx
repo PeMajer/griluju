@@ -124,7 +124,7 @@ export default function HomePage() {
               </p>
               <Link
                 href="/teploty-masa"
-                className="inline-flex w-fit md:mx-0 mx-auto items-center gap-2 rounded-full px-6 py-3 font-medium text-white bg-heat hover:bg-heat-dk transition-colors duration-150"
+                className="inline-flex w-fit md:mx-0 mx-auto items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white bg-heat hover:bg-heat-dk transition-colors duration-150"
               >
                 Otevřít tabulku <ArrowRight size={16} />
               </Link>
@@ -185,7 +185,7 @@ export default function HomePage() {
           >
             Petr Majer
           </h2>
-          <p className="text-stone italic mb-5 text-lg">
+          <p className="text-stone italic mb-5 text-lg leading-relaxed">
             „Nejlepší jídlo je to, u kterého stojíte s pivem v ruce."
           </p>
           <p className="text-stone leading-relaxed mb-6">
@@ -198,7 +198,7 @@ export default function HomePage() {
               <Link
                 key={tag}
                 href={`/recepty?tag=${encodeURIComponent(tag)}`}
-                className="px-4 py-1.5 text-sm rounded-full text-stone border border-smoke hover:bg-heat-lt hover:text-heat transition-colors"
+                className="px-4 py-1.5 text-sm leading-5 rounded-full text-stone border border-smoke hover:bg-heat-lt hover:text-heat transition-colors"
                 style={{ backgroundColor: "var(--bg-card)" }}
               >
                 {tag}

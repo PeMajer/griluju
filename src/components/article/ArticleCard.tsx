@@ -89,8 +89,8 @@ export function ArticleCard({ post, locale, featured = false, animationDelay, ba
 
         {/* Text — outside image */}
         <h3
-          className={`font-display mt-1 mb-2 leading-normal text-coal group-hover:text-heat transition-colors duration-200 ${
-            featured ? "text-2xl md:text-3xl" : "text-xl"
+          className={`font-display mt-1 mb-2 text-coal group-hover:text-heat transition-colors duration-200 ${
+            featured ? "text-2xl md:text-3xl leading-tight" : "text-xl leading-7"
           }`}
           style={{ fontWeight: 700 }}
         >
@@ -98,7 +98,7 @@ export function ArticleCard({ post, locale, featured = false, animationDelay, ba
         </h3>
 
         {post.description && (
-          <p className={`text-stone mb-3 ${featured ? "line-clamp-3" : "text-sm line-clamp-2"}`}>
+          <p className={`text-stone mb-3 leading-relaxed ${featured ? "line-clamp-3" : "text-sm line-clamp-2"}`}>
             {post.description}
           </p>
         )}

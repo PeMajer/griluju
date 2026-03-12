@@ -62,7 +62,7 @@ export function ArticleGrid({ posts, locale, moreHeading = "Další články", b
         <>
           <div className="mb-14">
             <h3
-              className="text-2xl text-coal"
+              className="text-2xl leading-snug text-coal"
               style={{ fontFamily: "var(--font-display)" }}
             >
               {moreHeading}
