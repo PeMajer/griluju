@@ -4,7 +4,7 @@ import Image from "next/image";
 import { ArrowRight, Flame } from "lucide-react";
 import { getAllPosts } from "@/lib/content";
 import { t, siteConfig } from "@/lib/i18n";
-import { ArticleCard } from "@/components/article/ArticleCard";
+import { ArticleGrid } from "@/components/article/ArticleGrid";
 import { NewsletterCTA } from "@/components/ui/NewsletterCTA";
 
 export const metadata: Metadata = {
@@ -101,44 +101,7 @@ export default function HomePage() {
           </Link>
         </div>
 
-        {posts.length > 0 ? (
-          <>
-            {/* Row 1: featured (2/3) + 2 stacked (1/3) */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 lg:items-stretch gap-x-8 gap-y-10 mb-14">
-              {posts[0] && (
-                <div className="lg:col-span-2">
-                  <ArticleCard post={posts[0]} locale="cs" featured animationDelay={0} />
-                </div>
-              )}
-              <div className="flex flex-col gap-10">
-                {posts[1] && <ArticleCard post={posts[1]} locale="cs" animationDelay={80} />}
-                {posts[2] && <ArticleCard post={posts[2]} locale="cs" animationDelay={160} />}
-              </div>
-            </div>
-
-            {/* Row 2: Další články */}
-            {posts.slice(3, 9).length > 0 && (
-              <>
-                <h3
-                  className="text-xl text-coal mb-8"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  Další články
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
-                  {posts.slice(3, 9).map((post, i) => (
-                    <ArticleCard key={post.slug} post={post} locale="cs" animationDelay={(i + 3) * 80} />
-                  ))}
-                </div>
-              </>
-            )}
-          </>
-        ) : (
-          <div className="text-center py-16 text-stone">
-            <p className="text-4xl mb-4">🔥</p>
-            <p>První recepty brzy přibydou.</p>
-          </div>
-        )}
+        <ArticleGrid posts={posts} locale="cs" />
       </section>
 
       {/* ─── Teploty masa — dark teaser ──────────────────────────────────────── */}

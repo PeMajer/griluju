@@ -1,16 +1,20 @@
 import Link from "next/link";
 import type { Post } from "@/lib/content";
-import { ArticleCard } from "@/components/article/ArticleCard";
 import type { Locale } from "@/lib/i18n";
+import { ArticleGrid } from "@/components/article/ArticleGrid";
 
 interface CategoryPageProps {
   title: string;
   description: string;
   posts: Post[];
   locale: Locale;
+  /** Label for the "more" subheading — defaults to "Další {title.toLowerCase()}" */
+  moreHeading?: string;
 }
 
-export function CategoryPage({ title, description, posts, locale }: CategoryPageProps) {
+export function CategoryPage({ title, description, posts, locale, moreHeading }: CategoryPageProps) {
+  const resolvedMoreHeading = moreHeading ?? `Další ${title.toLowerCase()}`;
+
   return (
     <>
       {/* Header */}
@@ -37,7 +41,12 @@ export function CategoryPage({ title, description, posts, locale }: CategoryPage
             </div>
             <div className="shrink-0">
               <span className="rounded-full border border-smoke bg-bg-card px-4 py-2 font-mono text-sm text-stone">
-                {posts.length} {posts.length === 1 ? "článek" : posts.length >= 2 && posts.length <= 4 ? "články" : "článků"}
+                {posts.length}{" "}
+                {posts.length === 1
+                  ? "článek"
+                  : posts.length >= 2 && posts.length <= 4
+                  ? "články"
+                  : "článků"}
               </span>
             </div>
           </div>
@@ -46,30 +55,7 @@ export function CategoryPage({ title, description, posts, locale }: CategoryPage
 
       {/* Article grid */}
       <section className="mx-auto max-w-6xl px-6 py-14">
-        {posts.length > 0 ? (
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post) => (
-              <ArticleCard key={post.slug} post={post} locale={locale} />
-            ))}
-          </div>
-        ) : (
-          <div className="py-24 text-center">
-            <p className="mb-4 text-5xl">🔥</p>
-            <p
-              className="mb-2 text-2xl text-coal"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Brzy tady něco bude
-            </p>
-            <p className="text-stone">Pracuji na prvních článcích v této kategorii.</p>
-            <Link
-              href="/"
-              className="mt-6 inline-block text-sm font-medium text-heat hover:text-heat-dk transition-colors"
-            >
-              ← Zpět na hlavní stránku
-            </Link>
-          </div>
-        )}
+        <ArticleGrid posts={posts} locale={locale} moreHeading={resolvedMoreHeading} />
       </section>
     </>
   );
