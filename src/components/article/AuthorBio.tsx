@@ -10,7 +10,7 @@ interface AuthorBioProps {
 
 export function AuthorBio({ locale: _locale }: AuthorBioProps) {
   return (
-    <div className="rounded-2xl p-8 flex items-start gap-5" style={{ backgroundColor: "var(--bg-warm)" }}>
+    <div className="rounded-2xl p-8 flex items-start gap-5 border border-smoke" style={{ backgroundColor: "var(--bg-warm)" }}>
       <Image
         src="/images/author/petr.jpg"
         alt={siteConfig.author}
