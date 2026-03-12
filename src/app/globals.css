@@ -22,8 +22,6 @@
   --color-dark:        var(--dark);
   --color-dark-fg:     var(--dark-fg);
 
-  /* Container width — matches orange-flame 1200px container */
-  --width-container: 75rem;
 }
 
 /* ─── Global heading font — all h1–h6 use Playfair Display (same as orange-flame) ── */

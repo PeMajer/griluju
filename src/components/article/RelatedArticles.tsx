@@ -41,7 +41,7 @@ interface RelatedArticlesProps {
 export function RelatedArticles({ posts, locale }: RelatedArticlesProps) {
   return (
     <section className="py-16" style={{ backgroundColor: "var(--bg-warm)" }}>
-      <div className="mx-auto max-w-container px-6">
+      <div className="mx-auto max-w-[75rem] px-6">
         <h2
           className="mb-10 text-3xl md:text-4xl text-coal text-center"
           style={{ fontFamily: "var(--font-display)" }}
