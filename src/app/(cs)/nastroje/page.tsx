@@ -10,7 +10,7 @@ import type { EquipmentItem } from "@/data/equipmentData";
 
 function EquipmentCard({ item }: { item: EquipmentItem }) {
   return (
-    <div className="group bg-bg-card border border-smoke rounded-2xl p-5 md:p-6 hover:border-heat/30 hover:shadow-md transition-colors">
+    <div className="group bg-bg-card border border-smoke rounded-2xl p-5 md:p-6 hover:border-heat/30 hover:shadow-md">
       {/* Status badge */}
       {item.status && (
         <div className="mb-3">
