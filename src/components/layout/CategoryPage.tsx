@@ -1,6 +1,7 @@
 import type { Post } from "@/lib/content";
 import type { Locale } from "@/lib/i18n";
 import { ArticleGrid } from "@/components/article/ArticleGrid";
+import { CategoryFilterGrid } from "@/components/article/CategoryFilterGrid";
 
 interface CategoryPageProps {
   title: string;
@@ -11,15 +12,25 @@ interface CategoryPageProps {
   moreHeading?: string;
   /** Badge source: "category" (default) or "tag" (meat type on recepty page) */
   badgeSource?: "category" | "tag";
+  /** When provided, renders interactive filter pills above the grid */
+  filterTags?: string[];
 }
 
-export function CategoryPage({ title, description, posts, locale, moreHeading, badgeSource }: CategoryPageProps) {
+export function CategoryPage({
+  title,
+  description,
+  posts,
+  locale,
+  moreHeading,
+  badgeSource,
+  filterTags,
+}: CategoryPageProps) {
   const resolvedMoreHeading = moreHeading ?? `Další ${title.toLowerCase()}`;
 
   return (
     <section className="mx-auto max-w-6xl px-6 pt-12 pb-24">
       {/* Page header */}
-      <div className="mb-12">
+      <div className="mb-10">
         <h1
           className="mb-3 text-4xl text-coal md:text-5xl"
           style={{ fontFamily: "var(--font-display)", fontWeight: 700 }}
@@ -29,13 +40,23 @@ export function CategoryPage({ title, description, posts, locale, moreHeading, b
         <p className="text-lg text-stone leading-relaxed">{description}</p>
       </div>
 
-      {/* Article grid */}
-      <ArticleGrid
-        posts={posts}
-        locale={locale}
-        moreHeading={resolvedMoreHeading}
-        badgeSource={badgeSource}
-      />
+      {/* Article grid — with or without filter pills */}
+      {filterTags ? (
+        <CategoryFilterGrid
+          posts={posts}
+          filterTags={filterTags}
+          locale={locale}
+          moreHeading={resolvedMoreHeading}
+          badgeSource={badgeSource}
+        />
+      ) : (
+        <ArticleGrid
+          posts={posts}
+          locale={locale}
+          moreHeading={resolvedMoreHeading}
+          badgeSource={badgeSource}
+        />
+      )}
     </section>
   );
 }

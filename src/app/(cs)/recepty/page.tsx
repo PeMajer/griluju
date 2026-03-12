@@ -18,6 +18,7 @@ export default function ReceptyPage() {
       posts={posts}
       locale="cs"
       badgeSource="tag"
+      filterTags={["Hovězí", "Vepřové", "Drůbež", "Ryby", "Zelenina", "Jehněčí"]}
     />
   );
 }
