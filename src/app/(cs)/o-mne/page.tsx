@@ -251,8 +251,7 @@ export default function AboutPage() {
               <Link
                 key={tag}
                 href={`/recepty?tag=${encodeURIComponent(tag)}`}
-                className="px-4 py-1.5 text-sm leading-5 rounded-full text-stone border border-smoke hover:bg-heat-lt hover:text-heat transition-colors"
-                style={{ backgroundColor: "var(--bg-card)" }}
+                className="px-4 py-1.5 text-sm leading-5 rounded-full text-coal bg-bg-warm hover:bg-heat/10 transition-colors"
               >
                 {tag}
               </Link>

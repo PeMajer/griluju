@@ -119,7 +119,7 @@ export default function NastrojePage() {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold transition-colors ${
+                className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold transition-colors cursor-pointer ${
                   activeCategory === cat.id
                     ? "bg-heat text-white"
                     : "bg-bg-warm text-coal hover:bg-heat/10"

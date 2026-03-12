@@ -35,12 +35,11 @@ export function CategoryFilterGrid({
           <button
             key={tag}
             onClick={() => setActive(tag)}
-            className="px-5 py-2 rounded-full text-sm font-semibold transition-colors"
-            style={
+            className={`px-5 py-2 rounded-full text-sm font-semibold transition-colors cursor-pointer ${
               active === tag
-                ? { backgroundColor: "var(--heat)", color: "white" }
-                : { backgroundColor: "var(--bg-warm)", color: "var(--coal)" }
-            }
+                ? "bg-heat text-white"
+                : "bg-bg-warm text-coal hover:bg-heat/10"
+            }`}
           >
             {tag}
           </button>
