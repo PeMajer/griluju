@@ -1,197 +1,299 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { ArrowRight, Thermometer } from "lucide-react";
-import { meatTemperatures, meatTips } from "@/data/meatTemperatures";
+import { Thermometer, ThermometerSun, Beef, Egg, Fish, Ham, Crosshair, TrendingUp, Timer } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { NewsletterCTA } from "@/components/ui/NewsletterCTA";
 
-function toF(c: number): number {
-  return Math.round(c * 9 / 5 + 32);
-}
+type TempRow = {
+  level: string;
+  tempC: number[];
+  color: string;
+  description: string;
+};
 
-function getBarWidth(avgC: number): number {
-  const min = 43, max = 96;
-  return Math.round(Math.min(100, Math.max(5, ((avgC - min) / (max - min)) * 100)));
-}
+type MeatCategory = {
+  id: string;
+  name: string;
+  icon: LucideIcon;
+  description: string;
+  rows: TempRow[];
+};
+
+const COLORS = {
+  rare:       "hsl(0,72%,50%)",
+  mediumRare: "hsl(12,80%,52%)",
+  medium:     "hsl(25,85%,50%)",
+  mediumWell: "hsl(35,75%,48%)",
+  wellDone:   "hsl(30,15%,55%)",
+};
+
+const meatData: MeatCategory[] = [
+  {
+    id: "beef",
+    name: "Hovězí",
+    icon: Beef,
+    description: "Od steaku přes roštěnou až po low & slow brisket.",
+    rows: [
+      { level: "Rare (steak)",               tempC: [49, 52], color: COLORS.rare,       description: "Chladný červený střed, měkký" },
+      { level: "Medium Rare (steak)",         tempC: [54, 57], color: COLORS.mediumRare, description: "Teplý červený střed, ideální šťavnatost" },
+      { level: "Medium (steak)",              tempC: [60, 63], color: COLORS.medium,     description: "Růžový střed, mírně pevnější" },
+      { level: "Medium Well (steak)",         tempC: [65, 68], color: COLORS.mediumWell, description: "Lehce růžový, převažuje šedá" },
+      { level: "Well Done (steak)",           tempC: [71, 76], color: COLORS.wellDone,   description: "Celý prošedlý, sušší textura" },
+      { level: "Brisket",                     tempC: [93, 96], color: COLORS.rare,       description: "Rozpadavé, low & slow 8–14 hodin" },
+      { level: "Hovězí žebra (short ribs)",   tempC: [93, 96], color: COLORS.mediumRare, description: "Kolagen rozpuštěný, šťavnaté" },
+      { level: "Burger patty",                tempC: [71, 74], color: COLORS.mediumWell, description: "Bezpečná teplota pro mleté maso" },
+      { level: "Roastbeef",                   tempC: [54, 57], color: COLORS.mediumRare, description: "Rovnoměrně růžový od kraje ke kraji" },
+    ],
+  },
+  {
+    id: "pork",
+    name: "Vepřové",
+    icon: Ham,
+    description: "Od šťavnaté kotlety po low & slow pulled pork.",
+    rows: [
+      { level: "Kotleta / panenka",   tempC: [63, 65], color: COLORS.medium,     description: "Lehce růžový střed, šťavnaté" },
+      { level: "Well Done",           tempC: [71, 74], color: COLORS.wellDone,   description: "Celé progrilované, tradičnější přístup" },
+      { level: "Žebra (ribs)",        tempC: [88, 93], color: COLORS.mediumRare, description: "Měkká, odpadávají od kosti" },
+      { level: "Pulled Pork (plec)",  tempC: [93, 96], color: COLORS.rare,       description: "Rozpadavé maso, low & slow 10–16 h" },
+      { level: "Koleno",              tempC: [88, 93], color: COLORS.medium,     description: "Křupavá kůrka, měkké uvnitř" },
+      { level: "Klobása / párek",     tempC: [71, 76], color: COLORS.mediumWell, description: "Propečené do středu, bez růžové" },
+    ],
+  },
+  {
+    id: "poultry",
+    name: "Drůbež",
+    icon: Egg,
+    description: "Bezpečnost na prvním místě — drůbež musí být vždy propečená.",
+    rows: [
+      { level: "Kuřecí prsa",       tempC: [74, 76], color: COLORS.mediumWell, description: "Bezpečná teplota, šťavnaté uvnitř" },
+      { level: "Stehna / paličky",  tempC: [82, 85], color: COLORS.medium,     description: "Kolagen se rozloží, měkké maso" },
+      { level: "Celé kuře",         tempC: [82, 85], color: COLORS.mediumRare, description: "Měřte v nejtlustší části stehna" },
+      { level: "Křídla (wings)",    tempC: [82, 88], color: COLORS.medium,     description: "Křupavá kůže, propečené do kosti" },
+      { level: "Kachna",            tempC: [74, 79], color: COLORS.mediumWell, description: "Kůže křupavá, maso propečené" },
+      { level: "Krůta",             tempC: [74, 79], color: COLORS.mediumWell, description: "Prsa 74 °C, stehna klidně 82 °C" },
+    ],
+  },
+  {
+    id: "fish",
+    name: "Ryby",
+    icon: Fish,
+    description: "Jemné maso vyžaduje přesnost — každý stupeň se počítá.",
+    rows: [
+      { level: "Tuňák (rare)",               tempC: [43, 46], color: COLORS.rare,       description: "Surový střed, opečená krusta" },
+      { level: "Losos (medium)",             tempC: [52, 54], color: COLORS.mediumRare, description: "Sklovitý střed, máslovitá textura" },
+      { level: "Losos (propečený)",          tempC: [60, 63], color: COLORS.medium,     description: "Neprůhledný, ale stále vlhký" },
+      { level: "Bílá ryba (candát, treska)", tempC: [60, 63], color: COLORS.medium,     description: "Lístkovitá textura, šťavnaté" },
+      { level: "Krevety",                    tempC: [57, 60], color: COLORS.mediumWell, description: "Růžové, pružné, nepřevařené" },
+      { level: "Chobotnice",                 tempC: [82, 85], color: COLORS.mediumRare, description: "Dlouhé vaření nebo rychlý gril" },
+    ],
+  },
+  {
+    id: "lamb",
+    name: "Jehněčí",
+    icon: Beef,
+    description: "Výrazná chuť, kterou nejlépe podtrhne nižší propečení.",
+    rows: [
+      { level: "Rare (kotleta / rack)",   tempC: [49, 52], color: COLORS.rare,       description: "Červený střed, velmi měkké" },
+      { level: "Medium Rare",             tempC: [54, 57], color: COLORS.mediumRare, description: "Ideální pro kotlety a rack" },
+      { level: "Medium",                  tempC: [60, 63], color: COLORS.medium,     description: "Růžový střed, plná chuť" },
+      { level: "Well Done",               tempC: [71, 76], color: COLORS.wellDone,   description: "Prošedlé, vhodné pro dušení" },
+      { level: "Jehněčí kýta",            tempC: [60, 63], color: COLORS.medium,     description: "Medium pro šťavnatý výsledek" },
+      { level: "Jehněčí plec (pulled)",   tempC: [88, 93], color: COLORS.rare,       description: "Rozpadavé, low & slow 6–8 hodin" },
+    ],
+  },
+];
+
+const tips: { title: string; text: string; icon: LucideIcon }[] = [
+  { title: "Měřte v nejsilnějším místě", text: "Vpíchněte teploměr do středu nejtlustší části masa, mimo kost a tuk.", icon: Crosshair },
+  { title: "Carry-over efekt",           text: "Sundejte maso 2–3 °C pod cílovou teplotu. Při odpočinku teplota stoupne.", icon: TrendingUp },
+  { title: "Nechte maso odpočinout",     text: "Steak nechte 5–10 minut pod alobalem. Šťávy se lépe rozloží v celém kusu.", icon: Timer },
+  { title: "Kvalitní teploměr",          text: "Instantní digitální teploměr je nejlepší investice grillmastera.", icon: Thermometer },
+];
+
+const toF = (c: number) => Math.round(c * 9 / 5 + 32);
+
+const formatTemp = (temps: number[], unit: "C" | "F") => {
+  if (unit === "F") return `${toF(temps[0])}–${toF(temps[1])} °F`;
+  return `${temps[0]}–${temps[1]} °C`;
+};
+
+const getBarWidth = (temps: number[]) => {
+  const avg = (temps[0] + temps[1]) / 2;
+  return Math.min(Math.max(((avg - 30) / 70) * 100, 15), 100);
+};
 
 export default function TeplotyMasaPage() {
-  const [activeCategory, setActiveCategory] = useState(meatTemperatures[0].id);
+  const [activeCategory, setActiveCategory] = useState("beef");
   const [unit, setUnit] = useState<"C" | "F">("C");
 
-  const current = meatTemperatures.find((c) => c.id === activeCategory) ?? meatTemperatures[0];
-
-  function formatTemp(minC: number, maxC: number): string {
-    if (unit === "C") return `${minC}–${maxC} °C`;
-    return `${toF(minC)}–${toF(maxC)} °F`;
-  }
+  const category = meatData.find((c) => c.id === activeCategory)!;
 
   return (
     <>
       {/* ─── Hero ─────────────────────────────────────────────────────────────── */}
-      <section className="py-14 md:py-20 border-b border-smoke" style={{ backgroundColor: "var(--bg-warm)" }}>
-        <div className="mx-auto max-w-4xl px-6">
-          <span
-            className="mb-4 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-mono uppercase tracking-wider"
-            style={{ backgroundColor: "var(--heat-lt)", color: "var(--heat)" }}
-          >
-            <Thermometer size={14} />
-            Interaktivní průvodce
-          </span>
-          <h1
-            className="mb-4 text-3xl md:text-5xl text-coal leading-tight"
-            style={{ fontFamily: "var(--font-display)", fontWeight: 700 }}
-          >
+      <section className="pt-12 pb-8 md:pb-12 px-6">
+        <div className="mx-auto max-w-[75rem]">
+          <div className="inline-flex items-center gap-2 bg-heat/10 rounded-full px-4 py-1.5 text-xs font-semibold text-heat mb-4">
+            <Thermometer size={14} /> Interaktivní průvodce
+          </div>
+          <h1 className="text-4xl md:text-5xl text-coal leading-tight font-bold mb-3">
             Teploty masa na grilu
           </h1>
-          <p className="max-w-xl text-lg text-stone leading-relaxed">
-            Přesné vnitřní teploty pro každý druh masa a stupeň propečení.
-            Měřte termometrem — oko vás oklame, číslo ne.
+          <p className="text-lg text-stone leading-relaxed max-w-2xl">
+            Vyberte si druh masa a zjistěte přesné interní teploty pro dokonalý výsledek.
           </p>
         </div>
       </section>
 
-      {/* ─── Interactive table ────────────────────────────────────────────────── */}
-      <section className="py-12 md:py-16">
-        <div className="mx-auto max-w-4xl px-6">
-          {/* Category + unit controls */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center mb-8">
-            {/* Category filter */}
+      {/* ─── Tabs + toggle ────────────────────────────────────────────────────── */}
+      <section className="pb-8 px-6">
+        <div className="mx-auto max-w-[75rem]">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            {/* Category pills */}
             <div className="flex flex-wrap gap-2">
-              {meatTemperatures.map((cat) => (
+              {meatData.map((cat) => (
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 ${
+                  className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold transition-colors ${
                     activeCategory === cat.id
-                      ? "text-white bg-heat"
-                      : "text-stone bg-bg-warm border border-smoke hover:border-heat hover:text-heat"
+                      ? "bg-heat text-white"
+                      : "bg-bg-warm text-coal hover:bg-heat/10"
                   }`}
                 >
+                  <cat.icon size={16} />
                   {cat.name}
                 </button>
               ))}
             </div>
 
-            {/* Unit toggle */}
-            <div
-              className="flex rounded-full overflow-hidden border border-smoke text-sm font-medium"
-              style={{ backgroundColor: "var(--bg-warm)" }}
-            >
-              {(["C", "F"] as const).map((u) => (
-                <button
-                  key={u}
-                  onClick={() => setUnit(u)}
-                  className={`px-4 py-2 transition-colors duration-150 ${
-                    unit === u ? "text-white bg-heat" : "text-stone hover:text-heat"
-                  }`}
-                >
-                  °{u}
-                </button>
-              ))}
+            {/* °C / °F Toggle */}
+            <div className="inline-flex items-center rounded-full p-1 bg-bg-warm shrink-0">
+              <button
+                onClick={() => setUnit("C")}
+                className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-semibold transition-all ${
+                  unit === "C" ? "bg-heat text-white shadow-sm" : "text-stone hover:text-coal"
+                }`}
+              >
+                <ThermometerSun size={14} /> °C
+              </button>
+              <button
+                onClick={() => setUnit("F")}
+                className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-semibold transition-all ${
+                  unit === "F" ? "bg-heat text-white shadow-sm" : "text-stone hover:text-coal"
+                }`}
+              >
+                °F
+              </button>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Temperature rows */}
-          <div
-            className="overflow-hidden rounded-xl"
-            style={{ backgroundColor: "var(--dark)", border: "1px solid var(--dark-border)" }}
-          >
-            <div className="p-2">
-              {current.rows.map((row, i) => {
-                const avgC = (row.minC + row.maxC) / 2;
-                const barWidth = getBarWidth(avgC);
-                return (
-                  <div
-                    key={row.level}
-                    className="flex items-center gap-4 rounded-lg px-4 py-3 mb-1 last:mb-0"
-                    style={{ backgroundColor: i % 2 === 0 ? "rgba(255,255,255,0.04)" : "transparent" }}
-                  >
-                    {/* Color dot */}
-                    <span
-                      className="w-3 h-3 rounded-full shrink-0"
-                      style={{ backgroundColor: row.color }}
-                    />
+      {/* ─── Temperature panel ────────────────────────────────────────────────── */}
+      <section className="pb-16 md:pb-20 px-6">
+        <div className="mx-auto max-w-4xl">
+          <div className="rounded-2xl p-5 md:p-8 shadow-xl" style={{ backgroundColor: "var(--dark)" }}>
+            {/* Panel header */}
+            <div className="flex items-center gap-3 mb-6">
+              <category.icon size={28} style={{ color: "rgba(245,240,235,0.7)" }} />
+              <div>
+                <h2 className="text-xl md:text-2xl" style={{ fontFamily: "var(--font-display)", color: "var(--dark-fg)" }}>
+                  {category.name}
+                </h2>
+                <p className="text-sm" style={{ color: "rgba(245,240,235,0.5)" }}>
+                  {category.description}
+                </p>
+              </div>
+            </div>
 
-                    {/* Level name */}
-                    <span
-                      className="w-48 text-sm font-medium shrink-0"
-                      style={{ color: "var(--dark-fg)" }}
-                    >
-                      {row.level}
-                    </span>
+            {/* Column headers */}
+            <div
+              className="grid grid-cols-[1fr_auto] md:grid-cols-[200px_1fr_auto] items-center px-3 md:px-4 py-2 mb-1 text-xs font-semibold uppercase tracking-wider"
+              style={{ color: "rgba(245,240,235,0.4)" }}
+            >
+              <span>Stupeň</span>
+              <span className="hidden md:block">Vizuální škála</span>
+              <span className="text-right">Teplota</span>
+            </div>
 
-                    {/* Bar */}
-                    <div className="flex-1 h-2 rounded-full overflow-hidden hidden sm:block" style={{ backgroundColor: "rgba(255,255,255,0.08)" }}>
+            {/* Rows */}
+            <div className="space-y-1">
+              {category.rows.map((row) => (
+                <div
+                  key={row.level}
+                  className="grid grid-cols-[1fr_auto] md:grid-cols-[200px_1fr_auto] items-center gap-3 md:gap-6 px-3 md:px-4 py-3.5 md:py-4 rounded-xl transition-colors cursor-default"
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(245,240,235,0.05)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+                >
+                  {/* Level + description */}
+                  <div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: row.color }} />
+                      <span className="font-semibold text-sm md:text-base" style={{ color: row.color }}>
+                        {row.level}
+                      </span>
+                    </div>
+                    <p className="text-xs mt-0.5 pl-5" style={{ color: "rgba(245,240,235,0.4)" }}>
+                      {row.description}
+                    </p>
+                    {/* Bar — mobile */}
+                    <div className="md:hidden mt-2 pl-5">
+                      <div className="h-2 rounded-full overflow-hidden" style={{ backgroundColor: "rgba(245,240,235,0.08)" }}>
+                        <div
+                          className="h-full rounded-full transition-all duration-500"
+                          style={{ width: `${getBarWidth(row.tempC)}%`, background: `linear-gradient(to right, ${row.color}, ${row.color}99)` }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Bar — desktop */}
+                  <div className="hidden md:block">
+                    <div className="h-3 rounded-full overflow-hidden" style={{ backgroundColor: "rgba(245,240,235,0.08)" }}>
                       <div
                         className="h-full rounded-full transition-all duration-500"
-                        style={{ width: `${barWidth}%`, backgroundColor: row.color }}
+                        style={{ width: `${getBarWidth(row.tempC)}%`, background: `linear-gradient(to right, ${row.color}, ${row.color}99)` }}
                       />
                     </div>
-
-                    {/* Temperature */}
-                    <span
-                      className="shrink-0 font-mono font-medium text-sm"
-                      style={{ color: row.color, minWidth: "8rem", textAlign: "right" }}
-                    >
-                      {formatTemp(row.minC, row.maxC)}
-                    </span>
                   </div>
-                );
-              })}
-            </div>
-          </div>
 
-          {/* Legend */}
-          <div className="flex flex-wrap gap-6 mt-6 mb-2">
-            {[
-              { color: "#EF4444", label: "Rare / krvavé" },
-              { color: "var(--heat)", label: "Medium / středně" },
-              { color: "#A8A29E", label: "Well done / propečené" },
-            ].map((l) => (
-              <div key={l.label} className="flex items-center gap-2 text-sm text-stone">
-                <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: l.color }} />
-                {l.label}
-              </div>
-            ))}
+                  {/* Temp value */}
+                  <span className="font-bold tabular-nums text-right whitespace-nowrap text-sm md:text-base" style={{ color: "var(--dark-fg)" }}>
+                    {formatTemp(row.tempC, unit)}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* ─── Tips ─────────────────────────────────────────────────────────────── */}
-      <section className="py-12 border-t border-smoke" style={{ backgroundColor: "var(--bg-warm)" }}>
-        <div className="mx-auto max-w-4xl px-6">
-          <h2
-            className="mb-8 text-2xl md:text-3xl text-coal"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Na co si dát pozor
+      <section className="pb-20 md:pb-24 px-6">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="text-2xl md:text-3xl text-coal mb-3 font-bold">
+            Tipy pro správné měření
           </h2>
-          <div className="grid gap-5 md:grid-cols-2">
-            {meatTips.map((tip) => (
+          <p className="text-stone text-lg leading-relaxed max-w-lg mb-10">
+            Pár pravidel, která vám zaručí perfektní výsledek pokaždé.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {tips.map((tip) => (
               <div
                 key={tip.title}
-                className="rounded-xl p-5 border border-smoke"
-                style={{ backgroundColor: "var(--bg-card)" }}
+                className="group bg-bg-card border border-smoke rounded-xl p-5 hover:border-heat/30 hover:shadow-md transition-all"
               >
-                <h3
-                  className="mb-2 text-base font-medium text-coal"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  {tip.title}
-                </h3>
-                <p className="text-sm text-stone leading-relaxed">{tip.text}</p>
+                <div className="flex items-start gap-3.5">
+                  <tip.icon size={20} className="text-heat mt-0.5 shrink-0 group-hover:scale-110 transition-transform" />
+                  <div>
+                    <h3 className="text-base text-coal mb-1">{tip.title}</h3>
+                    <p className="text-stone text-sm leading-relaxed">{tip.text}</p>
+                  </div>
+                </div>
               </div>
             ))}
-          </div>
-
-          <div className="mt-10 text-center">
-            <Link
-              href="/nastroje"
-              className="inline-flex items-center gap-2 text-sm font-medium text-heat hover:text-heat-dk transition-colors"
-            >
-              Prohlédnout vybavení <ArrowRight size={14} />
-            </Link>
           </div>
         </div>
       </section>

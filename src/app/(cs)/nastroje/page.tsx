@@ -191,7 +191,7 @@ export default function NastrojePage() {
           {/* CTA to temperature guide */}
           <div className="mt-12 text-center">
             <Link
-              href="/nastroje/teploty-masa"
+              href="/teploty-masa"
               className="inline-flex items-center gap-2 bg-heat text-white font-semibold px-6 py-3 rounded-full hover:bg-heat-dk transition-colors text-sm"
             >
               <Thermometer size={16} />
