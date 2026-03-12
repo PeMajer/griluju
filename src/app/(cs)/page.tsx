@@ -44,12 +44,12 @@ export default function HomePage() {
         {/* Content */}
         <div className="relative mx-auto max-w-[75rem] w-full px-6 py-24">
           <div className="max-w-xl animate-fade-up">
-            <span className="mb-4 inline-block font-mono text-xs uppercase tracking-widest text-heat">
+            <span className="mb-4 inline-block font-semibold text-sm uppercase tracking-widest text-heat">
               Griluji přes 10 let
             </span>
             <h1
-              className="mb-6 text-5xl md:text-6xl lg:text-7xl leading-tight"
-              style={{ fontFamily: "var(--font-display)", fontWeight: 700, color: "var(--dark-fg)" }}
+              className="mb-6 text-5xl md:text-6xl lg:text-8xl leading-[1.1]"
+              style={{ fontFamily: "var(--font-display)", fontWeight: 900, color: "var(--dark-fg)" }}
             >
               Grilování,{" "}
               <em className="text-heat">které funguje</em>
@@ -90,7 +90,7 @@ export default function HomePage() {
           >
             Nejnovější články
           </h2>
-          <p className="mt-3 text-stone">Recepty, návody a tipy přímo z grilu</p>
+          <p className="mt-3 text-lg text-stone">Recepty, návody a tipy přímo z grilu</p>
         </div>
 
         <ArticleGrid posts={posts} locale="cs" />
@@ -114,11 +114,11 @@ export default function HomePage() {
               >
                 Teploty masa na grilu
               </h2>
-              <p className="mb-4 max-w-md md:mx-0 mx-auto" style={{ color: "var(--dark-fg-muted)" }}>
+              <p className="mb-4 max-w-md md:mx-0 mx-auto text-lg leading-relaxed" style={{ color: "var(--dark-fg-muted)" }}>
                 Interaktivní tabulka s doporučenými teplotami pro různé druhy masa
                 s přepínáním °C/°F. Už nikdy nepřepálíte steak.
               </p>
-              <p className="mb-8 max-w-md md:mx-0 mx-auto" style={{ color: "var(--dark-fg-muted)" }}>
+              <p className="mb-8 max-w-md md:mx-0 mx-auto leading-relaxed" style={{ color: "var(--dark-fg-muted)" }}>
                 Teploty platí pro hovězí, vepřové, drůbež i ryby. Vychází z vlastní praxe
                 i doporučení profesionálních grillmasterů.
               </p>

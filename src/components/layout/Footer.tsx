@@ -87,7 +87,7 @@ export function Footer({ locale: _locale }: FooterProps) {
             </a>
           </div>
 
-          <p className="text-xs" style={{ color: "var(--dark-fg-muted)" }}>
+          <p className="text-xs" style={{ color: "rgba(245,240,235,0.4)" }}>
             &copy; {year} griluju.cz &middot; Vytvořeno s láskou a uhlím
           </p>
         </div>
