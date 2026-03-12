@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Flame, Menu, X } from "lucide-react";
 import { type Locale } from "@/lib/i18n";
 import { Navigation } from "./Navigation";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 interface HeaderProps {
   locale: Locale;
@@ -28,69 +27,85 @@ export function Header({ locale }: HeaderProps) {
 
   return (
     <header
-      className={`sticky top-0 z-50 backdrop-blur-md transition-all duration-200 ${
-        scrolled ? "border-b shadow-lg" : "border-b border-transparent"
+      className={`sticky top-0 z-50 backdrop-blur-md transition-all duration-300 border-b ${
+        scrolled ? "shadow-lg" : "border-transparent"
       }`}
       style={{
         backgroundColor: "var(--bg-nav)",
         borderColor: scrolled ? "var(--smoke)" : "transparent",
       }}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex max-w-6xl items-center justify-between h-16 px-6">
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-2 font-display text-xl font-bold text-coal hover:text-heat transition-colors duration-150"
-          style={{ fontStyle: "italic" }}
+          className="flex items-center gap-2 transition-colors duration-150 hover:opacity-80"
         >
-          <Flame size={20} className="text-heat shrink-0" style={{ fontStyle: "normal" }} />
-          <span>griluju</span>
+          <Flame size={22} className="text-heat shrink-0" />
+          <span
+            className="font-display text-xl text-coal"
+            style={{ fontStyle: "italic", fontWeight: 700 }}
+          >
+            griluju
+          </span>
         </Link>
 
         {/* Desktop navigation */}
         <Navigation locale={locale} />
 
-        {/* Right side: theme toggle + newsletter CTA + mobile hamburger */}
-        <div className="flex items-center gap-2">
-          <ThemeToggle />
+        {/* Right side: newsletter CTA + mobile hamburger */}
+        <div className="flex items-center gap-3">
           <Link
             href="/#newsletter"
-            className="hidden sm:inline-flex items-center px-4 py-1.5 rounded-full bg-heat text-white text-sm font-medium hover:bg-heat-dk transition-colors duration-150"
+            className="hidden md:inline-flex items-center px-5 py-2 rounded-full bg-heat text-white text-sm font-semibold hover:opacity-90 transition-opacity"
           >
             Newsletter
           </Link>
           {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2 rounded-lg text-coal hover:text-heat transition-colors"
+            className="md:hidden text-coal"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? "Zavřít menu" : "Otevřít menu"}
           >
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
       {/* Mobile menu */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          mobileOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
         }`}
         style={{ borderTop: mobileOpen ? "1px solid var(--smoke)" : "none" }}
       >
-        <nav className="px-6 py-4 flex flex-col gap-4" style={{ backgroundColor: "var(--bg-nav)" }}>
-          <Link href="/recepty" className="text-sm font-medium text-stone hover:text-heat transition-colors" onClick={() => setMobileOpen(false)}>Recepty</Link>
-          <Link href="/navody" className="text-sm font-medium text-stone hover:text-heat transition-colors" onClick={() => setMobileOpen(false)}>Návody</Link>
-          <Link href="/recenze" className="text-sm font-medium text-stone hover:text-heat transition-colors" onClick={() => setMobileOpen(false)}>Recenze</Link>
-          <Link href="/nastroje" className="text-sm font-medium text-stone hover:text-heat transition-colors" onClick={() => setMobileOpen(false)}>Nástroje</Link>
-          <Link href="/o-mne" className="text-sm font-medium text-stone hover:text-heat transition-colors" onClick={() => setMobileOpen(false)}>O mně</Link>
-          <Link
-            href="/#newsletter"
-            className="inline-flex w-fit items-center px-4 py-1.5 rounded-full bg-heat text-white text-sm font-medium hover:bg-heat-dk transition-colors"
-            onClick={() => setMobileOpen(false)}
-          >
-            Newsletter
-          </Link>
-        </nav>
+        <div className="px-6 py-5 flex flex-col gap-4" style={{ backgroundColor: "var(--bg-nav)" }}>
+          {[
+            { label: "Recepty", href: "/recepty" },
+            { label: "Návody", href: "/navody" },
+            { label: "Recenze", href: "/recenze" },
+            { label: "Nástroje", href: "/nastroje" },
+            { label: "O mně", href: "/o-mne" },
+          ].map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="text-base font-medium text-coal hover:text-heat transition-colors"
+              onClick={() => setMobileOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
+          <div className="pt-2">
+            <Link
+              href="/#newsletter"
+              className="inline-flex w-full justify-center items-center px-5 py-2.5 rounded-full bg-heat text-white text-sm font-semibold hover:opacity-90 transition-opacity"
+              onClick={() => setMobileOpen(false)}
+            >
+              Newsletter
+            </Link>
+          </div>
+        </div>
       </div>
     </header>
   );

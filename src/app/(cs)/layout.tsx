@@ -41,7 +41,7 @@ export default function CsLayout({
   return (
     <html
       lang="cs"
-      suppressHydrationWarning
+      data-theme="light"
       className={`${playfairDisplay.variable} ${dmSans.variable} ${dmMono.variable}`}
     >
       <head>
