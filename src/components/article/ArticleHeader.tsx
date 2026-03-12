@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Clock } from "lucide-react";
+import { Clock, ChevronRight } from "lucide-react";
 import type { Post } from "@/lib/content";
 import { type Locale, t } from "@/lib/i18n";
 
@@ -36,11 +36,11 @@ export function ArticleHeader({ post, locale }: ArticleHeaderProps) {
         <Link href="/" className="hover:text-heat transition-colors duration-150">
           Domů
         </Link>
-        <span className="opacity-40">/</span>
+        <ChevronRight size={13} className="opacity-40 shrink-0" />
         <Link href={catPath} className="hover:text-heat transition-colors duration-150">
           {catLabel}
         </Link>
-        <span className="opacity-40">/</span>
+        <ChevronRight size={13} className="opacity-40 shrink-0" />
         <span className="text-coal line-clamp-1">{post.title}</span>
       </nav>
 

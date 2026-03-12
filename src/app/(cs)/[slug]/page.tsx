@@ -9,7 +9,6 @@ import { RecipeMetaBox } from "@/components/article/RecipeMetaBox";
 import { AuthorBio } from "@/components/article/AuthorBio";
 import { AffiliateDisclosure } from "@/components/article/AffiliateDisclosure";
 import { RelatedArticles } from "@/components/article/RelatedArticles";
-import { NewsletterCTA } from "@/components/ui/NewsletterCTA";
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
@@ -102,18 +101,20 @@ export default async function ArticlePage({
       {post.category === "recepty" && <RecipeMetaBox post={post} />}
 
       {/* Narrow article body */}
-      <article className="mx-auto max-w-[680px] px-4 pb-10 sm:px-6">
+      <article className="mx-auto max-w-[680px] px-4 sm:px-6">
         {post.affiliate && <AffiliateDisclosure locale="cs" />}
 
         <div className="prose max-w-none">
           <MDXContent code={post.mdx} />
         </div>
-
-        <AuthorBio locale="cs" />
       </article>
 
-      {/* Full-width sections below article */}
-      <NewsletterCTA />
+      {/* Author box — outside article, own container */}
+      <div className="mx-auto max-w-[680px] px-4 sm:px-6 py-14">
+        <AuthorBio locale="cs" />
+      </div>
+
+      {/* Related articles */}
       <RelatedArticles posts={related} locale="cs" />
     </>
   );
