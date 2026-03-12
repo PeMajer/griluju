@@ -1,3 +1,6 @@
+import { Flame, Thermometer, Wrench, Brush } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+
 export interface EquipmentItem {
   name: string;
   description: string;
@@ -12,7 +15,7 @@ export interface EquipmentItem {
 export interface EquipmentCategory {
   id: string;
   name: string;
-  icon: string;
+  icon: LucideIcon;
   description: string;
   items: EquipmentItem[];
 }
@@ -21,7 +24,7 @@ export const equipmentCategories: EquipmentCategory[] = [
   {
     id: "grily",
     name: "Grily",
-    icon: "🔥",
+    icon: Flame,
     description: "Kotle, smokey joe a větší sestava",
     items: [
       {
@@ -83,7 +86,7 @@ export const equipmentCategories: EquipmentCategory[] = [
   {
     id: "teplomery",
     name: "Teploměry",
-    icon: "🌡",
+    icon: Thermometer,
     description: "Bez teploměru jste slepí",
     items: [
       {
@@ -137,7 +140,7 @@ export const equipmentCategories: EquipmentCategory[] = [
   {
     id: "prislusenstvi",
     name: "Příslušenství",
-    icon: "🛠",
+    icon: Wrench,
     description: "Co usnadní práci u grilu",
     items: [
       {
@@ -199,7 +202,7 @@ export const equipmentCategories: EquipmentCategory[] = [
   {
     id: "udrzba",
     name: "Údržba",
-    icon: "🧹",
+    icon: Brush,
     description: "Čistý gril lépe griluje",
     items: [
       {

@@ -53,7 +53,7 @@ export default function NastrojePage() {
       <section className="py-12 md:py-16">
         <div className="mx-auto max-w-[75rem] px-6">
           {/* Category filter */}
-          <div className="flex flex-wrap gap-3 mb-10 pb-8">
+          <div className="flex flex-wrap gap-3 mb-10">
             {equipmentCategories.map((cat) => (
               <button
                 key={cat.id}
@@ -64,7 +64,7 @@ export default function NastrojePage() {
                     : "text-coal bg-bg-warm"
                 }`}
               >
-                <span>{cat.icon}</span>
+                <cat.icon size={15} />
                 {cat.name}
               </button>
             ))}
@@ -72,7 +72,7 @@ export default function NastrojePage() {
 
           {/* Category heading */}
           <div className="flex items-center gap-3 mb-8">
-            <span className="text-2xl shrink-0">{current.icon}</span>
+            <current.icon size={24} className="text-heat shrink-0" />
             <div>
               <h2 className="text-xl md:text-2xl text-coal font-bold" style={{ fontFamily: "var(--font-display)" }}>
                 {current.name}

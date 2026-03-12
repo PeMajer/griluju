@@ -87,7 +87,7 @@ export default function AboutPage() {
   return (
     <>
       {/* ─── Hero ──────────────────────────────────────────────────────────────── */}
-      <section className="px-6 pt-6 pb-16">
+      <section className="px-6 pt-12 pb-16">
         <div className="mx-auto max-w-4xl">
           <div className="flex flex-col items-center md:items-start md:flex-row gap-10 md:gap-14">
             <Image
@@ -251,8 +251,8 @@ export default function AboutPage() {
               <Link
                 key={tag}
                 href={`/recepty?tag=${encodeURIComponent(tag)}`}
-                className="px-4 py-1.5 text-sm leading-5 rounded-full text-stone hover:text-heat transition-colors"
-                style={{ backgroundColor: "var(--bg-warm)" }}
+                className="px-4 py-1.5 text-sm leading-5 rounded-full text-stone border border-smoke hover:bg-heat-lt hover:text-heat transition-colors"
+                style={{ backgroundColor: "var(--bg-card)" }}
               >
                 {tag}
               </Link>

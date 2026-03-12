@@ -153,9 +153,9 @@ export default function TeplotyMasaPage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-12 pb-8 md:pb-12 px-6">
-        <div className="mx-auto max-w-[75rem]">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-3">
+      <section className="pt-12 pb-8 md:pb-10 px-6">
+        <div className="mx-auto max-w-5xl">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-4">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold mb-4"
                    style={{ backgroundColor: "rgba(232,83,26,0.1)", color: "var(--heat)" }}>
@@ -190,7 +190,7 @@ export default function TeplotyMasaPage() {
               </button>
             </div>
           </div>
-          <p className="text-lg text-stone leading-relaxed max-w-2xl">
+          <p className="text-lg text-stone leading-relaxed max-w-xl">
             Vyberte si druh masa a zjistěte přesné interní teploty pro dokonalý výsledek.
           </p>
         </div>
@@ -198,7 +198,7 @@ export default function TeplotyMasaPage() {
 
       {/* Category tabs */}
       <section className="pb-8 px-6">
-        <div className="mx-auto max-w-[75rem]">
+        <div className="mx-auto max-w-5xl">
           <div className="flex flex-wrap gap-2">
             {meatData.map((cat) => (
               <button
@@ -223,7 +223,7 @@ export default function TeplotyMasaPage() {
 
       {/* Temperature panel */}
       <section className="pb-16 md:pb-20 px-6">
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-5xl">
           <div className="rounded-2xl p-5 md:p-8 shadow-xl"
                style={{ backgroundColor: "var(--dark)" }}>
             <div className="flex items-center gap-3 mb-2">
@@ -312,7 +312,7 @@ export default function TeplotyMasaPage() {
 
       {/* Tips */}
       <section className="pb-20 md:pb-24 px-6">
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-5xl">
           <div className="mb-12">
             <h2 className="text-2xl md:text-3xl text-coal mb-3 font-bold"
                 style={{ fontFamily: "var(--font-display)" }}>
