@@ -52,7 +52,7 @@ export default function HomePage() {
               style={{ fontFamily: "var(--font-display)", fontWeight: 900, color: "var(--dark-fg)" }}
             >
               Grilování,{" "}
-              <em className="text-heat">které funguje</em>
+              <em className="text-heat whitespace-nowrap">které funguje</em>
             </h1>
             <p className="mb-8 text-lg leading-relaxed max-w-md" style={{ color: "var(--dark-fg-muted)" }}>
               Recepty, návody a tipy z vlastní zkušenosti. Bez bullshitu.
