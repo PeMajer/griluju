@@ -8,7 +8,7 @@ interface IconCardProps {
 
 export function IconCard({ icon: Icon, title, text }: IconCardProps) {
   return (
-    <div className="group bg-bg-card border border-smoke rounded-xl p-5 hover:border-heat/30 hover:shadow-md transition-all">
+    <div className="group bg-bg-card border border-smoke rounded-xl p-5 hover:border-heat/30 hover:shadow-md transition-colors">
       <div className="flex items-start gap-3.5">
         <Icon size={20} className="text-heat mt-0.5 shrink-0 group-hover:scale-110 transition-transform" />
         <div>
