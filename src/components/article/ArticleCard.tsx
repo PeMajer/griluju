@@ -89,7 +89,7 @@ export function ArticleCard({ post, locale, featured = false, animationDelay, ba
 
         {/* Text — outside image */}
         <h3
-          className={`font-display mt-1 mb-2 text-coal group-hover:text-heat transition-colors duration-200 ${
+          className={`font-display mt-1 mb-2 leading-normal text-coal group-hover:text-heat transition-colors duration-200 ${
             featured ? "text-2xl md:text-3xl" : "text-xl"
           }`}
           style={{ fontWeight: 700 }}
