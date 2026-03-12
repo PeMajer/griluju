@@ -19,6 +19,13 @@ const posts = defineCollection({
     tag: z.string().optional(),
     image: z.string().optional(),
     affiliate: z.boolean().default(false),
+    // Recipe meta (optional, for category: recepty)
+    servings: z.number().optional(),
+    prepTime: z.string().optional(),
+    grillTime: z.string().optional(),
+    internalTemp: z.string().optional(),
+    restTime: z.string().optional(),
+    difficulty: z.string().optional(),
   }),
   transform: async (document, context) => {
     const mdx = await compileMDX(context, document);

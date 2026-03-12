@@ -56,7 +56,7 @@ export function ArticleHeader({ post, locale }: ArticleHeaderProps) {
       <p className="mb-6 text-lg text-stone leading-relaxed">{post.description}</p>
 
       {/* Author meta row */}
-      <div className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-stone border-b border-smoke pb-6">
+      <div className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-stone">
         <Image
           src="/images/author/petr.jpg"
           alt={post.author}

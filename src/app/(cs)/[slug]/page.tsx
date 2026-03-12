@@ -5,6 +5,7 @@ import { MDXContent } from "@content-collections/mdx/react";
 import { getAllPosts, getPostBySlug, getRelatedPosts } from "@/lib/content";
 import { siteConfig } from "@/lib/i18n";
 import { ArticleHeader } from "@/components/article/ArticleHeader";
+import { RecipeMetaBox } from "@/components/article/RecipeMetaBox";
 import { AuthorBio } from "@/components/article/AuthorBio";
 import { AffiliateDisclosure } from "@/components/article/AffiliateDisclosure";
 import { RelatedArticles } from "@/components/article/RelatedArticles";
@@ -96,6 +97,9 @@ export default async function ArticlePage({
           />
         </div>
       )}
+
+      {/* Recipe meta box — only shown when meta fields are present */}
+      {post.category === "recepty" && <RecipeMetaBox post={post} />}
 
       {/* Narrow article body */}
       <article className="mx-auto max-w-[680px] px-4 pb-10 sm:px-6">
