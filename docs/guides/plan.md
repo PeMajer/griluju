@@ -253,3 +253,13 @@ Never let ratio drop below 1:3. Google HCU penalizes AI-heavy domains.
 - CLS: always set `width` + `height` on images
 - Images: WebP only, recipe max 150 kB, product max 100 kB
 - Test after every template change: PageSpeed Insights
+
+### Lighthouse via MCP (PageSpeed Insights API)
+
+Claude Code může spustit Lighthouse audit přímo přes WebFetch MCP nástroj — bez otevírání prohlížeče:
+
+```
+WebFetch: https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://griluju.cz&strategy=mobile
+```
+
+Vrátí JSON se skóre, metrikami (LCP, CLS, FID) a konkrétními doporučeními. Použij po každém deployi na live URL místo ručního testování na pagespeed.web.dev.

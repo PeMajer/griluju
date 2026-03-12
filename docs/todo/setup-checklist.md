@@ -83,10 +83,13 @@ Nejlepší řešení přes Cloudflare Redirect Rules (nevyžaduje Pages):
 
 **Ověření:** Po deployi otevři web, počkej 30 sekund, zkontroluj GA4 → Realtime report.
 
+> **Poznámka k GTM:** Google Tag Manager přidej až když budeš spravovat 5+ tagů (remarketing pixely, affiliate conversion tracking, A/B testing). Pro samotné GA4 + Consent Mode je přímý script jednodušší a výkonnější.
+
 **Google Search Console** (nastav zároveň):
 1. search.google.com/search-console → Add property → URL prefix: `https://griluju.cz`
 2. Ověření přes Google Analytics (pokud je GA4 nastaven, Search Console to rozpozná automaticky)
-3. Po ověření: Sitemaps → Add sitemap → `sitemap.xml`
+3. Alternativa: DNS ověření (TXT záznam v Cloudflare DNS) — spolehlivější než GA4 metoda
+4. Po ověření: Sitemaps → Add sitemap → `sitemap.xml`
 
 ---
 
@@ -159,7 +162,11 @@ Registruj se hned, schválení trvá 2–7 dní. Nepotřebuješ hotový web — 
 Podmínka spuštění webu. Testuj **po každé větší změně šablony**.
 
 **Kde testovat:**
-- [pagespeed.web.dev](https://pagespeed.web.dev) — zadej URL webu, vyber Mobile
+- **MCP (doporučeno):** Claude Code umí spustit audit přímo přes WebFetch na PageSpeed Insights API — stačí říct "spusť Lighthouse na griluju.cz". Vrátí skóre i konkrétní doporučení bez otevírání prohlížeče.
+  ```
+  https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://griluju.cz&strategy=mobile
+  ```
+- [pagespeed.web.dev](https://pagespeed.web.dev) — manuální, zadej URL webu, vyber Mobile
 - Nebo DevTools → Lighthouse → Mobile → Analyze
 
 **Co opravit pokud skóre padá:**
@@ -186,7 +193,7 @@ Podmínka spuštění webu. Testuj **po každé větší změně šablony**.
 3. Nastav NEXT_PUBLIC_GA4_ID v Cloudflare Pages env vars
 4. Cookieyes registrace + nastav ID v CookieBanner.tsx
 5. Deploy s Cookieyes ID
-6. Lighthouse audit na live URL
+6. Lighthouse audit na live URL (lze přes MCP WebFetch)
 7. Affiliate registrace (Mall.cz, Alza.cz) — pošli hned, čeká se
 8. Po schválení affiliate → aktualizuj affiliates.config.ts
 9. Napiš první článek (Phase 2)
