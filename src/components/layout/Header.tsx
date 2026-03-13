@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
-  Flame,
   UtensilsCrossed,
   BookOpen,
   Star,
@@ -109,15 +109,15 @@ export function Header({ locale }: HeaderProps) {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2 transition-colors duration-150 hover:opacity-80"
+            className="flex items-center transition-opacity duration-150 hover:opacity-80"
           >
-            <Flame size={22} className="text-heat shrink-0" />
-            <span
-              className="font-display text-xl text-coal"
-              style={{ fontStyle: "italic", fontWeight: 700 }}
-            >
-              griluju
-            </span>
+            <Image
+              src="/images/logo.webp"
+              alt="griluju.cz"
+              width={155}
+              height={40}
+              priority
+            />
           </Link>
 
           {/* Desktop navigation */}
