@@ -24,7 +24,7 @@ jobs:
       - name: Generate content index
         run: node scripts/generate-content-index.mjs
 
-      - name: Create PR and merge
+      - name: Create PR
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -37,12 +37,11 @@ jobs:
           git checkout -b "$BRANCH"
           git commit -m "chore: update content-index.json"
           git push origin "$BRANCH"
-          PR_URL=$(gh pr create \
+          gh pr create \
             --title "chore: update content-index.json" \
             --body "Automaticky vygenerovaný index článků po změně obsahu." \
             --base main \
-            --head "$BRANCH")
-          PR_NUMBER=$(echo "$PR_URL" | grep -oE '[0-9]+$')
-          gh pr merge "$PR_NUMBER" --squash --delete-branch
+            --head "$BRANCH"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
