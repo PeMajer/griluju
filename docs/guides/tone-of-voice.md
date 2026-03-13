@@ -164,6 +164,14 @@ Nejlépe funguje, pokud zmiňuje konkrétní volbu a důvod, nebo chybu a co z n
 
 ---
 
+## Věrohodnost — co nikdy nepsat
+
+- **Žádná falešná čísla** — počty odběratelů, frekvence publikování, hodnocení produktů musí odpovídat realitě. Pokud číslo neznáte, nepište ho.
+- **Žádné nepravdivé claims o obsahu webu** — "bez affiliate", "bez sponzorovaného obsahu" apod. Affiliate na webu je — vždy označené, nikdy skrývané.
+- **Pište jen o tom, co jste vyzkoušeli** — pokud zkušenost s produktem nebo technikou chybí, buďte konkrétní v tom, co znáte. Offset smoker bez vlastní zkušenosti → nepsat "od kotlíků po offset smokery".
+
+---
+
 ## Co nepsat
 
 | Fráze | Proč ne |
