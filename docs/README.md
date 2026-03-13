@@ -13,4 +13,5 @@
 | Dokument | Obsah |
 |---|---|
 | [Implementační plán](guides/plan.md) | Fáze projektu, SEO strategie, affiliate programy, content pipeline |
+| [Tone & Voice](guides/tone-of-voice.md) | Hlas autora, pravidla psaní, zakázané fráze, struktura podle kategorie |
 | [Setup checklist](guides/setup-checklist.md) | Manuální kroky před spuštěním (Cloudflare Pages, GA4, Cookieyes, affiliate registrace) |
