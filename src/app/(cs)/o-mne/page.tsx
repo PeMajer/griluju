@@ -36,17 +36,17 @@ const timeline = [
   {
     year: "2013",
     title: "První gril",
-    text: "Levný uhláč z hypermarketu, spálené kuřecí, hodně kouře. Zápal byl ale od první minuty.",
+    text: "Levný uhláč z hypermarketu, spálené kuřecí, hodně kouře. Chytilo mě to ale hned.",
   },
   {
     year: "2015",
     title: "Weber Kettle",
-    text: "Weber 47 cm — první skutečný gril. První pochopení nepřímého grilování, první slušný steak.",
+    text: "Weber 47 cm — první skutečný gril. Nepřímé grilování, první slušný steak.",
   },
   {
     year: "2017",
     title: "Weber Master-Touch 57 cm",
-    text: "Přechod na větší gril, který používám dodnes. Metoda snake, první vícehodinové grilování, první výsledky, které stálo za to ukazovat.",
+    text: "Přechod na větší gril, který používám dodnes. Metoda snake, první vícehodinové grilování, první výsledky, které stály za to ukazovat.",
   },
   {
     year: "2018",
@@ -56,7 +56,7 @@ const timeline = [
   {
     year: "2020",
     title: "Brisket",
-    text: "14 hodin přes noc. Hrudí z českého řeznictví, štěpky hickory. Výsledek byl dost dobrý na to, abych to chtěl opakovat.",
+    text: "14 hodin přes noc. Hrudí z českého řeznictví, štěpky hickory. Výsledek stál za to.",
   },
   {
     year: "2024",
