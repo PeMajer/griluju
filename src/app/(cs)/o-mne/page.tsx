@@ -8,7 +8,7 @@ import { NewsletterCTA } from "@/components/ui/NewsletterCTA";
 export const metadata: Metadata = {
   title: t("cs", "page.about.title"),
   description:
-    "Jsem Petr Majer — frontend vývojář a grilař z Prahy. Griluju přes 10 let na Weber Kettle. Tady píšu o tom, co funguje.",
+    "Jsem Petr Majer — frontendový vývojář a grilař z Prahy. Griluju přes 10 let, hlavně na Weberu. Tady píšu o tom, co funguje.",
   alternates: {
     canonical: `${siteConfig.url}/o-mne`,
   },
@@ -27,8 +27,8 @@ const values = [
   },
   {
     icon: <Ruler size={20} className="text-heat" />,
-    title: "Bez bullshitu",
-    text: "Žádné sponzorované nadšení, žádné affiliate jako jediný důvod recenze.",
+    title: "Škálovatelné recepty",
+    text: "Množství ingrediencí vždy vztažené k váze masa. Žádné \u201ešpetka soli\u201c.",
   },
 ];
 
@@ -36,17 +36,17 @@ const timeline = [
   {
     year: "2013",
     title: "První gril",
-    text: "Levný uhláč z hypermarketu, spálené kuřecí, hodně kouře. Zápal byl ale od první minuty.",
+    text: "Levný uhláč z hypermarketu, spálené kuřecí, hodně kouře. Chytilo mě to ale hned.",
   },
   {
     year: "2015",
     title: "Weber Kettle",
-    text: "Přechod na Weber 47 cm. První pochopení nepřímého grilování, první slušný steak.",
+    text: "Weber 47 cm — první skutečný gril. Nepřímé grilování, první slušný steak.",
   },
   {
     year: "2017",
     title: "Weber Master-Touch 57 cm",
-    text: "Upgrade na větší gril, který používám dodnes. Snake metoda, delší relace, první výsledky, které stálo za to ukazovat.",
+    text: "Přechod na větší gril, který používám dodnes. Metoda snake, první vícehodinové grilování, první výsledky, které stály za to ukazovat.",
   },
   {
     year: "2018",
@@ -56,7 +56,7 @@ const timeline = [
   {
     year: "2020",
     title: "Brisket",
-    text: "14 hodin přes noc. Hrudí z české řeznictví, hickory štěpky. Výsledek byl dost dobrý na to, aby jsem to chtěl opakovat.",
+    text: "14 hodin přes noc. Hrudí z českého řeznictví, štěpky hickory. Výsledek stál za to.",
   },
   {
     year: "2024",
@@ -114,8 +114,8 @@ export default function AboutPage() {
               </p>
               <p className="text-coal leading-relaxed mb-6">
                 Tenhle web je místo, kde sdílím konkrétní postupy, teploty a chyby, které jsem udělal —
-                aby je nemuseli dělat ostatní. Žádné sponzorované příspěvky, žádný bullshit.
-                Jen to, co funguje na mém dvorku.
+                aby je nemuseli dělat ostatní. Affiliate odkazy jsou vždy označené a moje doporučení
+                vychází z vlastní zkušenosti, ne z provize.
               </p>
               <Link
                 href="/recepty"
@@ -210,7 +210,7 @@ export default function AboutPage() {
             className="text-center mb-12 max-w-md mx-auto"
             style={{ color: "rgba(245,240,235,0.55)" }}
           >
-            To, s čím pracuji každý den. Žádné partnerství — všechno koupené za vlastní.
+            To, s čím pravidelně pracuji na grilu.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {equipment.map((e) => (

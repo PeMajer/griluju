@@ -41,7 +41,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     // Author
     // PLACEHOLDER: author.bio — vyplň po doplnění osobního příběhu (docs/todo/README.md)
     "author.bio":
-      "Griluju přes 10 let na Weber Kettle. Specializuji se na pomalé grilování, pulled pork, brisket a steaky metodou reverse sear.",
+      "Griluju přes 10 let, hlavně na Weberu. Specializuji se na pomalé grilování, pulled pork, brisket a steaky metodou reverse sear.",
 
     // Footer
     "footer.privacy": "Ochrana soukromí",

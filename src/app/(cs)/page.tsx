@@ -55,7 +55,7 @@ export default function HomePage() {
               <em className="text-heat whitespace-nowrap">které funguje</em>
             </h1>
             <p className="mb-8 text-lg leading-relaxed max-w-md" style={{ color: "var(--dark-fg-muted)" }}>
-              Recepty, návody a tipy z vlastní zkušenosti. Bez bullshitu.
+              Recepty, návody a tipy z vlastní zkušenosti. Konkrétní čísla, reálné chyby.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
@@ -116,11 +116,10 @@ export default function HomePage() {
               </h2>
               <p className="mb-4 max-w-md md:mx-0 mx-auto text-lg leading-relaxed" style={{ color: "var(--dark-fg-muted)" }}>
                 Interaktivní tabulka s doporučenými teplotami pro různé druhy masa
-                s přepínáním °C/°F. Už nikdy nepřepálíte steak.
+                s přepínáním °C/°F. Přesná teplota, ne odhad.
               </p>
               <p className="mb-8 max-w-md md:mx-0 mx-auto leading-relaxed" style={{ color: "var(--dark-fg-muted)" }}>
-                Teploty platí pro hovězí, vepřové, drůbež i ryby. Vychází z vlastní praxe
-                i doporučení profesionálních grillmasterů.
+                Teploty platí pro hovězí, vepřové, drůbež i ryby. Vychází z vlastní praxe.
               </p>
               <Link
                 href="/teploty-masa"
@@ -189,9 +188,8 @@ export default function HomePage() {
             „Nejlepší jídlo je to, u kterého stojíte s pivem v ruce."
           </p>
           <p className="text-stone leading-relaxed mb-6">
-            Griluji přes 10 let na Weber Kettle. Píšu o tom, co funguje a co ne.
-            Žádné sponzorované příspěvky, žádný bullshit — jen poctivé zkušenosti
-            z vlastního dvorku.
+            Griluju přes 10 let, hlavně na Weberu. Píšu o tom, co funguje a co ne —
+            s konkrétními teplotami, časy a chybami ze zkušenosti.
           </p>
           <div className="flex flex-wrap justify-center gap-2 mb-6">
             {["Weber Kettle", "Low & Slow", "BBQ", "Hovězí", "Vepřové"].map((tag) => (
