@@ -5,7 +5,7 @@ import { CategoryPage } from "@/components/layout/CategoryPage";
 
 export const metadata: Metadata = {
   title: `Recenze — ${siteConfig.name}`,
-  description: "Recenze grilovacího vybavení, které osobně používám. Weber, teploměry, příslušenství — bez sponzorovaného nadšení.",
+  description: "Recenze grilovacího vybavení, které osobně používám. Grily, teploměry, příslušenství — z vlastní zkušenosti.",
   alternates: { canonical: `${siteConfig.url}/recenze` },
 };
 
@@ -14,7 +14,7 @@ export default function RecenzePage() {
   return (
     <CategoryPage
       title="Recenze"
-      description="Vybavení, které osobně používám a mohu doporučit. Weber, teploměry, příslušenství — bez sponzorovaného nadšení."
+      description="Vybavení, které osobně používám a mohu doporučit. Grily, teploměry, příslušenství — z vlastní zkušenosti."
       posts={posts}
       locale="cs"
     />

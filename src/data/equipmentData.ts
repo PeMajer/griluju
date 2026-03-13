@@ -27,7 +27,7 @@ export const equipmentData: EquipmentCategory[] = [
     id: "grills",
     name: "Grily",
     icon: Flame,
-    description: "Od kompaktních kotlíků po velké offset smokery.",
+    description: "Kotlové grily a keramická kamada — to, s čím mám skutečnou zkušenost.",
     items: [
       {
         name: "Weber Kettle (57 cm)",

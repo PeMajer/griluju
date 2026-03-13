@@ -21,8 +21,8 @@ export function NewsletterCTA() {
           Recepty přímo do schránky
         </h2>
         <p className="mb-8 max-w-md mx-auto" style={{ color: "var(--dark-fg-muted)" }}>
-          Jednou týdně posílám nový recept, tip na vybavení nebo grilovací techniku.
-          Žádný spam, jen čisté BBQ.
+          Nové recepty, tipy na vybavení a grilovací techniky — přímo do schránky.
+          Bez spamu.
         </p>
 
         {/* Email form — Brevo integration in Phase 2 */}
@@ -59,7 +59,7 @@ export function NewsletterCTA() {
         {/* Benefits */}
         <div className="flex flex-col items-center gap-2">
           {[
-            "Nové recepty každý týden",
+            "Nové recepty a návody",
             "Tipy na vybavení pro odběratele",
             "Žádný spam, slibuji",
           ].map((benefit) => (

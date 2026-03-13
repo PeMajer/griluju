@@ -116,11 +116,10 @@ export default function HomePage() {
               </h2>
               <p className="mb-4 max-w-md md:mx-0 mx-auto text-lg leading-relaxed" style={{ color: "var(--dark-fg-muted)" }}>
                 Interaktivní tabulka s doporučenými teplotami pro různé druhy masa
-                s přepínáním °C/°F. Už nikdy nepřepálíte steak.
+                s přepínáním °C/°F. Přesná teplota, ne odhad.
               </p>
               <p className="mb-8 max-w-md md:mx-0 mx-auto leading-relaxed" style={{ color: "var(--dark-fg-muted)" }}>
-                Teploty platí pro hovězí, vepřové, drůbež i ryby. Vychází z vlastní praxe
-                i ověřených zahraničních zdrojů.
+                Teploty platí pro hovězí, vepřové, drůbež i ryby. Vychází z vlastní praxe.
               </p>
               <Link
                 href="/teploty-masa"
