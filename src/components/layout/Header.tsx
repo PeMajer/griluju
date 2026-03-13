@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
-  Flame,
   UtensilsCrossed,
   BookOpen,
   Star,
@@ -98,26 +98,26 @@ export function Header({ locale }: HeaderProps) {
     <>
       <header
         className={`sticky top-0 z-[60] backdrop-blur-md transition-all duration-300 border-b ${
-          scrolled ? "shadow-lg" : "border-transparent"
+          scrolled && !mobileOpen ? "shadow-lg" : "border-transparent"
         }`}
         style={{
           backgroundColor: "var(--bg-nav)",
-          borderColor: scrolled ? "var(--smoke)" : "transparent",
+          borderColor: scrolled && !mobileOpen ? "var(--smoke)" : "transparent",
         }}
       >
         <div className="mx-auto flex max-w-[75rem] items-center justify-between h-16 px-6">
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2 transition-colors duration-150 hover:opacity-80"
+            className="flex items-center transition-transform duration-200 hover:scale-105"
           >
-            <Flame size={22} className="text-heat shrink-0" />
-            <span
-              className="font-display text-xl text-coal"
-              style={{ fontStyle: "italic", fontWeight: 700 }}
-            >
-              griluju
-            </span>
+            <Image
+              src="/images/logo.webp"
+              alt="griluju.cz"
+              width={160}
+              height={40}
+              priority
+            />
           </Link>
 
           {/* Desktop navigation */}
