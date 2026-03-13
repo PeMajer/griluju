@@ -109,7 +109,7 @@ export function Header({ locale }: HeaderProps) {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center transition-opacity duration-150 hover:opacity-80"
+            className="flex items-center transition-transform duration-200 hover:scale-105"
           >
             <Image
               src="/images/logo.webp"
