@@ -5,8 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   Flame,
-  Menu,
-  X,
   UtensilsCrossed,
   BookOpen,
   Star,
@@ -15,6 +13,50 @@ import {
   ChevronRight,
   Mail,
 } from "lucide-react";
+
+function HamburgerIcon({ open }: { open: boolean }) {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      aria-hidden="true"
+    >
+      {/* Top line → rotates to form top arm of X */}
+      <line
+        x1="3" y1="6" x2="21" y2="6"
+        style={{
+          transformOrigin: "12px 6px",
+          transition: "transform 0.35s cubic-bezier(0.32,0.72,0,1)",
+          transform: open ? "translateY(6px) rotate(45deg)" : "none",
+        }}
+      />
+      {/* Middle line → fades out */}
+      <line
+        x1="3" y1="12" x2="21" y2="12"
+        style={{
+          transformOrigin: "12px 12px",
+          transition: "transform 0.35s cubic-bezier(0.32,0.72,0,1), opacity 0.2s ease",
+          transform: open ? "scaleX(0)" : "none",
+          opacity: open ? 0 : 1,
+        }}
+      />
+      {/* Bottom line → rotates to form bottom arm of X */}
+      <line
+        x1="3" y1="18" x2="21" y2="18"
+        style={{
+          transformOrigin: "12px 18px",
+          transition: "transform 0.35s cubic-bezier(0.32,0.72,0,1)",
+          transform: open ? "translateY(-6px) rotate(-45deg)" : "none",
+        }}
+      />
+    </svg>
+  );
+}
 import { type Locale, t } from "@/lib/i18n";
 import { Navigation } from "./Navigation";
 
@@ -95,7 +137,7 @@ export function Header({ locale }: HeaderProps) {
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={mobileOpen ? "Zavřít menu" : "Otevřít menu"}
             >
-              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+              <HamburgerIcon open={mobileOpen} />
             </button>
           </div>
         </div>
