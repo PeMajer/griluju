@@ -79,8 +79,10 @@ export default async function ArticlePage({
       />
 
       {/* Article header — breadcrumb, title, meta */}
-      <div className="mx-auto max-w-4xl px-4 pt-6 sm:px-6">
-        <ArticleHeader post={post} locale="cs" />
+      <div className="px-4 sm:px-6 pt-6">
+        <div className="mx-auto max-w-4xl">
+          <ArticleHeader post={post} locale="cs" />
+        </div>
       </div>
 
       {/* Full-width hero image */}

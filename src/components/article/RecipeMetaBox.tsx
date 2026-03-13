@@ -25,20 +25,22 @@ export function RecipeMetaBox({ post }: RecipeMetaBoxProps) {
   if (items.length === 0) return null;
 
   return (
-    <div className="mx-auto max-w-4xl px-4 sm:px-6 mb-14">
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-smoke rounded-2xl overflow-hidden border border-smoke">
-        {items.map((item) => (
-          <div
-            key={item.label}
-            className="bg-bg-card px-4 py-5 text-center flex flex-col items-center gap-2"
-          >
-            <item.icon size={20} className="text-heat" />
-            <span className="text-[11px] uppercase tracking-wider text-stone font-semibold">
-              {item.label}
-            </span>
-            <span className="text-sm font-semibold text-coal">{item.value}</span>
-          </div>
-        ))}
+    <div className="px-4 sm:px-6 mb-14">
+      <div className="mx-auto max-w-4xl">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-smoke rounded-2xl overflow-hidden border border-smoke">
+          {items.map((item) => (
+            <div
+              key={item.label}
+              className="bg-bg-card px-4 py-5 text-center flex flex-col items-center gap-2"
+            >
+              <item.icon size={20} className="text-heat" />
+              <span className="text-[11px] uppercase tracking-wider text-stone font-semibold">
+                {item.label}
+              </span>
+              <span className="text-sm font-semibold text-coal">{item.value}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
