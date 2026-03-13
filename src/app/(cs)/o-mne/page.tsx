@@ -8,7 +8,7 @@ import { NewsletterCTA } from "@/components/ui/NewsletterCTA";
 export const metadata: Metadata = {
   title: t("cs", "page.about.title"),
   description:
-    "Jsem Petr Majer — frontend vývojář a grilař z Prahy. Griluju přes 10 let na Weber Kettle. Tady píšu o tom, co funguje.",
+    "Jsem Petr Majer — frontendový vývojář a grilař z Prahy. Griluju přes 10 let, hlavně na Weberu. Tady píšu o tom, co funguje.",
   alternates: {
     canonical: `${siteConfig.url}/o-mne`,
   },
@@ -41,12 +41,12 @@ const timeline = [
   {
     year: "2015",
     title: "Weber Kettle",
-    text: "Přechod na Weber 47 cm. První pochopení nepřímého grilování, první slušný steak.",
+    text: "Weber 47 cm — první skutečný gril. První pochopení nepřímého grilování, první slušný steak.",
   },
   {
     year: "2017",
     title: "Weber Master-Touch 57 cm",
-    text: "Upgrade na větší gril, který používám dodnes. Snake metoda, delší relace, první výsledky, které stálo za to ukazovat.",
+    text: "Přechod na větší gril, který používám dodnes. Metoda snake, první vícehodinové grilování, první výsledky, které stálo za to ukazovat.",
   },
   {
     year: "2018",
@@ -56,7 +56,7 @@ const timeline = [
   {
     year: "2020",
     title: "Brisket",
-    text: "14 hodin přes noc. Hrudí z české řeznictví, hickory štěpky. Výsledek byl dost dobrý na to, aby jsem to chtěl opakovat.",
+    text: "14 hodin přes noc. Hrudí z českého řeznictví, štěpky hickory. Výsledek byl dost dobrý na to, abych to chtěl opakovat.",
   },
   {
     year: "2024",

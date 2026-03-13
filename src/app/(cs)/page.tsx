@@ -189,7 +189,7 @@ export default function HomePage() {
             „Nejlepší jídlo je to, u kterého stojíte s pivem v ruce."
           </p>
           <p className="text-stone leading-relaxed mb-6">
-            Griluji přes 10 let na Weber Kettle. Píšu o tom, co funguje a co ne —
+            Griluju přes 10 let, hlavně na Weberu. Píšu o tom, co funguje a co ne —
             s konkrétními teplotami, časy a chybami ze zkušenosti.
           </p>
           <div className="flex flex-wrap justify-center gap-2 mb-6">
