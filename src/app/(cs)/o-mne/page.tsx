@@ -27,8 +27,8 @@ const values = [
   },
   {
     icon: <Ruler size={20} className="text-heat" />,
-    title: "Bez bullshitu",
-    text: "Žádné sponzorované nadšení, žádné affiliate jako jediný důvod recenze.",
+    title: "Škálovatelné recepty",
+    text: "Množství ingrediencí vždy vztažené k váze masa. Žádné \u201ešpetka soli\u201c.",
   },
 ];
 
@@ -114,8 +114,8 @@ export default function AboutPage() {
               </p>
               <p className="text-coal leading-relaxed mb-6">
                 Tenhle web je místo, kde sdílím konkrétní postupy, teploty a chyby, které jsem udělal —
-                aby je nemuseli dělat ostatní. Žádné sponzorované příspěvky, žádný bullshit.
-                Jen to, co funguje na mém dvorku.
+                aby je nemuseli dělat ostatní. Affiliate odkazy jsou vždy označené a moje doporučení
+                vychází z vlastní zkušenosti, ne z provize.
               </p>
               <Link
                 href="/recepty"
@@ -210,7 +210,7 @@ export default function AboutPage() {
             className="text-center mb-12 max-w-md mx-auto"
             style={{ color: "rgba(245,240,235,0.55)" }}
           >
-            To, s čím pracuji každý den. Žádné partnerství — všechno koupené za vlastní.
+            To, s čím pravidelně pracuji na grilu.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {equipment.map((e) => (

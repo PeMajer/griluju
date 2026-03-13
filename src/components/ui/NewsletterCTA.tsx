@@ -51,9 +51,9 @@ export function NewsletterCTA() {
           </button>
         </form>
 
-        {/* Social proof */}
+        {/* Consent */}
         <p className="text-xs mb-6" style={{ color: "var(--dark-fg-muted)" }}>
-          Odebírá 1 200+ čtenářů · Přihlášením souhlasíte se zpracováním e-mailu.
+          Přihlášením souhlasíte se zpracováním e-mailu.
         </p>
 
         {/* Benefits */}
