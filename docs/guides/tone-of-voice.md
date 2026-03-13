@@ -57,6 +57,24 @@ Krátké věty. Aktivum. Konkrétní podmět.
 | Doufám, že se vám recept líbil. | *(přeskočte úplně)* |
 | Grilovani je skvělý způsob... | *(nikdy)* |
 
+### Přirozená čeština — časté chyby
+
+**Cizí značky a názvy** — skloňovat, nebo větu přestrukturovat:
+- "Griluju na Weber Kettle" → "Griluju na Weberu" / "Mám Weber Kettle"
+- "Pracuju na MacBooku" → "Pracuju na Macu"
+
+**Anglicismy nahradit tam, kde existuje český ekvivalent:**
+- "upgrade" → "přechod", "výměna"
+- "relace" (ve smyslu session) → "grilování", "sezení"
+- "frontend vývojář" → "frontendový vývojář"
+
+**Gramatické shody:**
+- "aby jsem" → "abych" (první osoba jednotného čísla)
+- Přívlastek musí souhlasit s rodem podstatného jména: "z českého řeznictví", ne "z české řeznictví"
+
+**Pořadí přívlastku u cizích výrazů:**
+- "hickory štěpky" → "štěpky hickory" (cizí přívlastek za podstatným jménem)
+
 ---
 
 ## Humor
