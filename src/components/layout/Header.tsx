@@ -98,11 +98,11 @@ export function Header({ locale }: HeaderProps) {
     <>
       <header
         className={`sticky top-0 z-[60] backdrop-blur-md transition-all duration-300 border-b ${
-          scrolled ? "shadow-lg" : "border-transparent"
+          scrolled && !mobileOpen ? "shadow-lg" : "border-transparent"
         }`}
         style={{
           backgroundColor: "var(--bg-nav)",
-          borderColor: scrolled ? "var(--smoke)" : "transparent",
+          borderColor: scrolled && !mobileOpen ? "var(--smoke)" : "transparent",
         }}
       >
         <div className="mx-auto flex max-w-[75rem] items-center justify-between h-16 px-6">
