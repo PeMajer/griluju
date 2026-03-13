@@ -74,6 +74,7 @@ Krátké věty. Aktivum. Konkrétní podmět.
 
 **Pořadí přívlastku u cizích výrazů:**
 - "hickory štěpky" → "štěpky hickory" (cizí přívlastek za podstatným jménem)
+- Nebo rozvinout: "štěpky ze dřeva hickory", "gril značky Weber"
 
 ---
 
