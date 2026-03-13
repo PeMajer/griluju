@@ -8,7 +8,7 @@ Reference pro psaní článků a UI textů. Platí pro Layer-1 i Layer-2 obsah.
 
 Primárně **začátečníci až mírně pokročilí** grilaři. Člověk, který má gril, chce ho používat správně a nechce číst vágní rady. Hledá konkrétní postup — teplotu, čas, váhu — ne inspiraci.
 
-Nepíšeme pro pitmastery ani restaurační kuchaře. Píšeme pro lidi, co grilují o víkendu a chtějí to dělat dobře.
+Nepíšeme pro profesionální BBQ grilaře ani restaurační kuchaře. Píšeme pro lidi, co grilují o víkendu a chtějí to dělat dobře.
 
 ---
 
@@ -37,9 +37,9 @@ Toto je věc, která odlišuje griluju.cz od ostatních českých grilovacích w
 | chvíli počkejte | 3 minuty, víko zavřené |
 | větší kus masa | 1,5–2 kg |
 
-**Škálovatelné recepty** — pokud se množství ingrediencí váže na hmotnost masa, napište to explicitně:
+**Škálovatelné recepty** — pokud se množství ingrediencí váže na hmotnost masa, napište to výslovně:
 - "2 lžíce soli na každý kilogram masa" — ne "2 lžíce soli"
-- "1 hrst štěpků na hodinu uzení" — ne "přidejte štěpky"
+- "2 polévkové lžíce štěpků na hodinu uzení" — ne "přidejte štěpky"
 
 Čtenář musí být schopný recept přepočítat na jiné množství bez hádání.
 
@@ -92,7 +92,7 @@ Příklad špatného použití:
 
 ### H2 sekce
 
-Každá sekce = jeden konkrétní krok nebo problém. Flowing text tam kde je vysvětlení, seznam tam kde jsou ingredience nebo seřazené kroky.
+Každá sekce = jeden konkrétní krok nebo problém. Plynulý text tam, kde jde o vysvětlení; seznam tam, kde jsou ingredience nebo seřazené kroky.
 
 ### Závěr
 
@@ -108,9 +108,9 @@ Každý Layer-1 článek musí mít alespoň jeden odstavec z první osoby s kon
 > Já osobně mám pulled pork velmi rád.
 
 **Stačí:**
-> Texas crutch dělám jen pokud začínám pozdě — jinak nechám maso jít volně a bark je pak pevnější.
+> Texas crutch dělám jen pokud začínám pozdě — jinak nechám maso bez zábalení a kůrka je pak pevnější.
 
-Funguje nejlépe pokud zmiňuje: konkrétní volbu a důvod, nebo chybu a co z ní vzešlo.
+Nejlépe funguje, pokud zmiňuje konkrétní volbu a důvod, nebo chybu a co z ní vzešlo.
 
 ---
 
@@ -120,11 +120,11 @@ Funguje nejlépe pokud zmiňuje: konkrétní volbu a důvod, nebo chybu a co z n
 
 - Vždy: přesné teploty, časy, váhy, množství v lžících/gramech
 - Škálovatelné množství kde to dává smysl
-- Tabulka fází (čas × vnitřní teplota) pro long-cook recepty
+- Tabulka fází (čas × vnitřní teplota) pro recepty na pomalé grilování
 - Frontmatter: `servings`, `prepTime`, `grillTime`, `internalTemp`, `difficulty` — vždy vyplnit
-- Tip boxy pro klíčové hodnoty, warning boxy pro nejčastější chyby
+- Informační rámečky (tip box) pro klíčové hodnoty, varovné rámečky (warning box) pro nejčastější chyby
 
-### Navody (how-to)
+### Návody
 
 - Číslované kroky kde záleží na pořadí
 - Každý krok = jedna akce
@@ -140,8 +140,8 @@ Funguje nejlépe pokud zmiňuje: konkrétní volbu a důvod, nebo chybu a co z n
 ### Srovnání
 
 - Kritéria předem — čtenář ví podle čeho srovnáváme
-- Tabulka pro přehled, prose pro nuance
-- Doporučení podle use case, ne jedno absolutní vítěz
+- Tabulka pro přehled, plynulý text pro nuance
+- Doporučení podle situace čtenáře, ne jedno absolutní vítěz
 
 ---
 
@@ -156,7 +156,7 @@ Funguje nejlépe pokud zmiňuje: konkrétní volbu a důvod, nebo chybu a co z n
 | "Neváhejte vyzkoušet" | Marketingový tón |
 | "Jednoduše a rychle" | Subjektivní, nic neříká |
 | "Tipy a triky" jako H2 | Obecné, nesdělné |
-| "Závěrem lze říci" | Bureaucratic filler |
+| "Závěrem lze říci" | Kancelářský žargon |
 | "Jako jazykový model AI" | Nikdy |
 
 ---
@@ -180,7 +180,7 @@ Funguje nejlépe pokud zmiňuje: konkrétní volbu a důvod, nebo chybu a co z n
 
 ## Kontrolní seznam před odevzdáním
 
-- [ ] Intro se dostane k věci do 3 vět bez filler
+- [ ] Intro se dostane k věci do 3 vět bez zbytečného úvodu
 - [ ] Všechna množství jsou konkrétní (gramy, lžíce, °C, minuty)
 - [ ] Škálovatelné množství tam kde záleží na hmotnosti masa
 - [ ] Layer-1: osobní zkušenost s konkrétním detailem nebo chybou
