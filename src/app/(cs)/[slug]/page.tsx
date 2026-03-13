@@ -103,17 +103,21 @@ export default async function ArticlePage({
       {post.category === "recepty" && <RecipeMetaBox post={post} />}
 
       {/* Narrow article body */}
-      <article className="mx-auto max-w-[680px] px-4 sm:px-6">
-        {post.affiliate && <AffiliateDisclosure locale="cs" />}
+      <div className="px-4 sm:px-6">
+        <article className="mx-auto max-w-[690px]">
+          {post.affiliate && <AffiliateDisclosure locale="cs" />}
 
-        <div className="prose max-w-none">
-          <MDXContent code={post.mdx} />
-        </div>
-      </article>
+          <div className="prose max-w-none">
+            <MDXContent code={post.mdx} />
+          </div>
+        </article>
+      </div>
 
       {/* Author box — outside article, own container */}
-      <div className="mx-auto max-w-[680px] px-4 sm:px-6 py-14">
-        <AuthorBio locale="cs" />
+      <div className="px-4 sm:px-6 py-14">
+        <div className="mx-auto max-w-[690px]">
+          <AuthorBio locale="cs" />
+        </div>
       </div>
 
       {/* Related articles */}
