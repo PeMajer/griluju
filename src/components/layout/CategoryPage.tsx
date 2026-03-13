@@ -2,6 +2,7 @@ import type { Post } from "@/lib/content";
 import type { Locale } from "@/lib/i18n";
 import { ArticleGrid } from "@/components/article/ArticleGrid";
 import { CategoryFilterGrid } from "@/components/article/CategoryFilterGrid";
+import { NewsletterCTA } from "@/components/ui/NewsletterCTA";
 
 interface CategoryPageProps {
   title: string;
@@ -28,6 +29,7 @@ export function CategoryPage({
   const resolvedMoreHeading = moreHeading ?? `Další ${title.toLowerCase()}`;
 
   return (
+    <>
     <section className="mx-auto max-w-[75rem] px-6 pt-12 pb-24">
       {/* Page header */}
       <div className="mb-12">
@@ -59,5 +61,8 @@ export function CategoryPage({
         />
       )}
     </section>
+
+    <NewsletterCTA />
+    </>
   );
 }

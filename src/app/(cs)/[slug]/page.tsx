@@ -9,6 +9,7 @@ import { RecipeMetaBox } from "@/components/article/RecipeMetaBox";
 import { AuthorBio } from "@/components/article/AuthorBio";
 import { AffiliateDisclosure } from "@/components/article/AffiliateDisclosure";
 import { RelatedArticles } from "@/components/article/RelatedArticles";
+import { NewsletterCTA } from "@/components/ui/NewsletterCTA";
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
@@ -122,6 +123,9 @@ export default async function ArticlePage({
 
       {/* Related articles */}
       <RelatedArticles posts={related} locale="cs" />
+
+      {/* Newsletter CTA */}
+      <NewsletterCTA />
     </>
   );
 }
