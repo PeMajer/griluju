@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { MDXContent } from "@content-collections/mdx/react";
 import { getAllPosts, getPostBySlug, getRelatedPosts } from "@/lib/content";
 import { siteConfig } from "@/lib/i18n";
 import { ArticleHeader } from "@/components/article/ArticleHeader";
+import { RecipeMetaBox } from "@/components/article/RecipeMetaBox";
 import { AuthorBio } from "@/components/article/AuthorBio";
 import { AffiliateDisclosure } from "@/components/article/AffiliateDisclosure";
 import { RelatedArticles } from "@/components/article/RelatedArticles";
-import { NewsletterCTA } from "@/components/ui/NewsletterCTA";
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
@@ -77,24 +78,49 @@ export default async function ArticlePage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
       />
 
-      {/* Wide header — breadcrumb, title, meta, hero image */}
-      <div className="mx-auto max-w-5xl px-4 pt-10 sm:px-6">
-        <ArticleHeader post={post} locale="cs" />
+      {/* Article header — breadcrumb, title, meta */}
+      <div className="px-4 sm:px-6 pt-6">
+        <div className="mx-auto max-w-4xl">
+          <ArticleHeader post={post} locale="cs" />
+        </div>
       </div>
 
-      {/* Narrow article body */}
-      <article className="mx-auto max-w-3xl px-4 pb-10 sm:px-6">
-        {post.affiliate && <AffiliateDisclosure locale="cs" />}
-
-        <div className="prose max-w-none">
-          <MDXContent code={post.mdx} />
+      {/* Full-width hero image */}
+      {post.image && (
+        <div className="mb-14">
+          <Image
+            src={post.image}
+            alt={post.title}
+            width={1600}
+            height={900}
+            priority
+            className="w-full aspect-[4/3] md:aspect-video object-cover max-h-[600px]"
+          />
         </div>
+      )}
 
-        <AuthorBio locale="cs" />
-      </article>
+      {/* Recipe meta box — only shown when meta fields are present */}
+      {post.category === "recepty" && <RecipeMetaBox post={post} />}
 
-      {/* Full-width sections below article */}
-      <NewsletterCTA />
+      {/* Narrow article body */}
+      <div className="px-4 sm:px-6">
+        <article className="mx-auto max-w-[690px]">
+          {post.affiliate && <AffiliateDisclosure locale="cs" />}
+
+          <div className="prose max-w-none">
+            <MDXContent code={post.mdx} />
+          </div>
+        </article>
+      </div>
+
+      {/* Author box — outside article, own container */}
+      <div className="px-4 sm:px-6 py-14">
+        <div className="mx-auto max-w-[690px]">
+          <AuthorBio locale="cs" />
+        </div>
+      </div>
+
+      {/* Related articles */}
       <RelatedArticles posts={related} locale="cs" />
     </>
   );

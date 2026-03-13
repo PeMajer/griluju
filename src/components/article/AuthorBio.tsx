@@ -1,37 +1,35 @@
+import Image from "next/image";
 import Link from "next/link";
-import { type Locale, t, siteConfig } from "@/lib/i18n";
+import { type Locale, siteConfig } from "@/lib/i18n";
 
+// locale kept for future i18n, unused for now
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface AuthorBioProps {
   locale: Locale;
 }
 
-export function AuthorBio({ locale }: AuthorBioProps) {
+export function AuthorBio({ locale: _locale }: AuthorBioProps) {
   return (
-    <div
-      className="mt-8 rounded-xl p-6 bg-bg-warm border border-smoke"
-    >
-      <div className="flex items-start gap-4">
-        {/* Avatar placeholder — replace with real photo */}
-        <div className="h-14 w-14 shrink-0 rounded-full bg-heat-lt flex items-center justify-center text-2xl">
-          👨‍🍳
-        </div>
-        <div>
-          <Link
-            href="/o-mne"
-            className="font-display font-semibold text-coal hover:text-heat transition-colors duration-150"
-          >
-            {siteConfig.author}
-          </Link>
-          <p className="mt-1 text-sm text-stone leading-relaxed">
-            {t(locale, "author.bio")}
-          </p>
-          <Link
-            href="/o-mne"
-            className="mt-2 inline-block text-sm font-medium text-heat hover:text-heat-dk transition-colors duration-150"
-          >
-            Číst více →
-          </Link>
-        </div>
+    <div className="rounded-2xl p-8 flex items-start gap-5 border border-smoke" style={{ backgroundColor: "var(--bg-warm)" }}>
+      <Image
+        src="/images/author/petr.jpg"
+        alt={siteConfig.author}
+        width={56}
+        height={56}
+        className="h-14 w-14 rounded-full object-cover flex-shrink-0"
+      />
+      <div>
+        <h3 className="text-lg text-coal mb-1">{siteConfig.author}</h3>
+        <p className="text-sm text-stone leading-relaxed mb-3">
+          Griluji přes 10 let na Weber Kettle. Specializuji se na pomalé grilování,
+          pulled pork, brisket a steaky metodou reverse sear.
+        </p>
+        <Link
+          href="/o-mne"
+          className="text-sm font-semibold text-heat hover:underline"
+        >
+          Číst více →
+        </Link>
       </div>
     </div>
   );

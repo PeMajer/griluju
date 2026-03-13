@@ -7,57 +7,118 @@ import { type Locale, t } from "@/lib/i18n";
 interface ArticleCardProps {
   post: Post;
   locale: Locale;
+  featured?: boolean;
+  animationDelay?: number;
+  /** Override the badge label (e.g. meat type on category page). Falls back to translated category. */
+  badgeLabel?: string;
+  /** Hide the category badge entirely (e.g. single-category pages where all badges are identical) */
+  hideBadge?: boolean;
 }
 
-export function ArticleCard({ post, locale }: ArticleCardProps) {
+function estimateReadTime(content: string): number {
+  return Math.max(1, Math.round(content.trim().split(/\s+/).length / 200));
+}
+
+function getCategoryColor(label: string): string {
+  switch (label.toLowerCase()) {
+    // Content types
+    case "recepty":     return "hsl(16,82%,50%)";   // --heat orange
+    case "navod":
+    case "návod":       return "hsl(165,50%,32%)";  // forest green
+    case "recenze":     return "hsl(215,55%,42%)";  // steel blue
+    case "srovnani":
+    case "srovnání":    return "hsl(280,40%,38%)";  // purple
+    // Meat types
+    case "hovězí":      return "hsl(0,65%,38%)";    // dark red
+    case "vepřové":     return "hsl(28,70%,40%)";   // brown-orange
+    case "drůbež":      return "hsl(42,75%,42%)";   // amber
+    case "ryby":        return "hsl(200,60%,40%)";  // teal blue
+    case "zelenina":    return "hsl(130,45%,35%)";  // green
+    case "jehněčí":     return "hsl(280,40%,38%)";  // purple
+    default:            return "hsl(16,82%,50%)";   // --heat fallback
+  }
+}
+
+export function ArticleCard({ post, locale, featured = false, animationDelay, badgeLabel, hideBadge = false }: ArticleCardProps) {
+  const readTime = estimateReadTime(post.content);
+  const badge = badgeLabel ?? t(locale, `category.${post.category}`);
+  const badgeColor = getCategoryColor(badgeLabel ?? post.category);
+
   return (
-    <article className="article-card group flex flex-col overflow-hidden rounded-xl border border-smoke bg-bg-card hover:border-heat">
-      {/* Image */}
-      <Link href={`/${post.slug}`} className="block overflow-hidden">
-        {post.image ? (
-          <Image
-            src={post.image}
-            alt={post.title}
-            width={640}
-            height={360}
-            className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-        ) : (
-          <div className="aspect-video w-full bg-bg-warm flex items-center justify-center">
-            <span className="text-3xl opacity-50">🔥</span>
-          </div>
+    <article
+      className={`animate-fade-up ${featured ? "h-full flex flex-col" : ""}`}
+      style={animationDelay ? { animationDelay: `${animationDelay}ms` } : undefined}
+    >
+      <Link
+        href={`/${post.slug}`}
+        className={`group block hover:-translate-y-1 transition-transform duration-200 ${featured ? "flex flex-col flex-1" : ""}`}
+      >
+        {/* Image container */}
+        <div
+          className={`relative overflow-hidden rounded-2xl mb-4 ${
+            featured ? "flex-1 min-h-0 aspect-[3/4] lg:aspect-auto lg:min-h-64" : "aspect-[3/4]"
+          }`}
+        >
+          {post.image ? (
+            <Image
+              src={post.image}
+              alt={post.title}
+              fill
+              sizes={featured ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"}
+              className="object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500"
+            />
+          ) : (
+            <div
+              className="w-full h-full flex items-center justify-center"
+              style={{ backgroundColor: "var(--bg-warm)" }}
+            >
+              <span className="text-5xl opacity-40">🔥</span>
+            </div>
+          )}
+
+          {/* Badge — bottom left, color by content/meat type */}
+          {!hideBadge && (
+            <span
+              className="absolute bottom-3 left-3 text-[11px] font-semibold uppercase tracking-wider text-white px-2.5 py-1 rounded-full z-10"
+              style={{ backgroundColor: badgeColor }}
+            >
+              {badge}
+            </span>
+          )}
+        </div>
+
+        {/* Text — outside image */}
+        <h3
+          className={`font-display mt-1 mb-2 text-coal group-hover:text-heat transition-colors duration-200 ${
+            featured ? "text-2xl md:text-3xl leading-tight" : "text-xl leading-7"
+          }`}
+          style={{ fontWeight: 700 }}
+        >
+          {post.title}
+        </h3>
+
+        {post.description && (
+          <p className={`text-stone mb-3 leading-relaxed ${featured ? "line-clamp-3" : "text-sm line-clamp-2"}`}>
+            {post.description}
+          </p>
         )}
-      </Link>
 
-      {/* Content */}
-      <div className="flex flex-col flex-1 p-6">
-        {/* Category badge */}
-        <span className="mb-3 inline-block font-mono text-xs uppercase tracking-wider text-heat bg-heat-lt px-2 py-1 rounded w-fit">
-          {t(locale, `category.${post.category}`)}
-        </span>
-
-        {/* Title */}
-        <h2 className="mb-2 font-display text-xl font-bold leading-snug text-coal group-hover:text-heat transition-colors duration-150">
-          <Link href={`/${post.slug}`}>{post.title}</Link>
-        </h2>
-
-        {/* Excerpt */}
-        <p className="text-sm text-stone line-clamp-2 flex-1 mb-4">{post.description}</p>
-
-        {/* Footer */}
-        <div className="flex items-center justify-between">
-          <span className="flex items-center gap-1 text-sm text-stone">
-            <Clock size={14} />
+        <div className="flex items-center justify-between text-xs text-stone">
+          <div className="flex items-center gap-3">
             <time dateTime={post.date}>
               {new Date(post.date).toLocaleDateString("cs-CZ")}
             </time>
-          </span>
+            <span className="flex items-center gap-1">
+              <Clock size={12} />
+              {readTime} min
+            </span>
+          </div>
           <ArrowRight
-            size={16}
-            className="text-heat transition-transform duration-150 group-hover:translate-x-1"
+            size={14}
+            className="text-heat opacity-0 group-hover:opacity-100 transition-opacity duration-200"
           />
         </div>
-      </div>
+      </Link>
     </article>
   );
 }
