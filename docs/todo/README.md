@@ -50,13 +50,7 @@ Doplň:
 
 ## 4. GA4 Tracking ID
 
-**Soubor:** `.env.local` (vytvoř pokud neexistuje)
-
-```
-NEXT_PUBLIC_GA4_ID=G-XXXXXXXXXX
-```
-
-Najdeš v: [analytics.google.com](https://analytics.google.com) → Admin → Data Streams → tvůj stream → Measurement ID
+**Stav: hotovo** — `.env.local` i Cloudflare env vars nastaveny.
 
 ---
 
@@ -93,12 +87,9 @@ Postupně nahrazuj vlastními WebP fotkami (max 150 kB, přirozené světlo, tma
 
 ---
 
-## 9. Vizuální QA — zkontroluj v prohlížeči (~15 min)
+## 9. Vizuální QA
 
-- [ ] Light mode vypadá OK
-- [ ] Dark mode toggle funguje (ikona v headeru)
-- [ ] Dark mode systémová preference funguje (macOS/Windows nastavení)
-- [ ] Mobilní zobrazení (reálný telefon, ne jen DevTools)
+**Stav: hotovo.**
 
 ---
 
