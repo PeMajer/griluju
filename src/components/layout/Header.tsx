@@ -114,7 +114,7 @@ export function Header({ locale }: HeaderProps) {
             <Image
               src="/images/logo.webp"
               alt="griluju.cz"
-              width={123}
+              width={145}
               height={68}
               priority
             />
