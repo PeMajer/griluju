@@ -22,7 +22,7 @@ Závislosti: `brew install exiftool imagemagick`
 
 ### 0. Odstranění Gemini vodoznaku
 
-Gemini přidává sparkle ikonu do pravého dolního rohu. Ořez spodních 3 % kompozici neporuší.
+Gemini přidává sparkle ikonu do pravého dolního rohu. Ořez 8 % ze spodku + 6 % zprava vodoznak odstraní beze stop.
 
 ```bash
 bash scripts/fix-exif.sh --crop-watermark ~/Downloads/ai-output.jpg

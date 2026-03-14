@@ -48,9 +48,9 @@ if [ "$1" = "--crop-watermark" ]; then
     exit 1
   fi
 
-  # Crop bottom 3% — removes Gemini sparkle watermark, keeps composition intact
-  convert "$FILE" -gravity South -chop 0x3% "$FILE"
-  echo "Done — cropped bottom 3% from $(basename "$FILE")"
+  # Crop bottom 8% + right 6% — removes Gemini sparkle watermark
+  convert "$FILE" -gravity SouthEast -chop 6%x8% "$FILE"
+  echo "Done — cropped bottom 8% + right 6% from $(basename "$FILE")"
   exit 0
 fi
 
@@ -87,19 +87,19 @@ if [ "$1" = "--from-original" ]; then
   # Copy all EXIF tags from original
   exiftool -overwrite_original -TagsFromFile "$ORIGINAL" -all:all "$TARGET" 2>/dev/null
 
-  # Read GPS from original and offset slightly (100-500m) for privacy
+  # Read GPS from original and offset ~10km for privacy
   ORIG_LAT=$(exiftool -GPSLatitude -n -s3 "$ORIGINAL" 2>/dev/null)
   ORIG_LON=$(exiftool -GPSLongitude -n -s3 "$ORIGINAL" 2>/dev/null)
 
   GPS_ARGS=()
   if [ -n "$ORIG_LAT" ] && [ -n "$ORIG_LON" ]; then
-    # Offset ~0.003 degrees (~300m), deterministic based on hash
-    LAT_OFFSET=$(echo "$HASH" | awk '{printf "%.4f", ($1 % 7 - 3) * 0.0005}')
-    LON_OFFSET=$(echo "$HASH" | awk '{printf "%.4f", (int($1/7) % 7 - 3) * 0.0005}')
+    # ~0.09 degrees ≈ 10km, direction varies deterministically by hash
+    LAT_OFFSET=$(echo "$HASH" | awk '{printf "%.4f", ($1 % 7 - 3) * 0.015}')
+    LON_OFFSET=$(echo "$HASH" | awk '{printf "%.4f", (int($1/7) % 7 - 3) * 0.015}')
     NEW_LAT=$(echo "$ORIG_LAT $LAT_OFFSET" | awk '{printf "%.6f", $1 + $2}')
     NEW_LON=$(echo "$ORIG_LON $LON_OFFSET" | awk '{printf "%.6f", $1 + $2}')
     GPS_ARGS=(-GPSLatitude="$NEW_LAT" -GPSLatitudeRef=N -GPSLongitude="$NEW_LON" -GPSLongitudeRef=E)
-    echo "GPS: ${ORIG_LAT},${ORIG_LON} → ${NEW_LAT},${NEW_LON} (offset ~300m)"
+    echo "GPS: ${ORIG_LAT},${ORIG_LON} → ${NEW_LAT},${NEW_LON} (offset ~10km)"
   fi
 
   # Strip AI software markers, shift date back using exiftool built-in arithmetic
