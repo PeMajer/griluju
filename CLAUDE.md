@@ -64,7 +64,7 @@ description: "SEO meta description, max 155 chars"
 date: "2026-03-15"
 updated: "2026-03-15"
 author: "Petr Majer"
-category: "recepty"        # recepty | navod | recenze | srovnani
+category: "recepty"        # recepty | navod | recenze
 keywords: ["pulled pork", "BBQ", "uzeni masa"]
 image: "/images/pulled-pork/hero.webp"
 affiliate: true            # shows affiliate disclosure
@@ -76,8 +76,7 @@ affiliate: true            # shows affiliate disclosure
 |-----------|-------------------|-----------------|---------------------|
 | recepty   | `recepty`         | `/recepty/`     | Recipes with steps  |
 | navod     | `navod`           | `/navody/`      | How-to guides       |
-| recenze   | `recenze`         | `/recenze/`     | Product reviews     |
-| srovnani  | `srovnani`        | `/srovnani/`    | Product comparisons |
+| recenze   | `recenze`         | `/recenze/`     | Product reviews and comparisons |
 
 ### Article body conventions
 
@@ -185,6 +184,23 @@ Stop and ask when:
 - For content tasks (new article): create the MDX file, verify frontmatter completeness, add internal links, then commit on a `content/slug` branch.
 - For code tasks: read → edit → lint → build check → commit.
 
+### Elegance Check
+
+For any non-trivial code change (new component, refactor, architectural decision), pause and ask:
+- "Is there a simpler way to achieve the same result?"
+- "Does this follow the existing pattern in the codebase, or am I introducing a new one unnecessarily?"
+
+Skip this for simple, obvious fixes — don't over-engineer.
+
+### Subagent Strategy
+
+Use subagents (Agent tool) to keep the main context window clean:
+- **Research & exploration**: finding files, understanding patterns, reading multiple files in parallel
+- **Parallel independent tasks**: e.g. checking two different parts of the codebase simultaneously
+- **Always use `model: "sonnet"`** when spawning subagents
+
+Don't use subagents for: simple file reads, single-file edits, or tasks that need the main context.
+
 ### Self-Verification Checklist
 
 Run through this before marking any task done:
@@ -227,7 +243,7 @@ When creating an article via GitHub Issue or prompt, use this structure:
 
 **Klicove slovo:** [hlavni KW]
 **Typ obsahu:** vrstva-1 / vrstva-2
-**Kategorie:** recepty / navod / recenze / srovnani
+**Kategorie:** recepty / navod / recenze
 **Cilova delka:** ~1500 / ~2500 slov
 **Affiliate produkty:** [produkty nebo kategorie]
 
@@ -243,6 +259,14 @@ When creating an article via GitHub Issue or prompt, use this structure:
 ## Fotka
 Typ: vlastni / Unsplash query: [vyraz]
 ```
+
+### Lessons Learned
+
+After any correction from the user, add a pattern to `docs/lessons.md`:
+- What went wrong
+- The rule to prevent it next time
+
+At the start of a new session, check `docs/lessons.md` for patterns relevant to the current task.
 
 ### Error Handling
 

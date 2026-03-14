@@ -26,8 +26,6 @@ function getCategoryColor(label: string): string {
     case "navod":
     case "návod":       return "hsl(165,50%,32%)";  // forest green
     case "recenze":     return "hsl(215,55%,42%)";  // steel blue
-    case "srovnani":
-    case "srovnání":    return "hsl(280,40%,38%)";  // purple
     // Meat types
     case "hovězí":      return "hsl(0,65%,38%)";    // dark red
     case "vepřové":     return "hsl(28,70%,40%)";   // brown-orange

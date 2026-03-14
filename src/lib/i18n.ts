@@ -27,7 +27,6 @@ export const translations: Record<Locale, Record<string, string>> = {
     "category.recepty": "Recepty",
     "category.navod": "Návody",
     "category.recenze": "Recenze",
-    "category.srovnani": "Srovnání",
 
     // Article
     "article.readMore": "Číst dál",

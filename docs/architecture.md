@@ -102,7 +102,7 @@ app/go/[product]/page.tsx → /go/weber-master-touch
   date: z.string(),
   updated: z.string().optional(),
   author: z.string(),
-  category: z.enum(["recepty", "navod", "recenze", "srovnani"]),
+  category: z.enum(["recepty", "navod", "recenze"]),
   keywords: z.array(z.string()),
   image: z.string().optional(),
   affiliate: z.boolean().default(false),

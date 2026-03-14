@@ -179,7 +179,7 @@ After 10-15 manual articles, start AI-assisted content production.
 
 **Klicove slovo:** [hlavni KW]
 **Typ obsahu:** vrstva-1 / vrstva-2
-**Kategorie:** recepty / navod / recenze / srovnani
+**Kategorie:** recepty / navod / recenze
 **Cilova delka:** ~1500 / ~2500 slov
 **Affiliate produkty:** [produkty nebo kategorie]
 
@@ -204,8 +204,7 @@ Typ: vlastni / Unsplash query: [vyraz]
 |------------|---------------|-----------------------|
 | recepty    | /recepty/     | Recipes with steps    |
 | navod      | /navody/      | How-to guides         |
-| recenze    | /recenze/     | Product reviews       |
-| srovnani   | /srovnani/    | Product comparisons   |
+| recenze    | /recenze/     | Product reviews and comparisons |
 
 ---
 
