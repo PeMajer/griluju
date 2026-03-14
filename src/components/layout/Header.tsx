@@ -143,16 +143,16 @@ export function Header({ locale }: HeaderProps) {
         </div>
       </header>
 
-      {/* Full-screen mobile menu sliding from bottom */}
+      {/* Mobile menu sliding from bottom, starts below navbar */}
       <div
-        className={`md:hidden fixed inset-0 z-[55] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+        className={`md:hidden fixed inset-x-0 top-20 bottom-0 z-[55] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
           mobileOpen ? "translate-y-0" : "translate-y-full"
         }`}
       >
         {/* Backdrop */}
         <div className="absolute inset-0 backdrop-blur-md" style={{ backgroundColor: "rgba(255,255,255,0.95)" }} />
 
-        <div className="relative h-full flex flex-col pt-20 pb-8 px-6">
+        <div className="relative h-full flex flex-col pt-6 pb-8 px-6">
           {/* Nav links */}
           <nav className="flex-1 space-y-1">
             {mobileNavItems.map(({ key, href, Icon }) => {
