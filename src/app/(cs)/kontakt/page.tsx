@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Mail } from "lucide-react";
 import { t, siteConfig } from "@/lib/i18n";
+import { MailLink } from "@/components/ui/MailLink";
 
 export const metadata: Metadata = {
   title: t("cs", "page.contact.title"),
@@ -35,12 +36,7 @@ export default function ContactPage() {
           </div>
           <div>
             <p className="text-xs font-semibold tracking-[0.12em] uppercase text-stone mb-1">E-mail</p>
-            <a
-              href="mailto:info@griluju.cz"
-              className="text-coal font-medium hover:text-heat transition-colors duration-150"
-            >
-              info@griluju.cz
-            </a>
+            <MailLink className="text-coal font-medium hover:text-heat transition-colors duration-150" />
           </div>
         </div>
 

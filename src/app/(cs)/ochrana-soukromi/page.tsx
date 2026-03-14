@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { t, siteConfig } from "@/lib/i18n";
+import { MailLink } from "@/components/ui/MailLink";
 
 export const metadata: Metadata = {
   title: t("cs", "page.privacy.title"),
@@ -27,8 +28,8 @@ export default function PrivacyPolicyPage() {
 
           <h2>Správce údajů</h2>
           <p>
-            Tomáš Majer<br />
-            E-mail: <a href="mailto:info@griluju.cz">info@griluju.cz</a>
+            Petr Majer<br />
+            E-mail: <MailLink />
           </p>
 
           <h2>Jaké údaje zpracováváme</h2>
@@ -68,7 +69,7 @@ export default function PrivacyPolicyPage() {
           </ul>
           <p>
             Pro uplatnění těchto práv nás kontaktujte na{" "}
-            <a href="mailto:info@griluju.cz">info@griluju.cz</a>.
+            <MailLink />.
           </p>
 
           <h2>Změny zásad</h2>

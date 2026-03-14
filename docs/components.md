@@ -157,7 +157,7 @@ Použij na stránkách receptů (kategorie `recepty`).
   name="Pulled pork"
   description="..."
   image="/images/pulled-pork/hero.webp"
-  author="Tomas Majer"
+  author="Petr Majer"
   datePublished="2026-03-15"
   prepTime="PT30M"
   cookTime="PT10H"
