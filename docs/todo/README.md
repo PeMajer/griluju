@@ -6,17 +6,6 @@ Věci které musí udělat člověk — obsah, registrace, live testy.
 
 ## Obsah & data
 
-### Stats bar na homepage
-
-**Soubor:** `src/app/(cs)/page.tsx` → `<!-- PLACEHOLDER: stats -->`
-
-| Pole | Placeholder | Vyměnit za |
-|---|---|---|
-| Počet let u grilu | `10+` | tvé reálné číslo |
-| Hlavní vybavení | `Weber Kettle` | tvůj gril (model) |
-| Specializace | `Low & slow` | tvá specializace |
-| Vlastní fotky | `100%` | procento nebo popis |
-
 ### Osobní příběh — stránka /o-mne
 
 **Soubor:** `src/app/(cs)/o-mne/page.tsx` → `<!-- PLACEHOLDER: personal-story -->`
@@ -90,7 +79,6 @@ Registruj se hned, schválení trvá 2–7 dní.
 
 | Úkol | Status |
 |---|---|
-| Stats bar — reálná čísla | ⬜ TODO |
 | Osobní příběh /o-mne | ⬜ TODO |
 | Kontaktní info /kontakt | ⬜ TODO |
 | Vlastní fotky (průběžně) | ⬜ TODO |
