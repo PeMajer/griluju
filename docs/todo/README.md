@@ -60,23 +60,6 @@ Doplň:
 
 ---
 
-## 6. Hero headline — vyber variantu
-
-**Soubor:** `src/app/(cs)/page.tsx`
-**Hledej:** `<!-- PLACEHOLDER: hero-headline-choice -->`
-
-Agent připravil 3 varianty. Vyber jednu a ostatní smaž.
-
----
-
-## 7. Footer tagline — vyber variantu
-
-**Soubor:** `src/components/layout/Footer.tsx`
-**Hledej:** `<!-- PLACEHOLDER: footer-tagline-choice -->`
-
-Agent připravil 3 varianty. Vyber jednu a ostatní smaž.
-
----
 
 ## 8. Vlastní fotky (průběžně, od Měsíce 2)
 
