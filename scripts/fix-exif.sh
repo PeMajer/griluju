@@ -5,12 +5,18 @@
 #   1. From original photo (recommended):
 #      bash scripts/fix-exif.sh --from-original original.jpg ai-output.jpg
 #      Copies all EXIF from original, shifts date back by 3-7 days, strips AI software tags.
+#      Original is deleted after transfer.
 #
-#   2. Synthetic EXIF (fallback, no original available):
+#   2. Remove Gemini watermark (crop bottom strip):
+#      bash scripts/fix-exif.sh --crop-watermark image.jpg
+#      Crops bottom 3% of image where Gemini sparkle watermark appears.
+#      Requires: brew install imagemagick
+#
+#   3. Synthetic EXIF (fallback, no original available):
 #      bash scripts/fix-exif.sh public/images/foo.jpg
 #      bash scripts/fix-exif.sh                        # all jpg/jpeg/webp in public/images/
 #
-# Requirements: exiftool (brew install exiftool)
+# Requirements: exiftool (brew install exiftool), imagemagick for --crop-watermark
 
 set -e
 
@@ -20,6 +26,32 @@ PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 if ! command -v exiftool &>/dev/null; then
   echo "Error: exiftool not found. Install with: brew install exiftool"
   exit 1
+fi
+
+# ── Mode: crop Gemini watermark ───────────────────────────────────────────────
+
+if [ "$1" = "--crop-watermark" ]; then
+  FILE="$2"
+
+  if [ -z "$FILE" ]; then
+    echo "Usage: bash scripts/fix-exif.sh --crop-watermark <image.jpg>"
+    exit 1
+  fi
+
+  if [ ! -f "$FILE" ]; then
+    echo "Error: file not found: $FILE"
+    exit 1
+  fi
+
+  if ! command -v convert &>/dev/null; then
+    echo "Error: ImageMagick not found. Install with: brew install imagemagick"
+    exit 1
+  fi
+
+  # Crop bottom 3% — removes Gemini sparkle watermark, keeps composition intact
+  convert "$FILE" -gravity South -chop 0x3% "$FILE"
+  echo "Done — cropped bottom 3% from $(basename "$FILE")"
+  exit 0
 fi
 
 # ── Mode 1: copy from original, shift date back ──────────────────────────────

@@ -16,9 +16,21 @@ EXIF sám o sobě neoklamá vizuální AI detektory (analyzují pixely). Jde o h
 ## Nástroj
 
 Skript: `scripts/fix-exif.sh`
-Závislost: `brew install exiftool`
+Závislosti: `brew install exiftool imagemagick`
 
-## Dva režimy
+## Tři režimy
+
+### 0. Odstranění Gemini vodoznaku
+
+Gemini přidává sparkle ikonu do pravého dolního rohu. Ořez spodních 3 % kompozici neporuší.
+
+```bash
+bash scripts/fix-exif.sh --crop-watermark ~/Downloads/ai-output.jpg
+```
+
+Spouštěj **před** `--from-original` nebo syntetickým EXIF — ořez by jinak smazal přenesená metadata.
+
+---
 
 ### 1. S originálem (doporučeno)
 
