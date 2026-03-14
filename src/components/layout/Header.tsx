@@ -105,7 +105,7 @@ export function Header({ locale }: HeaderProps) {
           borderColor: scrolled && !mobileOpen ? "var(--smoke)" : "transparent",
         }}
       >
-        <div className="mx-auto flex max-w-[75rem] items-center justify-between h-20 px-6">
+        <div className="mx-auto flex max-w-[75rem] items-center justify-between h-14 md:h-20 px-6">
           {/* Logo */}
           <Link
             href="/"
@@ -117,6 +117,7 @@ export function Header({ locale }: HeaderProps) {
               width={133}
               height={64}
               priority
+              className="w-[100px] md:w-[133px] h-auto"
             />
           </Link>
 
@@ -145,7 +146,7 @@ export function Header({ locale }: HeaderProps) {
 
       {/* Mobile menu sliding from bottom, starts below navbar */}
       <div
-        className={`md:hidden fixed inset-x-0 top-20 bottom-0 z-[55] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+        className={`md:hidden fixed inset-x-0 top-14 md:top-20 bottom-0 z-[55] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
           mobileOpen ? "translate-y-0" : "translate-y-full"
         }`}
       >
