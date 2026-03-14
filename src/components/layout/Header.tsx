@@ -117,7 +117,7 @@ export function Header({ locale }: HeaderProps) {
               width={133}
               height={64}
               priority
-              className="w-[100px] md:w-[133px] h-auto"
+              className="h-[44px] w-auto md:h-auto md:w-[133px]"
             />
           </Link>
 
