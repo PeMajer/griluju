@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pull-requests: write
     steps:
       - uses: actions/checkout@v4
 
@@ -24,7 +23,7 @@ jobs:
       - name: Generate content index
         run: node scripts/generate-content-index.mjs
 
-      - name: Create PR
+      - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -33,16 +32,5 @@ jobs:
             echo "No changes to content-index.json, skipping."
             exit 0
           fi
-          BRANCH="chore/update-content-index-$(date +%s)"
-          git checkout -b "$BRANCH"
           git commit -m "chore: update content-index.json"
-          git push origin "$BRANCH"
-          gh pr create \
-            --title "chore: update content-index.json" \
-            --body "Automaticky vygenerovaný index článků po změně obsahu." \
-            --base main \
-            --head "$BRANCH" \
-          || echo "PR already exists or could not be created, skipping."
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+          git push origin main
