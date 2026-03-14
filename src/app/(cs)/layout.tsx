@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Hreflang } from "@/components/seo/Hreflang";
 import { ConsentMode } from "@/components/seo/ConsentMode";
 import { GA4Script } from "@/components/seo/GA4Script";
+import { CookieBanner } from "@/components/ui/CookieBanner";
 
 const lora = Lora({
   subsets: ["latin", "latin-ext"],
@@ -51,6 +52,7 @@ export default function CsLayout({
       </head>
       <body className="font-body bg-bg text-coal flex min-h-screen flex-col antialiased">
         <GA4Script />
+        <CookieBanner />
         <Header locale="cs" />
         <main className="flex-1">{children}</main>
         <Footer locale="cs" />
