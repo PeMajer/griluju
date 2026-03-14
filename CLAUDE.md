@@ -64,7 +64,7 @@ description: "SEO meta description, max 155 chars"
 date: "2026-03-15"
 updated: "2026-03-15"
 author: "Petr Majer"
-category: "recepty"        # recepty | navod | recenze | srovnani
+category: "recepty"        # recepty | navod | recenze
 keywords: ["pulled pork", "BBQ", "uzeni masa"]
 image: "/images/pulled-pork/hero.webp"
 affiliate: true            # shows affiliate disclosure
@@ -76,8 +76,7 @@ affiliate: true            # shows affiliate disclosure
 |-----------|-------------------|-----------------|---------------------|
 | recepty   | `recepty`         | `/recepty/`     | Recipes with steps  |
 | navod     | `navod`           | `/navody/`      | How-to guides       |
-| recenze   | `recenze`         | `/recenze/`     | Product reviews     |
-| srovnani  | `srovnani`        | `/srovnani/`    | Product comparisons |
+| recenze   | `recenze`         | `/recenze/`     | Product reviews and comparisons |
 
 ### Article body conventions
 
@@ -227,7 +226,7 @@ When creating an article via GitHub Issue or prompt, use this structure:
 
 **Klicove slovo:** [hlavni KW]
 **Typ obsahu:** vrstva-1 / vrstva-2
-**Kategorie:** recepty / navod / recenze / srovnani
+**Kategorie:** recepty / navod / recenze
 **Cilova delka:** ~1500 / ~2500 slov
 **Affiliate produkty:** [produkty nebo kategorie]
 

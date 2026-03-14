@@ -208,7 +208,7 @@ Přidej do delších článků kde je sekce Q&A. Pomáhá s rich snippets ve vyh
 
 ### `ProductSchema` — `src/components/schema/ProductSchema.tsx`
 
-Použij na recenzích a srovnáních produktů (kategorie `recenze`, `srovnani`).
+Použij na recenzích a srovnáních produktů (kategorie `recenze`).
 
 ```tsx
 <ProductSchema

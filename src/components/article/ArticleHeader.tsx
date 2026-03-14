@@ -8,7 +8,6 @@ const categoryPath: Record<string, string> = {
   recepty: "/recepty",
   navod: "/navody",
   recenze: "/recenze",
-  srovnani: "/srovnani",
 };
 
 function estimateReadTime(content: string): number {

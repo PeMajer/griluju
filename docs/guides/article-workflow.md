@@ -24,8 +24,7 @@
 |---|---|---|
 | recepty | `recepty` | `/recepty/` |
 | navod | `navod` | `/navody/` |
-| recenze | `recenze` | `/recenze/` |
-| srovnani | `srovnani` | `/srovnani/` |
+| recenze | `recenze` | `/recenze/` | Recenze i srovnání produktů |
 
 **Vytvoř branch:**
 ```bash

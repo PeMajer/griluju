@@ -261,7 +261,7 @@ className="flex flex-wrap gap-2 mb-14"
 case "recepty":  return "hsl(16,82%,50%)";   // --heat orange
 case "návod":    return "hsl(165,50%,32%)";  // forest green
 case "recenze":  return "hsl(215,55%,42%)";  // steel blue
-case "srovnání": return "hsl(280,40%,38%)";  // purple
+
 ```
 
 ### Podle druhu masa (tag)
@@ -295,7 +295,7 @@ case "jehněčí":  return "hsl(280,40%,38%)";  // purple
 - [ ] Eyebrow text: `font-semibold text-sm`, ne `font-mono text-xs`
 - [ ] Víceoslovní fráze v nadpisech (H1 hero): `whitespace-nowrap` na `<em>` nebo `<span>`
 - [ ] Dark sekce: používají `--dark-*` tokeny, ne dark mode
-- [ ] Badge: `hideBadge` prop na single-category stránkách (Navody, Recenze, Srovnani)
+- [ ] Badge: `hideBadge` prop na single-category stránkách (Navody, Recenze)
 - [ ] Perex pod H2/H1: vždy `text-lg leading-relaxed`
 - [ ] ArticleCard H3 featured: `leading-tight`, standard: `leading-7`
 
