@@ -125,7 +125,7 @@ Shared components for structured data:
 
 ## GDPR & Analytics
 
-- Cookie banner: Cookieyes integration
+- Cookie banner: vanilla-cookieconsent (open source, zdarma, bez registrace)
 - Consent Mode v2 in root `layout.tsx` before GA4 script
 - Privacy Policy + Cookie Policy pages required
 

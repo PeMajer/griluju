@@ -257,7 +257,7 @@ Nevyžaduje žádné props.
 
 ### `CookieBanner` — `src/components/ui/CookieBanner.tsx`
 
-Vkládá Cookieyes CDN skript. Obsahuje placeholder `COOKIEYES_ID` — před spuštěním webu nahradit skutečným ID (viz `docs/setup-checklist.md`).
+Inicializuje vanilla-cookieconsent (open source, zdarma). Czech texty, dvě kategorie (nezbytné + analytické). Po souhlasu/odmítnutí aktualizuje Google Consent Mode v2 přes `gtag('consent', 'update', ...)`. Žádná registrace ani API klíče nejsou potřeba.
 
 ---
 

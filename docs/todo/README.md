@@ -60,12 +60,9 @@ Najdeš v: [analytics.google.com](https://analytics.google.com) → Admin → Da
 
 ---
 
-## 5. Cookieyes Banner ID
+## 5. Cookie banner
 
-**Soubor:** `src/components/ui/CookieBanner.tsx`
-**Hledej:** `COOKIEYES_ID`
-
-Najdeš v: [cookieyes.com](https://cookieyes.com) → Dashboard → tvůj web → Script ID (část URL scriptu)
+**Stav: hotovo** — vanilla-cookieconsent implementován, žádné kroky nejsou potřeba.
 
 ---
 

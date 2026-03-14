@@ -93,28 +93,20 @@ Nejlepší řešení přes Cloudflare Redirect Rules (nevyžaduje Pages):
 
 ---
 
-## 3. Cookieyes — cookie banner
+## 3. Cookie banner — vanilla-cookieconsent
 
-**Kde:** cookieyes.com
+**Stav: hotovo — žádná registrace ani kroky nejsou potřeba.**
 
-1. Založ účet na [cookieyes.com](https://www.cookieyes.com) — free plán do 100 stránek/měsíc
-2. Add Website → URL: `https://griluju.cz`, Language: Czech
-3. Customize banner — stačí výchozí šablona, nebo uprav barvy (orange = `#ea580c` odpovídá designu)
-4. Po uložení dostaneš script tag, v URL bude tvé **Cookieyes ID** — vypadá takto:
-   ```
-   https://cdn-cookieyes.com/client_data/TOTO_JE_TVOIE_ID/script.js
-   ```
-5. Zkopíruj jen tu část ID (hash za `/client_data/`)
+Banner je implementován pomocí [vanilla-cookieconsent](https://github.com/orestbida/cookieconsent) (open source, zdarma). Czech texty, dvě kategorie (nezbytné + analytické), Consent Mode v2 integrace.
 
-**Nastavení v projektu:**
-- Otevři `src/components/ui/CookieBanner.tsx`
-- Nahraď `COOKIEYES_ID` svým skutečným ID:
-  ```tsx
-  src="https://cdn-cookieyes.com/client_data/TVOIE_SKUTECNE_ID/script.js"
-  ```
-- Commitni a pushni na branch, PR do main → automatický deploy
+Původně plánovaný CookieYes byl nahrazen — přešel na placený model ($25/měsíc), vanilla-cookieconsent splňuje všechny požadavky AdSense zdarma.
 
-**Pozor:** Cookieyes musí být nainstalován PŘED podáním žádosti o Google AdSense. Bez funkčního cookie banneru s Consent Mode v2 AdSense žádost zamítne.
+**Ověření po deployi:**
+1. Otevři griluju.cz v anonymním okně — banner se musí zobrazit
+2. Přijmi cookies → zkontroluj GA4 Realtime report (návštěva se zaznamenala)
+3. Odmítni cookies → Realtime report nesmí zaznamenat nic
+
+**Pozor:** Funkční cookie banner s Consent Mode v2 je podmínkou pro podání žádosti o Google AdSense. Před podáním žádosti ověř bod 1–3 výše.
 
 ---
 
@@ -176,11 +168,11 @@ Podmínka spuštění webu. Testuj **po každé větší změně šablony**.
 | LCP > 2.5s | Hero obrázek bez `priority` | Přidat `priority` prop na `<Image>` v ArticleHeader |
 | CLS > 0.1 | `<Image>` bez `width`/`height` | Vždy definuj rozměry |
 | FCP pomalý | Velké obrázky | Zkomprimuj přes squoosh.app, max 150 kB |
-| Score < 90 | JS bundle | Next.js static export by měl být OK, zkontroluj třetí strany (Cookieyes, GA4) |
+| Score < 90 | JS bundle | Next.js static export by měl být OK, zkontroluj třetí strany (vanilla-cookieconsent, GA4) |
 
 **Kdy testovat:**
 - Před prvním publikováním článku
-- Po přidání Cookieyes scriptu (může zpomalit)
+- Po změně cookie banneru nebo třetích stran
 - Po každé změně layoutu
 
 ---
@@ -191,8 +183,8 @@ Podmínka spuštění webu. Testuj **po každé větší změně šablony**.
 1. Cloudflare Pages deploy (testovací URL)
 2. Google Analytics 4 + Search Console
 3. Nastav NEXT_PUBLIC_GA4_ID v Cloudflare Pages env vars
-4. Cookieyes registrace + nastav ID v CookieBanner.tsx
-5. Deploy s Cookieyes ID
+4. Cookie banner (vanilla-cookieconsent) — již implementováno, bez kroků
+5. Deploy (automaticky při merge PR)
 6. Lighthouse audit na live URL (lze přes MCP WebFetch)
 7. Affiliate registrace (Mall.cz, Alza.cz) — pošli hned, čeká se
 8. Po schválení affiliate → aktualizuj affiliates.config.ts
@@ -206,10 +198,10 @@ Podmínka spuštění webu. Testuj **po každé větší změně šablony**.
 | Krok | Status |
 |---|---|
 | Cloudflare Pages deploy | done |
-| GA4 property + Measurement ID | ⬜ TODO |
+| GA4 property + Measurement ID | done |
 | GA4 ID v .env.local + Cloudflare env vars | ⬜ TODO |
 | Search Console + sitemap | ⬜ TODO |
-| Cookieyes registrace + ID v CookieBanner.tsx | ⬜ TODO |
+| Cookie banner (vanilla-cookieconsent) | done |
 | Lighthouse mobile 90+ | ⬜ TODO |
 | Mall.cz affiliate registrace | ⬜ TODO |
 | Alza.cz affiliate registrace | ⬜ TODO |
