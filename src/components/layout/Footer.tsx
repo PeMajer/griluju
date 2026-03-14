@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Flame } from "lucide-react";
+import Image from "next/image";
 import { type Locale } from "@/lib/i18n";
 
 interface FooterProps {
@@ -23,14 +23,15 @@ export function Footer({ locale: _locale }: FooterProps) {
           <div>
             <Link
               href="/"
-              className="flex items-center justify-center gap-2 md:justify-start font-display text-lg font-bold transition-colors duration-150"
-              style={{
-                color: "var(--dark-fg)",
-                fontStyle: "italic",
-              }}
+              className="flex items-center justify-center md:justify-start transition-transform duration-200 hover:scale-105"
             >
-              <Flame size={18} className="text-heat shrink-0" style={{ fontStyle: "normal" }} />
-              <span>griluju</span>
+              <Image
+                src="/images/logo.webp"
+                alt="griluju.cz"
+                width={114}
+                height={55}
+                style={{ filter: "brightness(0) invert(1)" }}
+              />
             </Link>
             <p className="mt-1 text-sm" style={{ color: "var(--dark-fg-muted)" }}>
               Recepty a tipy na grilování z vlastní zkušenosti.
