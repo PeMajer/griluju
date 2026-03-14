@@ -28,7 +28,7 @@ export function Footer({ locale: _locale }: FooterProps) {
               <Image
                 src="/images/logo.webp"
                 alt="griluju.cz"
-                width={112}
+                width={109}
                 height={55}
                 style={{ filter: "brightness(0) invert(1)" }}
               />
