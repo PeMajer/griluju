@@ -1,9 +1,145 @@
 [
   {
+    "slug": "brisket-low-slow",
+    "title": "Brisket low & slow — hovězí hrudí na Weber Kettle",
+    "category": "recepty",
+    "keywords": [
+      "brisket",
+      "hovězí hrudí",
+      "low and slow",
+      "BBQ",
+      "Weber Kettle",
+      "smoke brisket"
+    ],
+    "date": "2026-03-11"
+  },
+  {
+    "slug": "dokonaly-steak-na-grilu",
+    "title": "Dokonalý hovězí steak na grilu",
+    "category": "recepty",
+    "keywords": [
+      "hovězí steak",
+      "steak na grilu",
+      "ribeye",
+      "svíčková",
+      "grilování steaku",
+      "teploty steaku"
+    ],
+    "date": "2026-03-11"
+  },
+  {
+    "slug": "grilovana-zelenina",
+    "title": "Grilovaná zelenina — jak na to správně",
+    "category": "navod",
+    "keywords": [
+      "grilovaná zelenina",
+      "zelenina na grilu",
+      "jak grilovat zeleninu",
+      "příloha gril"
+    ],
+    "date": "2026-03-11"
+  },
+  {
+    "slug": "jehneci-kotlety-rozmaryn-cesnek",
+    "title": "Jehněčí kotlety s rozmarýnem a česnekem",
+    "category": "recepty",
+    "keywords": [
+      "jehněčí kotlety",
+      "jehně na grilu",
+      "lamb chops",
+      "rozmarýn česnek mariná"
+    ],
+    "date": "2026-03-11"
+  },
+  {
+    "slug": "krupava-kureci-kridela-medova-glazura",
+    "title": "Křupavá kuřecí křidélka s medovou glazurou",
+    "category": "recepty",
+    "keywords": [
+      "kuřecí křidélka",
+      "wings",
+      "medová glazura",
+      "grilovaná křidélka",
+      "kuřecí gril"
+    ],
+    "date": "2026-03-11"
+  },
+  {
+    "slug": "losos-na-cedrovem-prkenku",
+    "title": "Losos na cedrovém prkénku",
+    "category": "recepty",
+    "keywords": [
+      "losos na grilu",
+      "cedrové prkénko",
+      "grilovaný losos",
+      "ryba na grilu",
+      "plank salmon"
+    ],
+    "date": "2026-03-11"
+  },
+  {
+    "slug": "reverse-sear-metoda",
+    "title": "Reverse sear — jak připravit silný steak dokonale",
+    "category": "navod",
+    "keywords": [
+      "reverse sear",
+      "metoda reverse sear",
+      "steak reverse sear",
+      "jak udělat steak",
+      "silný steak"
+    ],
+    "date": "2026-03-11"
+  },
+  {
+    "slug": "weber-master-touch-recenze",
+    "title": "Weber Master-Touch 57 cm — recenze po 7 letech",
+    "category": "recenze",
+    "keywords": [
+      "Weber Master-Touch",
+      "Weber recenze",
+      "Weber 57cm",
+      "GBS gril",
+      "kotle gril recenze"
+    ],
+    "date": "2026-03-11"
+  },
+  {
+    "slug": "zebirka-bbq-glazura-3-2-1",
+    "title": "Vepřová žebra metodou 3-2-1",
+    "category": "recepty",
+    "keywords": [
+      "vepřová žebra",
+      "žebírka gril",
+      "metoda 3-2-1",
+      "BBQ žebra",
+      "baby back ribs"
+    ],
+    "date": "2026-03-11"
+  },
+  {
+    "slug": "pulled-pork-krok-za-krokem",
+    "title": "Pulled pork krok za krokem: průvodce pro domácí gril",
+    "category": "recepty",
+    "keywords": [
+      "pulled pork",
+      "trhané vepřové",
+      "BBQ",
+      "low and slow",
+      "Weber Kettle",
+      "vepřová plec"
+    ],
+    "date": "2026-03-10"
+  },
+  {
     "slug": "testovaci-clanek",
     "title": "Jak správně roztopit gril — průvodce pro začátečníky",
     "category": "navod",
-    "keywords": ["roztopit gril", "uhlikový gril", "komínový rozpalovač", "grilování pro začátečníky"],
+    "keywords": [
+      "roztopit gril",
+      "uhlikový gril",
+      "komínový rozpalovač",
+      "grilování pro začátečníky"
+    ],
     "date": "2026-03-09"
   }
 ]
