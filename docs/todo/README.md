@@ -1,16 +1,14 @@
 # TODO — Co musíš doplnit ty
 
-Agent zapracoval design a obsah s **placeholder hodnotami**.
-Tady je přesně co, kde a jak vyměnit za reálná data.
+Věci které musí udělat člověk — obsah, registrace, live testy.
 
 ---
 
-## 1. Stats bar na homepage
+## Obsah & data
 
-**Soubor:** `src/app/(cs)/page.tsx`
-**Hledej:** `<!-- PLACEHOLDER: stats -->`
+### Stats bar na homepage
 
-Vyplň reálná čísla:
+**Soubor:** `src/app/(cs)/page.tsx` → `<!-- PLACEHOLDER: stats -->`
 
 | Pole | Placeholder | Vyměnit za |
 |---|---|---|
@@ -19,12 +17,9 @@ Vyplň reálná čísla:
 | Specializace | `Low & slow` | tvá specializace |
 | Vlastní fotky | `100%` | procento nebo popis |
 
----
+### Osobní příběh — stránka /o-mne
 
-## 2. Osobní příběh — stránka /o-mne
-
-**Soubor:** `src/app/(cs)/o-mne/page.tsx`
-**Hledej:** `<!-- PLACEHOLDER: personal-story -->`
+**Soubor:** `src/app/(cs)/o-mne/page.tsx` → `<!-- PLACEHOLDER: personal-story -->`
 
 Napiš agentovi 3–5 vět o:
 1. Kdy a jak jsi začal grilovat (rok, okolnost)
@@ -34,46 +29,72 @@ Napiš agentovi 3–5 vět o:
 
 Agent z toho sestaví plnohodnotný text.
 
----
+### Kontaktní info — stránka /kontakt
 
-## 3. Kontaktní info — stránka /kontakt
-
-**Soubor:** `src/app/(cs)/kontakt/page.tsx`
-**Hledej:** `<!-- PLACEHOLDER: contact -->`
+**Soubor:** `src/app/(cs)/kontakt/page.tsx` → `<!-- PLACEHOLDER: contact -->`
 
 Doplň:
 - Email pro web (zobrazí se veřejně)
 - LinkedIn / GitHub (volitelně)
 - Chceš kontaktní formulář nebo jen email?
 
----
+### Vlastní fotky (průběžně, od Měsíce 2)
 
-## 4. GA4 Tracking ID
-
-**Stav: hotovo** — `.env.local` i Cloudflare env vars nastaveny.
-
----
-
-## 5. Cookie banner
-
-**Stav: hotovo** — vanilla-cookieconsent implementován, žádné kroky nejsou potřeba.
-
----
-
-
-## 8. Vlastní fotky (průběžně, od Měsíce 2)
-
-Unsplash placeholdery jsou v:
-- `/public/images/` — staženy automaticky
+Unsplash placeholdery jsou v `/public/images/` — staženy automaticky.
 
 Postupně nahrazuj vlastními WebP fotkami (max 150 kB, přirozené světlo, tmavé prkénko).
 
 ---
 
-## 9. Vizuální QA
+## Technické kroky
 
-**Stav: hotovo.**
+### Lighthouse audit — 90+ mobile score
+
+Podmínka spuštění webu. Testuj po každé větší změně šablony.
+
+**Kde testovat:**
+- **MCP (doporučeno):** řekni agentovi "spusť Lighthouse na griluju.cz" — vrátí skóre bez otevírání prohlížeče
+  ```
+  https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://griluju.cz&strategy=mobile
+  ```
+- [pagespeed.web.dev](https://pagespeed.web.dev) — manuální
+
+**Co opravit pokud skóre padá:**
+
+| Problém | Příčina | Řešení |
+|---|---|---|
+| LCP > 2.5s | Hero obrázek bez `priority` | Přidat `priority` prop na `<Image>` v ArticleHeader |
+| CLS > 0.1 | `<Image>` bez `width`/`height` | Vždy definuj rozměry |
+| FCP pomalý | Velké obrázky | Zkomprimuj přes squoosh.app, max 150 kB |
+
+### Affiliate programy — registrace
+
+Registruj se hned, schválení trvá 2–7 dní.
+
+| Program | URL | Priorita |
+|---|---|---|
+| Mall.cz | [affiliate.mall.cz](https://affiliate.mall.cz) | 1 |
+| Alza.cz | [alza.cz/affiliate](https://www.alza.cz/affiliate) | 1 |
+| Heureka.cz | [sluzby.heureka.cz/affiliate](https://sluzby.heureka.cz/affiliate) | 2 |
+
+**Po schválení:**
+1. Vygeneruj affiliate odkaz na konkrétní produkt (např. Weber Master-Touch)
+2. Otevři `affiliates.config.ts` a nahraď placeholder URL skutečnými affiliate URL
+3. Commitni, push, PR → deploy
+
+> Amazon.de přidej až po 1 000+ návštěvách/měsíc — vyžadují 3 konverze za 180 dní.
 
 ---
 
-*Generováno agentem · Issue #6 · griluju-design-content-guide-v6*
+## Stav
+
+| Úkol | Status |
+|---|---|
+| Stats bar — reálná čísla | ⬜ TODO |
+| Osobní příběh /o-mne | ⬜ TODO |
+| Kontaktní info /kontakt | ⬜ TODO |
+| Vlastní fotky (průběžně) | ⬜ TODO |
+| Lighthouse mobile 90+ | ⬜ TODO |
+| Mall.cz affiliate registrace | ⬜ TODO |
+| Alza.cz affiliate registrace | ⬜ TODO |
+| affiliates.config.ts aktualizovat po schválení | ⬜ TODO |
