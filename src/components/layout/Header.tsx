@@ -105,7 +105,7 @@ export function Header({ locale }: HeaderProps) {
           borderColor: scrolled && !mobileOpen ? "var(--smoke)" : "transparent",
         }}
       >
-        <div className="mx-auto flex max-w-[75rem] items-center justify-between h-16 px-6">
+        <div className="mx-auto flex max-w-[75rem] items-center justify-between h-20 px-6">
           {/* Logo */}
           <Link
             href="/"
@@ -114,8 +114,8 @@ export function Header({ locale }: HeaderProps) {
             <Image
               src="/images/logo.webp"
               alt="griluju.cz"
-              width={160}
-              height={88}
+              width={140}
+              height={77}
               priority
             />
           </Link>
