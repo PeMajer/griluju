@@ -200,7 +200,7 @@ Podmínka spuštění webu. Testuj **po každé větší změně šablony**.
 | Cloudflare Pages deploy | done |
 | GA4 property + Measurement ID | done |
 | GA4 ID v .env.local + Cloudflare env vars | done |
-| Search Console + sitemap | ⬜ TODO |
+| Search Console + sitemap | done |
 | Cookie banner (vanilla-cookieconsent) | done |
 | Lighthouse mobile 90+ | ⬜ TODO |
 | Mall.cz affiliate registrace | ⬜ TODO |
