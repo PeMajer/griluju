@@ -151,7 +151,7 @@ export function Header({ locale }: HeaderProps) {
         }`}
       >
         {/* Backdrop */}
-        <div className="absolute inset-0 backdrop-blur-md" style={{ backgroundColor: "rgba(255,255,255,0.95)" }} />
+        <div className="absolute inset-0 backdrop-blur-md" style={{ backgroundColor: "rgba(255,255,255,0.90)" }} />
 
         <div className="relative h-full flex flex-col pt-6 pb-8 px-6">
           {/* Nav links */}
