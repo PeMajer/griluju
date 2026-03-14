@@ -63,7 +63,7 @@ slug: "pulled-pork-krok-za-krokem"
 description: "SEO meta description, max 155 chars"
 date: "2026-03-15"
 updated: "2026-03-15"
-author: "Tomas Majer"
+author: "Petr Majer"
 category: "recepty"        # recepty | navod | recenze | srovnani
 keywords: ["pulled pork", "BBQ", "uzeni masa"]
 image: "/images/pulled-pork/hero.webp"
@@ -125,7 +125,7 @@ Shared components for structured data:
 
 ## GDPR & Analytics
 
-- Cookie banner: Cookieyes integration
+- Cookie banner: vanilla-cookieconsent (open source, zdarma, bez registrace)
 - Consent Mode v2 in root `layout.tsx` before GA4 script
 - Privacy Policy + Cookie Policy pages required
 

@@ -1,30 +1,14 @@
 # TODO — Co musíš doplnit ty
 
-Agent zapracoval design a obsah s **placeholder hodnotami**.
-Tady je přesně co, kde a jak vyměnit za reálná data.
+Věci které musí udělat člověk — obsah, registrace, live testy.
 
 ---
 
-## 1. Stats bar na homepage
+## Obsah & data
 
-**Soubor:** `src/app/(cs)/page.tsx`
-**Hledej:** `<!-- PLACEHOLDER: stats -->`
+### Osobní příběh — stránka /o-mne
 
-Vyplň reálná čísla:
-
-| Pole | Placeholder | Vyměnit za |
-|---|---|---|
-| Počet let u grilu | `10+` | tvé reálné číslo |
-| Hlavní vybavení | `Weber Kettle` | tvůj gril (model) |
-| Specializace | `Low & slow` | tvá specializace |
-| Vlastní fotky | `100%` | procento nebo popis |
-
----
-
-## 2. Osobní příběh — stránka /o-mne
-
-**Soubor:** `src/app/(cs)/o-mne/page.tsx`
-**Hledej:** `<!-- PLACEHOLDER: personal-story -->`
+**Soubor:** `src/app/(cs)/o-mne/page.tsx` → `<!-- PLACEHOLDER: personal-story -->`
 
 Napiš agentovi 3–5 vět o:
 1. Kdy a jak jsi začal grilovat (rok, okolnost)
@@ -34,75 +18,62 @@ Napiš agentovi 3–5 vět o:
 
 Agent z toho sestaví plnohodnotný text.
 
----
+### Vlastní fotky (průběžně, od Měsíce 2)
 
-## 3. Kontaktní info — stránka /kontakt
-
-**Soubor:** `src/app/(cs)/kontakt/page.tsx`
-**Hledej:** `<!-- PLACEHOLDER: contact -->`
-
-Doplň:
-- Email pro web (zobrazí se veřejně)
-- LinkedIn / GitHub (volitelně)
-- Chceš kontaktní formulář nebo jen email?
-
----
-
-## 4. GA4 Tracking ID
-
-**Soubor:** `.env.local` (vytvoř pokud neexistuje)
-
-```
-NEXT_PUBLIC_GA4_ID=G-XXXXXXXXXX
-```
-
-Najdeš v: [analytics.google.com](https://analytics.google.com) → Admin → Data Streams → tvůj stream → Measurement ID
-
----
-
-## 5. Cookieyes Banner ID
-
-**Soubor:** `src/components/ui/CookieBanner.tsx`
-**Hledej:** `COOKIEYES_ID`
-
-Najdeš v: [cookieyes.com](https://cookieyes.com) → Dashboard → tvůj web → Script ID (část URL scriptu)
-
----
-
-## 6. Hero headline — vyber variantu
-
-**Soubor:** `src/app/(cs)/page.tsx`
-**Hledej:** `<!-- PLACEHOLDER: hero-headline-choice -->`
-
-Agent připravil 3 varianty. Vyber jednu a ostatní smaž.
-
----
-
-## 7. Footer tagline — vyber variantu
-
-**Soubor:** `src/components/layout/Footer.tsx`
-**Hledej:** `<!-- PLACEHOLDER: footer-tagline-choice -->`
-
-Agent připravil 3 varianty. Vyber jednu a ostatní smaž.
-
----
-
-## 8. Vlastní fotky (průběžně, od Měsíce 2)
-
-Unsplash placeholdery jsou v:
-- `/public/images/` — staženy automaticky
+Unsplash placeholdery jsou v `/public/images/` — staženy automaticky.
 
 Postupně nahrazuj vlastními WebP fotkami (max 150 kB, přirozené světlo, tmavé prkénko).
 
 ---
 
-## 9. Vizuální QA — zkontroluj v prohlížeči (~15 min)
+## Technické kroky
 
-- [ ] Light mode vypadá OK
-- [ ] Dark mode toggle funguje (ikona v headeru)
-- [ ] Dark mode systémová preference funguje (macOS/Windows nastavení)
-- [ ] Mobilní zobrazení (reálný telefon, ne jen DevTools)
+### Lighthouse audit — 90+ mobile score
+
+Podmínka spuštění webu. Testuj po každé větší změně šablony.
+
+**Kde testovat:**
+- **MCP (doporučeno):** řekni agentovi "spusť Lighthouse na griluju.cz" — vrátí skóre bez otevírání prohlížeče
+  ```
+  https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://griluju.cz&strategy=mobile
+  ```
+- [pagespeed.web.dev](https://pagespeed.web.dev) — manuální
+
+**Co opravit pokud skóre padá:**
+
+| Problém | Příčina | Řešení |
+|---|---|---|
+| LCP > 2.5s | Hero obrázek bez `priority` | Přidat `priority` prop na `<Image>` v ArticleHeader |
+| CLS > 0.1 | `<Image>` bez `width`/`height` | Vždy definuj rozměry |
+| FCP pomalý | Velké obrázky | Zkomprimuj přes squoosh.app, max 150 kB |
+
+### Affiliate programy — registrace
+
+Registruj se hned, schválení trvá 2–7 dní.
+
+| Program | URL | Priorita |
+|---|---|---|
+| Mall.cz | [affiliate.mall.cz](https://affiliate.mall.cz) | 1 |
+| Alza.cz | [alza.cz/affiliate](https://www.alza.cz/affiliate) | 1 |
+| Heureka.cz | [sluzby.heureka.cz/affiliate](https://sluzby.heureka.cz/affiliate) | 2 |
+
+**Po schválení:**
+1. Vygeneruj affiliate odkaz na konkrétní produkt (např. Weber Master-Touch)
+2. Otevři `affiliates.config.ts` a nahraď placeholder URL skutečnými affiliate URL
+3. Commitni, push, PR → deploy
+
+> Amazon.de přidej až po 1 000+ návštěvách/měsíc — vyžadují 3 konverze za 180 dní.
 
 ---
 
-*Generováno agentem · Issue #6 · griluju-design-content-guide-v6*
+## Stav
+
+| Úkol | Status |
+|---|---|
+| Osobní příběh /o-mne | ⬜ TODO |
+| Kontaktní info /kontakt | ✅ done |
+| Vlastní fotky (průběžně) | ⬜ TODO |
+| Lighthouse mobile 90+ | ⬜ TODO |
+| Mall.cz affiliate registrace | ⬜ TODO |
+| Alza.cz affiliate registrace | ⬜ TODO |
+| affiliates.config.ts aktualizovat po schválení | ⬜ TODO |

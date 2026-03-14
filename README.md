@@ -31,7 +31,7 @@ Kompletní dokumentace je v [`docs/`](docs/README.md).
 | [Komponenty](docs/components.md) | Inventář komponent, props, použití |
 | [Design systém](docs/design.md) | Barvy, typografie, best practices |
 | [Implementační plán](docs/guides/plan.md) | Fáze projektu, SEO, content pipeline |
-| [Setup checklist](docs/guides/setup-checklist.md) | Cloudflare Pages, GA4, Cookieyes… |
+| [Setup checklist](docs/guides/setup-checklist.md) | Cloudflare Pages, GA4, cookie banner… |
 | [CLAUDE.md](CLAUDE.md) | Instrukce pro AI agenta |
 
 ## Klíčové konvence

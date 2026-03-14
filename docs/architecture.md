@@ -143,7 +143,7 @@ Každá stránka článku automaticky generuje `BlogPosting` JSON-LD schema v hl
 
 **Hreflang:** Komponenta `Hreflang` renderuje `<link rel="alternate">` tagy. Aktuálně pouze `cs-CZ` a `x-default`. Rozšíří se při přidání DE lokalizace.
 
-**Google Consent Mode v2:** Skript `ConsentMode` se inicializuje v `<head>` *před* GA4 scriptem. Všechny typy souhlasu jsou defaultně `denied` (GDPR compliance). Cookieyes banner aktualizuje consent stav po interakci uživatele.
+**Google Consent Mode v2:** Skript `ConsentMode` se inicializuje v `<head>` *před* GA4 scriptem. Všechny typy souhlasu jsou defaultně `denied` (GDPR compliance). `CookieBanner` (vanilla-cookieconsent) aktualizuje consent stav po interakci uživatele přes `gtag('consent', 'update', ...)`.
 
 ---
 
@@ -181,5 +181,5 @@ Cloudflare Pages spouští `npm run build` automaticky při každém push na `ma
 |---|---|---|
 | `AuthorBio.tsx` linkuje na `/cs/o-mne` místo `/o-mne` | `src/components/article/AuthorBio.tsx` | Střední |
 | `next-mdx-remote` nainstalován, ale nepoužíván | `package.json` | Nízká |
-| `CookieBanner.tsx` má placeholder `COOKIEYES_ID` | `src/components/ui/CookieBanner.tsx` | Vysoká (před spuštěním) |
+| `AuthorBio.tsx` linkuje na `/cs/o-mne` místo `/o-mne` | `src/components/article/AuthorBio.tsx` | Střední |
 | Chybí stránky `/kategorie/recepty` a `/kategorie/navody` | Navigation.tsx na ně linkuje | Střední |

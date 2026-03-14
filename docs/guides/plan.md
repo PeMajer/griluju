@@ -75,7 +75,7 @@ griluju/
 │   │   │   ├── Hreflang.tsx
 │   │   │   └── ConsentMode.tsx        # Google Consent Mode v2
 │   │   └── ui/
-│   │       └── CookieBanner.tsx       # Cookieyes wrapper (needs real ID)
+│   │       └── CookieBanner.tsx       # vanilla-cookieconsent, Consent Mode v2
 │   ├── lib/
 │   │   ├── content.ts             # content-collections helpers
 │   │   ├── i18n.ts                # Locale config and translations
@@ -103,7 +103,7 @@ PR: https://github.com/PeMajer/griluju/pull/1
 7. ~~**Schema components**: Recipe, HowTo, FAQ, Product (JSON-LD in head)~~ — Done; BlogPosting schema auto-injected on all article pages
 8. ~~**Hreflang component** in layout (currently only cs-CZ)~~ — Done
 9. ~~**Google Consent Mode v2** initialization in layout before GA4~~ — Done; GA4Script component added (activate by setting NEXT_PUBLIC_GA4_ID in .env.local)
-10. ~~**Cookie banner** placeholder (Cookieyes script tag)~~ — Done (needs real Cookieyes ID)
+10. ~~**Cookie banner** placeholder (Cookieyes script tag)~~ — Done (vanilla-cookieconsent, Consent Mode v2, bez registrace)
 11. ~~**Privacy Policy + Cookie Policy** pages (generated content)~~ — Done
 12. ~~**Sitemap** generation (`next-sitemap` or custom)~~ — Done (custom post-build script `scripts/generate-sitemap.mjs`)
 13. ~~**content-index.json** — auto-generated list of all articles~~ — Done (+ `scripts/generate-content-index.mjs`)
