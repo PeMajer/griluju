@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans, DM_Mono } from "next/font/google";
+import { Lora, DM_Sans, DM_Mono } from "next/font/google";
 import { siteConfig } from "@/lib/i18n";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -7,10 +7,10 @@ import { Hreflang } from "@/components/seo/Hreflang";
 import { ConsentMode } from "@/components/seo/ConsentMode";
 import { GA4Script } from "@/components/seo/GA4Script";
 
-const playfairDisplay = Playfair_Display({
+const lora = Lora({
   subsets: ["latin", "latin-ext"],
   variable: "--font-display-var",
-  weight: ["700", "900"],
+  weight: ["700"],
   style: ["normal", "italic"],
   display: "swap",
 });
@@ -43,7 +43,7 @@ export default function CsLayout({
     <html
       lang="cs"
       data-theme="light"
-      className={`${playfairDisplay.variable} ${dmSans.variable} ${dmMono.variable}`}
+      className={`${lora.variable} ${dmSans.variable} ${dmMono.variable}`}
     >
       <head>
         <Hreflang />
