@@ -82,7 +82,9 @@ if [ "$1" = "--from-original" ]; then
     "${GPS_ARGS[@]}" \
     "$TARGET" 2>/dev/null
 
-  echo "Done — EXIF copied from original, date shifted back ${DAYS_BACK} days."
+  # Delete original — EXIF was transferred, original no longer needed
+  rm "$ORIGINAL"
+  echo "Done — EXIF copied from original, date shifted back ${DAYS_BACK} days. Original deleted."
   exit 0
 fi
 

@@ -33,6 +33,7 @@ Co se stane:
 - Odstraní AI markery (`Software`, `CreatorTool`, `HistorySoftwareAgent`)
 - Posune datum o 3–7 dní zpět (deterministicky podle jména souboru)
 - GPS offsetuje o ~300m
+- **Smaže `original.jpg`** — po přenosu EXIF original není potřeba
 
 **Toto je preferovaný workflow** — EXIF je autentický, pochází ze skutečného záběru.
 
