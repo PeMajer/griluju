@@ -18,15 +18,6 @@ Napiš agentovi 3–5 vět o:
 
 Agent z toho sestaví plnohodnotný text.
 
-### Kontaktní info — stránka /kontakt
-
-**Soubor:** `src/app/(cs)/kontakt/page.tsx` → `<!-- PLACEHOLDER: contact -->`
-
-Doplň:
-- Email pro web (zobrazí se veřejně)
-- LinkedIn / GitHub (volitelně)
-- Chceš kontaktní formulář nebo jen email?
-
 ### Vlastní fotky (průběžně, od Měsíce 2)
 
 Unsplash placeholdery jsou v `/public/images/` — staženy automaticky.
@@ -80,7 +71,7 @@ Registruj se hned, schválení trvá 2–7 dní.
 | Úkol | Status |
 |---|---|
 | Osobní příběh /o-mne | ⬜ TODO |
-| Kontaktní info /kontakt | ⬜ TODO |
+| Kontaktní info /kontakt | ✅ done |
 | Vlastní fotky (průběžně) | ⬜ TODO |
 | Lighthouse mobile 90+ | ⬜ TODO |
 | Mall.cz affiliate registrace | ⬜ TODO |
