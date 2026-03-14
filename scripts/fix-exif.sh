@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 # fix-exif.sh — Strips AI-generated metadata and replaces with realistic EXIF.
 #
-# Usage:
-#   bash scripts/fix-exif.sh                          # process all jpg/jpeg/webp in public/images/
-#   bash scripts/fix-exif.sh public/images/foo.jpg    # process specific file(s)
+# Modes:
+#   1. From original photo (recommended):
+#      bash scripts/fix-exif.sh --from-original original.jpg ai-output.jpg
+#      Copies all EXIF from original, shifts date back by 3-7 days, strips AI software tags.
+#
+#   2. Synthetic EXIF (fallback, no original available):
+#      bash scripts/fix-exif.sh public/images/foo.jpg
+#      bash scripts/fix-exif.sh                        # all jpg/jpeg/webp in public/images/
 #
 # Requirements: exiftool (brew install exiftool)
 
@@ -11,6 +16,77 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+if ! command -v exiftool &>/dev/null; then
+  echo "Error: exiftool not found. Install with: brew install exiftool"
+  exit 1
+fi
+
+# ── Mode 1: copy from original, shift date back ──────────────────────────────
+
+if [ "$1" = "--from-original" ]; then
+  ORIGINAL="$2"
+  TARGET="$3"
+
+  if [ -z "$ORIGINAL" ] || [ -z "$TARGET" ]; then
+    echo "Usage: bash scripts/fix-exif.sh --from-original <original.jpg> <ai-output.jpg>"
+    exit 1
+  fi
+
+  if [ ! -f "$ORIGINAL" ]; then
+    echo "Error: original file not found: $ORIGINAL"
+    exit 1
+  fi
+
+  if [ ! -f "$TARGET" ]; then
+    echo "Error: target file not found: $TARGET"
+    exit 1
+  fi
+
+  # Shift date back by 3-7 days (deterministic based on filename)
+  HASH=$(echo "$TARGET" | cksum | awk '{print $1}')
+  DAYS_BACK=$(( (HASH % 5) + 3 ))  # 3-7 days
+
+  echo "Original: $ORIGINAL"
+  echo "Target:   $TARGET"
+  echo "Shifting date back ${DAYS_BACK} days from original..."
+  echo ""
+
+  # Copy all EXIF tags from original
+  exiftool -overwrite_original -TagsFromFile "$ORIGINAL" -all:all "$TARGET" 2>/dev/null
+
+  # Read GPS from original and offset slightly (100-500m) for privacy
+  ORIG_LAT=$(exiftool -GPSLatitude -n -s3 "$ORIGINAL" 2>/dev/null)
+  ORIG_LON=$(exiftool -GPSLongitude -n -s3 "$ORIGINAL" 2>/dev/null)
+
+  GPS_ARGS=()
+  if [ -n "$ORIG_LAT" ] && [ -n "$ORIG_LON" ]; then
+    # Offset ~0.003 degrees (~300m), deterministic based on hash
+    LAT_OFFSET=$(echo "$HASH" | awk '{printf "%.4f", ($1 % 7 - 3) * 0.0005}')
+    LON_OFFSET=$(echo "$HASH" | awk '{printf "%.4f", (int($1/7) % 7 - 3) * 0.0005}')
+    NEW_LAT=$(echo "$ORIG_LAT $LAT_OFFSET" | awk '{printf "%.6f", $1 + $2}')
+    NEW_LON=$(echo "$ORIG_LON $LON_OFFSET" | awk '{printf "%.6f", $1 + $2}')
+    GPS_ARGS=(-GPSLatitude="$NEW_LAT" -GPSLatitudeRef=N -GPSLongitude="$NEW_LON" -GPSLongitudeRef=E)
+    echo "GPS: ${ORIG_LAT},${ORIG_LON} → ${NEW_LAT},${NEW_LON} (offset ~300m)"
+  fi
+
+  # Strip AI software markers, shift date back using exiftool built-in arithmetic
+  # Format: Y:M:D H:MM:SS — subtract days only
+  exiftool -overwrite_original \
+    -Software="" \
+    -CreatorTool="" \
+    -HistorySoftwareAgent="" \
+    "-DateTimeOriginal-=0:0:${DAYS_BACK} 0:0:0" \
+    "-CreateDate-=0:0:${DAYS_BACK} 0:0:0" \
+    "-ModifyDate-=0:0:${DAYS_BACK} 0:0:0" \
+    "${GPS_ARGS[@]}" \
+    "$TARGET" 2>/dev/null
+
+  echo "Done — EXIF copied from original, date shifted back ${DAYS_BACK} days."
+  exit 0
+fi
+
+# ── Mode 2: synthetic EXIF (no original) ─────────────────────────────────────
 
 # GPS locations — Czech Republic, outdoor grilling spots
 declare -a LATS=(
@@ -65,12 +141,7 @@ if [ "$TOTAL" -eq 0 ]; then
   exit 0
 fi
 
-if ! command -v exiftool &>/dev/null; then
-  echo "Error: exiftool not found. Install with: brew install exiftool"
-  exit 1
-fi
-
-echo "Processing ${TOTAL} file(s)..."
+echo "Processing ${TOTAL} file(s) with synthetic EXIF..."
 echo ""
 
 i=0
