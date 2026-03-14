@@ -17,3 +17,4 @@
 | [Tone & Voice](guides/tone-of-voice.md) | Hlas autora, pravidla psaní, zakázané fráze, struktura podle kategorie |
 | [Setup checklist](guides/setup-checklist.md) | Manuální kroky před spuštěním (Cloudflare Pages, GA4, cookie banner, affiliate registrace) |
 | [AI obrázky](guides/ai-images.md) | Workflow pro úpravu EXIF AI fotek — skript fix-exif.sh, export z Fotek, přenos z originálu |
+| [Lessons Learned](lessons.md) | Patterns z minulých korekcí — přečíst na začátku session při relevantním tasku |
