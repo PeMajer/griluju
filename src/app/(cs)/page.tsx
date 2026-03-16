@@ -24,7 +24,7 @@ export default function HomePage() {
       <section className="relative min-h-screen overflow-hidden flex items-center">
         {/* Background image */}
         <Image
-          src="/images/pulled-pork/hero.jpg"
+          src="/images/pulled-pork/hero.webp"
           alt="Pulled pork na grilu"
           fill
           priority
@@ -43,7 +43,7 @@ export default function HomePage() {
 
         {/* Content */}
         <div className="relative mx-auto max-w-[75rem] w-full px-6 py-24">
-          <div className="max-w-xl animate-fade-up">
+          <div className="max-w-xl">
             <span className="mb-4 inline-block font-semibold text-sm uppercase tracking-widest text-heat">
               Griluji přes 10 let
             </span>
