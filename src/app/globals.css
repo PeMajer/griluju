@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "vanilla-cookieconsent/dist/cookieconsent.css";
 
 @theme inline {
   /* Font aliases — next/font sets --font-*-var on <html>, @theme exposes them as Tailwind utilities */
