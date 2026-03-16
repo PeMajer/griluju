@@ -92,7 +92,7 @@ export default async function ArticlePage({
         <link
           rel="preload"
           as="image"
-          href={post.image}
+          href={getMobileSrc(post.image)}
           // @ts-expect-error — imagesrcset/imagesizes are valid HTML but missing from React types
           imagesrcset={`${getMobileSrc(post.image)} 640w, ${get2xSrc(getMobileSrc(post.image))} 1024w, ${post.image} 1200w, ${get2xSrc(post.image)} 1920w`}
           imagesizes="(max-width: 768px) 100vw, 1200px"
