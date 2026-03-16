@@ -33,7 +33,7 @@ export default function HomePage() {
             src="/images/pulled-pork/hero.webp"
             alt="Pulled pork na grilu"
             fetchPriority="high"
-            decoding="async"
+            loading="eager"
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
           />
         </picture>
