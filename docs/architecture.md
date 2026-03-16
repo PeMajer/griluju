@@ -38,12 +38,14 @@ griluju/
 │
 ├── public/
 │   ├── _redirects                     # Cloudflare Pages: griluju.com → griluju.cz
+│   ├── robots.txt                     # SEO: crawl pravidla + Sitemap odkaz
 │   └── images/
 │       └── [slug]/                    # Obrázky článků (WebP)
 │
 ├── scripts/
 │   ├── generate-content-index.mjs     # Regeneruje content-index.json
-│   └── generate-sitemap.mjs           # Generuje sitemap.xml do out/
+│   ├── generate-sitemap.mjs           # Generuje sitemap.xml do out/
+│   └── convert-images-to-webp.mjs     # Konvertuje JPG/PNG → WebP (sharp)
 │
 ├── src/
 │   ├── app/
@@ -69,7 +71,8 @@ griluju/
 │
 └── .github/
     └── workflows/
-        └── content-index.yml          # Auto-update content-index.json při merge do main
+        ├── content-index.yml          # Auto-update content-index.json při merge do main
+        └── lighthouse.yml             # Lighthouse CI — mobile audit na každém PR, komentář se skóre
 ```
 
 ---
@@ -167,11 +170,31 @@ npm run build
         ├── content-collections kompilace MDX
         ├── static export do out/
         └── postbuild:
-              ├── generate-content-index.mjs
               └── generate-sitemap.mjs → out/sitemap.xml
 ```
 
 Cloudflare Pages spouští `npm run build` automaticky při každém push na `main`.
+
+---
+
+## Performance
+
+Cíl: Lighthouse mobile Performance ≥ 90.
+
+### Aktuální konfigurace
+
+- **Obrázky:** `images: { unoptimized: true }` (static export) — Next.js neprovádí automatickou optimalizaci. Všechny obrázky musí být ručně ve WebP formátu před commitem. Nástroj: `node scripts/convert-images-to-webp.mjs`
+- **Hero image (LCP):** `<link rel="preload" fetchPriority="high">` v `page.tsx` — React 19 hoistuje do `<head>`. Nutné protože `unoptimized: true` zabraňuje automatickému preload hintu.
+- **CookieBanner:** lazy-loadován přes `next/dynamic { ssr: false }` — vanilla-cookieconsent se načítá jako oddělený chunk po hydrataci.
+
+### Měření před mergem
+
+GitHub Actions workflow `.github/workflows/lighthouse.yml` spustí audit na každém PR:
+- Postaví statický build, servuje lokálně, spustí Lighthouse mobile
+- Výsledky (skóre + LCP, FCP, TBT, CLS) postuje jako komentář na PR
+- Komentář se aktualizuje při každém dalším pushu (nezvyšuje spam)
+
+> **Poznámka k interpretaci:** lokální skóre je vyšší než produkční (žádná síťová latence). Trendy a konkrétní metriky jsou přesné, absolutní čísla nikoli.
 
 ---
 

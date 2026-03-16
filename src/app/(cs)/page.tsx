@@ -20,17 +20,22 @@ export default function HomePage() {
 
   return (
     <>
+      {/* Preload hero — browser picks the matching source from <picture> below */}
+      <link rel="preload" as="image" href="/images/pulled-pork/hero.webp" fetchPriority="high" />
+
       {/* ─── Hero ─────────────────────────────────────────────────────────────── */}
       <section className="relative min-h-screen overflow-hidden flex items-center">
-        {/* Background image */}
-        <Image
-          src="/images/pulled-pork/hero.webp"
-          alt="Pulled pork na grilu"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
+        {/* Background image — native <picture> for responsive serving without Next.js image optimization */}
+        <picture>
+          <source media="(max-width: 768px)" srcSet="/images/pulled-pork/hero-mobile.webp" type="image/webp" />
+          <img
+            src="/images/pulled-pork/hero.webp"
+            alt="Pulled pork na grilu"
+            fetchPriority="high"
+            loading="eager"
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        </picture>
         {/* Gradient overlays */}
         <div
           className="absolute inset-0"
@@ -171,7 +176,7 @@ export default function HomePage() {
       <section className="py-24 px-6">
         <div className="mx-auto max-w-2xl text-center">
           <Image
-            src="/images/author/petr.jpg"
+            src="/images/author/petr.webp"
             alt="Petr Majer"
             width={96}
             height={96}

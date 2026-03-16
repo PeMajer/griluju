@@ -57,7 +57,7 @@ export function ArticleHeader({ post, locale }: ArticleHeaderProps) {
       {/* Author meta row */}
       <div className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-stone">
         <Image
-          src="/images/author/petr.jpg"
+          src="/images/author/petr.webp"
           alt={post.author}
           width={32}
           height={32}
