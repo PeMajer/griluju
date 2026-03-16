@@ -179,22 +179,28 @@ Cloudflare Pages spouští `npm run build` automaticky při každém push na `ma
 
 ## Performance
 
-Cíl: Lighthouse mobile Performance ≥ 90.
+Aktuální skóre (produkce, Chrome): **Mobile 93 / Desktop 100**.
 
-### Aktuální konfigurace
+### Obrázky — rozměry a komprese
 
-- **Obrázky:** `images: { unoptimized: true }` (static export) — Next.js neprovádí automatickou optimalizaci. Všechny obrázky musí být ručně ve WebP formátu před commitem. Nástroj: `node scripts/convert-images-to-webp.mjs`
-- **Hero image (LCP):** `<link rel="preload" fetchPriority="high">` v `page.tsx` — React 19 hoistuje do `<head>`. Nutné protože `unoptimized: true` zabraňuje automatickému preload hintu.
-- **CookieBanner:** lazy-loadován přes `next/dynamic { ssr: false }` — vanilla-cookieconsent se načítá jako oddělený chunk po hydrataci.
+`images: { unoptimized: true }` (static export) — Next.js neprovádí automatickou optimalizaci. Pravidla pro ruční přípravu:
 
-### Měření před mergem
+| Typ obrázku | Rozměr | Kvalita | Max velikost |
+|---|---|---|---|
+| Hero desktop (`hero.webp`) | 960 × 540 px | 48 | ~50 kB |
+| Hero mobile (`hero-mobile.webp`) | 640 × 360 px | 38 | ~25 kB |
+| Article card (`recepty/*.webp`) | 600 × 800 px | 70 | ~90 kB |
+| Autor avatar (`petr.webp`) | 96 × 96 px | 82 | ~35 kB |
 
-GitHub Actions workflow `.github/workflows/lighthouse.yml` spustí audit na každém PR:
-- Postaví statický build, servuje lokálně, spustí Lighthouse mobile
-- Výsledky (skóre + LCP, FCP, TBT, CLS) postuje jako komentář na PR
-- Komentář se aktualizuje při každém dalším pushu (nezvyšuje spam)
+**Proč 600×800 pro kartičky:** `ArticleCard` používá `aspect-[3/4]` s `fill` + `object-cover`. S `unoptimized: true` browser stahuje vždy plnou bitmapu — resize na portrait odpovídající kartičce je jediný způsob jak snížit download size. `sizes` prop na `<Image>` je bez optimalizace ignorován.
 
-> **Poznámka k interpretaci:** lokální skóre je vyšší než produkční (žádná síťová latence). Trendy a konkrétní metriky jsou přesné, absolutní čísla nikoli.
+**Nástroj pro konverzi:** `node scripts/convert-images-to-webp.mjs` — převede JPG/PNG na WebP, přeskočí existující.
+
+### Další konfigurace
+
+- **Hero image preload:** `<link rel="preload" fetchPriority="high">` v `page.tsx` — React 19 hoistuje do `<head>`. Nutné protože `unoptimized: true` zabraňuje automatickému preload hintu.
+- **Browserslist:** `.browserslistrc` cílí na last 2 verze moderních browserů — vyřazuje zbytečné legacy polyfilly (~13 kB).
+- **Měření:** pagespeed.web.dev po každém deployi na produkci.
 
 ---
 
