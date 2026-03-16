@@ -20,20 +20,23 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Preload hero image for LCP */}
-      <link rel="preload" as="image" href="/images/pulled-pork/hero.webp" fetchPriority="high" />
+      {/* Preload hero — mobile gets compressed 640px version, desktop full 1280px */}
+      <link rel="preload" as="image" href="/images/pulled-pork/hero-mobile.webp" media="(max-width: 768px)" fetchPriority="high" />
+      <link rel="preload" as="image" href="/images/pulled-pork/hero.webp" media="(min-width: 769px)" fetchPriority="high" />
 
       {/* ─── Hero ─────────────────────────────────────────────────────────────── */}
       <section className="relative min-h-screen overflow-hidden flex items-center">
-        {/* Background image */}
-        <Image
-          src="/images/pulled-pork/hero.webp"
-          alt="Pulled pork na grilu"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
+        {/* Background image — native <picture> for responsive serving without Next.js image optimization */}
+        <picture>
+          <source media="(max-width: 768px)" srcSet="/images/pulled-pork/hero-mobile.webp" type="image/webp" />
+          <img
+            src="/images/pulled-pork/hero.webp"
+            alt="Pulled pork na grilu"
+            fetchPriority="high"
+            decoding="async"
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        </picture>
         {/* Gradient overlays */}
         <div
           className="absolute inset-0"
