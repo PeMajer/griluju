@@ -210,5 +210,4 @@ Aktuální skóre (produkce, Chrome): **Mobile 93 / Desktop 100**.
 |---|---|---|
 | `AuthorBio.tsx` linkuje na `/cs/o-mne` místo `/o-mne` | `src/components/article/AuthorBio.tsx` | Střední |
 | `next-mdx-remote` nainstalován, ale nepoužíván | `package.json` | Nízká |
-| `AuthorBio.tsx` linkuje na `/cs/o-mne` místo `/o-mne` | `src/components/article/AuthorBio.tsx` | Střední |
 | Chybí stránky `/kategorie/recepty` a `/kategorie/navody` | Navigation.tsx na ně linkuje | Střední |

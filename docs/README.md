@@ -23,5 +23,4 @@
 | [Implementační plán](guides/plan.md) | Fáze projektu, SEO strategie, affiliate programy, content pipeline |
 | [Workflow článku](guides/article-workflow.md) | Životní cyklus článku od zadání po publikaci — psaní, obrázky, technická kontrola |
 | [Tone & Voice](guides/tone-of-voice.md) | Hlas autora, pravidla psaní, zakázané fráze, struktura podle kategorie |
-| [Setup checklist](guides/setup-checklist.md) | Manuální kroky před spuštěním (Cloudflare Pages, GA4, cookie banner, affiliate registrace) |
 | [AI obrázky](guides/ai-images.md) | Workflow pro úpravu EXIF AI fotek — skript fix-exif.sh, export z Fotek, přenos z originálu |

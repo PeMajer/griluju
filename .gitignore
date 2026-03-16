@@ -33,3 +33,8 @@ next-env.d.ts
 
 # Claude Code — local settings (personal, not shared)
 .claude/settings.local.json
+
+# Temp files
+docs/tmp/*.jpg
+docs/tmp/*.png
+docs/tmp/*.webp
