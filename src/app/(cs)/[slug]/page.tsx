@@ -9,6 +9,7 @@ import { AuthorBio } from "@/components/article/AuthorBio";
 import { AffiliateDisclosure } from "@/components/article/AffiliateDisclosure";
 import { HeroImage } from "@/components/article/HeroImage";
 import { RelatedArticles } from "@/components/article/RelatedArticles";
+import { getMobileSrc, get2xSrc } from "@/lib/image-paths";
 import { NewsletterCTA } from "@/components/ui/NewsletterCTA";
 
 export function generateStaticParams() {
@@ -85,6 +86,18 @@ export default async function ArticlePage({
           <ArticleHeader post={post} locale="cs" />
         </div>
       </div>
+
+      {/* Preload hero — tells browser to fetch the right variant early, matching HeroImage <picture> sources */}
+      {post.image && (
+        <link
+          rel="preload"
+          as="image"
+          href={post.image}
+          // @ts-expect-error — imagesrcset/imagesizes are valid HTML but missing from React types
+          imagesrcset={`${getMobileSrc(post.image)} 640w, ${get2xSrc(getMobileSrc(post.image))} 1024w, ${post.image} 1200w, ${get2xSrc(post.image)} 1920w`}
+          imagesizes="(max-width: 768px) 100vw, 1200px"
+        />
+      )}
 
       {/* Full-width hero image */}
       {post.image && (

@@ -1,17 +1,9 @@
+import { getMobileSrc, get2xSrc } from "@/lib/image-paths";
+
 interface HeroImageProps {
   src: string;
   alt: string;
   className?: string;
-}
-
-/** /images/foo/hero.webp → /images/foo/hero-mobile.webp */
-function getMobileSrc(src: string): string {
-  return src.replace(/(\.[^.]+)$/, "-mobile$1");
-}
-
-/** /images/foo/hero.webp → /images/foo/hero@2x.webp */
-function get2xSrc(src: string): string {
-  return src.replace(/(\.[^.]+)$/, "@2x$1");
 }
 
 /**

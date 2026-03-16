@@ -47,6 +47,7 @@ export default function CsLayout({
       className={`${lora.variable} ${dmSans.variable} ${dmMono.variable}`}
     >
       <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
         <Hreflang />
         <ConsentMode />
       </head>
