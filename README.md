@@ -28,10 +28,11 @@ Kompletní dokumentace je v [`docs/`](docs/README.md).
 | Soubor | Obsah |
 |---|---|
 | [Architektura](docs/architecture.md) | Tech stack, struktura projektu, klíčová rozhodnutí |
+| [Příkazy](docs/commands.md) | Dev příkazy, build skripty, gh CLI |
 | [Komponenty](docs/components.md) | Inventář komponent, props, použití |
 | [Design systém](docs/design.md) | Barvy, typografie, best practices |
 | [Implementační plán](docs/guides/plan.md) | Fáze projektu, SEO, content pipeline |
-| [Setup checklist](docs/guides/setup-checklist.md) | Cloudflare Pages, GA4, cookie banner… |
+| [Workflow článku](docs/guides/article-workflow.md) | Tvorba článku od zadání po publikaci |
 | [CLAUDE.md](CLAUDE.md) | Instrukce pro AI agenta |
 
 ## Klíčové konvence
