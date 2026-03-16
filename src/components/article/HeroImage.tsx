@@ -7,12 +7,12 @@ interface HeroImageProps {
 }
 
 /**
- * Hero image with responsive + retina support via <picture>.
+ * Hero image with responsive + retina support via <img srcset>.
  *
- * Uses a single <source> with w-descriptors + sizes so the browser picks
- * the optimal variant based on both viewport width and DPR.
- * This approach must match the <link rel="preload"> imagesrcset/imagesizes
- * in [slug]/page.tsx to avoid double downloads.
+ * Uses plain <img srcset sizes> instead of <picture><source> to avoid
+ * double download: the browser's preload scanner correctly evaluates
+ * srcset and downloads only one variant. Next.js also auto-generates
+ * a matching <link rel="preload" imagesrcset> from fetchPriority="high".
  */
 export function HeroImage({ src, alt, className }: HeroImageProps) {
   const mobileSrc = getMobileSrc(src);
@@ -23,18 +23,17 @@ export function HeroImage({ src, alt, className }: HeroImageProps) {
   const sizes = "(max-width: 768px) 100vw, 1200px";
 
   return (
-    <picture>
-      <source srcSet={srcSet} sizes={sizes} type="image/webp" />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={src}
-        alt={alt}
-        width={1200}
-        height={675}
-        fetchPriority="high"
-        decoding="async"
-        className={className}
-      />
-    </picture>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={src}
+      srcSet={srcSet}
+      sizes={sizes}
+      alt={alt}
+      width={1200}
+      height={675}
+      fetchPriority="high"
+      decoding="async"
+      className={className}
+    />
   );
 }
