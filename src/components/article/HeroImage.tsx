@@ -4,23 +4,50 @@ interface HeroImageProps {
   className?: string;
 }
 
-/** Derives the 2x variant path: /images/foo/hero.webp → /images/foo/hero@2x.webp */
+/** /images/foo/hero.webp → /images/foo/hero-mobile.webp */
+function getMobileSrc(src: string): string {
+  return src.replace(/(\.[^.]+)$/, "-mobile$1");
+}
+
+/** /images/foo/hero.webp → /images/foo/hero@2x.webp */
 function get2xSrc(src: string): string {
   return src.replace(/(\.[^.]+)$/, "@2x$1");
 }
 
 /**
- * Hero image with retina support via <picture>.
- * Looks for a @2x variant (e.g. hero@2x.webp) for retina displays.
- * If the 2x file doesn't exist, the browser silently falls back to src.
+ * Hero image with responsive + retina support via <picture>.
+ *
+ * Serves 4 variants (browser picks the first matching <source>):
+ *   mobile retina  — hero-mobile@2x.webp  (≤768px, ≥1.5x DPR)
+ *   mobile 1x      — hero-mobile.webp     (≤768px)
+ *   desktop retina — hero@2x.webp         (≥1.5x DPR)
+ *   desktop 1x     — hero.webp            (fallback)
+ *
+ * Missing variants are handled gracefully: if a <source> URL 404s,
+ * the browser falls back to the next <source> or the <img> src.
  */
 export function HeroImage({ src, alt, className }: HeroImageProps) {
-  const src2x = get2xSrc(src);
+  const mobileSrc = getMobileSrc(src);
+  const mobile2xSrc = get2xSrc(mobileSrc);
+  const desktop2xSrc = get2xSrc(src);
 
   return (
     <picture>
+      {/* Mobile retina */}
       <source
-        srcSet={src2x}
+        srcSet={mobile2xSrc}
+        media="(max-width: 768px) and (-webkit-min-device-pixel-ratio: 1.5), (max-width: 768px) and (min-resolution: 144dpi)"
+        type="image/webp"
+      />
+      {/* Mobile 1x */}
+      <source
+        srcSet={mobileSrc}
+        media="(max-width: 768px)"
+        type="image/webp"
+      />
+      {/* Desktop retina */}
+      <source
+        srcSet={desktop2xSrc}
         media="(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)"
         type="image/webp"
       />

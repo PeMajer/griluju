@@ -20,14 +20,23 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Preload hero — browser picks the matching source from <picture> below */}
-      <link rel="preload" as="image" href="/images/pulled-pork/hero.webp" fetchPriority="high" />
+      {/* Preload hero — matches <picture> sources below so the browser preloads the right variant */}
+      <link
+        rel="preload"
+        as="image"
+        href="/images/pulled-pork/hero.webp"
+        // @ts-expect-error — imagesrcset/imagesizes are valid HTML but not in React types yet
+        imagesrcset="/images/pulled-pork/hero-mobile.webp 640w, /images/pulled-pork/hero-mobile@2x.webp 1024w, /images/pulled-pork/hero.webp 1200w, /images/pulled-pork/hero@2x.webp 1920w"
+        imagesizes="(max-width: 768px) 100vw, 1200px"
+      />
 
       {/* ─── Hero ─────────────────────────────────────────────────────────────── */}
       <section className="relative min-h-screen overflow-hidden flex items-center">
-        {/* Background image — native <picture> for responsive serving without Next.js image optimization */}
+        {/* Background image — native <picture> for responsive + retina serving */}
         <picture>
+          <source media="(max-width: 768px) and (-webkit-min-device-pixel-ratio: 1.5), (max-width: 768px) and (min-resolution: 144dpi)" srcSet="/images/pulled-pork/hero-mobile@2x.webp" type="image/webp" />
           <source media="(max-width: 768px)" srcSet="/images/pulled-pork/hero-mobile.webp" type="image/webp" />
+          <source media="(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)" srcSet="/images/pulled-pork/hero@2x.webp" type="image/webp" />
           <img
             src="/images/pulled-pork/hero.webp"
             alt="Pulled pork na grilu"
