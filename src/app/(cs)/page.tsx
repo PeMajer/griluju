@@ -20,6 +20,9 @@ export default function HomePage() {
 
   return (
     <>
+      {/* Preload hero image for LCP */}
+      <link rel="preload" as="image" href="/images/pulled-pork/hero.webp" fetchPriority="high" />
+
       {/* ─── Hero ─────────────────────────────────────────────────────────────── */}
       <section className="relative min-h-screen overflow-hidden flex items-center">
         {/* Background image */}
@@ -171,7 +174,7 @@ export default function HomePage() {
       <section className="py-24 px-6">
         <div className="mx-auto max-w-2xl text-center">
           <Image
-            src="/images/author/petr.jpg"
+            src="/images/author/petr.webp"
             alt="Petr Majer"
             width={96}
             height={96}

@@ -91,7 +91,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-4xl">
           <div className="flex flex-col items-center md:items-start md:flex-row gap-10 md:gap-14">
             <Image
-              src="/images/author/petr.jpg"
+              src="/images/author/petr.webp"
               alt="Petr Majer"
               width={160}
               height={160}
