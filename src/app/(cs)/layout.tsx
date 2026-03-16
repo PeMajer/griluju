@@ -20,14 +20,16 @@ const dmSans = DM_Sans({
   subsets: ["latin", "latin-ext"],
   variable: "--font-body-var",
   axes: ["opsz"],
-  display: "swap",
+  display: "optional",
+  preload: false,
 });
 
 const dmMono = DM_Mono({
   subsets: ["latin"],
   variable: "--font-mono-var",
   weight: ["400", "500"],
-  display: "swap",
+  display: "optional",
+  preload: false,
 });
 
 export const metadata: Metadata = {
