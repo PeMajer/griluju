@@ -20,9 +20,8 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Preload hero — mobile gets compressed 640px version, desktop full 1280px */}
-      <link rel="preload" as="image" href="/images/pulled-pork/hero-mobile.webp" media="(max-width: 768px)" fetchPriority="high" />
-      <link rel="preload" as="image" href="/images/pulled-pork/hero.webp" media="(min-width: 769px)" fetchPriority="high" />
+      {/* Preload hero — browser picks the matching source from <picture> below */}
+      <link rel="preload" as="image" href="/images/pulled-pork/hero.webp" fetchPriority="high" />
 
       {/* ─── Hero ─────────────────────────────────────────────────────────────── */}
       <section className="relative min-h-screen overflow-hidden flex items-center">
