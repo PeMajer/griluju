@@ -14,6 +14,7 @@ npm run lint      # lint check (must pass before any commit)
 node scripts/generate-content-index.mjs  # regenerate content-index.json
 node scripts/generate-sitemap.mjs        # generate sitemap.xml → out/
 node scripts/convert-images-to-webp.mjs  # convert JPG/PNG → WebP (sharp)
+node scripts/check-docs.mjs              # check which docs need updating based on git diff
 ```
 
 ## GitHub CLI
