@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import { MDXContent } from "@content-collections/mdx/react";
 import { getAllPosts, getPostBySlug, getRelatedPosts } from "@/lib/content";
 import { siteConfig } from "@/lib/i18n";
@@ -8,6 +7,7 @@ import { ArticleHeader } from "@/components/article/ArticleHeader";
 import { RecipeMetaBox } from "@/components/article/RecipeMetaBox";
 import { AuthorBio } from "@/components/article/AuthorBio";
 import { AffiliateDisclosure } from "@/components/article/AffiliateDisclosure";
+import { HeroImage } from "@/components/article/HeroImage";
 import { RelatedArticles } from "@/components/article/RelatedArticles";
 import { NewsletterCTA } from "@/components/ui/NewsletterCTA";
 
@@ -89,12 +89,9 @@ export default async function ArticlePage({
       {/* Full-width hero image */}
       {post.image && (
         <div className="mb-14">
-          <Image
+          <HeroImage
             src={post.image}
             alt={post.title}
-            width={1600}
-            height={900}
-            priority
             className="w-full aspect-[4/3] md:aspect-video object-cover max-h-[600px]"
           />
         </div>
