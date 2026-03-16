@@ -1,0 +1,105 @@
+name: Lighthouse CI
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - run: npm ci
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Run Lighthouse (mobile)
+        run: |
+          npx serve out -p 4444 &
+          sleep 3
+          npx lighthouse http://localhost:4444 \
+            --only-categories=performance \
+            --emulated-form-factor=mobile \
+            --output=json \
+            --output-path=/tmp/lh-mobile.json \
+            --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" \
+            --quiet
+
+      - name: Parse results and post PR comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = JSON.parse(fs.readFileSync('/tmp/lh-mobile.json', 'utf8'));
+
+            const perf = Math.round(report.categories.performance.score * 100);
+
+            const audits = report.audits;
+            const lcp  = audits['largest-contentful-paint'];
+            const fcp  = audits['first-contentful-paint'];
+            const tbt  = audits['total-blocking-time'];
+            const cls  = audits['cumulative-layout-shift'];
+            const si   = audits['speed-index'];
+
+            function emoji(score) {
+              if (score >= 90) return '🟢';
+              if (score >= 50) return '🟠';
+              return '🔴';
+            }
+
+            function metricEmoji(rating) {
+              if (rating === 'pass') return '🟢';
+              if (rating === 'average') return '🟠';
+              return '🔴';
+            }
+
+            const body = `## ${emoji(perf)} Lighthouse — Mobile Performance: **${perf}**
+
+            | Metrika | Hodnota | |
+            |---|---|---|
+            | LCP | ${lcp.displayValue} | ${metricEmoji(lcp.score >= 0.9 ? 'pass' : lcp.score >= 0.5 ? 'average' : 'fail')} |
+            | FCP | ${fcp.displayValue} | ${metricEmoji(fcp.score >= 0.9 ? 'pass' : fcp.score >= 0.5 ? 'average' : 'fail')} |
+            | TBT | ${tbt.displayValue} | ${metricEmoji(tbt.score >= 0.9 ? 'pass' : tbt.score >= 0.5 ? 'average' : 'fail')} |
+            | CLS | ${cls.displayValue} | ${metricEmoji(cls.score >= 0.9 ? 'pass' : cls.score >= 0.5 ? 'average' : 'fail')} |
+            | Speed Index | ${si.displayValue} | ${metricEmoji(si.score >= 0.9 ? 'pass' : si.score >= 0.5 ? 'average' : 'fail')} |
+
+            > Měřeno lokálně proti statickému buildu (bez síťové latence) — skóre na produkci bude nižší.`;
+
+            // Find existing comment to update instead of spamming
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const existing = comments.find(c =>
+              c.user.login === 'github-actions[bot]' &&
+              c.body.includes('Lighthouse — Mobile Performance')
+            );
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
