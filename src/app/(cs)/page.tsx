@@ -20,33 +20,19 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Preload hero — imagesrcset must exactly match <source srcSet> below to avoid double download */}
-      <link
-        rel="preload"
-        as="image"
-        href="/images/pulled-pork/hero-mobile.webp"
-        // @ts-expect-error — imagesrcset/imagesizes are valid HTML but missing from React types
-        imagesrcset="/images/pulled-pork/hero-mobile.webp 640w, /images/pulled-pork/hero-mobile@2x.webp 1024w, /images/pulled-pork/hero.webp 1200w, /images/pulled-pork/hero@2x.webp 1920w"
-        imagesizes="(max-width: 768px) 100vw, 1200px"
-      />
-
       {/* ─── Hero ─────────────────────────────────────────────────────────────── */}
       <section className="relative min-h-screen overflow-hidden flex items-center">
-        {/* Single <source> with w-descriptors + sizes — must match preload imagesrcset/imagesizes exactly */}
-        <picture>
-          <source
-            srcSet="/images/pulled-pork/hero-mobile.webp 640w, /images/pulled-pork/hero-mobile@2x.webp 1024w, /images/pulled-pork/hero.webp 1200w, /images/pulled-pork/hero@2x.webp 1920w"
-            sizes="(max-width: 768px) 100vw, 1200px"
-            type="image/webp"
-          />
-          <img
-            src="/images/pulled-pork/hero.webp"
-            alt="Pulled pork na grilu"
-            fetchPriority="high"
-            loading="eager"
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
-          />
-        </picture>
+        {/* Plain <img srcset sizes> — preload scanner correctly evaluates srcset, no double download */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/pulled-pork/hero.webp"
+          srcSet="/images/pulled-pork/hero-mobile.webp 640w, /images/pulled-pork/hero-mobile@2x.webp 1024w, /images/pulled-pork/hero.webp 1200w, /images/pulled-pork/hero@2x.webp 1920w"
+          sizes="(max-width: 768px) 100vw, 1200px"
+          alt="Pulled pork na grilu"
+          fetchPriority="high"
+          loading="eager"
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+        />
         {/* Gradient overlays */}
         <div
           className="absolute inset-0"
