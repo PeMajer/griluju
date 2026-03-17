@@ -17,9 +17,11 @@ interface HeroImageProps {
 export function HeroImage({ src, alt, className }: HeroImageProps) {
   const mobileSrc = getMobileSrc(src);
   const mobile2xSrc = get2xSrc(mobileSrc);
-  const desktop2xSrc = get2xSrc(src);
 
-  const srcSet = `${mobileSrc} 640w, ${mobile2xSrc} 1024w, ${src} 1200w, ${desktop2xSrc} 1920w`;
+  // No 1920w variant — article hero is constrained (max-h-600px, max-w content),
+  // unlike homepage fullscreen bg. Avoids 212 KB download on high-DPR mobile
+  // (e.g. iPhone 14 Pro Max: 430px × DPR 3 = 1290px → would skip 1200w to 1920w).
+  const srcSet = `${mobileSrc} 640w, ${mobile2xSrc} 1024w, ${src} 1200w`;
   const sizes = "(max-width: 768px) 100vw, 1200px";
 
   return (
