@@ -9,7 +9,7 @@ import { AuthorBio } from "@/components/article/AuthorBio";
 import { AffiliateDisclosure } from "@/components/article/AffiliateDisclosure";
 import { HeroImage } from "@/components/article/HeroImage";
 import { RelatedArticles } from "@/components/article/RelatedArticles";
-import { NewsletterCTA } from "@/components/ui/NewsletterCTA";
+import { LazyNewsletterCTA } from "@/components/ui/LazyNewsletterCTA";
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
@@ -122,7 +122,7 @@ export default async function ArticlePage({
       <RelatedArticles posts={related} locale="cs" />
 
       {/* Newsletter CTA */}
-      <NewsletterCTA />
+      <LazyNewsletterCTA />
     </>
   );
 }

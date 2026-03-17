@@ -179,7 +179,7 @@ Cloudflare Pages spouští `npm run build` automaticky při každém push na `ma
 
 ## Performance
 
-Aktuální skóre (produkce, Chrome): **Mobile 93 / Desktop 100**.
+Aktuální skóre (produkce, Chrome): **Mobile 91+ / Desktop 100**.
 
 ### Obrázky — rozměry a komprese
 
@@ -192,7 +192,7 @@ Aktuální skóre (produkce, Chrome): **Mobile 93 / Desktop 100**.
 | Hero mobile (`hero-mobile.webp`) | 640 × 360 px | 48 | ~50 kB |
 | Hero mobile 2x (`hero-mobile@2x.webp`) | 1024 × 576 px | 48 | ~100 kB |
 | Article card (`recepty/*.webp`) | 600 × 800 px | 70 | ~90 kB |
-| Autor avatar (`petr.webp`) | 96 × 96 px | 82 | ~35 kB |
+| Autor avatar (`petr.webp`) | 112 × 112 px | 80 | ~5 kB |
 
 **Lighthouse mobile a srcset:** Lighthouse emuluje Moto G Power (412px viewport, DPR 2.625). Se srcsetem `640w / 1024w / 1200w / 1920w` a `sizes="(max-width: 768px) 100vw, 1200px"` stahuje Lighthouse variantu `1200w` (hero.webp) — proto musí být tato varianta dobře zkomprimovaná (q48 z originálu JPG).
 
@@ -202,7 +202,11 @@ Aktuální skóre (produkce, Chrome): **Mobile 93 / Desktop 100**.
 
 ### Další konfigurace
 
-- **Hero image preload:** `<img srcset fetchPriority="high">` — Next.js auto-generuje `<link rel="preload" imageSrcSet>` do `<head>`. Nepoužívat manuální `<link rel="preload">` — způsobuje dvojité stažení.
+- **Inline CSS:** `experimental.inlineCss: true` v `next.config.ts` — CSS se vkládá přímo do HTML, eliminuje render-blocking `<link>` stylesheety. Výsledný HTML je větší (~40 kB gzip), ale FCP a LCP jsou výrazně lepší.
+- **Hero image preload:** `<img srcset fetchPriority="high">` — React 19 auto-generuje `<link rel="preload" imageSrcSet>` do `<head>`. Nepoužívat manuální `<link rel="preload">` — způsobuje dvojité stažení.
+- **Font split:** Lora normal je preloadovaná (`display: "swap"`), Lora italic se načítá bez preloadu (`display: "optional"`, `preload: false`). Snižuje počet konkurujících preload requestů pro LCP.
+- **GA4 lazyOnload:** GA4 script používá `strategy="lazyOnload"` — načte se až po `onload` eventu, neuberá bandwidth při kritickém načítání.
+- **NewsletterCTA lazy:** Na článkových stránkách se načítá přes `next/dynamic` (`ssr: false`) — JS chunk se stahuje až po hydrataci.
 - **cookieconsent.css:** Nekopírovat CSS z `node_modules` do statického importu — blokuje render (32 KB). CSS se načítá dynamicky přes `<link>` v `useEffect` z `public/cookieconsent.css`. Při update balíčku je nutné zkopírovat: `cp node_modules/vanilla-cookieconsent/dist/cookieconsent.css public/cookieconsent.css`
 - **Browserslist:** `.browserslistrc` cílí na last 2 verze moderních browserů — vyřazuje zbytečné legacy polyfilly (~13 kB).
 - **Měření:** pagespeed.web.dev po každém deployi na produkci.
@@ -214,5 +218,4 @@ Aktuální skóre (produkce, Chrome): **Mobile 93 / Desktop 100**.
 | Problém | Soubor | Priorita |
 |---|---|---|
 | `AuthorBio.tsx` linkuje na `/cs/o-mne` místo `/o-mne` | `src/components/article/AuthorBio.tsx` | Střední |
-| `next-mdx-remote` nainstalován, ale nepoužíván | `package.json` | Nízká |
 | Chybí stránky `/kategorie/recepty` a `/kategorie/navody` | Navigation.tsx na ně linkuje | Střední |

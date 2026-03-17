@@ -12,8 +12,19 @@ const lora = Lora({
   subsets: ["latin", "latin-ext"],
   variable: "--font-display-var",
   weight: ["700"],
-  style: ["normal", "italic"],
+  style: ["normal"],
   display: "swap",
+});
+
+// Italic variant loaded without preload — only used in blockquotes (below fold)
+// and a few non-article pages. Avoids 2 extra font preloads competing with hero LCP.
+const loraItalic = Lora({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-display-italic-var",
+  weight: ["700"],
+  style: ["italic"],
+  display: "optional",
+  preload: false,
 });
 
 const dmSans = DM_Sans({
@@ -46,10 +57,10 @@ export default function CsLayout({
     <html
       lang="cs"
       data-theme="light"
-      className={`${lora.variable} ${dmSans.variable} ${dmMono.variable}`}
+      className={`${lora.variable} ${loraItalic.variable} ${dmSans.variable} ${dmMono.variable}`}
     >
       <head>
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <Hreflang />
         <ConsentMode />
       </head>
