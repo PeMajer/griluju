@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import * as CookieConsent from "vanilla-cookieconsent";
-import "vanilla-cookieconsent/dist/cookieconsent.css";
+// CSS loaded dynamically to avoid render-blocking — see public/cookieconsent.css
 
 declare function gtag(...args: unknown[]): void;
 
@@ -18,7 +18,11 @@ function updateConsent(accepted: boolean) {
 
 export function CookieBanner() {
   useEffect(() => {
-    CookieConsent.run({
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "/cookieconsent.css";
+    link.onload = () => {
+      CookieConsent.run({
       categories: {
         necessary: {
           enabled: true,
@@ -76,7 +80,9 @@ export function CookieBanner() {
           },
         },
       },
-    });
+      });
+    };
+    document.head.appendChild(link);
   }, []);
 
   return null;
