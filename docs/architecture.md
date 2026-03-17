@@ -187,10 +187,14 @@ Aktuální skóre (produkce, Chrome): **Mobile 93 / Desktop 100**.
 
 | Typ obrázku | Rozměr | Kvalita | Max velikost |
 |---|---|---|---|
-| Hero desktop (`hero.webp`) | 960 × 540 px | 48 | ~50 kB |
-| Hero mobile (`hero-mobile.webp`) | 640 × 360 px | 38 | ~25 kB |
+| Hero desktop (`hero.webp`) | 1200 × 675 px | 48 | ~70 kB |
+| Hero desktop 2x (`hero@2x.webp`) | 1920 × 1080 px | 48 | ~220 kB |
+| Hero mobile (`hero-mobile.webp`) | 640 × 360 px | 48 | ~50 kB |
+| Hero mobile 2x (`hero-mobile@2x.webp`) | 1024 × 576 px | 48 | ~100 kB |
 | Article card (`recepty/*.webp`) | 600 × 800 px | 70 | ~90 kB |
 | Autor avatar (`petr.webp`) | 96 × 96 px | 82 | ~35 kB |
+
+**Lighthouse mobile a srcset:** Lighthouse emuluje Moto G Power (412px viewport, DPR 2.625). Se srcsetem `640w / 1024w / 1200w / 1920w` a `sizes="(max-width: 768px) 100vw, 1200px"` stahuje Lighthouse variantu `1200w` (hero.webp) — proto musí být tato varianta dobře zkomprimovaná (q48 z originálu JPG).
 
 **Proč 600×800 pro kartičky:** `ArticleCard` používá `aspect-[3/4]` s `fill` + `object-cover`. S `unoptimized: true` browser stahuje vždy plnou bitmapu — resize na portrait odpovídající kartičce je jediný způsob jak snížit download size. `sizes` prop na `<Image>` je bez optimalizace ignorován.
 
@@ -198,7 +202,8 @@ Aktuální skóre (produkce, Chrome): **Mobile 93 / Desktop 100**.
 
 ### Další konfigurace
 
-- **Hero image preload:** `<link rel="preload" fetchPriority="high">` v `page.tsx` — React 19 hoistuje do `<head>`. Nutné protože `unoptimized: true` zabraňuje automatickému preload hintu.
+- **Hero image preload:** `<img srcset fetchPriority="high">` — Next.js auto-generuje `<link rel="preload" imageSrcSet>` do `<head>`. Nepoužívat manuální `<link rel="preload">` — způsobuje dvojité stažení.
+- **cookieconsent.css:** Nekopírovat CSS z `node_modules` do statického importu — blokuje render (32 KB). CSS se načítá dynamicky přes `<link>` v `useEffect` z `public/cookieconsent.css`. Při update balíčku je nutné zkopírovat: `cp node_modules/vanilla-cookieconsent/dist/cookieconsent.css public/cookieconsent.css`
 - **Browserslist:** `.browserslistrc` cílí na last 2 verze moderních browserů — vyřazuje zbytečné legacy polyfilly (~13 kB).
 - **Měření:** pagespeed.web.dev po každém deployi na produkci.
 
