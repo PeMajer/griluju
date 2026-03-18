@@ -188,13 +188,13 @@ Aktuální skóre (produkce, Chrome): **Mobile 91+ / Desktop 100**.
 | Typ obrázku | Rozměr | Kvalita | Max velikost |
 |---|---|---|---|
 | Hero desktop (`hero.webp`) | 1200 × 675 px | 48 | ~70 kB |
-| Hero desktop 2x (`hero@2x.webp`) | 1920 × 1080 px | 48 | ~220 kB |
+| Hero desktop 2x (`hero@2x.webp`) | 1000 × 563 px | 48 | ~56 kB |
 | Hero mobile (`hero-mobile.webp`) | 640 × 360 px | 48 | ~50 kB |
 | Hero mobile 2x (`hero-mobile@2x.webp`) | 1024 × 576 px | 48 | ~100 kB |
 | Article card (`recepty/*.webp`) | 600 × 800 px | 70 | ~90 kB |
 | Autor avatar (`petr.webp`) | 112 × 112 px | 80 | ~5 kB |
 
-**Lighthouse mobile a srcset:** Lighthouse emuluje Moto G Power (412px viewport, DPR 2.625). Se srcsetem `640w / 1024w / 1200w / 1920w` a `sizes="(max-width: 768px) 100vw, 1200px"` stahuje Lighthouse variantu `1200w` (hero.webp) — proto musí být tato varianta dobře zkomprimovaná (q48 z originálu JPG).
+**Lighthouse mobile a srcset:** Lighthouse emuluje Moto G Power (412px viewport, DPR 2.625). Se srcsetem `640w / 1024w / 1200w` a `sizes="(max-width: 768px) 100vw, 1200px"` stahuje Lighthouse variantu `1200w` (hero.webp) — proto musí být tato varianta dobře zkomprimovaná (q48 z originálu JPG). Varianta `1920w` byla odebrána — article hero je omezena na max-w content boxu, takže by na high-DPR mobilech (iPhone 14 Pro Max: 430px × DPR 3 = 1290px) zbytečně stahovalo 212 kB soubor.
 
 **Proč 600×800 pro kartičky:** `ArticleCard` používá `aspect-[3/4]` s `fill` + `object-cover`. S `unoptimized: true` browser stahuje vždy plnou bitmapu — resize na portrait odpovídající kartičce je jediný způsob jak snížit download size. `sizes` prop na `<Image>` je bez optimalizace ignorován.
 
@@ -217,5 +217,3 @@ Aktuální skóre (produkce, Chrome): **Mobile 91+ / Desktop 100**.
 
 | Problém | Soubor | Priorita |
 |---|---|---|
-| `AuthorBio.tsx` linkuje na `/cs/o-mne` místo `/o-mne` | `src/components/article/AuthorBio.tsx` | Střední |
-| Chybí stránky `/kategorie/recepty` a `/kategorie/navody` | Navigation.tsx na ně linkuje | Střední |
