@@ -73,7 +73,7 @@ Registruj se hned, schválení trvá 2–7 dní.
 | Osobní příběh /o-mne | ⬜ TODO |
 | Kontaktní info /kontakt | ✅ done |
 | Vlastní fotky (průběžně) | ⬜ TODO |
-| Lighthouse mobile 90+ | ⬜ TODO |
+| Lighthouse mobile 90+ | ✅ done (91+) |
 | Mall.cz affiliate registrace | ⬜ TODO |
 | Alza.cz affiliate registrace | ⬜ TODO |
 | affiliates.config.ts aktualizovat po schválení | ⬜ TODO |
