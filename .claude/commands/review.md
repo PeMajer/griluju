@@ -45,9 +45,19 @@ git diff HEAD -- 'content/**/*.mdx' | grep '^\+' | grep -E 'amazon\.|alza\.|mall
 
 Pokud najdeš raw URL → oprav na `/go/[slug]`.
 
-### 5. Dokumentace
+### 5. Kvalita kódu (pro TS/TSX soubory)
 
-Teprve když je kód finální (lint OK, build OK), zkontroluj dokumentaci v `docs/`:
+Projdi diff (`git diff HEAD`) a zhodnoť:
+
+- **Duplicita** — vznikl kód podobný existujícímu? Lze extrahovat?
+- **Nová komponenta** — existuje existující, kterou lze rozšířit?
+- **Idiomatičnost** — Next.js App Router way, nebo zbytečně složitě?
+
+Pokud najdeš konkrétní zlepšení → oprav (pokud je změna malá a bezpečná), nebo navrhni.
+
+### 6. Dokumentace
+
+Teprve když je kód finální (lint OK, build OK, kvalita OK), zkontroluj dokumentaci v `docs/`:
 
 ```bash
 # Hledej zmínky o změněném souboru/komponentě v docs/
@@ -68,14 +78,6 @@ Mapování co dokumentovat kde:
 
 Pokud dokumentace popisuje změněné chování/API/props → **aktualizuj ji**.
 Pokud dokumentace neexistuje a změna je netriviální → upozorni (není blocker).
-
-### 6. Kvalita kódu (pro TS/TSX soubory)
-
-Projdi diff (`git diff HEAD`) a zhodnoť:
-
-- **Duplicita** — vznikl kód podobný existujícímu? Lze extrahovat?
-- **Nová komponenta** — existuje existující, kterou lze rozšířit?
-- **Idiomatičnost** — Next.js App Router way, nebo zbytečně složitě?
 
 ### 7. Shrnutí
 
