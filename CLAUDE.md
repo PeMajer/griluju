@@ -20,14 +20,17 @@ content-collections 0.14 (MDX), Cloudflare Pages (`output: 'export'` — API rou
 
 ---
 
+## Skills — kdy je použít
+
+- **`/review`** — před každým commitem (lint + build + obsahové kontroly)
+- **`/new-article`** — při vytváření nového článku (branch + frontmatter + obsah + PR)
+- **`/session-end`** — uzavření sezení (stav, uncommitted změny, kontext pro příště)
+
+---
+
 ## Hranice — co agent smí a nesmí
 
-🚫 **NEVER (hard stops):**
-- Nikdy nepushuj přímo do `main` — vždy branch + PR
-- Nikdy necommituj s rozbité buildem nebo unresolved lint chybami
-- Nikdy nepoužívej raw affiliate URL — vždy `/go/[product-slug]`
-- Nikdy nepřidávej novou komponentu pokud existující lze rozšířit
-- Nikdy nepište "Jako jazykový model AI..."
+✅ **Always safe:** Čtení souborů, spouštění lint/build, prohledávání kódu, editace obsahu
 
 ⚠️ **Ask first (zastav a zeptej se):**
 - Task vyžaduje smazání nebo zásadní restrukturalizaci existujících souborů
@@ -35,10 +38,12 @@ content-collections 0.14 (MDX), Cloudflare Pages (`output: 'export'` — API rou
 - Instrukce je v rozporu s CLAUDE.md
 - Chybí závislost nebo API klíč
 
-✅ **Proceed without asking:**
-- Task je jasně ohraničený, přístup je zřejmý z kódu
-- Reverzibilní změna (obsah, styling, config)
-- Odpovídá etablovanému patternu v projektu
+🚫 **Never:**
+- Nikdy nepushuj přímo do `main` — vždy branch + PR
+- Nikdy necommituj s rozbité buildem nebo unresolved lint chybami
+- Nikdy nepoužívej raw affiliate URL — vždy `/go/[product-slug]`
+- Nikdy nepřidávej novou komponentu pokud existující lze rozšířit
+- Nikdy nepište "Jako jazykový model AI..."
 
 ---
 
@@ -48,7 +53,7 @@ content-collections 0.14 (MDX), Cloudflare Pages (`output: 'export'` — API rou
 2. Pokud `main` → vždy nová branch. Feature branch → porovnej s existujícími změnami.
 3. Nová branch: `git checkout main && git pull origin main && git checkout -b [type/popis]`
 4. Naming: `feature/`, `fix/`, `content/[slug]`, `issue-<číslo>`
-5. Implementuj → lint → build → commit → push → `gh pr create` (automaticky, bez ptaní)
+5. Implementuj → `/review` → commit → push → `gh pr create` (automaticky, bez ptaní)
 
 IMPORTANT: Commit messages v češtině, stručné. Neprovádět `git push --force`.
 
@@ -61,3 +66,14 @@ IMPORTANT: Commit messages v češtině, stručné. Neprovádět `git push --for
 - Affiliate: vždy `/go/[slug]`, nikdy raw URL; updatovat `affiliates.config.ts`
 - Obrázky: WebP, vždy `width` + `height`, `priority` na hero image
 - Lighthouse mobile 90+ před publikací
+
+---
+
+## Self-review před dokončením
+
+1. Najdi VŠECHNA místa, která závisí na tom co jsi změnil.
+2. Spusť `/review` — lint, build, obsahové kontroly.
+3. Projdi git diff jako celek před tím než prohlásíš hotovo.
+4. Zeptej se sám sebe: **"Schválil by to zkušený developer?"** Pokud ne, oprav to.
+
+**Evidence first** — nikdy neříkej "should work", "pravděpodobně projde" nebo "zdá se OK" bez spuštění příkazu a přečtení výstupu. Hotovo znamená zelený output.
