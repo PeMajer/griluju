@@ -1,6 +1,17 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "language": "czech",
   "hooks": {
     "PreToolUse": [
+      {
+        "matcher": "Bash(git commit*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/majer/Projects/griluju/.claude/hooks/pre-commit-check.sh"
+          }
+        ]
+      },
       {
         "matcher": "Bash",
         "hooks": [
@@ -17,11 +28,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/home/agent/griluju/.claude/hooks/lint-on-edit.sh"
+            "command": "/Users/majer/Projects/griluju/.claude/hooks/lint-on-edit.sh"
           },
           {
             "type": "command",
-            "command": "/home/agent/griluju/.claude/hooks/docs-reminder.sh"
+            "command": "/Users/majer/Projects/griluju/.claude/hooks/docs-reminder.sh"
           }
         ]
       }

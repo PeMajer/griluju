@@ -4,41 +4,51 @@ Grilovací obsahový web pro CZ trh. Monetizace AdSense + affiliate.
 Autor = frontend developer + aktivní grilar (pomalé grilování, BBQ, steaky).
 Domény: `griluju.cz` (hlavní) + `griluju.com` (301 → .cz).
 
-**Stack:** Next.js 16 App Router, TypeScript, Tailwind v4 (CSS config, bez `tailwind.config.ts`),
-content-collections 0.14 (MDX), Cloudflare Pages (`output: 'export'` — API routes nejsou podporovány).
+## Detailed docs
 
-## Dokumentace
+- **Architektura & stack:** `.claude/docs/architecture.md`
+- **Konvence kódu:** `.claude/docs/conventions.md`
+
+## Dokumentace (plná reference)
 
 | Soubor | Obsah |
 |---|---|
 | [docs/architecture.md](docs/architecture.md) | Tech stack, struktura, routing, affiliate systém, performance |
 | [docs/commands.md](docs/commands.md) | Dev příkazy, build skripty, gh CLI |
-| [docs/agent-workflow.md](docs/agent-workflow.md) | Chování agenta, checklist, průzkum projektu, tvorba článků |
+| [docs/components.md](docs/components.md) | Inventář komponent s props a příklady |
+| [docs/design.md](docs/design.md) | Design systém — barvy, typografie, Tailwind v4 pravidla |
+| [docs/agent-workflow.md](docs/agent-workflow.md) | Chování agenta, checklist, průzkum projektu |
 | [docs/guides/article-workflow.md](docs/guides/article-workflow.md) | Životní cyklus článku od zadání po publikaci |
 | [docs/guides/tone-of-voice.md](docs/guides/tone-of-voice.md) | Tón, styl, zakázané fráze, pravidla psaní |
 | [docs/lessons.md](docs/lessons.md) | Patterny z minulých korekcí — číst na začátku session |
 
 ---
 
+## Skills — kdy je použít
+
+- **`/review`** — před každým commitem (lint + build + obsahové kontroly)
+- **`/new-article`** — při vytváření nového článku (branch + frontmatter + obsah + PR)
+- **`/session-end`** — uzavření sezení (stav, uncommitted změny, kontext pro příště)
+- **`/systematic-debugging`** — když oprava nefunguje napoprvé; 4-fázový protokol s hard stop po 3 pokusech
+
+---
+
 ## Hranice — co agent smí a nesmí
 
-🚫 **NEVER (hard stops):**
-- Nikdy nepushuj přímo do `main` — vždy branch + PR
-- Nikdy necommituj s rozbité buildem nebo unresolved lint chybami
-- Nikdy nepoužívej raw affiliate URL — vždy `/go/[product-slug]`
-- Nikdy nepřidávej novou komponentu pokud existující lze rozšířit
-- Nikdy nepište "Jako jazykový model AI..."
+✅ **Always safe:** Čtení souborů, spouštění lint/build, prohledávání kódu, editace obsahu
 
-⚠️ **Ask first (zastav a zeptej se):**
+⚠️ **Ask first:**
 - Task vyžaduje smazání nebo zásadní restrukturalizaci existujících souborů
 - Existují 2+ validní architektonické přístupy s reálnými trade-offs
 - Instrukce je v rozporu s CLAUDE.md
 - Chybí závislost nebo API klíč
 
-✅ **Proceed without asking:**
-- Task je jasně ohraničený, přístup je zřejmý z kódu
-- Reverzibilní změna (obsah, styling, config)
-- Odpovídá etablovanému patternu v projektu
+🚫 **Never:**
+- Nikdy nepushuj přímo do `main` — vždy branch + PR
+- Nikdy necommituj s rozbité buildem nebo unresolved lint chybami
+- Nikdy nepoužívej raw affiliate URL — vždy `/go/[product-slug]`
+- Nikdy nepřidávej novou komponentu pokud existující lze rozšířit
+- Nikdy nepište "Jako jazykový model AI..."
 
 ---
 
@@ -48,16 +58,23 @@ content-collections 0.14 (MDX), Cloudflare Pages (`output: 'export'` — API rou
 2. Pokud `main` → vždy nová branch. Feature branch → porovnej s existujícími změnami.
 3. Nová branch: `git checkout main && git pull origin main && git checkout -b [type/popis]`
 4. Naming: `feature/`, `fix/`, `content/[slug]`, `issue-<číslo>`
-5. Implementuj → lint → build → commit → push → `gh pr create` (automaticky, bez ptaní)
+5. Implementuj → `/review` → commit → push → `gh pr create` (automaticky, bez ptaní)
 
-IMPORTANT: Commit messages v češtině, stručné. Neprovádět `git push --force`.
+IMPORTANT: Commit messages v češtině, stručné. Vždy volej `git add` a `git commit` jako **dvě samostatná volání** — nikdy nespojuj `&&`. Pre-commit hook se spustí pouze pokud příkaz začíná `git commit`.
 
 ---
 
-## Jazyk a obsah
+## Dokumentace
 
-- UI texty a články v **češtině**, code comments v angličtině
-- H1 z frontmatteru (nikdy v body), 3–5 interních odkazů na článek (ze `content-index.json`)
-- Affiliate: vždy `/go/[slug]`, nikdy raw URL; updatovat `affiliates.config.ts`
-- Obrázky: WebP, vždy `width` + `height`, `priority` na hero image
-- Lighthouse mobile 90+ před publikací
+Když měníš kód, zkontroluj jestli existuje relevantní dokumentace v `docs/` která ho popisuje. Pokud ano, aktualizuj ji. Nenechávej docs out of sync s kódem.
+
+---
+
+## Self-review před dokončením
+
+1. Najdi VŠECHNA místa, která závisí na tom co jsi změnil.
+2. Spusť `/review` — lint, build, obsahové kontroly.
+3. Projdi git diff jako celek před tím než prohlásíš hotovo.
+4. Zeptej se sám sebe: **"Schválil by to zkušený developer?"** Pokud ne, oprav to.
+
+**Evidence first** — nikdy neříkej "should work", "pravděpodobně projde" nebo "zdá se OK" bez spuštění příkazu a přečtení výstupu. Hotovo znamená zelený output.

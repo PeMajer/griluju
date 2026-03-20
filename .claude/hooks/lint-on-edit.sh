@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 # PostToolUse hook: run ESLint on edited TypeScript/TSX files immediately after edit.
 # Only fires on .ts/.tsx files — skips MDX, JSON, CSS, etc.
+# Uses python3 for JSON parsing (jq not available in this env).
 
 INPUT=$(cat)
-FILE=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
+FILE=$(python3 -c "import json,sys; d=json.loads(sys.stdin.read()); print(d.get('tool_input',{}).get('file_path',''))" <<< "$INPUT" 2>/dev/null)
 
 [[ -z "$FILE" ]] && exit 0
 [[ "$FILE" != *.ts && "$FILE" != *.tsx ]] && exit 0
