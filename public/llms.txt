@@ -1,0 +1,35 @@
+# griluju.cz
+
+> Grilovací web pro český trh. Recepty, návody a recenze zaměřené na přesné teploty, časy a gramy — ne vágní rady. Autor: Petr Majer, aktivní grilar s důrazem na pomalé grilování, BBQ a steaky.
+
+## Obsah webu
+
+- Recepty: konkrétní postupy s teplotami (°C), časy (minuty/hodiny) a váhami (gramy/kg)
+- Návody: krok za krokem — jak grilovat, udržovat, používat konkrétní techniky
+- Recenze: vybavení testované v praxi s konkrétními výsledky a cenami
+- Autor píše výhradně o tom, co osobně vyzkoušel
+
+## Klíčová témata
+
+- Pomalé grilování a BBQ (pulled pork, brisket, žebra)
+- Steaky — teploty propečení, metody (reverse sear, klasika)
+- Gril jako nástroj — výběr, udržování, typy (uhlíkový, plynový, kettle)
+- Zelenina a ryby na grilu
+
+## Struktura
+
+- Domovská stránka: přehled posledních článků
+- `/recepty` — recepty s přesnými parametry
+- `/navod` — návody a techniky
+- `/recenze` — recenze vybavení
+- `/go/[produkt]` — affiliate odkaz na konkrétní produkt (ne přímý affiliate link)
+
+## Affiliate
+
+Web obsahuje affiliate odkazy na grilovací vybavení (Mall.cz, Alza.cz, Amazon.de). Všechny přes interní `/go/[slug]`. Produkty jsou zmíněny v kontextu, kde genuinně pomáhají — ne jako reklamní bloky.
+
+## Optional
+
+- Autor: Petr Majer — frontend developer a aktivní grilar, ne šéfkuchař
+- Cílová skupina: domácí grilaři začátečníci až mírně pokročilí
+- Jazyk: čeština, domény griluju.cz (hlavní) a griluju.com (přesměrování)

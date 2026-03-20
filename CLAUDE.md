@@ -7,13 +7,20 @@ Domény: `griluju.cz` (hlavní) + `griluju.com` (301 → .cz).
 **Stack:** Next.js 16 App Router, TypeScript, Tailwind v4 (CSS config, bez `tailwind.config.ts`),
 content-collections 0.14 (MDX), Cloudflare Pages (`output: 'export'` — API routes nejsou podporovány).
 
-## Dokumentace
+## Detailed docs
+
+- **Architektura & stack:** `.claude/docs/architecture.md`
+- **Konvence kódu:** `.claude/docs/conventions.md`
+
+## Dokumentace (plná reference)
 
 | Soubor | Obsah |
 |---|---|
 | [docs/architecture.md](docs/architecture.md) | Tech stack, struktura, routing, affiliate systém, performance |
 | [docs/commands.md](docs/commands.md) | Dev příkazy, build skripty, gh CLI |
-| [docs/agent-workflow.md](docs/agent-workflow.md) | Chování agenta, checklist, průzkum projektu, tvorba článků |
+| [docs/components.md](docs/components.md) | Inventář komponent s props a příklady |
+| [docs/design.md](docs/design.md) | Design systém — barvy, typografie, Tailwind v4 pravidla |
+| [docs/agent-workflow.md](docs/agent-workflow.md) | Chování agenta, checklist, průzkum projektu |
 | [docs/guides/article-workflow.md](docs/guides/article-workflow.md) | Životní cyklus článku od zadání po publikaci |
 | [docs/guides/tone-of-voice.md](docs/guides/tone-of-voice.md) | Tón, styl, zakázané fráze, pravidla psaní |
 | [docs/lessons.md](docs/lessons.md) | Patterny z minulých korekcí — číst na začátku session |
