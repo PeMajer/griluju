@@ -104,3 +104,5 @@ Vypiš přehledný report:
 ### Závěr
 ✅ Připraveno k commitu  |  ❌ Nutno opravit
 ```
+
+> `git add` a `git commit` volej vždy jako **dvě samostatná volání** — nikdy nespojuj `&&`. Pre-commit hook se spustí pouze pokud příkaz začíná `git commit`.
