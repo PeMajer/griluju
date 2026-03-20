@@ -69,7 +69,16 @@ style={{ color: "var(--dark-fg)" }}       // text v dark sekcích
 
 - Překlady přes `t(locale, 'klic')` z `src/lib/i18n.ts` — nikdy hardcode česky
 - Interní linky ze `content-index.json` — přečíst před psaním článku
-- Affiliate produkty: vždy `/go/[slug]`, nikdy raw URL
+- Affiliate produkty: vždy `/go/[slug]`, nikdy raw URL; nový produkt → přidat do `affiliates.config.ts`
+- UI texty a články v **češtině**, code comments v angličtině
+- H1 vždy z frontmatteru — nikdy v body článku
+
+## Obrázky
+
+- Formát: WebP, `width` + `height` vždy povinné
+- Hero image: `priority` prop (LCP optimalizace)
+- `images: { unoptimized: true }` — optimalizaci dělat ručně před commitem
+- Lighthouse mobile 90+ před publikací
 
 ## Komponenty
 

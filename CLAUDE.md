@@ -4,9 +4,6 @@ Grilovací obsahový web pro CZ trh. Monetizace AdSense + affiliate.
 Autor = frontend developer + aktivní grilar (pomalé grilování, BBQ, steaky).
 Domény: `griluju.cz` (hlavní) + `griluju.com` (301 → .cz).
 
-**Stack:** Next.js 16 App Router, TypeScript, Tailwind v4 (CSS config, bez `tailwind.config.ts`),
-content-collections 0.14 (MDX), Cloudflare Pages (`output: 'export'` — API routes nejsou podporovány).
-
 ## Detailed docs
 
 - **Architektura & stack:** `.claude/docs/architecture.md`
@@ -32,6 +29,7 @@ content-collections 0.14 (MDX), Cloudflare Pages (`output: 'export'` — API rou
 - **`/review`** — před každým commitem (lint + build + obsahové kontroly)
 - **`/new-article`** — při vytváření nového článku (branch + frontmatter + obsah + PR)
 - **`/session-end`** — uzavření sezení (stav, uncommitted změny, kontext pro příště)
+- **`/systematic-debugging`** — když oprava nefunguje napoprvé; 4-fázový protokol s hard stop po 3 pokusech
 
 ---
 
@@ -39,7 +37,7 @@ content-collections 0.14 (MDX), Cloudflare Pages (`output: 'export'` — API rou
 
 ✅ **Always safe:** Čtení souborů, spouštění lint/build, prohledávání kódu, editace obsahu
 
-⚠️ **Ask first (zastav a zeptej se):**
+⚠️ **Ask first:**
 - Task vyžaduje smazání nebo zásadní restrukturalizaci existujících souborů
 - Existují 2+ validní architektonické přístupy s reálnými trade-offs
 - Instrukce je v rozporu s CLAUDE.md
@@ -62,17 +60,7 @@ content-collections 0.14 (MDX), Cloudflare Pages (`output: 'export'` — API rou
 4. Naming: `feature/`, `fix/`, `content/[slug]`, `issue-<číslo>`
 5. Implementuj → `/review` → commit → push → `gh pr create` (automaticky, bez ptaní)
 
-IMPORTANT: Commit messages v češtině, stručné. Neprovádět `git push --force`.
-
----
-
-## Jazyk a obsah
-
-- UI texty a články v **češtině**, code comments v angličtině
-- H1 z frontmatteru (nikdy v body), 3–5 interních odkazů na článek (ze `content-index.json`)
-- Affiliate: vždy `/go/[slug]`, nikdy raw URL; updatovat `affiliates.config.ts`
-- Obrázky: WebP, vždy `width` + `height`, `priority` na hero image
-- Lighthouse mobile 90+ před publikací
+IMPORTANT: Commit messages v češtině, stručné. Vždy volej `git add` a `git commit` jako **dvě samostatná volání** — nikdy nespojuj `&&`. Pre-commit hook se spustí pouze pokud příkaz začíná `git commit`.
 
 ---
 

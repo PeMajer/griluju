@@ -7,7 +7,7 @@ Stručné distilace pro AI agenta. Číst před code tasky.
 | Dokument | Obsah |
 |---|---|
 | [.claude/docs/architecture.md](../.claude/docs/architecture.md) | Stack, omezení, struktura složek, affiliate systém |
-| [.claude/docs/conventions.md](../.claude/docs/conventions.md) | Tailwind v4 gotchas, TypeScript, MDX konvence |
+| [.claude/docs/conventions.md](../.claude/docs/conventions.md) | Tailwind v4 gotchas, TypeScript, MDX konvence, obrázky, affiliate pravidla |
 
 ## Technická dokumentace (plná reference)
 
