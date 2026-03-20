@@ -76,6 +76,12 @@ IMPORTANT: Commit messages v češtině, stručné. Neprovádět `git push --for
 
 ---
 
+## Dokumentace
+
+Když měníš kód, zkontroluj jestli existuje relevantní dokumentace v `docs/` která ho popisuje. Pokud ano, aktualizuj ji. Nenechávej docs out of sync s kódem.
+
+---
+
 ## Self-review před dokončením
 
 1. Najdi VŠECHNA místa, která závisí na tom co jsi změnil.

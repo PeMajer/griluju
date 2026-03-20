@@ -45,7 +45,31 @@ git diff HEAD -- 'content/**/*.mdx' | grep '^\+' | grep -E 'amazon\.|alza\.|mall
 
 Pokud najdeš raw URL → oprav na `/go/[slug]`.
 
-### 5. Kvalita kódu (pro TS/TSX soubory)
+### 5. Dokumentace
+
+Teprve když je kód finální (lint OK, build OK), zkontroluj dokumentaci v `docs/`:
+
+```bash
+# Hledej zmínky o změněném souboru/komponentě v docs/
+grep -r "<název_komponenty_nebo_souboru>" docs/ --include="*.md" -l
+```
+
+Mapování co dokumentovat kde:
+
+| Změna | Dokumentace |
+|---|---|
+| `src/components/**` | `docs/components.md` — props, příklady |
+| `src/app/globals.css` | `docs/design.md` — tokeny, typografie |
+| `affiliates.config.ts` | `docs/architecture.md` — sekce Affiliate |
+| `content-collections.ts` | `docs/architecture.md` — sekce Content Collections |
+| `next.config.ts` | `docs/architecture.md` — sekce Build pipeline |
+| `scripts/` | `docs/commands.md` |
+| `.claude/` | `docs/agent-workflow.md` |
+
+Pokud dokumentace popisuje změněné chování/API/props → **aktualizuj ji**.
+Pokud dokumentace neexistuje a změna je netriviální → upozorni (není blocker).
+
+### 6. Kvalita kódu (pro TS/TSX soubory)
 
 Projdi diff (`git diff HEAD`) a zhodnoť:
 
@@ -53,7 +77,7 @@ Projdi diff (`git diff HEAD`) a zhodnoť:
 - **Nová komponenta** — existuje existující, kterou lze rozšířit?
 - **Idiomatičnost** — Next.js App Router way, nebo zbytečně složitě?
 
-### 6. Shrnutí
+### 7. Shrnutí
 
 Vypiš přehledný report:
 
@@ -68,6 +92,9 @@ Vypiš přehledný report:
 
 ### Obsahová pravidla
 ✅ OK  |  ⚠️ Upozornění: ...
+
+### Dokumentace
+✅ Aktuální  |  ⚠️ Aktualizováno: ...  |  ℹ️ Chybí dokumentace: ...
 
 ### Kvalita kódu
 ✅ Bez připomínek  |  ⚠️ Návrhy: ...
