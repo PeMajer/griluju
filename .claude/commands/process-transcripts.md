@@ -44,6 +44,11 @@ Odpověď obsahuje: `video_id`, `title`, `channel`, `published_at`, `language`, 
 
 ### 4. Vygeneruj článek
 
+> **Dvě fáze — záměrně oddělené role:**
+> Generování probíhá ve dvou průchodech: autor (krok 4 + 4b) a kritik (krok 4c).
+> Kombinace obou rolí v jednom průchodu vede ke kompromisu — agent přepíná mezi psaním a kontrolou a dělá obojí hůř.
+> **Nejdřív napiš, pak zkontroluj. Nepřekrývej tyto dvě fáze.**
+
 Pro každý přepis vytvoř article branch a soubor:
 
 ```bash
