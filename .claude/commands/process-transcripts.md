@@ -45,7 +45,8 @@ Pro každý přepis vytvoř article branch a soubor:
 git checkout main && git pull origin main && git checkout -b content/[slug]
 ```
 
-**Pravidla psaní** — viz `docs/guides/tone-of-voice.md`:
+**Před psaním přečti celý `docs/guides/tone-of-voice.md`** — obsahuje pravidla tónu, struktury i jazykové kontroly. Klíčové body:
+
 - Přepis je anglicky — adaptuj pro českého čtenáře, nepřekládej doslova
 - Převeď americké jednotky: °F → °C, libry → kg, unce → g
 - Žádné vágní množství — vždy konkrétní čísla (°C, minuty, gramy)
@@ -78,12 +79,20 @@ Pokud článek vyžaduje hero image → přidej placeholder komentář `<!-- HER
 
 Spusť `/review` — lint + build.
 
-Ověř manuálně:
+Ověř manuálně podle kontrolního seznamu z `docs/guides/tone-of-voice.md`:
 - [ ] Frontmatter kompletní
 - [ ] Jednotky převedeny (°F → °C, libry → kg)
 - [ ] ≥3 interní odkazy ze `content-index.json`
-- [ ] Žádná zakázaná fráze (viz tone-of-voice.md)
+- [ ] Žádná zakázaná fráze ze seznamu v tone-of-voice.md
 - [ ] Žádná raw affiliate URL (pouze `/go/[slug]`)
+
+**Jazyková kontrola** (specifická rizika při překladu z angličtiny):
+- [ ] Shody rodu přívlastku: "z českého řeznictví", ne "z české řeznictví"
+- [ ] "abych", ne "aby jsem"
+- [ ] Cizí přívlastek za podstatným jménem: "štěpky hickory", ne "hickory štěpky"
+- [ ] Skloňování značek: "na Weberu", ne "na Weber Kettle"
+- [ ] Anglicismy nahrazeny kde existuje český ekvivalent
+- [ ] Neskloňovatelné termíny (Texas crutch, reverse sear) ponechány v originále, vysvětleny česky
 
 ### 6. Označ video jako zpracované
 
