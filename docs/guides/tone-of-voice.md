@@ -76,6 +76,16 @@ Krátké věty. Aktivum. Konkrétní podmět.
 - "hickory štěpky" → "štěpky hickory" (cizí přívlastek za podstatným jménem)
 - Nebo rozvinout: "štěpky ze dřeva hickory", "gril značky Weber"
 
+**Překlady z angličtiny — typické chyby:**
+- "per side" → "z každé strany", ne "na stranu" ("opékejte 2 minuty z každé strany")
+- "carryover cooking" → "teplota v mase po sundání stoupne / dojde výš" — nepřekládat jako "dovaření" ani neponechávat anglicky
+- "sear" jako samostatné slovo → "opečení", "prudké opečení" — "reverse sear" jako technický termín ponechat
+
+**Množství — lžíce a lžičky vždy s objemem nebo gramáží:**
+- "1 polévková lžíce" → "1 polévková lžíce (15 ml / cca 14 g tuku, 18 g soli)"
+- "1 čajová lžička" → "1 čajová lžička (5 ml / cca 5 g)"
+- Důvod: americké recepty mají přesné hodnoty (tbsp = 14,8 ml), český čtenář nemá odměrky
+
 ---
 
 ## Humor
