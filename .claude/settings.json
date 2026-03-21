@@ -8,7 +8,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/majer/Projects/griluju/.claude/hooks/pre-commit-check.sh"
+            "command": "/home/agent/griluju/.claude/hooks/pre-commit-check.sh"
           }
         ]
       },
@@ -28,11 +28,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/majer/Projects/griluju/.claude/hooks/lint-on-edit.sh"
+            "command": "/home/agent/griluju/.claude/hooks/lint-on-edit.sh"
           },
           {
             "type": "command",
-            "command": "/Users/majer/Projects/griluju/.claude/hooks/docs-reminder.sh"
+            "command": "/home/agent/griluju/.claude/hooks/docs-reminder.sh"
           }
         ]
       }
