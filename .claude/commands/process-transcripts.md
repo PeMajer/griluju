@@ -20,7 +20,8 @@ source .env.local
 
 ```bash
 curl -s -H "X-Api-Key: $PIPELINE_API_KEY" \
-  "$PIPELINE_BASE_URL/api/v1/videos?status=completed" | jq .
+
+"$PIPELINE_BASE_URL/api/v1/videos?status=transcript_ready&queued_for_blog=false" | jq .
 ```
 
 Zpracuj jen videa kde `queued_for_blog: false`.
