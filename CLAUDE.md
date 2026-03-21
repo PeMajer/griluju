@@ -28,7 +28,7 @@ Domény: `griluju.cz` (hlavní) + `griluju.com` (301 → .cz).
 
 - **`/review`** — před každým commitem (lint + build + obsahové kontroly)
 - **`/new-article`** — při vytváření nového článku (branch + frontmatter + obsah + PR)
-- **`/zpracuj-prepisy`** — fetchne nové přepisy z YouTube pipeline a vygeneruje české BBQ články
+- **`/process-transcripts`** — fetchne nové přepisy z YouTube pipeline a vygeneruje české BBQ články
 - **`/session-end`** — uzavření sezení (stav, uncommitted změny, kontext pro příště)
 - **`/systematic-debugging`** — když oprava nefunguje napoprvé; 4-fázový protokol s hard stop po 3 pokusech
 
