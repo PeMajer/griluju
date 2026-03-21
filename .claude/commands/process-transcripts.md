@@ -12,12 +12,15 @@ Projdi 2–3 existující články v `content/posts/` jako referenci struktury a
 
 ### 2. Fetchni seznam nových přepisů
 
-Pipeline API běží v OrbStack VM na `http://192.168.139.146:3000`.
-API klíč najdeš v `/Users/majer/Projects/griluju-yt-pipeline/.env` jako `PIPELINE_API_KEY`.
+Načti credentials z `.env.local`:
 
 ```bash
-curl -s -H "X-Api-Key: <PIPELINE_API_KEY>" \
-  "http://192.168.139.146:3000/api/v1/videos?status=completed" | jq .
+source .env.local
+```
+
+```bash
+curl -s -H "X-Api-Key: $PIPELINE_API_KEY" \
+  "$PIPELINE_BASE_URL/api/v1/videos?status=completed" | jq .
 ```
 
 Zpracuj jen videa kde `queued_for_blog: false`.
@@ -25,8 +28,8 @@ Zpracuj jen videa kde `queued_for_blog: false`.
 ### 3. Pro každé video fetchni přepis
 
 ```bash
-curl -s -H "X-Api-Key: <PIPELINE_API_KEY>" \
-  "http://192.168.139.146:3000/api/v1/transcripts/{video_id}" | jq .
+curl -s -H "X-Api-Key: $PIPELINE_API_KEY" \
+  "$PIPELINE_BASE_URL/api/v1/transcripts/{video_id}" | jq .
 ```
 
 Odpověď obsahuje: `video_id`, `title`, `channel`, `published_at`, `language`, `source_type`, `cleaned_transcript`.
@@ -87,10 +90,10 @@ Po commitu článku označ video v pipeline:
 
 ```bash
 curl -s -X PATCH \
-  -H "X-Api-Key: <PIPELINE_API_KEY>" \
+  -H "X-Api-Key: $PIPELINE_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"video": {"queued_for_blog": true}}' \
-  "http://192.168.139.146:3000/api/v1/videos/{video_id}"
+  "$PIPELINE_BASE_URL/api/v1/videos/{video_id}"
 ```
 
 ### 7. Commit a PR
