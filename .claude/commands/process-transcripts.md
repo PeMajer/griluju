@@ -162,6 +162,15 @@ Zakázané: "na teplotě", "na X °C" → Správně: "při teplotě", "při X °
 Zakázané: věta bez čísla nebo konkrétního pravidla, "Doufám, že...", "Zkuste to a uvidíte", "Grilovani je...", "Závěrem lze říci"
 Pokud takovou větu najdeš → smaž nebo nahraď konkrétním pravidlem.
 
+**7. Množství — lžíce a lžičky**
+Každá lžíce nebo lžička musí mít objem nebo gramáž v závorce ve stejné větě.
+- Špatně: "1 polévková lžíce oleje" → Správně: "1 polévková lžíce oleje (15 ml)"
+- Špatně: "1 čajová lžička soli" → Správně: "1 čajová lžička soli (5 g)"
+
+**8. Skloňování značek a cizí přívlastek**
+- Špatně: "na Weber Kettle" → Správně: "na Weberu"
+- Špatně: "hickory štěpky" → Správně: "štěpky hickory"
+
 **Výstupní formát validačního průchodu:**
 
 Pro každý bod napiš výsledek před finálním článkem:
@@ -185,6 +194,12 @@ Pro každý bod napiš výsledek před finálním článkem:
 [NALEZENO] "výsledek je kombinace" → "výsledek je kombinací"
 
 **6. Závěr**
+[OK]
+
+**7. Množství — lžíce a lžičky**
+[NALEZENO] "1 lžíce oleje" → "1 polévková lžíce oleje (15 ml)"
+
+**8. Skloňování značek a cizí přívlastek**
 [OK]
 
 ---
