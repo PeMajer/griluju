@@ -138,4 +138,8 @@ Na začátku session přečíst `docs/lessons.md` pro patterny relevantní pro a
 **Po dokončení nebo opravě článku navíc:**
 - Projdi co bylo opraveno v textu — zvaž co je obecné pravidlo (ne jen chyba tohoto článku)
 - Obecná jazyková pravidla přidej do `docs/guides/tone-of-voice.md` (sekce "Přirozená čeština")
-- Stejná pravidla přidej do `.claude/commands/process-transcripts.md` (sekce "Jazykové kontroly")
+- Gramatické pasti specifické pro AI generování přidej do `docs/guides/tone-of-voice.md` (sekce "Gramatické pasti")
+- Stejná pravidla přidej do `.claude/commands/process-transcripts.md` — buď do validačního průchodu 4c, nebo do checklistu v kroku 5
+- Nový vzor prvnní osoby nebo AI obratu → přidej do tabulky „Přirozená první osoba" v sekci Gramatické pasti
+
+Tyto sekce jsou živé dokumenty — každý article review je příležitost je rozšířit.

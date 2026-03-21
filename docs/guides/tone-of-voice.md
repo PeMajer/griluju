@@ -215,6 +215,45 @@ Nejlépe funguje, pokud zmiňuje konkrétní volbu a důvod, nebo chybu a co z n
 
 ---
 
+## Gramatické pasti — časté chyby při generování
+
+Tato sekce zachycuje konkrétní vzory kde AI konzistentně chybuje v češtině.
+
+### Předložky s teplotou a časem
+
+| Špatně | Správně |
+|---|---|
+| na teplotě 200 °C | při teplotě 200 °C |
+| na 200 °C | při 200 °C |
+| za 90 minut (uplynutý čas) | po 90 minutách |
+| ohřát na teplotu | ohřát na 200 °C / zahřát na teplotu |
+
+### Instrumentál po "být"
+
+| Špatně | Správně |
+|---|---|
+| rozdíl je otázka času | rozdíl je otázkou času |
+| výsledek je kombinace X a Y | výsledek je kombinací X a Y |
+| metoda je součást postupu | metoda je součástí postupu |
+
+### Přirozená první osoba
+
+| Nepřirozené (AI) | Přirozené (člověk) |
+|---|---|
+| ustálil jsem se na 90 minutách | skončil jsem u 90 minut |
+| rozhodl jsem se pro litinovou pánev | dělám to na litinové pánvi |
+| dospěl jsem k závěru, že... | zjistil jsem, že... |
+| osobně preferuji | dělám / používám |
+
+### Buňky tabulky — zakázaná vágní slova
+
+Tato slova v buňce tabulky vždy znamenají, že buňka neříká nic:
+`srovnatelné`, `podobné`, `průměrné`, `standardní`, `běžné`, `dostačující`, `odpovídající`, `přiměřené`, `obvyklé`
+
+Pokud buňku nelze vyplnit konkrétně → přeformuluj řádek nebo ho smaž.
+
+---
+
 ## Kontrolní seznam před odevzdáním
 
 - [ ] Intro se dostane k věci do 3 vět bez zbytečného úvodu

@@ -35,9 +35,19 @@ curl -s -H "X-Api-Key: $PIPELINE_API_KEY" \
 
 Odpověď obsahuje: `video_id`, `title`, `channel`, `published_at`, `language`, `source_type`, `cleaned_transcript`.
 
-> **Whisper přepisy** (`source_type: "whisper"`) mohou obsahovat přepisové chyby — ověř číselné hodnoty (teploty, časy) a vlastní jména.
+> **Whisper přepisy** (`source_type: "whisper"`): Před psaním článku projdi přepis a vypiš:
+> 1. Všechna čísla (teploty, časy, váhy) — ověř, že dávají smysl v kontextu (Whisper zaměňuje podobně znějící hodnoty: 130 °C vs 180 °C)
+> 2. Vlastní jména (řezy masa, techniky, značky) — ověř správný pravopis (ribeye, wagyu, Weber)
+> 3. Věty kde přepis nedává smysl — označ je [OVĚŘIT]
+>
+> Teprve po tomto kroku piš článek.
 
 ### 4. Vygeneruj článek
+
+> **Dvě fáze — záměrně oddělené role:**
+> Generování probíhá ve dvou průchodech: autor (krok 4 + 4b) a kritik (krok 4c).
+> Kombinace obou rolí v jednom průchodu vede ke kompromisu — agent přepíná mezi psaním a kontrolou a dělá obojí hůř.
+> **Nejdřív napiš, pak zkontroluj. Nepřekrývej tyto dvě fáze.**
 
 Pro každý přepis vytvoř article branch a soubor:
 
@@ -107,6 +117,97 @@ Po napsání draftu proveď rewrite se zaměřením pouze na tón:
 - Závěr: jsou tam 2–3 konkrétní čísla nebo pravidla, nebo filler?
 - Prohledej celý text na samostatné anglicismy (sear, upgrade, relace) — nahradit; technické termíny (reverse sear, Texas crutch, brisket) nechat.
 
+**Hlas autora — konkrétní vzory k opravě:**
+
+Intro:
+- Zní první věta jako AI shrnutí tématu? ("X je technika která...") → přepsat na konkrétní situaci nebo chybu
+- Je v intro číslo? Pokud ne, pravděpodobně chybí konkrétnost
+
+Osobní zkušenost:
+- Hledej věty se "jsem" — zní každá přirozeně jak by ji řekl člověk přes plot?
+- Chybí alespoň jedna věta kde Petr říká co konkrétně dělá a proč, nebo jakou chybu udělal?
+
+Perex (description / první odstavec pod nadpisem):
+- Obsahuje perex všechna čísla s jednotkami? Číslo bez jednotky v perexu je vždy chyba.
+
+### 4c. Validační průchod — role kritika
+
+Po rewrite passu přepni roli: jsi editor který hledá chyby, ne autor. Nepřepisuješ celý článek — pouze opravuješ konkrétní problémy.
+
+**1. Tabulky**
+Projdi každou buňku. Zakázaná vágní slova: `srovnatelné`, `podobné`, `průměrné`, `standardní`, `běžné`, `dostačující`, `odpovídající`, `přiměřené`, `obvyklé`
+Pokud takové slovo najdeš → nahraď ho konkrétním popisem nebo číslem. Pokud buňku nelze vyplnit konkrétně → přeformuluj celý řádek nebo ho smaž.
+
+**2. Čísla bez kontextu**
+Každé číslo musí mít jednotku nebo vysvětlení ve stejné větě.
+- Špatně: "Skončil jsem u 90" → Správně: "Skončil jsem u 90 minut"
+- Špatně: "dává 90" → Správně: "dává steaku 90 minut kouře"
+- Špatně: "při 205" → Správně: "při 205 °C"
+
+**3. Předložky u teplot a časů**
+Zakázané: "na teplotě", "na X °C" → Správně: "při teplotě", "při X °C"
+
+**4. První osoba — přirozenost**
+- "ustálil jsem se na" → nahraď: "skončil jsem u"
+- "rozhodl jsem se pro" → nahraď: "dělám" / "volím"
+- "dospěl jsem k závěru" → nahraď přímým tvrzením
+- "osobně považuji" → smaž "osobně", větu zkrať
+- věty začínající "Je třeba poznamenat" → celou frázi smaž, větu přepiš
+
+**5. Instrumentál po "být"**
+- Špatně: "rozdíl je otázka času" → Správně: "rozdíl je otázkou času"
+- Špatně: "výsledek je kombinace X a Y" → Správně: "výsledek je kombinací X a Y"
+
+**6. Závěr / Shrnutí**
+Zakázané: věta bez čísla nebo konkrétního pravidla, "Doufám, že...", "Zkuste to a uvidíte", "Grilovani je...", "Závěrem lze říci"
+Pokud takovou větu najdeš → smaž nebo nahraď konkrétním pravidlem.
+
+**7. Množství — lžíce a lžičky**
+Každá lžíce nebo lžička musí mít objem nebo gramáž v závorce ve stejné větě.
+- Špatně: "1 polévková lžíce oleje" → Správně: "1 polévková lžíce oleje (15 ml)"
+- Špatně: "1 čajová lžička soli" → Správně: "1 čajová lžička soli (5 g)"
+
+**8. Skloňování značek a cizí přívlastek**
+- Špatně: "na Weber Kettle" → Správně: "na Weberu"
+- Špatně: "hickory štěpky" → Správně: "štěpky hickory"
+
+**Výstupní formát validačního průchodu:**
+
+Pro každý bod napiš výsledek před finálním článkem:
+
+```
+### Validační report
+
+**1. Tabulky**
+[NALEZENO] "Srovnatelné" → opraveno na "Rovnoměrné, bez šedé zóny u kraje"
+
+**2. Čísla bez kontextu**
+[OK]
+
+**3. Předložky**
+[NALEZENO] "na teplotě 220 °C" → "při teplotě 220 °C"
+
+**4. První osoba**
+[OK]
+
+**5. Instrumentál po "být"**
+[NALEZENO] "výsledek je kombinace" → "výsledek je kombinací"
+
+**6. Závěr**
+[OK]
+
+**7. Množství — lžíce a lžičky**
+[NALEZENO] "1 lžíce oleje" → "1 polévková lžíce oleje (15 ml)"
+
+**8. Skloňování značek a cizí přívlastek**
+[OK]
+
+---
+[finální článek]
+```
+
+Každý bod musí mít buď `[OK]` nebo `[NALEZENO] + co konkrétně opraveno`. Přeskočení bodu není možné.
+
 ### 5. Validace
 
 Spusť `/review` — lint + build.
@@ -125,6 +226,13 @@ Ověř manuálně podle kontrolního seznamu z `docs/guides/tone-of-voice.md`:
 - [ ] Skloňování značek: "na Weberu", ne "na Weber Kettle"
 - [ ] Anglicismy nahrazeny kde existuje český ekvivalent
 - [ ] Neskloňovatelné termíny (Texas crutch, reverse sear) ponechány v originále, vysvětleny česky
+
+**Gramatika (validační průchod):**
+- [ ] Žádné "na teplotě" — vždy "při teplotě"
+- [ ] Instrumentál po "být": "je otázkou", "je součástí", "je kombinací"
+- [ ] Žádné "ustálil jsem se" — přirozenější alternativa ("skončil jsem u")
+- [ ] Všechna čísla v perexu a description mají jednotku ve stejné větě
+- [ ] Každá buňka tabulky obsahuje konkrétní hodnotu nebo popis (ne "srovnatelné" apod.)
 
 ### 6. Označ video jako zpracované
 
