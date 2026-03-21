@@ -162,6 +162,37 @@ Zakázané: "na teplotě", "na X °C" → Správně: "při teplotě", "při X °
 Zakázané: věta bez čísla nebo konkrétního pravidla, "Doufám, že...", "Zkuste to a uvidíte", "Grilovani je...", "Závěrem lze říci"
 Pokud takovou větu najdeš → smaž nebo nahraď konkrétním pravidlem.
 
+**Výstupní formát validačního průchodu:**
+
+Pro každý bod napiš výsledek před finálním článkem:
+
+```
+### Validační report
+
+**1. Tabulky**
+[NALEZENO] "Srovnatelné" → opraveno na "Rovnoměrné, bez šedé zóny u kraje"
+
+**2. Čísla bez kontextu**
+[OK]
+
+**3. Předložky**
+[NALEZENO] "na teplotě 220 °C" → "při teplotě 220 °C"
+
+**4. První osoba**
+[OK]
+
+**5. Instrumentál po "být"**
+[NALEZENO] "výsledek je kombinace" → "výsledek je kombinací"
+
+**6. Závěr**
+[OK]
+
+---
+[finální článek]
+```
+
+Každý bod musí mít buď `[OK]` nebo `[NALEZENO] + co konkrétně opraveno`. Přeskočení bodu není možné.
+
 ### 5. Validace
 
 Spusť `/review` — lint + build.
