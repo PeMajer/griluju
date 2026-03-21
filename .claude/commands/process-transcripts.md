@@ -45,16 +45,35 @@ Pro každý přepis vytvoř article branch a soubor:
 git checkout main && git pull origin main && git checkout -b content/[slug]
 ```
 
-**Před psaním přečti celý `docs/guides/tone-of-voice.md`** — obsahuje pravidla tónu, struktury i jazykové kontroly. Klíčové body:
+**Před psaním přečti celý `docs/guides/tone-of-voice.md`** — obsahuje pravidla tónu, struktury i jazykové kontroly.
 
-- Přepis je anglicky — adaptuj pro českého čtenáře, nepřekládej doslova
-- Převeď americké jednotky: °F → °C, libry → kg, unce → g
-- Žádné vágní množství — vždy konkrétní čísla (°C, minuty, gramy)
-- Krátké věty, aktivum, konkrétní podmět
-- Intro max 3 věty, rovnou k věci
-- Alespoň 1 odstavec z první osoby s konkrétním detailem nebo chybou
-- 3–5 interních odkazů — použij slugy z `content-index.json`
-- Závěr = 2–3 klíčová čísla nebo pravidla, žádný filler
+**5 pravidel která nesmíš porušit:**
+1. Intro = max 3 věty, žádný filler, rovnou k věci nebo ke konkrétní chybě — žádné "V tomto článku"
+2. Vždy konkrétní číslo — nikdy "trochu", "chvíli", "dostatek"; °C, minuty, gramy, lžíce
+3. Alespoň 1 věta z první osoby s konkrétní volbou nebo chybou — ne "mám rád", ale "zjistil jsem na prvním Wagyu: vytáhl jsem ho při 50 °C, byl medium well"
+4. Závěr = 2–3 čísla nebo pravidla, žádná filler věta
+5. Přepis je anglicky — adaptuj pro českého čtenáře, nepřekládej doslova; převeď °F → °C, libry → kg, unce → g
+
+**Příklady — hlas autora:**
+
+Intro — špatně (AI tón):
+> Studené uzení je technika, která přináší intenzivní kouřovou chuť. V tomto článku vám ukážeme postup krok za krokem.
+
+Intro — správně (Petrův hlas):
+> Reverse sear jsem dělal roky. Kouřová chuť vždy slabá, kůrka průměrná — maso strávilo v kouři 20 minut, ne 90. Studené uzení to mění: nejdřív hodina a půl kouře při 30 °C, pak prudké opečení na litině.
+
+Osobní zkušenost — špatně (abstraktní):
+> Tučné steaky reagují na teplo jinak než libové. Sundejte je dříve než obvykle.
+
+Osobní zkušenost — správně (konkrétní chyba + číslo):
+> Tučné steaky se přepálí dřív, než čekáte. Zjistil jsem to na prvním Wagyu Denver: vytáhl jsem ho při 50 °C jako libový filet, po odpočinku byl medium well. Od té doby sundávám silně mramorované kusy při 47–48 °C.
+
+**Jazykové kontroly při psaní:**
+- Anglicismy nahradit kde existuje český ekvivalent — "sear" → "opečení", ale "reverse sear" a "Texas crutch" ponechat jako termíny
+- Cizí přívlastek za podstatným jménem: "štěpky hickory", ne "hickory štěpky"
+- Shody rodu: "v litinové pánvi" (ženský rod), ne "v litinovém pánvi"
+- "abych", ne "aby jsem"
+- Skloňovat značky: "na Weberu", ne "na Weber Kettle"
 
 **Frontmatter:**
 ```mdx
@@ -73,7 +92,17 @@ affiliate: false
 ---
 ```
 
-Pokud článek vyžaduje hero image → přidej placeholder komentář `<!-- HERO IMAGE NEEDED -->` za frontmatter.
+Pokud článek vyžaduje hero image → přidej `{/* HERO IMAGE NEEDED */}` za frontmatter (MDX syntaxe — HTML komentáře nefungují).
+
+### 4b. Rewrite pass — hlas autora
+
+Po napsání draftu proveď rewrite se zaměřením pouze na tón:
+
+- Přečti intro — zní jako člověk nebo jako AI shrnutí? Pokud AI, přepiš.
+- Najdi věty začínající "Je důležité", "V tomto článku", "Doufám", "Grilovani je" — smaž nebo přepiš.
+- Je v článku alespoň jedna věta kde Petr říká co konkrétně dělá a proč, nebo jakou chybu udělal?
+- Závěr: jsou tam 2–3 konkrétní čísla nebo pravidla, nebo filler?
+- Prohledej celý text na samostatné anglicismy (sear, upgrade, relace) — nahradit; technické termíny (reverse sear, Texas crutch, brisket) nechat.
 
 ### 5. Validace
 
