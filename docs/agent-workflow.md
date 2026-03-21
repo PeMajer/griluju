@@ -134,3 +134,8 @@ Typ: vlastni / Unsplash query: [vyraz]
 Po každé korekci od uživatele přidat pattern do `docs/lessons.md` — co šlo špatně + pravidlo.
 
 Na začátku session přečíst `docs/lessons.md` pro patterny relevantní pro aktuální task.
+
+**Po dokončení nebo opravě článku navíc:**
+- Projdi co bylo opraveno v textu — zvaž co je obecné pravidlo (ne jen chyba tohoto článku)
+- Obecná jazyková pravidla přidej do `docs/guides/tone-of-voice.md` (sekce "Přirozená čeština")
+- Stejná pravidla přidej do `.claude/commands/process-transcripts.md` (sekce "Jazykové kontroly")

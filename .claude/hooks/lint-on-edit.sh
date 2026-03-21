@@ -4,7 +4,7 @@
 # Uses python3 for JSON parsing (jq not available in this env).
 
 INPUT=$(cat)
-FILE=$(python3 -c "import json,sys; d=json.loads(sys.stdin.read()); print(d.get('tool_input',{}).get('file_path',''))" <<< "$INPUT" 2>/dev/null)
+FILE=$(printf '%s' "$INPUT" | python3 -c "import json,sys; d=json.loads(sys.stdin.read()); print(d.get('tool_input',{}).get('file_path',''))" 2>/dev/null)
 
 [[ -z "$FILE" ]] && exit 0
 [[ "$FILE" != *.ts && "$FILE" != *.tsx ]] && exit 0

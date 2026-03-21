@@ -1,6 +1,7 @@
 import { defineCollection, defineConfig } from "@content-collections/core";
 import { compileMDX } from "@content-collections/mdx";
 import { z } from "zod";
+import remarkGfm from "remark-gfm";
 
 const posts = defineCollection({
   name: "posts",
@@ -28,7 +29,9 @@ const posts = defineCollection({
     difficulty: z.string().optional(),
   }),
   transform: async (document, context) => {
-    const mdx = await compileMDX(context, document);
+    const mdx = await compileMDX(context, document, {
+      remarkPlugins: [remarkGfm],
+    });
     return {
       ...document,
       mdx,

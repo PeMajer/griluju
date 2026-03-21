@@ -49,6 +49,7 @@ Domény: `griluju.cz` (hlavní) + `griluju.com` (301 → .cz).
 - Nikdy necommituj s rozbité buildem nebo unresolved lint chybami
 - Nikdy nepoužívej raw affiliate URL — vždy `/go/[product-slug]`
 - Nikdy nepřidávej novou komponentu pokud existující lze rozšířit
+- **Nikdy nespojuj `git add` a `git commit` přes `&&`** — pre-commit hook se spustí jen pokud příkaz začíná `git commit`
 - Nikdy nepište "Jako jazykový model AI..."
 
 ---
@@ -61,7 +62,7 @@ Domény: `griluju.cz` (hlavní) + `griluju.com` (301 → .cz).
 4. Naming: `feature/`, `fix/`, `content/[slug]`, `issue-<číslo>`
 5. Implementuj → `/review` → commit → push → `gh pr create` (automaticky, bez ptaní)
 
-IMPORTANT: Commit messages v češtině, stručné. Vždy volej `git add` a `git commit` jako **dvě samostatná volání** — nikdy nespojuj `&&`. Pre-commit hook se spustí pouze pokud příkaz začíná `git commit`.
+IMPORTANT: Commit messages v angličtině, stručné.
 
 ---
 

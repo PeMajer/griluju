@@ -70,6 +70,9 @@ Osobní zkušenost — správně (konkrétní chyba + číslo):
 
 **Jazykové kontroly při psaní:**
 - Anglicismy nahradit kde existuje český ekvivalent — "sear" → "opečení", ale "reverse sear" a "Texas crutch" ponechat jako termíny
+- "per side" → "z každé strany", ne "na stranu"
+- "carryover cooking" → "teplota v mase po sundání stoupne / dojde výš" — nikdy "carryover" samotně
+- Lžíce a lžičky vždy s gramáží nebo objemem: "1 polévková lžíce (15 ml)", "1 čajová lžička (5 g)"
 - Cizí přívlastek za podstatným jménem: "štěpky hickory", ne "hickory štěpky"
 - Shody rodu: "v litinové pánvi" (ženský rod), ne "v litinovém pánvi"
 - "abych", ne "aby jsem"
