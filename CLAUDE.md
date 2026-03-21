@@ -62,7 +62,7 @@ Domény: `griluju.cz` (hlavní) + `griluju.com` (301 → .cz).
 4. Naming: `feature/`, `fix/`, `content/[slug]`, `issue-<číslo>`
 5. Implementuj → `/review` → commit → push → `gh pr create` (automaticky, bez ptaní)
 
-IMPORTANT: Commit messages v češtině, stručné.
+IMPORTANT: Commit messages v angličtině, stručné.
 
 ---
 
