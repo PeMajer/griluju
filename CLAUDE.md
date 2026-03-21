@@ -28,6 +28,7 @@ Domény: `griluju.cz` (hlavní) + `griluju.com` (301 → .cz).
 
 - **`/review`** — před každým commitem (lint + build + obsahové kontroly)
 - **`/new-article`** — při vytváření nového článku (branch + frontmatter + obsah + PR)
+- **`/zpracuj-prepisy`** — fetchne nové přepisy z YouTube pipeline a vygeneruje české BBQ články
 - **`/session-end`** — uzavření sezení (stav, uncommitted změny, kontext pro příště)
 - **`/systematic-debugging`** — když oprava nefunguje napoprvé; 4-fázový protokol s hard stop po 3 pokusech
 
@@ -67,61 +68,6 @@ IMPORTANT: Commit messages v češtině, stručné. Vždy volej `git add` a `git
 ## Dokumentace
 
 Když měníš kód, zkontroluj jestli existuje relevantní dokumentace v `docs/` která ho popisuje. Pokud ano, aktualizuj ji. Nenechávej docs out of sync s kódem.
-
----
-
-## Pipeline integrace — přepisy z YouTube
-
-Nová videa z YouTube jsou automaticky zpracována pipeline projektem (`griluju-yt-pipeline`) běžícím v OrbStack VM. Agent může přepisy fetchovat přes HTTP API.
-
-### API
-
-- **Base URL:** `http://192.168.139.146:3000`
-- **Auth header:** `X-Api-Key: <hodnota z PIPELINE_API_KEY>`
-
-> Hodnotu `PIPELINE_API_KEY` najdeš v `.env` souboru pipeline projektu (`/Users/majer/Projects/griluju-yt-pipeline/.env`).
-
-### Endpoints
-
-**Seznam videí s přepisem (ještě nezpracovaných blogem):**
-```
-GET /api/v1/videos?status=completed
-```
-Vrátí seznam videí. Zpracovat jen ta kde `queued_for_blog: false`.
-
-**Detail přepisu:**
-```
-GET /api/v1/transcripts/{video_id}
-```
-Vrátí:
-```json
-{
-  "video_id": "...",
-  "title": "...",
-  "channel": "...",
-  "published_at": "...",
-  "language": "en",
-  "source_type": "manual_subtitles|auto_captions|whisper",
-  "cleaned_transcript": "..."
-}
-```
-
-**Označit video jako zpracované (povinné po vygenerování článku):**
-```
-PATCH /api/v1/videos/{video_id}
-Body: {"video": {"queued_for_blog": true}}
-```
-
-### Postup při zpracování přepisů
-
-1. Fetchni seznam: `GET /api/v1/videos?status=completed`
-2. Pro každé video kde `queued_for_blog: false` fetchni přepis
-3. Vygeneruj článek dle `docs/guides/tone-of-voice.md` a `docs/guides/article-workflow.md`
-4. Označ video jako zpracované: `PATCH /api/v1/videos/{video_id}` s `queued_for_blog: true`
-5. Přepis je v angličtině — adaptuj pro českého čtenáře, nepřekládej doslova
-6. Převeď americké jednotky: °F → °C, libry → kg, unce → g
-
-> **Poznámka ke zdroji:** Pokud je `source_type: "whisper"`, přepis byl generován speech-to-text a může obsahovat přepisové chyby — buď opatrný u číselných hodnot (teploty, časy) a vlastních jmen.
 
 ---
 
