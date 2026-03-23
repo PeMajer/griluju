@@ -174,6 +174,35 @@ Nejlépe funguje, pokud zmiňuje konkrétní volbu a důvod, nebo chybu a co z n
 
 ---
 
+## Gramatika a konzistence
+
+Tato pravidla jsou specifická pro Layer-1 články psané v první osobě z přepisu videa.
+
+**Ich-forma celý článek — žádné přepínání:**
+- Ne "chcete kouř", ne "nespěcháte" — správně "jde o kouř", "není kam spěchat"
+- Jakmile je článek v ich-formě, zůstane tam celý
+
+**Předložky pohybu:**
+- Kouř proniká "pod povrch", ne "do povrchu"
+
+**Výčty s více položkami:**
+- Nestačí pouze vyjmenovat — každá položka potřebuje sloveso nebo jasnou vazbu
+- Ne "jeden studený kouř, jeden reverse sear" — správně "u jednoho studený kouř, u druhého reverse sear"
+
+**Zájmena → konkrétní podstatné jméno:**
+- Pokud není jasné co zájmeno zastupuje, nahradit názvem věci
+- Ne "přesunul jsem uzeného" — správně "uzený steak jsem přesunul"
+- Ne "přetáhnout ho je těžší" — správně "přetáhnout steak je těžší"
+
+**Přídavná jména patří před podstatné jméno:**
+- Ne "Wagyu Denver, silné mramorování" — správně "silně mramorovaný Wagyu Denver"
+
+**Žádné vágní výrazy pro výsledek:**
+- Ne "byl donosnější" — správně "výsledná teplota po odpočinku byla o 3 °C vyšší"
+- Ne "chutnalo líp" — správně "kouřová chuť byla zaoblenější, bez hořkosti"
+
+---
+
 ## Věrohodnost — co nikdy nepsat
 
 - **Žádná falešná čísla** — počty odběratelů, frekvence publikování, hodnocení produktů musí odpovídat realitě. Pokud číslo neznáte, nepište ho.
@@ -264,3 +293,7 @@ Pokud buňku nelze vyplnit konkrétně → přeformuluj řádek nebo ho smaž.
 - [ ] 3–5 interních odkazů s popisným anchor textem
 - [ ] Affiliate produkty v kontextu, ne jako závěrečný blok
 - [ ] Závěr je praktický, žádná filler věta
+- [ ] Ich-forma konzistentní v celém článku — žádné přepínání na "vy"
+- [ ] Zájmena nahrazena konkrétním podstatným jménem kde není jasný referent
+- [ ] Přídavná jména před podstatným jménem (ne za čárkou)
+- [ ] Výsledky popsány konkrétně — žádné "bylo lepší", "chutnalo víc"
