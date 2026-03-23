@@ -57,6 +57,28 @@ git checkout main && git pull origin main && git checkout -b content/[slug]
 
 **Před psaním přečti celý `docs/guides/tone-of-voice.md`** — obsahuje pravidla tónu, struktury i jazykové kontroly.
 
+**Referenční styl:** Přečti `.claude/docs/reference-article.md` a piš přesně tímto stylem — délka odstavců, způsob vysvětlení kroků, osobní momenty.
+
+#### KROK 1 — extrahuj z transkriptu (před psaním)
+
+Z přepisu vytáhni a zapiš si:
+
+**a) Hlavní tezi** — co je v tomto videu jinak nebo lepší než běžný postup?
+**b) Osobní momenty** — kdy autor něco zjistil, pokazil nebo byl překvapený? (konkrétní situace > obecné pravidlo)
+**c) Konkrétní čísla** — teploty, časy, množství, poměry
+**d) Varování** — na co si dát pozor, kde lidé chybují
+
+Teprve po extrakci piš článek.
+
+#### KROK 2 — napiš článek
+
+**Struktura:** úvod s tezí → sekce s vysvětlením → praktický postup → srovnání nebo výsledek → shrnutí
+**Délka:** srovnatelná s referenčním článkem, každá sekce nadpis + min. 2 odstavce
+**Odstavce:** min. 3–4 věty — žádné holé odrážky tam kde může být věta
+**Každou sekci rozveď** — nestačí říct co, řekni proč a co se stane když to neuděláš
+**Osobní momenty z transkriptu rozepiš** — "vytáhl jsem ho při 50 °C, po odpočinku byl medium well" je lepší než "tučné steaky se přepečou"
+**Přirovnání a konkrétní příběhy z transkriptu zachovej celé**
+
 **5 pravidel která nesmíš porušit:**
 1. Intro = max 3 věty, žádný filler, rovnou k věci nebo ke konkrétní chybě — žádné "V tomto článku"
 2. Vždy konkrétní číslo — nikdy "trochu", "chvíli", "dostatek"; °C, minuty, gramy, lžíce
@@ -129,6 +151,12 @@ Osobní zkušenost:
 
 Perex (description / první odstavec pod nadpisem):
 - Obsahuje perex všechna čísla s jednotkami? Číslo bez jednotky v perexu je vždy chyba.
+
+**Gramatická konzistence (projdi celý text):**
+- Přepínání na "vy" uprostřed ich-formy? → přepiš na "člověk", "není kam spěchat" apod.
+- Zájmeno bez jasného referenta? → nahraď konkrétním podstatným jménem
+- Přídavné jméno za podstatným jménem (čárkou)? → přesuň před podstatné jméno
+- Vágní výsledek ("bylo lepší", "chutnalo víc")? → napiš co konkrétně se stalo (teplota, chuťový popis)
 
 ### 4c. Validační průchod — role kritika
 
