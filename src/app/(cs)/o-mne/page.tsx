@@ -36,12 +36,12 @@ const timeline = [
   {
     year: "2013",
     title: "První gril",
-    text: "Levný uhláč z hypermarketu, spálená krkovička, hromada kouře. Chytilo mě to hned.",
+    text: "Levný uhláč z hypermarketu — první spálená krkovička a dost kouře na celou ulici. Chytilo mě to přesto hned.",
   },
   {
     year: "2015",
     title: "Weber Kettle",
-    text: "Po akci pro dvacet lidí jsem věděl, že potřebuji pořádný gril. Koupil jsem Webera — a začalo skutečné grilování. Nepřímé žáře, první slušný steak.",
+    text: "Po akci pro dvacet lidí jsem věděl, že potřebuji pořádný gril. Koupil jsem Webera — a začalo to. První nepřímé grilování, první steak, který stál za to.",
   },
   {
     year: "2017",
@@ -108,15 +108,15 @@ export default function AboutPage() {
                 „Nejlepší jídlo je to, u kterého stojíte s pivem v ruce."
               </p>
               <p className="text-coal leading-relaxed mb-4">
-                Griluji přes 10 let — začínal jsem na levném uhláči z hypermarketu, přes Weber Kettle
-                a Master-Touch jsem se dostal až ke keramickému Kamado Joe. Začínal jsem jako úplný
-                amatér: pálil steaky, přetahoval krkovičku a věřil jsem, že „hotovo" poznám od oka.
-                Dnes vím, že grilování je řemeslo s přesnými čísly, a právě o tom píšu.
+                Griluji přes 10 let — od levného uhláče z hypermarketu přes Weber Master-Touch
+                až k dnešnímu Kamadu. Začínal jsem jako pořádný amatér: steaky pálené,
+                krkovička přetažená a „hotovo" jsem poznal od oka nebo pohmatem.
+                Dnes vím, že grilování stojí na přesných číslech — a o tom tady píšu.
               </p>
               <p className="text-coal leading-relaxed mb-6">
-                Tenhle web je místo, kde sdílím konkrétní postupy, teploty a chyby, které jsem udělal —
-                aby je nemuseli dělat ostatní. Affiliate odkazy jsou vždy označené a moje doporučení
-                vychází z vlastní zkušenosti, ne z provize.
+                Sdílím tady konkrétní postupy, teploty a chyby, které jsem udělal —
+                aby je nemuseli dělat ostatní. Kde doporučuji vybavení, jde o věci,
+                které sám používám. Affiliate odkaz je vždy označený.
               </p>
               <Link
                 href="/recepty"
