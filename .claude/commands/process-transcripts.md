@@ -44,20 +44,11 @@ Odpověď obsahuje: `video_id`, `title`, `channel`, `published_at`, `language`, 
 
 ### 4. Vygeneruj článek
 
-> **Dvě fáze — záměrně oddělené role:**
-> Generování probíhá ve dvou průchodech: autor (krok 4 + 4b) a kritik (krok 4c).
-> Kombinace obou rolí v jednom průchodu vede ke kompromisu — agent přepíná mezi psaním a kontrolou a dělá obojí hůř.
-> **Nejdřív napiš, pak zkontroluj. Nepřekrývej tyto dvě fáze.**
-
-Pro každý přepis vytvoř article branch a soubor:
+Pro každý přepis vytvoř branch:
 
 ```bash
 git checkout main && git pull origin main && git checkout -b content/[slug]
 ```
-
-**Před psaním přečti celý `docs/guides/tone-of-voice.md`** — obsahuje pravidla tónu, struktury i jazykové kontroly.
-
-**Referenční styl:** Přečti `.claude/docs/reference-article.md` a piš přesně tímto stylem — délka odstavců, způsob vysvětlení kroků, osobní momenty.
 
 #### KROK 1 — extrahuj z transkriptu (před psaním)
 
@@ -78,39 +69,9 @@ Podkladem jsou data extrahovaná v KROKU 1. Přirovnání a konkrétní příbě
 
 Hero image zpravidla chybí → přidej `{/* HERO IMAGE NEEDED */}` za frontmatter (MDX syntaxe — HTML komentáře nefungují).
 
-### 4b. Rewrite pass — hlas autora
-
-Viz `docs/guides/tone-of-voice.md → Rewrite pass — hlas autora`.
-
-### 4c. Validační průchod — role kritika
-
-Viz `docs/guides/tone-of-voice.md → Validační průchod — role kritika`.
-
 ### 5. Validace
 
-Spusť `/review` — lint + build.
-
-Ověř manuálně podle kontrolního seznamu z `docs/guides/tone-of-voice.md`:
-- [ ] Frontmatter kompletní
-- [ ] Jednotky převedeny (°F → °C, libry → kg)
-- [ ] ≥3 interní odkazy ze `content-index.json`
-- [ ] Žádná zakázaná fráze ze seznamu v tone-of-voice.md
-- [ ] Žádná raw affiliate URL (pouze `/go/[slug]`)
-
-**Jazyková kontrola** (specifická rizika při překladu z angličtiny):
-- [ ] Shody rodu přívlastku: "z českého řeznictví", ne "z české řeznictví"
-- [ ] "abych", ne "aby jsem"
-- [ ] Cizí přívlastek za podstatným jménem: "štěpky hickory", ne "hickory štěpky"
-- [ ] Skloňování značek: "na Weberu", ne "na Weber Kettle"
-- [ ] Anglicismy nahrazeny kde existuje český ekvivalent
-- [ ] Neskloňovatelné termíny (Texas crutch, reverse sear) ponechány v originále, vysvětleny česky
-
-**Gramatika (validační průchod):**
-- [ ] Žádné "na teplotě" — vždy "při teplotě"
-- [ ] Instrumentál po "být": "je otázkou", "je součástí", "je kombinací"
-- [ ] Žádné "ustálil jsem se" — přirozenější alternativa ("skončil jsem u")
-- [ ] Všechna čísla v perexu a description mají jednotku ve stejné větě
-- [ ] Každá buňka tabulky obsahuje konkrétní hodnotu nebo popis (ne "srovnatelné" apod.)
+Viz `.claude/commands/new-article.md` krok 5.
 
 ### 6. Označ video jako zpracované
 
