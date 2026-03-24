@@ -8,7 +8,7 @@ import { NewsletterCTA } from "@/components/ui/NewsletterCTA";
 export const metadata: Metadata = {
   title: t("cs", "page.about.title"),
   description:
-    "Jsem Petr Majer — frontendový vývojář a grilař z Prahy. Griluju přes 10 let, hlavně na Weberu. Tady píšu o tom, co funguje.",
+    "Jsem Petr Majer — frontendový vývojář a grilař z Prahy. Griluji přes 10 let, od levného uhláče přes Weber až po Kamado Joe. Tady píšu o tom, co opravdu funguje.",
   alternates: {
     canonical: `${siteConfig.url}/o-mne`,
   },
@@ -36,27 +36,27 @@ const timeline = [
   {
     year: "2013",
     title: "První gril",
-    text: "Levný uhláč z hypermarketu, spálené kuřecí, hodně kouře. Chytilo mě to ale hned.",
+    text: "Levný uhláč z hypermarketu, spálená krkovička, hromada kouře. Chytilo mě to hned.",
   },
   {
     year: "2015",
     title: "Weber Kettle",
-    text: "Weber 47 cm — první skutečný gril. Nepřímé grilování, první slušný steak.",
+    text: "Po akci pro dvacet lidí jsem věděl, že potřebuji pořádný gril. Koupil jsem Webera — a začalo skutečné grilování. Nepřímé žáře, první slušný steak.",
   },
   {
     year: "2017",
     title: "Weber Master-Touch 57 cm",
-    text: "Přechod na větší gril, který používám dodnes. Metoda snake, první vícehodinové grilování, první výsledky, které stály za to ukazovat.",
+    text: "Větší pracovní plocha, GBS systém a litinový rošt na steaky. Gril, který mám dodnes.",
   },
   {
     year: "2018",
-    title: "První pulled pork",
-    text: "9 hodin, 2,8 kg plece, stall mě málem zabil. Výsledek byl tuhý — protože jsem sundal při 82 °C. Poučení přišlo tvrdě.",
+    title: "Low & slow a brisket",
+    text: "První pokusy s hovězím hrudím. Experimenty s rozložením uhlí, snake metoda, nespavé noci nad teplotním grafem. Výsledek stál za to.",
   },
   {
-    year: "2020",
-    title: "Brisket",
-    text: "14 hodin přes noc. Hrudí z českého řeznictví, štěpky hickory. Výsledek stál za to.",
+    year: "2022",
+    title: "Kamado Joe Classic 3",
+    text: "Přechod na keramický gril. Lepší teplotní stabilita, výrazně méně uhlí a nové možnosti — pizza, searing na 350 °C+, příslušenství bez konce.",
   },
   {
     year: "2024",
@@ -66,21 +66,21 @@ const timeline = [
 ];
 
 const equipment = [
-  { name: "Weber Master-Touch 57 cm", desc: "Hlavní gril na všechno — steaky, pulled pork i celé kuře." },
-  { name: "ThermoWorks Thermapen", desc: "Nejlepší investice. Přesná teplota za 2 sekundy." },
-  { name: "Weber iGrill / MEATER+", desc: "Bluetooth teploměr na dlouhé uzení. Hlídá teplotu za mě." },
-  { name: "Dřevěné štěpky (hickory, třešeň)", desc: "Hickory na hovězí, třešeň na vepřové, jabloň na drůbež." },
+  { name: "Kamado Joe Classic 3", desc: "Hlavní gril na low & slow, uzení, pizzu i vysokoteplotní searing." },
+  { name: "Weber Master-Touch 57 cm", desc: "Klasický kotlík s litinovým roštem — na steaky a rychlé grilování." },
+  { name: "ThermoWorks Thermapen ONE", desc: "Nejlepší investice. Přesná teplota za 1 sekundu." },
+  { name: "FireBoard 2 Drive + ventilátor", desc: "WiFi teploměr se šesti sondami. Ovládám teplotu grilu z gauče." },
 ];
 
 const tags = [
+  "Kamado Joe",
   "Weber Kettle",
   "Low & Slow",
   "BBQ",
-  "Hovězí",
-  "Vepřové",
-  "Pulled Pork",
   "Brisket",
-  "Reverse Sear",
+  "Hamburgery",
+  "Steaky",
+  "Pulled Pork",
 ];
 
 export default function AboutPage() {
@@ -108,8 +108,9 @@ export default function AboutPage() {
                 „Nejlepší jídlo je to, u kterého stojíte s pivem v ruce."
               </p>
               <p className="text-coal leading-relaxed mb-4">
-                Griluji přes 10 let, téměř výhradně na Weber Kettle. Začínal jsem jako úplný amatér —
-                pálil steaky, kupoval hotové marinády a věřil jsem, že „medium" je když je maso růžové uprostřed.
+                Griluji přes 10 let — začínal jsem na levném uhláči z hypermarketu, přes Weber Kettle
+                a Master-Touch jsem se dostal až ke keramickému Kamado Joe. Začínal jsem jako úplný
+                amatér: pálil steaky, přetahoval krkovičku a věřil jsem, že „hotovo" poznám od oka.
                 Dnes vím, že grilování je řemeslo s přesnými čísly, a právě o tom píšu.
               </p>
               <p className="text-coal leading-relaxed mb-6">
@@ -230,6 +231,15 @@ export default function AboutPage() {
                 </p>
               </div>
             ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link
+              href="/nastroje"
+              className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors duration-150"
+              style={{ backgroundColor: "rgba(255,255,255,0.08)", color: "var(--dark-fg)" }}
+            >
+              Celý přehled vybavení →
+            </Link>
           </div>
         </div>
       </section>

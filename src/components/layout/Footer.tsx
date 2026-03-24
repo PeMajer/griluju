@@ -41,7 +41,7 @@ export function Footer({ locale: _locale }: FooterProps) {
           <nav className="flex flex-wrap justify-center gap-6">
             {[
               { label: "Recepty", href: "/recepty" },
-              { label: "Nástroje", href: "/nastroje" },
+              { label: "Vybavení", href: "/nastroje" },
               { label: "Teploty masa", href: "/teploty-masa" },
               { label: "O mně", href: "/o-mne" },
             ].map((item) => (
