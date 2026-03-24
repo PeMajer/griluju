@@ -62,10 +62,13 @@ Krátké věty. Aktivum. Konkrétní podmět.
 **Cizí značky a názvy** — skloňovat, nebo větu přestrukturovat:
 - "Griluju na Weber Kettle" → "Griluju na Weberu" / "Mám Weber Kettle"
 - "Pracuju na MacBooku" → "Pracuju na Macu"
+- "kotlík" jako překlad pro kettle gril — nepoužívat. Správně: "gril na dřevěné uhlí" nebo "Weber" (skloňovaný)
 
 **Anglicismy nahradit tam, kde existuje český ekvivalent:**
 - "upgrade" → "přechod", "výměna"
-- "relace" (ve smyslu session) → "grilování", "sezení"
+- "session" (ve smyslu jedno grilování) → "grilování"
+- "long cook" → "dlouhé grilování"
+- "rub" → ponechat jako technický termín (koření/rub)
 - "frontend vývojář" → "frontendový vývojář"
 
 **Gramatické shody:**
@@ -80,6 +83,7 @@ Krátké věty. Aktivum. Konkrétní podmět.
 - "per side" → "z každé strany", ne "na stranu" ("opékejte 2 minuty z každé strany")
 - "carryover cooking" → "teplota v mase po sundání stoupne / dojde výš" — nepřekládat jako "dovaření" ani neponechávat anglicky
 - "sear" jako samostatné slovo → "opečení", "prudké opečení" — "reverse sear" jako technický termín ponechat
+- "pulled pork" → "trhané vepřové" — používat český překlad všude kromě názvu techniky v kontextu receptu
 
 **Množství — lžíce a lžičky vždy s objemem nebo gramáží:**
 - "1 polévková lžíce" → "1 polévková lžíce (15 ml / cca 14 g tuku, 18 g soli)"
