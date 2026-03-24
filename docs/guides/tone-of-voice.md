@@ -287,6 +287,111 @@ Pokud buňku nelze vyplnit konkrétně → přeformuluj řádek nebo ho smaž.
 
 ---
 
+## Rewrite pass — hlas autora
+
+Po napsání draftu proveď rewrite se zaměřením pouze na tón:
+
+- Přečti intro — zní jako člověk nebo jako AI shrnutí? Pokud AI, přepiš.
+- Najdi věty začínající „Je důležité", „V tomto článku", „Doufám", „Grilovani je" — smaž nebo přepiš.
+- Je v článku alespoň jedna věta kde Petr říká co konkrétně dělá a proč, nebo jakou chybu udělal?
+- Závěr: jsou tam 2–3 konkrétní čísla nebo pravidla, nebo filler?
+- Prohledej celý text na samostatné anglicismy (sear, upgrade, relace) — nahradit; technické termíny (reverse sear, Texas crutch, brisket) nechat.
+
+**Hlas autora — konkrétní vzory k opravě:**
+
+Intro — špatně (AI tón):
+> Studené uzení je technika, která přináší intenzivní kouřovou chuť. V tomto článku vám ukážeme postup krok za krokem.
+
+Intro — správně (Petrův hlas):
+> Reverse sear jsem dělal roky. Kouřová chuť vždy slabá, kůrka průměrná — maso strávilo v kouři 20 minut, ne 90. Studené uzení to mění: nejdřív hodina a půl kouře při 30 °C, pak prudké opečení na litině.
+
+Osobní zkušenost — špatně (abstraktní):
+> Tučné steaky reagují na teplo jinak než libové. Sundejte je dříve než obvykle.
+
+Osobní zkušenost — správně (konkrétní chyba + číslo):
+> Tučné steaky se přepálí dřív, než čekáte. Zjistil jsem to na prvním Wagyu Denver: vytáhl jsem ho při 50 °C jako libový filet, po odpočinku byl medium well. Od té doby sundávám silně mramorované kusy při 47–48 °C.
+
+---
+
+## Validační průchod — role kritika
+
+Po rewrite passu přepni roli: jsi editor který hledá chyby, ne autor. Nepřepisuješ celý článek — pouze opravuješ konkrétní problémy.
+
+**1. Tabulky**
+Projdi každou buňku. Zakázaná vágní slova: `srovnatelné`, `podobné`, `průměrné`, `standardní`, `běžné`, `dostačující`, `odpovídající`, `přiměřené`, `obvyklé`
+Pokud takové slovo najdeš → nahraď ho konkrétním popisem nebo číslem. Pokud buňku nelze vyplnit konkrétně → přeformuluj celý řádek nebo ho smaž.
+
+**2. Čísla bez kontextu**
+Každé číslo musí mít jednotku nebo vysvětlení ve stejné větě.
+- Špatně: „Skončil jsem u 90" → Správně: „Skončil jsem u 90 minut"
+- Špatně: „při 205" → Správně: „při 205 °C"
+
+**3. Předložky u teplot a časů**
+Zakázané: „na teplotě", „na X °C" → Správně: „při teplotě", „při X °C"
+
+**4. První osoba — přirozenost**
+- „ustálil jsem se na" → nahraď: „skončil jsem u"
+- „rozhodl jsem se pro" → nahraď: „dělám" / „volím"
+- „dospěl jsem k závěru" → nahraď přímým tvrzením
+- „osobně považuji" → smaž „osobně", větu zkrať
+- věty začínající „Je třeba poznamenat" → celou frázi smaž, větu přepiš
+
+**5. Instrumentál po „být"**
+- Špatně: „rozdíl je otázka času" → Správně: „rozdíl je otázkou času"
+- Špatně: „výsledek je kombinace X a Y" → Správně: „výsledek je kombinací X a Y"
+
+**6. Závěr / Shrnutí**
+Zakázané: věta bez čísla nebo konkrétního pravidla, „Doufám, že...", „Zkuste to a uvidíte", „Grilovani je...", „Závěrem lze říci"
+Pokud takovou větu najdeš → smaž nebo nahraď konkrétním pravidlem.
+
+**7. Množství — lžíce a lžičky**
+Každá lžíce nebo lžička musí mít objem nebo gramáž v závorce ve stejné větě.
+- Špatně: „1 polévková lžíce oleje" → Správně: „1 polévková lžíce oleje (15 ml)"
+- Špatně: „1 čajová lžička soli" → Správně: „1 čajová lžička soli (5 g)"
+
+**8. Skloňování značek a cizí přívlastek**
+- Špatně: „na Weber Kettle" → Správně: „na Weberu"
+- Špatně: „hickory štěpky" → Správně: „štěpky hickory"
+
+**Výstupní formát validačního průchodu:**
+
+Pro každý bod napiš výsledek před finálním článkem:
+
+```
+### Validační report
+
+**1. Tabulky**
+[NALEZENO] „Srovnatelné" → opraveno na „Rovnoměrné, bez šedé zóny u kraje"
+
+**2. Čísla bez kontextu**
+[OK]
+
+**3. Předložky**
+[NALEZENO] „na teplotě 220 °C" → „při teplotě 220 °C"
+
+**4. První osoba**
+[OK]
+
+**5. Instrumentál po „být"**
+[NALEZENO] „výsledek je kombinace" → „výsledek je kombinací"
+
+**6. Závěr**
+[OK]
+
+**7. Množství — lžíce a lžičky**
+[NALEZENO] „1 lžíce oleje" → „1 polévková lžíce oleje (15 ml)"
+
+**8. Skloňování značek a cizí přívlastek**
+[OK]
+
+---
+[finální článek]
+```
+
+Každý bod musí mít buď `[OK]` nebo `[NALEZENO] + co konkrétně opraveno`. Přeskočení bodu není možné.
+
+---
+
 ## Kontrolní seznam před odevzdáním
 
 - [ ] Intro se dostane k věci do 3 vět bez zbytečného úvodu

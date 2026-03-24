@@ -72,169 +72,19 @@ Teprve po extrakci piš článek.
 
 #### KROK 2 — napiš článek
 
-**Struktura:** úvod s tezí → sekce s vysvětlením → praktický postup → srovnání nebo výsledek → shrnutí
-**Délka:** srovnatelná s referenčním článkem, každá sekce nadpis + min. 2 odstavce
-**Odstavce:** min. 3–4 věty — žádné holé odrážky tam kde může být věta
-**Každou sekci rozveď** — nestačí říct co, řekni proč a co se stane když to neuděláš
-**Osobní momenty z transkriptu rozepiš** — "vytáhl jsem ho při 50 °C, po odpočinku byl medium well" je lepší než "tučné steaky se přepečou"
-**Přirovnání a konkrétní příběhy z transkriptu zachovej celé**
+Postupuj dle `.claude/commands/new-article.md` kroky 2–3c (Frontmatter → Psaní → Rewrite pass → Validační průchod).
 
-**5 pravidel která nesmíš porušit:**
-1. Intro = max 3 věty, žádný filler, rovnou k věci nebo ke konkrétní chybě — žádné "V tomto článku"
-2. Vždy konkrétní číslo — nikdy "trochu", "chvíli", "dostatek"; °C, minuty, gramy, lžíce
-3. Alespoň 1 věta z první osoby s konkrétní volbou nebo chybou — ne "mám rád", ale "zjistil jsem na prvním Wagyu: vytáhl jsem ho při 50 °C, byl medium well"
-4. Závěr = 2–3 čísla nebo pravidla, žádná filler věta
-5. Přepis je anglicky — adaptuj pro českého čtenáře, nepřekládej doslova; převeď °F → °C, libry → kg, unce → g
+Podkladem jsou data extrahovaná v KROKU 1. Přirovnání a konkrétní příběhy z transkriptu zachovej celé.
 
-**Příklady — hlas autora:**
-
-Intro — špatně (AI tón):
-> Studené uzení je technika, která přináší intenzivní kouřovou chuť. V tomto článku vám ukážeme postup krok za krokem.
-
-Intro — správně (Petrův hlas):
-> Reverse sear jsem dělal roky. Kouřová chuť vždy slabá, kůrka průměrná — maso strávilo v kouři 20 minut, ne 90. Studené uzení to mění: nejdřív hodina a půl kouře při 30 °C, pak prudké opečení na litině.
-
-Osobní zkušenost — špatně (abstraktní):
-> Tučné steaky reagují na teplo jinak než libové. Sundejte je dříve než obvykle.
-
-Osobní zkušenost — správně (konkrétní chyba + číslo):
-> Tučné steaky se přepálí dřív, než čekáte. Zjistil jsem to na prvním Wagyu Denver: vytáhl jsem ho při 50 °C jako libový filet, po odpočinku byl medium well. Od té doby sundávám silně mramorované kusy při 47–48 °C.
-
-**Jazykové kontroly při psaní:**
-- Anglicismy nahradit kde existuje český ekvivalent — "sear" → "opečení", ale "reverse sear" a "Texas crutch" ponechat jako termíny
-- "per side" → "z každé strany", ne "na stranu"
-- "carryover cooking" → "teplota v mase po sundání stoupne / dojde výš" — nikdy "carryover" samotně
-- Lžíce a lžičky vždy s gramáží nebo objemem: "1 polévková lžíce (15 ml)", "1 čajová lžička (5 g)"
-- Cizí přívlastek za podstatným jménem: "štěpky hickory", ne "hickory štěpky"
-- Shody rodu: "v litinové pánvi" (ženský rod), ne "v litinovém pánvi"
-- "abych", ne "aby jsem"
-- Skloňovat značky: "na Weberu", ne "na Weber Kettle"
-
-**Frontmatter:**
-```mdx
----
-title: "..."
-description: "..."        # 140–160 znaků
-date: "YYYY-MM-DD"
-category: "recepty" | "navod" | "recenze"
-slug: "url-slug-bez-diakritiky"
-image: "/images/[slug]/hero.webp"
-imageWidth: 1200
-imageHeight: 800
-author: "Petr Majer"
-tags: []
-affiliate: false
----
-```
-
-Pokud článek vyžaduje hero image → přidej `{/* HERO IMAGE NEEDED */}` za frontmatter (MDX syntaxe — HTML komentáře nefungují).
+Hero image zpravidla chybí → přidej `{/* HERO IMAGE NEEDED */}` za frontmatter (MDX syntaxe — HTML komentáře nefungují).
 
 ### 4b. Rewrite pass — hlas autora
 
-Po napsání draftu proveď rewrite se zaměřením pouze na tón:
-
-- Přečti intro — zní jako člověk nebo jako AI shrnutí? Pokud AI, přepiš.
-- Najdi věty začínající "Je důležité", "V tomto článku", "Doufám", "Grilovani je" — smaž nebo přepiš.
-- Je v článku alespoň jedna věta kde Petr říká co konkrétně dělá a proč, nebo jakou chybu udělal?
-- Závěr: jsou tam 2–3 konkrétní čísla nebo pravidla, nebo filler?
-- Prohledej celý text na samostatné anglicismy (sear, upgrade, relace) — nahradit; technické termíny (reverse sear, Texas crutch, brisket) nechat.
-
-**Hlas autora — konkrétní vzory k opravě:**
-
-Intro:
-- Zní první věta jako AI shrnutí tématu? ("X je technika která...") → přepsat na konkrétní situaci nebo chybu
-- Je v intro číslo? Pokud ne, pravděpodobně chybí konkrétnost
-
-Osobní zkušenost:
-- Hledej věty se "jsem" — zní každá přirozeně jak by ji řekl člověk přes plot?
-- Chybí alespoň jedna věta kde Petr říká co konkrétně dělá a proč, nebo jakou chybu udělal?
-
-Perex (description / první odstavec pod nadpisem):
-- Obsahuje perex všechna čísla s jednotkami? Číslo bez jednotky v perexu je vždy chyba.
-
-**Gramatická konzistence (projdi celý text):**
-- Přepínání na "vy" uprostřed ich-formy? → přepiš na "člověk", "není kam spěchat" apod.
-- Zájmeno bez jasného referenta? → nahraď konkrétním podstatným jménem
-- Přídavné jméno za podstatným jménem (čárkou)? → přesuň před podstatné jméno
-- Vágní výsledek ("bylo lepší", "chutnalo víc")? → napiš co konkrétně se stalo (teplota, chuťový popis)
+Viz `docs/guides/tone-of-voice.md → Rewrite pass — hlas autora`.
 
 ### 4c. Validační průchod — role kritika
 
-Po rewrite passu přepni roli: jsi editor který hledá chyby, ne autor. Nepřepisuješ celý článek — pouze opravuješ konkrétní problémy.
-
-**1. Tabulky**
-Projdi každou buňku. Zakázaná vágní slova: `srovnatelné`, `podobné`, `průměrné`, `standardní`, `běžné`, `dostačující`, `odpovídající`, `přiměřené`, `obvyklé`
-Pokud takové slovo najdeš → nahraď ho konkrétním popisem nebo číslem. Pokud buňku nelze vyplnit konkrétně → přeformuluj celý řádek nebo ho smaž.
-
-**2. Čísla bez kontextu**
-Každé číslo musí mít jednotku nebo vysvětlení ve stejné větě.
-- Špatně: "Skončil jsem u 90" → Správně: "Skončil jsem u 90 minut"
-- Špatně: "dává 90" → Správně: "dává steaku 90 minut kouře"
-- Špatně: "při 205" → Správně: "při 205 °C"
-
-**3. Předložky u teplot a časů**
-Zakázané: "na teplotě", "na X °C" → Správně: "při teplotě", "při X °C"
-
-**4. První osoba — přirozenost**
-- "ustálil jsem se na" → nahraď: "skončil jsem u"
-- "rozhodl jsem se pro" → nahraď: "dělám" / "volím"
-- "dospěl jsem k závěru" → nahraď přímým tvrzením
-- "osobně považuji" → smaž "osobně", větu zkrať
-- věty začínající "Je třeba poznamenat" → celou frázi smaž, větu přepiš
-
-**5. Instrumentál po "být"**
-- Špatně: "rozdíl je otázka času" → Správně: "rozdíl je otázkou času"
-- Špatně: "výsledek je kombinace X a Y" → Správně: "výsledek je kombinací X a Y"
-
-**6. Závěr / Shrnutí**
-Zakázané: věta bez čísla nebo konkrétního pravidla, "Doufám, že...", "Zkuste to a uvidíte", "Grilovani je...", "Závěrem lze říci"
-Pokud takovou větu najdeš → smaž nebo nahraď konkrétním pravidlem.
-
-**7. Množství — lžíce a lžičky**
-Každá lžíce nebo lžička musí mít objem nebo gramáž v závorce ve stejné větě.
-- Špatně: "1 polévková lžíce oleje" → Správně: "1 polévková lžíce oleje (15 ml)"
-- Špatně: "1 čajová lžička soli" → Správně: "1 čajová lžička soli (5 g)"
-
-**8. Skloňování značek a cizí přívlastek**
-- Špatně: "na Weber Kettle" → Správně: "na Weberu"
-- Špatně: "hickory štěpky" → Správně: "štěpky hickory"
-
-**Výstupní formát validačního průchodu:**
-
-Pro každý bod napiš výsledek před finálním článkem:
-
-```
-### Validační report
-
-**1. Tabulky**
-[NALEZENO] "Srovnatelné" → opraveno na "Rovnoměrné, bez šedé zóny u kraje"
-
-**2. Čísla bez kontextu**
-[OK]
-
-**3. Předložky**
-[NALEZENO] "na teplotě 220 °C" → "při teplotě 220 °C"
-
-**4. První osoba**
-[OK]
-
-**5. Instrumentál po "být"**
-[NALEZENO] "výsledek je kombinace" → "výsledek je kombinací"
-
-**6. Závěr**
-[OK]
-
-**7. Množství — lžíce a lžičky**
-[NALEZENO] "1 lžíce oleje" → "1 polévková lžíce oleje (15 ml)"
-
-**8. Skloňování značek a cizí přívlastek**
-[OK]
-
----
-[finální článek]
-```
-
-Každý bod musí mít buď `[OK]` nebo `[NALEZENO] + co konkrétně opraveno`. Přeskočení bodu není možné.
+Viz `docs/guides/tone-of-voice.md → Validační průchod — role kritika`.
 
 ### 5. Validace
 
