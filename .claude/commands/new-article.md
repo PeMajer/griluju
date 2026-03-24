@@ -15,7 +15,7 @@ Projdi 2–3 existující články v `content/posts/` jako referenci struktury a
 
 **Před psaním přečti celý `docs/guides/tone-of-voice.md`** — obsahuje pravidla tónu, struktury, jazykové kontroly, rewrite pass a validační průchod.
 
-Přečti `.claude/docs/reference-article.md` a piš přesně tímto stylem — délka odstavců, způsob vysvětlení kroků, osobní momenty.
+**Referenční styl:** Přečti `.claude/docs/reference-article.md` a piš přesně tímto stylem — délka odstavců, způsob vysvětlení kroků, osobní momenty.
 
 Vytvoř branch:
 ```bash
@@ -40,18 +40,21 @@ affiliate: true  # pouze pokud článek obsahuje affiliate produkty
 ---
 ```
 
+Pokud článek vyžaduje hero image → přidej `{/* HERO IMAGE NEEDED */}` za frontmatter (MDX syntaxe — HTML komentáře nefungují).
+
 ### 3. Psaní článku
 
 > **Dvě fáze — záměrně oddělené role:**
-> Nejdřív napiš celý draft (krok 3), pak zkontroluj (kroky 3b + 3c).
+> Generování probíhá ve dvou průchodech: autor (krok 3) a kritik (kroky 3b + 3c).
 > Kombinace obou rolí v jednom průchodu vede ke kompromisu — agent přepíná mezi psaním a kontrolou a dělá obojí hůř.
-> **Nepřekrývej tyto dvě fáze.**
+> **Nejdřív napiš, pak zkontroluj. Nepřekrývej tyto dvě fáze.**
 
 **Struktura:** úvod s tezí → sekce s vysvětlením → praktický postup → srovnání nebo výsledek → shrnutí
 **Délka:** srovnatelná s referenčním článkem, každá sekce nadpis + min. 2 odstavce
 **Odstavce:** min. 3–4 věty — žádné holé odrážky tam kde může být věta
 **Každou sekci rozveď** — nestačí říct co, řekni proč a co se stane když to neuděláš
 **Osobní momenty rozpiš** — "vytáhl jsem ho při 50 °C, po odpočinku byl medium well" je lepší než "tučné steaky se přepečou"
+**Přirovnání a konkrétní příběhy ze zdroje zachovej celé**
 
 **5 pravidel která nesmíš porušit:**
 1. Intro = max 3 věty, žádný filler, rovnou k věci nebo ke konkrétní chybě — žádné "V tomto článku"
@@ -74,7 +77,15 @@ Osobní zkušenost — špatně (abstraktní):
 Osobní zkušenost — správně (konkrétní chyba + číslo):
 > Tučné steaky se přepálí dřív, než čekáte. Zjistil jsem to na prvním Wagyu Denver: vytáhl jsem ho při 50 °C jako libový filet, po odpočinku byl medium well. Od té doby sundávám silně mramorované kusy při 47–48 °C.
 
-**Jazykové kontroly při psaní:** viz `docs/guides/tone-of-voice.md → Přirozená čeština` a `Gramatické pasti`.
+**Jazykové kontroly při psaní:**
+- Anglicismy nahradit kde existuje český ekvivalent — "sear" → "opečení", ale "reverse sear" a "Texas crutch" ponechat jako termíny
+- "per side" → "z každé strany", ne "na stranu"
+- "carryover cooking" → "teplota v mase po sundání stoupne / dojde výš" — nikdy "carryover" samotně
+- Lžíce a lžičky vždy s gramáží nebo objemem: "1 polévková lžíce (15 ml)", "1 čajová lžička (5 g)"
+- Cizí přívlastek za podstatným jménem: "štěpky hickory", ne "hickory štěpky"
+- Shody rodu: "v litinové pánvi" (ženský rod), ne "v litinovém pánvi"
+- "abych", ne "aby jsem"
+- Skloňovat značky: "na Weberu", ne "na Weber Kettle"
 
 **Interní odkazy a affiliate:**
 - **3–5 interních odkazů** — použij slugy z `content-index.json`, popisné anchory
@@ -105,10 +116,27 @@ Spusť `/review` — lint + build + obsahové kontroly.
 
 Ověř manuálně:
 - [ ] Frontmatter kompletní
-- [ ] ≥3 interní odkazy
-- [ ] Žádná raw affiliate URL
+- [ ] Jednotky převedeny (°F → °C, libry → kg, unce → g)
+- [ ] ≥3 interní odkazy ze `content-index.json`
+- [ ] Žádná zakázaná fráze ze seznamu v tone-of-voice.md
+- [ ] Žádná raw affiliate URL (pouze `/go/[slug]`)
 - [ ] Hero image existuje v `/public/images/[slug]/`
 - [ ] H1 není v body (pochází z frontmatteru)
+
+**Jazyková kontrola** (specifická rizika při překladu z angličtiny):
+- [ ] Shody rodu přívlastku: "z českého řeznictví", ne "z české řeznictví"
+- [ ] "abych", ne "aby jsem"
+- [ ] Cizí přívlastek za podstatným jménem: "štěpky hickory", ne "hickory štěpky"
+- [ ] Skloňování značek: "na Weberu", ne "na Weber Kettle"
+- [ ] Anglicismy nahrazeny kde existuje český ekvivalent
+- [ ] Neskloňovatelné termíny (Texas crutch, reverse sear) ponechány v originále, vysvětleny česky
+
+**Gramatika:**
+- [ ] Žádné "na teplotě" — vždy "při teplotě"
+- [ ] Instrumentál po "být": "je otázkou", "je součástí", "je kombinací"
+- [ ] Žádné "ustálil jsem se" — přirozenější alternativa ("skončil jsem u")
+- [ ] Všechna čísla v perexu a description mají jednotku ve stejné větě
+- [ ] Každá buňka tabulky obsahuje konkrétní hodnotu nebo popis (ne "srovnatelné" apod.)
 
 ### 6. Commit a PR
 

@@ -63,17 +63,13 @@ Teprve po extrakci piš článek.
 
 #### KROK 2 — napiš článek
 
-Postupuj dle `.claude/commands/new-article.md` kroky 2–3c (Frontmatter → Psaní → Rewrite pass → Validační průchod).
+Postupuj dle `.claude/commands/new-article.md` kroky 2–5.
 
 Podkladem jsou data extrahovaná v KROKU 1. Přirovnání a konkrétní příběhy z transkriptu zachovej celé.
 
 Hero image zpravidla chybí → přidej `{/* HERO IMAGE NEEDED */}` za frontmatter (MDX syntaxe — HTML komentáře nefungují).
 
-### 5. Validace
-
-Viz `.claude/commands/new-article.md` krok 5.
-
-### 6. Označ video jako zpracované
+### 5. Označ video jako zpracované
 
 Po commitu článku označ video v pipeline:
 
@@ -85,7 +81,7 @@ curl -s -X PATCH \
   "$PIPELINE_BASE_URL/api/v1/videos/{video_id}"
 ```
 
-### 7. Commit a PR
+### 6. Commit a PR
 
 ```bash
 git add content/posts/[slug]/
@@ -94,4 +90,4 @@ git push -u origin content/[slug]
 gh pr create --title "[slug]: název článku" --body "Draft z pipeline přepisu — ke kontrole před publikací."
 ```
 
-Opakuj kroky 3–7 pro každé nové video.
+Opakuj kroky 3–6 pro každé nové video.
