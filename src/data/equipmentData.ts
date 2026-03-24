@@ -34,7 +34,7 @@ export const equipmentData: EquipmentCategory[] = [
         description:
           "Keramický gril, který mám dnes jako hlavní. Drží teplotu s minimem uhlí, zvládne low & slow i searing na 350 °C+. K tomu pizza kámen, litinová deska a expander rošt.",
         tip: "Na jednu náplň uhlí zvládnete klidně 20 hodin grilování při 130 °C — keramika drží teplotu bez korekce.",
-        priceRange: "30 000–50 000 Kč",
+        priceRange: "55 000–65 000 Kč",
         rating: 5,
         tags: ["Uhlí", "Multifunkční", "Low & slow"],
         status: "current",
@@ -44,7 +44,7 @@ export const equipmentData: EquipmentCategory[] = [
         description:
           "Gril na dřevěné uhlí s GBS systémem. Používám ho dodnes — na krátké grilování, steaky a vše, kde nepotřebuji stabilitu kamada na 12+ hodin.",
         tip: "GBS litinový rošt je investice, která se vyplatí. Akumuluje teplo a maso nepustí, dokud se samo neodlepí.",
-        priceRange: "6 000–9 000 Kč",
+        priceRange: "7 000–12 000 Kč",
         rating: 5,
         tags: ["Uhlí", "GBS systém", "Steaky"],
         status: "current",
@@ -64,7 +64,7 @@ export const equipmentData: EquipmentCategory[] = [
         description:
           "Měl jsem ho jako doplněk — rychlý start, snadná regulace. Ale té výsledné chuti pořád něco scházelo — kouřové aroma, které plamen bez dřeva prostě nedá.",
         tip: "Plyn je pohodlný, ale uhlí a dřevo dávají chuť, kvůli které grilování vlastně děláme.",
-        priceRange: "8 000–20 000 Kč",
+        priceRange: "12 000–35 000 Kč",
         rating: 3,
         tags: ["Plyn", "Rychlé"],
         status: "former",
@@ -82,7 +82,7 @@ export const equipmentData: EquipmentCategory[] = [
         description:
           "Zlatý standard instantních teploměrů. Měří za 1 sekundu s přesností ±0,3 °C. Voděodolný, s automatickým podsvícením. Prostě nejlepší.",
         tip: "Drahý, ale vydrží roky. Pokud kupujete instantní teploměr jednou provždy, tohle je on.",
-        priceRange: "2 500–3 000 Kč",
+        priceRange: "2 300–2 600 Kč",
         rating: 5,
         tags: ["Instantní", "Profesionální"],
         status: "current",
@@ -112,7 +112,7 @@ export const equipmentData: EquipmentCategory[] = [
         description:
           "Jednoduchá digitální sonda s alarmem. Zapíchnete, nastavíte cílovou teplotu a víc se nestaráte.",
         tip: "Nejlepší záložní teploměr. Když nechcete řešit technologie a potřebujete jen alarm na cílovou teplotu.",
-        priceRange: "800–1 200 Kč",
+        priceRange: "1 000–1 300 Kč",
         rating: 4,
         tags: ["Sonda", "Jednoduchý"],
         status: "current",
@@ -130,7 +130,7 @@ export const equipmentData: EquipmentCategory[] = [
         description:
           "Nastartujte uhlí za 15 minut bez chemického podpalovače. Čistší chuť masa, rychlejší start.",
         tip: "Použijte ekologické podpalovače nebo noviny. Nikdy tekutý líh — nebezpečné a chuťově katastrofální.",
-        priceRange: "300–600 Kč",
+        priceRange: "450–700 Kč",
         rating: 5,
         tags: ["Základní", "Uhlí"],
         status: "current",
