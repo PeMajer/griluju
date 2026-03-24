@@ -159,7 +159,7 @@ export const equipmentData: EquipmentCategory[] = [
         name: "Stříkačka pro injektáž masa",
         description:
           "Kovová stříkačka na vpíchnutí marinády přímo do středu velkých kusů masa — brisket, plec, celá jehněčí kýta.",
-        tip: "Stříkejte vždy před nanesením suché marinády, ne po. Vlhkost uvnitř masa je základ pro dlouhé grilování.",
+        tip: "Injektujte maso před použitím koření nebo rubu, ne po. Vlhkost uvnitř je základ pro dlouhé grilování.",
         priceRange: "200–500 Kč",
         rating: 4,
         tags: ["Injektáž", "Low & slow"],
@@ -197,7 +197,7 @@ export const equipmentData: EquipmentCategory[] = [
         name: "Kartáče na rošt (různé druhy)",
         description:
           "Mosazné, ocelové i bezdrátové škrabky. Pro každý typ roštu jiný nástroj — litinový rošt nechcete drhnout ocelovým kartáčem.",
-        tip: "Kartáčem čistěte rošt za tepla — nahřejte gril na maximum, pak 30 sekund kartáčem. Nečistoty se odlepí samy.",
+        tip: "Kartáčem čistěte rošt za tepla — nahřejte gril na maximum, pak 30 sekund drhnete rošt.",
         priceRange: "200–700 Kč",
         rating: 4,
         tags: ["Čištění", "Bezpečné"],

@@ -67,20 +67,19 @@ const timeline = [
 
 const equipment = [
   { name: "Kamado Joe Classic 3", desc: "Hlavní gril na low & slow, uzení, pizzu i vysokoteplotní searing." },
-  { name: "Weber Master-Touch 57 cm", desc: "Klasický kotlík s litinovým roštem — na steaky a rychlé grilování." },
+  { name: "Weber Master-Touch 57 cm", desc: "Gril na dřevěné uhlí s GBS systémem — na steaky a rychlé grilování." },
   { name: "ThermoWorks Thermapen ONE", desc: "Nejlepší investice. Přesná teplota za 1 sekundu." },
   { name: "FireBoard 2 Drive + ventilátor", desc: "WiFi teploměr se šesti sondami. Ovládám teplotu grilu z gauče." },
 ];
 
 const tags = [
   "Kamado Joe",
-  "Weber Kettle",
   "Low & Slow",
   "BBQ",
   "Brisket",
   "Hamburgery",
   "Steaky",
-  "Pulled Pork",
+  "Trhané vepřové",
 ];
 
 export default function AboutPage() {
