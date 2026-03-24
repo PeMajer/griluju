@@ -36,11 +36,11 @@ const timeline = [
   {
     year: "2013",
     title: "První gril",
-    text: "Levný uhláč z hypermarketu — první spálená krkovička a dost kouře na celou ulici. Chytilo mě to přesto hned.",
+    text: "Levný uhláč z hypermarketu — první spálená krkovička a dost kouře na to, aby si toho všimli všichni sousedi. Chytilo mě to přesto hned.",
   },
   {
     year: "2015",
-    title: "Weber Kettle",
+    title: "První gril Weber",
     text: "Po akci pro dvacet lidí jsem věděl, že potřebuji pořádný gril. Koupil jsem Webera — a začalo to. První nepřímé grilování, první steak, který stál za to.",
   },
   {
@@ -51,12 +51,12 @@ const timeline = [
   {
     year: "2018",
     title: "Low & slow a brisket",
-    text: "První pokusy s hovězím hrudím. Experimenty s rozložením uhlí, snake metoda, nespavé noci nad teplotním grafem. Výsledek stál za to.",
+    text: "První pokusy s hovězím hrudím. Experimenty s rozložením uhlí, snake metoda, probdělé noci nad teplotním grafem. Výsledek byl dobrý — ale pořád to nebylo úplně ono.",
   },
   {
     year: "2022",
     title: "Kamado Joe Classic 3",
-    text: "Přechod na keramický gril. Lepší teplotní stabilita, výrazně méně uhlí a nové možnosti — pizza, searing na 350 °C+, příslušenství bez konce.",
+    text: "Přechod na keramický gril. Lepší teplotní stabilita, výrazně méně uhlí a nové možnosti — pizza, searing na 350 °C+ a hromada příslušenství.",
   },
   {
     year: "2024",
@@ -109,9 +109,9 @@ export default function AboutPage() {
               </p>
               <p className="text-coal leading-relaxed mb-4">
                 Griluji přes 10 let — od levného uhláče z hypermarketu přes Weber Master-Touch
-                až k dnešnímu Kamadu. Začínal jsem jako pořádný amatér: steaky pálené,
-                krkovička přetažená a „hotovo" jsem poznal od oka nebo pohmatem.
-                Dnes vím, že grilování stojí na přesných číslech — a o tom tady píšu.
+                až k dnešnímu Kamadu. Začínal jsem jako pořádný amatér: pálil steaky,
+                přetahoval krkovičku a „hotovo" jsem se snažil poznat od oka nebo pohmatem.
+                Dnes vím, že grilování stojí na přesných číslech a letitých zkušenostech — a o tom tady píšu.
               </p>
               <p className="text-coal leading-relaxed mb-6">
                 Sdílím tady konkrétní postupy, teploty a chyby, které jsem udělal —
