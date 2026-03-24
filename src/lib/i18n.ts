@@ -20,7 +20,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     "nav.about": "O mně",
     "nav.contact": "Kontakt",
     "nav.tools": "Teploty masa",
-    "nav.nastroje": "Nástroje",
+    "nav.nastroje": "Vybavení",
     "nav.newsletter": "Newsletter",
 
     // Categories

@@ -103,11 +103,11 @@ export default function NastrojePage() {
               <ChefHat size={14} /> Průvodce vybavením
             </div>
             <h1 className="text-4xl md:text-5xl text-coal leading-tight font-bold">
-              Nástroje & vybavení
+              Vybavení
             </h1>
           </div>
           <p className="text-lg text-stone max-w-2xl leading-relaxed">
-            Přehled ověřeného vybavení, které používám. Každý kus jsem osobně otestoval na desítkách grilování.
+            Přehled vybavení, které používám nebo jsem používal. Každý kus jsem osobně otestoval.
           </p>
         </div>
       </section>
