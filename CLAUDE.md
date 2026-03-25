@@ -34,6 +34,24 @@ Domény: `griluju.cz` (hlavní) + `griluju.com` (301 → .cz).
 
 ---
 
+## Work Strategy
+
+**Paralelizuj** — když lze task rozdělit na nezávislé části, vždy spusť subagenty nebo tool calls paralelně (jedna zpráva, více volání současně). Sekvenční jako výchozí je antipattern.
+
+**Prohledávej paralelně** — preferuj paralelní hledání v kódu (Glob + Grep ve stejné zprávě). Při nejistotě kde hledat, použij `Explore` agenta místo opakovaných Grep volání.
+
+**Čti před psaním** — nikdy nenavrhuj změny kódu, který jsi nečetl. Přečti relevantní soubory, pochop kontext, pak piš.
+
+**Minimální zásah** — dělej jen to, co bylo požádáno. Neopravuj okolní kód, nepřidávej komentáře, nerefaktoruj "dokud jsi u toho". Jednoduchá oprava nepotřebuje architekturu.
+
+**Selhání = zastav a přehodnoť** — pokud přístup nefunguje na první nebo druhý pokus, neopakuj totéž. Zastav, diagnostikuj root cause, změň přístup. Po 3 neúspěšných pokusech spusť `/systematic-debugging`.
+
+**Evidence first** — nikdy neříkej "should work" bez spuštění příkazu a přečtení výstupu. Hotovo = zelený output v terminálu.
+
+**Používej specializované agenty** — pro průzkum kódu a čtení více souborů najednou použij `Explore` agenta. Pro plánování složité implementace použij `Plan` agenta. Vždy s `model: "sonnet"`.
+
+---
+
 ## Hranice — co agent smí a nesmí
 
 ✅ **Always safe:** Čtení souborů, spouštění lint/build, prohledávání kódu, editace obsahu
@@ -78,5 +96,3 @@ Když měníš kód, zkontroluj jestli existuje relevantní dokumentace v `docs/
 2. Spusť `/review` — lint, build, obsahové kontroly.
 3. Projdi git diff jako celek před tím než prohlásíš hotovo.
 4. Zeptej se sám sebe: **"Schválil by to zkušený developer?"** Pokud ne, oprav to.
-
-**Evidence first** — nikdy neříkej "should work", "pravděpodobně projde" nebo "zdá se OK" bez spuštění příkazu a přečtení výstupu. Hotovo znamená zelený output.
