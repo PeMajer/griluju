@@ -36,28 +36,41 @@ PR: https://github.com/PeMajer/griluju/pull/1
 
 ---
 
-## Phase 2: První obsah
+## Phase 2: První obsah — HOTOVO (11 článků)
 
-Autor napíše 10–15 Layer-1 článků ručně. Pořadí:
+Minimální práh 10 ručních článků splněn → přechod na Phase 3 odemčen.
 
-1. Teplomer na gril — jak jsem ho vybiral (affiliate, EEAT)
-2. Pulled pork krok za krokem (pillar, vlastní fotky)
-3. Jak grilovat steak (vysoký objem)
-4. Nejlepsi grily do 5000 Kc (affiliate, srovnání)
-5. Jak grilovat zeleninu (nízká konkurence)
-6. Grilovaci marinada (informační)
-7. Jak spravne roztopit gril (začátečníci)
-8. Plynovy vs uhlikovy gril (srovnání)
-9. Picanha na grilu (niche)
-10. Jak grilovat hermelin (český klasik)
+### Publikované články (11)
+
+1. ~~Pulled pork krok za krokem~~ — `pulled-pork-krok-za-krokem`
+2. ~~Jak grilovat steak~~ — `dokonaly-steak-na-grilu`
+3. ~~Jak grilovat zeleninu~~ — `grilovana-zelenina`
+4. ~~Weber Master-Touch recenze~~ — `weber-master-touch-recenze`
+5. ~~Brisket low & slow~~ — `brisket-low-slow`
+6. ~~Vepřová žebra 3-2-1~~ — `zebirka-bbq-glazura-3-2-1`
+7. ~~Reverse sear metoda~~ — `reverse-sear-metoda`
+8. ~~Losos na cedrovém prkénku~~ — `losos-na-cedrovem-prkenku`
+9. ~~Jehněčí kotlety s rozmarýnem~~ — `jehneci-kotlety-rozmaryn-cesnek`
+10. ~~Kuřecí křídélka s medovou glazurou~~ — `krupava-kureci-kridela-medova-glazura`
+11. ~~Studené uzení steaku~~ — `studene-uzeni-steak`
+
+### Z původního plánu dosud nepsáno
+
+- Teplomer na gril — jak jsem ho vybiral (affiliate, EEAT)
+- Nejlepsi grily do 5000 Kc (affiliate, srovnání)
+- Grilovaci marinada (informační)
+- Jak spravne roztopit gril (začátečníci)
+- Plynovy vs uhlikovy gril (srovnání)
+- Picanha na grilu (niche)
+- Jak grilovat hermelin (český klasik)
 
 Každý článek vyžaduje: vlastní fotky, odstavec z vlastní zkušenosti, konkrétní čísla, 3–5 interních odkazů, schema markup.
 
 ---
 
-## Phase 3: AI Pipeline
+## Phase 3: AI Pipeline — AKTIVNÍ (od 2026-03-26)
 
-Po 10–15 ručních článcích → AI-assisted produkce.
+Práh 10 ručních článků překročen → AI-assisted produkce zahájena.
 
 ### Jednoduchý workflow
 
@@ -99,9 +112,9 @@ Po 10–15 ručních článcích → AI-assisted produkce.
 
 | Program | Provize | Priorita |
 |---|---|---|
-| Mall.cz | 2–4 % | Start — snadné schválení |
-| Alza.cz | 1–3 % | Start — záloha |
-| Heureka | 1–5 % | Vhodné pro srovnávací články |
-| Besteto.cz | 3–6 % | Specializované grilovací vybavení |
-| Weber CZ | TBD | Kontaktovat po 5 publikovaných článcích |
-| Amazon.de | 3–10 % | Přidat po 1 000+ návštěvách/měsíc |
+| Mall.cz | 2–4 % | ⬜ Registrace TODO — `affiliates.config.ts` má placeholder UTM |
+| Alza.cz | 1–3 % | ⬜ Registrace TODO — `affiliates.config.ts` má placeholder UTM |
+| Heureka | 1–5 % | ⬜ Registrace TODO |
+| Besteto.cz | 3–6 % | ⬜ Registrace TODO |
+| Weber CZ | TBD | ⬜ Kontaktovat (5+ článků splněno) |
+| Amazon.de | 3–10 % | ⏳ Přidat po 1 000+ návštěvách/měsíc |
