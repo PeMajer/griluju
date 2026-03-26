@@ -6,17 +6,7 @@ Věci které musí udělat člověk — obsah, registrace, live testy.
 
 ## Obsah & data
 
-### Osobní příběh — stránka /o-mne
-
-**Soubor:** `src/app/(cs)/o-mne/page.tsx` → `<!-- PLACEHOLDER: personal-story -->`
-
-Napiš agentovi 3–5 vět o:
-1. Kdy a jak jsi začal grilovat (rok, okolnost)
-2. Zlomový moment — kdy jsi to začal brát vážně
-3. Co tě na grilování nejvíc baví / čemu se specializuješ
-4. Proč jsi založil tento web
-
-Agent z toho sestaví plnohodnotný text.
+### ~~Osobní příběh — stránka /o-mne~~ ✅ HOTOVO
 
 ### Vlastní fotky (průběžně, od Měsíce 2)
 
@@ -59,6 +49,9 @@ Registruj se hned, schválení trvá 2–7 dní.
 
 **Po schválení:**
 1. Vygeneruj affiliate odkaz na konkrétní produkt (např. Weber Master-Touch)
+   - **Mall.cz:** přihlas se do affiliate panelu → sekce *Deeplinks* → zadej URL produktu na Mall.cz → panel vygeneruje trackovaný odkaz ve tvaru `https://www.mall.cz/...?partner=XXX`
+   - **Alza.cz:** přihlas se do affiliate panelu → *Nástroje → Generátor odkazů* → vlož URL produktu na Alza.cz → zkopíruj vygenerovaný odkaz
+   - **Heureka.cz:** přihlas se do affiliate rozhraní → *Deeplink generátor* → zadej URL produktu na Heureka.cz → zkopíruj odkaz s parametrem `utm_source` nebo trackovacím ID
 2. Otevři `affiliates.config.ts` a nahraď placeholder URL skutečnými affiliate URL
 3. Commitni, push, PR → deploy
 
@@ -70,7 +63,7 @@ Registruj se hned, schválení trvá 2–7 dní.
 
 | Úkol | Status |
 |---|---|
-| Osobní příběh /o-mne | ⬜ TODO |
+| Osobní příběh /o-mne | ✅ done |
 | Kontaktní info /kontakt | ✅ done |
 | Vlastní fotky (průběžně) | ⬜ TODO |
 | Lighthouse mobile 90+ | ✅ done (91+) |
